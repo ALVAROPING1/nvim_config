@@ -10,4 +10,13 @@ return {
   --   end,
   -- },
   "Mofiqul/vscode.nvim",
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "User AstroFile",
+  },
+  {
+    "ggandor/leap.nvim",
+    event = "User AstroFile",
+    config = function() require("leap").add_default_mappings() end,
+  },
 }
