@@ -9,5 +9,5 @@ return {
     NeoTreeGitUnstaged = { fg = "#e2c08d" },
     NeoTreeGitUntracked = { fg = "#73c991" },
     NeoTreeGitStaged = { fg = "#e2c08d" },
-    NeoTreeTitleBar = { fg = "#d4d4d4", bg = "#444444" }, --Modificar
+    NeoTreeTitleBar = { fg = "#d4d4d4", bg = "#444444" },
 }
