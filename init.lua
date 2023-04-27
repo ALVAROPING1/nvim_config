@@ -152,5 +152,7 @@ return {
                 })
             end,
         })
+        -- Disable search highlight being disabled on cursor movement
+        vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
     end,
 }
