@@ -16,8 +16,7 @@ return {
             ensure_installed = {
                 -- "prettier",
                 -- "cspell",
-                -- "markdownlint",
-                "pylint",
+                "markdownlint",
             },
         },
     },
