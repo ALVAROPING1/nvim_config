@@ -10,4 +10,8 @@ return {
     NeoTreeGitUntracked = { fg = "#73c991" },
     NeoTreeGitStaged = { fg = "#e2c08d" },
     NeoTreeTitleBar = { fg = "#d4d4d4", bg = "#444444" },
+    LineNr = { fg = "#858585", bg = "#1E1E1E" },
+    CursorLineNr = { fg = "#c6c6c6", bg = "#1E1E1E" },
+    CursorLine = { bg = "#282828" },
+    CursorColumn = { bg = "#282828" },
 }
