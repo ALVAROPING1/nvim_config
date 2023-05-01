@@ -38,7 +38,7 @@ return {
         ["J"] = { "5j", desc = "Fast downwards movement" },
         ["K"] = { "5k", desc = "Fast upwards movement" },
         -- Text search
-        ["<C-/>"] = { "<cmd>noh<cr>", desc = "Clear highlighted text" },
+        ["<leader><leader>/"] = { "<cmd>noh<cr>", desc = "Clear highlighted text" },
         -- Remap replaced commands
         ["<leader>j"] = { "J", desc = "Join lines" },
         -- Insert math blocks in markdown
