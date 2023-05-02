@@ -118,7 +118,10 @@ return {
             ["pyright"] = function()
                 require("lspconfig").pyright.setup({
                     before_init = function(_, config)
-                        config.settings.python.pythonPath = utils.get_python_path(config.root_dir)
+                        config.settings.python = {
+                            analysis = { extraPaths = { "src/main/python" } },
+                            pythonPath = utils.get_python_path(config.root_dir),
+                        }
                     end,
                 })
             end,
