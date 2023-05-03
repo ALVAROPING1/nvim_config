@@ -69,7 +69,8 @@ return {
             q = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop nearest test" },
             o = { "<cmd>lua require('neotest').output_panel.toggle()<cr>", "Toggle output panel" },
             s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Toggle summary window" },
-        }
+        },
+        ["<leader>x"] = { name = "Trouble" }
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type greek characters" },
