@@ -185,5 +185,13 @@ return {
             })
         end,
         ft = { "python" },
+    },
+    { import = "astrocommunity.editing-support.treej" },
+    {
+        "Wansmer/treesj",
+        keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Join" } },
+        opts = {
+            max_join_length = 100
+        }
     }
 }
