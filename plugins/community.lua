@@ -195,4 +195,11 @@ return {
         }
     },
     { import = "astrocommunity.git.git-blame-nvim" },
+    { import = "astrocommunity.lsp.inc-rename" },
+    {
+        "smjonas/inc-rename.nvim",
+        opts = {
+            hlgroup = "IncRenameText"
+        }
+    }
 }
