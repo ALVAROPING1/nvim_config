@@ -14,4 +14,5 @@ return {
     CursorLineNr = { fg = "#c6c6c6", bg = "#1E1E1E" },
     CursorLine = { bg = "#282828" },
     CursorColumn = { bg = "#282828" },
+    GitBlameText = { fg = "#707070", bg = "#282828" }
 }

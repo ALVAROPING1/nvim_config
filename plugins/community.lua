@@ -193,5 +193,6 @@ return {
         opts = {
             max_join_length = 100
         }
-    }
+    },
+    { import = "astrocommunity.git.git-blame-nvim" },
 }
