@@ -2,6 +2,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
         auto_install = true,
-        ensure_installed = { "comment" },
+        ensure_installed = { "comment", "jsonc" },
     },
 }

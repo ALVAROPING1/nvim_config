@@ -201,5 +201,16 @@ return {
         opts = {
             hlgroup = "IncRenameText"
         }
+    },
+    { import = "astrocommunity.project.neoconf-nvim" },
+    {
+        "folke/neoconf.nvim",
+        opts = {
+            plugins = {
+                lua_ls = {
+                    enabled = true
+                }
+            }
+        }
     }
 }
