@@ -149,5 +149,13 @@ return {
         if path:new("src/main/python"):is_dir() then
             vim.env.PYTHONPATH = utils.concat_nullable_str("src/main/python", vim.env.PYTHONPATH, ":")
         end
+
+        require("nvim-web-devicons").set_icon({
+            md = {
+                icon = "",
+                color = "#519aba",
+                name = "Markdown"
+            }
+        })
     end,
 }
