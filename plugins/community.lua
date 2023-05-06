@@ -212,5 +212,15 @@ return {
                 }
             }
         }
-    }
+    },
+    { import = "astrocommunity.project.nvim-spectre" },
+    {
+        "nvim-pack/nvim-spectre",
+        opts = {
+            highlight = {
+                search = "DiffDelete",
+                replace = "GitSignsAdd"
+            }
+        }
+    },
 }
