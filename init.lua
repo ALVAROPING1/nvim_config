@@ -144,5 +144,10 @@ return {
         -- Disable search highlight being disabled on cursor movement
         ---@diagnostic disable-next-line: param-type-mismatch
         vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
+
+        local path = require("plenary.path")
+        if path:new("src/main/python"):is_dir() then
+            vim.env.PYTHONPATH = utils.concat_nullable_str("src/main/python", vim.env.PYTHONPATH, ":")
+        end
     end,
 }

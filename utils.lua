@@ -19,4 +19,20 @@ function M.get_python_path(workspace)
     return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
 end
 
+--- Concatenates 2 given strings with the given separator while checking if either is nil.
+--- If one of them is nil, returns the other string as is
+---@param str1? string
+---@param str2? string
+---@param sep string
+---@return string?
+function M.concat_nullable_str(str1, str2, sep)
+    if str1 == nil then
+        return str2
+    end
+    if str2 == nil then
+        return str1
+    end
+    return str1 .. sep .. str2
+end
+
 return M
