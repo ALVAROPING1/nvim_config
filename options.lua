@@ -4,9 +4,16 @@ return {
         -- set to true or false etc.
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true,         -- sets vim.opt.number
-        spell = false,         -- sets vim.opt.spell
-        signcolumn = "auto",   -- sets vim.opt.signcolumn to auto
-        wrap = true,           -- sets vim.opt.wrap
+        spell = true,          -- sets vim.opt.spell
+        spelllang = { "en", "es_es" },
+        spellfile = {
+            vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/personal-es.utf-8.add",
+            vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/personal-en.utf-8.add",
+            vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/ignore.utf-8.add"
+        },
+        spelloptions = "camel,noplainbuffer",
+        signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+        wrap = true,         -- sets vim.opt.wrap
         linebreak = true,
         breakat = " ",
         breakindent = true,

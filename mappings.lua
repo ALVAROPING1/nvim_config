@@ -73,9 +73,17 @@ return {
         ["<leader>x"] = { name = "Trouble" }
     },
     i = {
-        ["<C-g>"] = { "<C-k>*", desc = "Type greek characters" },
+        ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
         ["<C-j><C-k>"] = { "<C-v>j<C-v>k", desc = "Type jk character sequence" },
         ["<C-j>"] = { "<C-v>j", desc = "Type j character" },
+        -- Spelling
+        ["<C-l>"] = {
+            name = "󰓆 Spelling",
+            l = { "<C-g>u<Esc>[s1z=`]a<c-g>u", "Fix previous mistake" },
+            i = { "<C-g>u<Esc>[s3zg`]a<c-g>u", "Ignore previous mistake" },
+            e = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Mark previous mistake as good (English)" },
+            s = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good (Spanish)" },
+        },
     },
     t = {
         -- setting a mapping to false will disable it
