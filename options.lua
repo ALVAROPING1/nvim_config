@@ -22,6 +22,9 @@ return {
         tabstop = 4,
         softtabstop = 4,
         shiftwidth = 4,
+        scrollopt = "ver,hor,jump",
+        nrformats = "bin,hex,alpha",
+        wildignorecase = true,
     },
     g = {
         mapleader = " ",                 -- sets vim.g.mapleader
