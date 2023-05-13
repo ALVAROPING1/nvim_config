@@ -151,14 +151,35 @@ return {
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.yaml" },
-    {
-        "linux-cultist/venv-selector.nvim",
-        enabled = false,
-    },
-    { import = "astrocommunity.test.neotest" },
+    { "linux-cultist/venv-selector.nvim",              enabled = false, },
+    -- { import = "astrocommunity.test.neotest" },
     {
         "nvim-neotest/neotest",
-        ft = { "python" },
+        config = function()
+            -- get neotest namespace (api call creates or returns namespace)
+            local neotest_ns = vim.api.nvim_create_namespace "neotest"
+            vim.diagnostic.config({
+                virtual_text = {
+                    format = function(diagnostic)
+                        local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+",
+                            "")
+                        return message
+                    end,
+                },
+            }, neotest_ns)
+            require("neotest").setup({
+                -- your neotest config here
+                adapters = {
+                    require("neotest-python"),
+                    -- require "neotest-rust",
+                },
+            })
+        end,
+        ft = { --[["rust",]] "python" },
+        dependencies = {
+            "nvim-neotest/neotest-python",
+            -- "rouge8/neotest-rust",
+        },
     },
     { import = "astrocommunity.editing-support.treej" },
     {
