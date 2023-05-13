@@ -70,7 +70,8 @@ return {
             o = { "<cmd>lua require('neotest').output_panel.toggle()<cr>", "Toggle output panel" },
             s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Toggle summary window" },
         },
-        ["<leader>x"] = { name = "Trouble" }
+        ["<leader>x"] = { name = "Trouble" },
+        ["<leader>r"] = { "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>", desc = "Toggle math rendering" },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
