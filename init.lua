@@ -162,5 +162,7 @@ return {
         for _, file in pairs(paths) do
             vim.cmd('silent mkspell! ' .. file)
         end
+
+        require("user.autocmds")
     end,
 }

@@ -4,7 +4,7 @@ return {
         -- set to true or false etc.
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true,         -- sets vim.opt.number
-        spell = true,          -- sets vim.opt.spell
+        spell = false,         -- sets vim.opt.spell
         spelllang = { "en", "es_es" },
         spellfile = {
             vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/personal-es.utf-8.add",
@@ -13,7 +13,7 @@ return {
         },
         spelloptions = "camel,noplainbuffer",
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-        wrap = true,         -- sets vim.opt.wrap
+        wrap = false,        -- sets vim.opt.wrap
         linebreak = true,
         breakat = " ",
         breakindent = true,
