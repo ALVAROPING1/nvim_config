@@ -19,4 +19,5 @@ return {
     SpellBad = { underline = false, fg = "#F44747", },
     SpellCap = { underline = true, fg = "#569CD6" },
     SpellRare = { underline = true, fg = "#DCDCAA" },
+    ["@comment.documentation"] = { fg = "#569cd6" }
 }
