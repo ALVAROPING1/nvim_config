@@ -51,10 +51,10 @@ return {
             desc = "Insert diapositivas TODO comment (markdown)",
         },
         -- Disable arrow keys
-        ["<left>"] = { "<nop>" },
-        ["<right>"] = { "<nop>" },
-        ["<up>"] = { "<nop>" },
-        ["<down>"] = { "<nop>" },
+        ["<left>"] = { "" },
+        ["<right>"] = { "" },
+        ["<up>"] = { "" },
+        ["<down>"] = { "" },
         -- Move the force save key
         ["<leader>W"] = { "<cmd>w!<cr>", desc = "Force save" },
         -- Nvim-surround group
@@ -101,9 +101,9 @@ return {
         ["J"] = { "5j", desc = "Fast downwards movement" },
         ["K"] = { "5k", desc = "Fast upwards movement" },
         -- Disable arrow keys
-        ["<left>"] = { "<nop>" },
-        ["<right>"] = { "<nop>" },
-        ["<up>"] = { "<nop>" },
-        ["<down>"] = { "<nop>" },
+        ["<left>"] = { "" },
+        ["<right>"] = { "" },
+        ["<up>"] = { "" },
+        ["<down>"] = { "" },
     },
 }
