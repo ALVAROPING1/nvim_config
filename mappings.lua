@@ -72,6 +72,12 @@ return {
         },
         ["<leader>x"] = { name = "Trouble" },
         ["<leader>r"] = { "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>", desc = "Toggle math rendering" },
+        -- Open terminals
+        ["<leader>tt"] = { function() require("astronvim.utils").toggle_term_cmd("btop") end, desc = "ToggleTerm btop" },
+        ["<leader>tp"] = {
+            function() require("astronvim.utils").toggle_term_cmd("ipython") end,
+            desc = "ToggleTerm python"
+        },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
