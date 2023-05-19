@@ -16,8 +16,8 @@ return {
     CursorColumn = { bg = "#282828" },
     GitBlameText = { fg = "#707070", bg = "#282828" },
     IncRenameText = { bg = "#613214" },
-    SpellBad = { underline = false, fg = "#F44747", },
+    SpellBad = { underline = false, fg = "#F44747" },
     SpellCap = { underline = true, fg = "#569CD6" },
     SpellRare = { underline = true, fg = "#DCDCAA" },
-    ["@comment.documentation"] = { fg = "#569cd6" }
+    ["@comment.documentation"] = { fg = "#569cd6" },
 }

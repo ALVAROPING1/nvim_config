@@ -17,8 +17,17 @@ return {
     {
         "ggandor/leap.nvim",
         event = "User AstroFile",
-        config = function() require("leap").add_default_mappings() end,
+        config = function()
+            require("leap").add_default_mappings()
+        end,
     },
     "LiadOz/nvim-dap-repl-highlights",
     "jbyuki/nabla.nvim",
+    {
+        "lukas-reineke/lsp-format.nvim",
+        event = "LspAttach",
+        opts = {
+            lua = { order = { "null-ls", "lua_ls" } },
+        },
+    },
 }

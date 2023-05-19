@@ -143,7 +143,9 @@ return {
                 },
             }
         end,
-        config = function(_, opts) require("mini.animate").setup(opts) end,
+        config = function(_, opts)
+            require("mini.animate").setup(opts)
+        end,
     },
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.lua" },
@@ -151,18 +153,18 @@ return {
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.yaml" },
-    { "linux-cultist/venv-selector.nvim",              enabled = false, },
+    { "linux-cultist/venv-selector.nvim",              enabled = false },
     -- { import = "astrocommunity.test.neotest" },
     {
         "nvim-neotest/neotest",
         config = function()
             -- get neotest namespace (api call creates or returns namespace)
-            local neotest_ns = vim.api.nvim_create_namespace "neotest"
+            local neotest_ns = vim.api.nvim_create_namespace("neotest")
             vim.diagnostic.config({
                 virtual_text = {
                     format = function(diagnostic)
-                        local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+",
-                            "")
+                        local message =
+                            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
                         return message
                     end,
                 },
@@ -175,7 +177,9 @@ return {
                 },
             })
         end,
-        ft = { --[["rust",]] "python" },
+        ft = { --[["rust",]]
+            "python",
+        },
         dependencies = {
             "nvim-neotest/neotest-python",
             -- "rouge8/neotest-rust",
@@ -186,16 +190,16 @@ return {
         "Wansmer/treesj",
         keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Join" } },
         opts = {
-            max_join_length = 100
-        }
+            max_join_length = 100,
+        },
     },
     { import = "astrocommunity.git.git-blame-nvim" },
     { import = "astrocommunity.lsp.inc-rename" },
     {
         "smjonas/inc-rename.nvim",
         opts = {
-            hlgroup = "IncRenameText"
-        }
+            hlgroup = "IncRenameText",
+        },
     },
     { import = "astrocommunity.project.neoconf-nvim" },
     {
@@ -203,10 +207,10 @@ return {
         opts = {
             plugins = {
                 lua_ls = {
-                    enabled = true
-                }
-            }
-        }
+                    enabled = true,
+                },
+            },
+        },
     },
     { import = "astrocommunity.project.nvim-spectre" },
     {
@@ -214,8 +218,8 @@ return {
         opts = {
             highlight = {
                 search = "DiffDelete",
-                replace = "GitSignsAdd"
-            }
-        }
+                replace = "GitSignsAdd",
+            },
+        },
     },
 }

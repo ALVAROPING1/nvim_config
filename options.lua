@@ -9,7 +9,7 @@ return {
         spellfile = {
             vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/personal-es.utf-8.add",
             vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/personal-en.utf-8.add",
-            vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/ignore.utf-8.add"
+            vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell/ignore.utf-8.add",
         },
         spelloptions = "camel,noplainbuffer",
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto

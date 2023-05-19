@@ -8,5 +8,5 @@ return {
     LeapLabelPrimary = { fg = "#ff0000" },
     LeapLabelSecondary = { fg = "#0095ff" },
     LeapBackdrop = { fg = "#777777" },
-    IndentBlanklineContextStart = { underline = true, italic = true, sp = "fg" }
+    IndentBlanklineContextStart = { underline = true, italic = true, sp = "fg" },
 }
