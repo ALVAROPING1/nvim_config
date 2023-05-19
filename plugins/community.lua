@@ -218,7 +218,7 @@ return {
         opts = {
             highlight = {
                 search = "DiffDelete",
-                replace = "GitSignsAdd",
+                replace = "DiffAdd",
             },
         },
     },
