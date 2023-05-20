@@ -20,4 +20,7 @@ return {
     SpellCap = { underline = true, fg = "#569CD6" },
     SpellRare = { underline = true, fg = "#DCDCAA" },
     ["@comment.documentation"] = { fg = "#569cd6" },
+    DiffviewDiffDelete = { fg = "#414141" },
+    DiffText = { bg = "#185f7a" },
+    DiffChange = { bg = "#153947" },
 }

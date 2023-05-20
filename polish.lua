@@ -26,6 +26,9 @@ return function()
     ---@diagnostic disable-next-line: param-type-mismatch
     vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
 
+    -- Replace deleted lines symbol with diagonal lines in diff view
+    vim.opt.fillchars:append({ diff = "╱" })
+
     require("user.polish.python_setup")
     require("user.polish.custom_icons")
     require("user.polish.compile_spell")
