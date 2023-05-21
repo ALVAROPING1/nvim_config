@@ -23,4 +23,7 @@ return {
     DiffviewDiffDelete = { fg = "#414141" },
     DiffText = { bg = "#185f7a" },
     DiffChange = { bg = "#153947" },
+    LspSignatureActiveParameter = { fg = "#2aaaff" },
+    -- Handles both hover text and Lazy/Mason background. Hover text looks better with it, but Lazy/Mason don't as they don't have borders
+    -- NormalFloat = { fg = "#d4d4d4", bg = "#1E1E1E" },
 }

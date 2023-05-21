@@ -30,4 +30,11 @@ return {
             lua = { order = { "null-ls", "lua_ls" } },
         },
     },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {
+            hint_enable = false,
+        },
+    },
 }
