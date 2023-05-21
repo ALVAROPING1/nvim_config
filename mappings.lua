@@ -88,6 +88,7 @@ return {
             end,
             desc = "ToggleTerm python",
         },
+        ["<leader>a"] = { name = "Annotation" },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
