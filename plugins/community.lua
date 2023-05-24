@@ -39,6 +39,7 @@ return {
     { import = "astrocommunity.utility.neodim" },
     {
         "zbirenbaum/neodim",
+        commit = "ba5dfa8",
         opts = {
             alpha = 0.667,
             hide = {
