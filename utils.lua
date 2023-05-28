@@ -1,5 +1,12 @@
 local M = {}
 
+--- Gets the python executable to use
+--- Priority order:
+--- 1. Currently active venv
+--- 2. Executable in the .venv folder in the current workspace root
+--- 3. System python3 or python, or local python
+---@param workspace string? Current workspace root
+---@return string Executable Path of the python executable
 function M.get_python_path(workspace)
     local path = require("lspconfig/util").path
     -- Use activated virtualenv.
@@ -21,10 +28,10 @@ end
 
 --- Concatenates 2 given strings with the given separator while checking if either is nil.
 --- If one of them is nil, returns the other string as is
----@param str1? string
----@param str2? string
----@param sep string
----@return string?
+---@param str1? string First string
+---@param str2? string Second string
+---@param sep string String separator
+---@return string|nil Result Concatenated string
 function M.concat_nullable_str(str1, str2, sep)
     if str1 == nil then
         return str2
