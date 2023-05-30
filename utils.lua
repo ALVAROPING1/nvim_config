@@ -65,4 +65,16 @@ function M.fix_previous_diagnostic(name, action_kinds, apply)
     end
 end
 
+--- Logs a message to a file
+---@param file string Path to the file to write in
+---@param message any Message to be logged
+function M.log(file, message)
+    local log_file = io.open(file, "a")
+    if log_file ~= nil then
+        io.output(log_file)
+        io.write(message .. "\n")
+        io.close(log_file)
+    end
+end
+
 return M
