@@ -1,3 +1,20 @@
+--- Fixes the previous ltex diagnostic
+---@param option number? Code action to trigger. If nil will list all options
+local function ltex_quickfix(option)
+    local actions = {
+        "quickfix.ltex.acceptSuggestions",
+        "quickfix.ltex.addToDictionary",
+        "quickfix.ltex.hideFalsePositives",
+        "quickfix.ltex.disableRules",
+    }
+    if option ~= nil then
+        actions = { actions[option] }
+    end
+    return function()
+        require("user.utils").fix_previous_diagnostic("ltex", actions, option ~= nil)
+    end
+end
+
 -- Mapping data with "desc" stored directly by vim.keymap.set().
 --
 -- Please use this mappings table to set keyboard mapping since this is the
@@ -89,6 +106,12 @@ return {
             desc = "ToggleTerm python",
         },
         ["<leader>a"] = { name = "Annotation" },
+        ["<leader>lg"] = {
+            name = "󰓆 Spelling",
+            l = { ltex_quickfix(), "Fix previous mistake" },
+            a = { ltex_quickfix(2), "Add previous diagnostic word to dictionary" },
+            d = { ltex_quickfix(3), "Ignore previous diagnostic" },
+        },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
@@ -97,10 +120,13 @@ return {
         -- Spelling
         ["<C-l>"] = {
             name = "󰓆 Spelling",
-            l = { "<C-g>u<Esc>[s1z=`]a<c-g>u", "Fix previous mistake" },
-            i = { "<C-g>u<Esc>[s3zg`]a<c-g>u", "Ignore previous mistake" },
-            e = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Mark previous mistake as good (English)" },
-            s = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good (Spanish)" },
+            l = { ltex_quickfix(), "Fix previous mistake" },
+            a = { ltex_quickfix(2), "Add previous diagnostic word to dictionary" },
+            d = { ltex_quickfix(3), "Ignore previous diagnostic" },
+            -- l = { "<C-g>u<Esc>[s1z=`]a<c-g>u", "Fix previous mistake" },
+            -- i = { "<C-g>u<Esc>[s3zg`]a<c-g>u", "Ignore previous mistake" },
+            -- e = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Mark previous mistake as good (English)" },
+            -- s = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good (Spanish)" },
         },
     },
     t = {

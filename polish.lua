@@ -31,6 +31,6 @@ return function()
 
     require("user.polish.python_setup")
     require("user.polish.custom_icons")
-    require("user.polish.compile_spell")
+    -- require("user.polish.compile_spell")
     require("user.polish.autocmds")
 end

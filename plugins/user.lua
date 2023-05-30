@@ -37,4 +37,15 @@ return {
             hint_enable = false,
         },
     },
+    {
+        "barreiroleo/ltex-extra.nvim",
+        ft = { "gitcommit", "markdown", "org", "plaintex", "tex", "pandoc" },
+        dependencies = { "neovim/nvim-lspconfig" },
+        opts = {
+            server_opts = require("user.lsp.config.ltex"),
+            path = require("plenary.path"):new(".ltex"):is_dir() and ".ltex"
+                or vim.env.XDG_CONFIG_HOME .. "/nvim/lua/user/spell",
+            load_langs = { "es", "en-US" },
+        },
+    },
 }
