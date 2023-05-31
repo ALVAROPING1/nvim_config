@@ -46,4 +46,18 @@ return {
     -- Selected = "❯",
     -- Spellcheck = "󰓆",
     -- TabClose = "󰅙",
+    lspkind = {
+        Array = "󰅪",
+        Boolean = "",
+        Constructor = "",
+        Key = "󰌆",
+        Namespace = "",
+        Null = "",
+        Number = "",
+        Object = "󰀚",
+        Package = "󰏗",
+        Property = "",
+        String = "󰀬",
+        TypeParameter = "󰊄",
+    },
 }
