@@ -35,7 +35,7 @@ return {
     -- GitRenamed = "➜",
     GitStaged = "",
     GitUnstaged = "",
-    GitUntracked = "",
+    GitUntracked = "󰓎",
     -- LSPLoaded = "",
     -- LSPLoading1 = "",
     -- LSPLoading2 = "󰀚",
