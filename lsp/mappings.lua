@@ -1,7 +1,7 @@
 -- LSP mapping settings
 return {
     n = {
-        ["gk"] = {
+        ["gh"] = {
             function()
                 vim.lsp.buf.hover()
             end,
