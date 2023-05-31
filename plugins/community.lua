@@ -210,6 +210,17 @@ return {
         opts = {
             hlgroup = "IncRenameText",
         },
+        keys = {
+            {
+                "<leader>lr",
+                function()
+                    require("inc_rename")
+                    return ":IncRename " .. vim.fn.expand("<cword>")
+                end,
+                expr = true,
+                desc = "Rename current symbol",
+            },
+        },
     },
     { import = "astrocommunity.project.neoconf-nvim" },
     {

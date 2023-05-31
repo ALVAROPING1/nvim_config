@@ -8,5 +8,6 @@ return {
             desc = "Hover symbol details",
         },
         ["K"] = false,
+        ["<leader>lr"] = false,
     },
 }
