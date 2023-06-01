@@ -244,4 +244,38 @@ return {
         },
     },
     { import = "astrocommunity.workflow.hardtime-nvim" },
+    { import = "astrocommunity.utility.noice-nvim" },
+    {
+        "folke/noice.nvim",
+        opts = {
+            cmdline = {
+                format = {
+                    filter = { title = " Bash " },
+                },
+            },
+            messages = { view_search = false },
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = "^/",
+                    },
+                    opts = { skip = true },
+                },
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = "escritos",
+                    },
+                    opts = { skip = true },
+                },
+            },
+            presets = {
+                inc_rename = true,
+                lsp_doc_border = true,
+            },
+        },
+    },
 }

@@ -32,9 +32,11 @@ return {
     },
     {
         "ray-x/lsp_signature.nvim",
+        enabled = false,
         event = "VeryLazy",
         opts = {
             hint_enable = false,
+            noice = true,
         },
     },
     {
