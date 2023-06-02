@@ -19,6 +19,25 @@ return {
     { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
     {
         "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            "HiPhish/nvim-ts-rainbow2",
+            config = function()
+                -- Fix rainbow parenthesis losing color after saving
+                -- HACK: https://github.com/p00f/nvim-ts-rainbow/issues/112#issuecomment-1310835936
+                -- Might result in slowdown: https://github.com/AstroNvim/astrocommunity/pull/162
+                vim.api.nvim_create_autocmd({ "BufWritePost", "FocusGained" }, {
+                    callback = function()
+                        if vim.bo.filetype == "markdown" then
+                            return
+                        end
+                        -- HACK: Sleep required to make sure it's triggered after formatting is done
+                        vim.wait(5)
+                        vim.cmd("TSDisable rainbow")
+                        vim.cmd("TSEnable rainbow")
+                    end,
+                })
+            end,
+        },
         opts = {
             rainbow = {
                 enable = true,
