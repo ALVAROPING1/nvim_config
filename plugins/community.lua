@@ -41,6 +41,7 @@ return {
         opts = {
             rainbow = {
                 enable = true,
+                disable = { "markdown" },
                 querry = {
                     "rainbow-parens",
                     latex = "rainbow-blocks",
