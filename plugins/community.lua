@@ -224,7 +224,7 @@ return {
         },
     },
     { import = "astrocommunity.git.git-blame-nvim" },
-    { import = "astrocommunity.lsp.inc-rename" },
+    { import = "astrocommunity.lsp.inc-rename-nvim" },
     {
         "smjonas/inc-rename.nvim",
         opts = {
