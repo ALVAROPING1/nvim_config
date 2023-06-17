@@ -17,6 +17,7 @@ return {
                 -- "prettier",
                 -- "cspell",
                 "markdownlint",
+                "rustfmt",
             },
         },
     },

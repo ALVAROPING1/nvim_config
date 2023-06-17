@@ -183,6 +183,7 @@ return {
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.yaml" },
+    { import = "astrocommunity.pack.rust" },
     { "linux-cultist/venv-selector.nvim",              enabled = false },
     -- { import = "astrocommunity.test.neotest" },
     {
@@ -203,16 +204,17 @@ return {
                 -- your neotest config here
                 adapters = {
                     require("neotest-python"),
-                    -- require "neotest-rust",
+                    require("neotest-rust"),
                 },
             })
         end,
-        ft = { --[["rust",]]
+        ft = {
             "python",
+            "rust",
         },
         dependencies = {
             "nvim-neotest/neotest-python",
-            -- "rouge8/neotest-rust",
+            "rouge8/neotest-rust",
         },
     },
     { import = "astrocommunity.editing-support.treej" },
