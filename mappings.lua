@@ -39,9 +39,6 @@ return {
         ["K"] = { "5k", desc = "Fast upwards movement" },
         -- Remap replaced commands
         ["<leader>j"] = { "J", desc = "Join lines" },
-        -- Insert math blocks in markdown
-        ["<leader>m"] = { "a$$<left>", desc = "Insert math block inline (markdown)" },
-        ["<leader>M"] = { "o$$$$<left><left>", desc = "Insert math block displaystyle (markdown)" },
         -- Insert TODO comments in markdown
         ["<leader><C-t>"] = { "a <!--TODO: completar esto--><esc>", desc = "Insert generic TODO comment (markdown)" },
         ["<leader><C-d>"] = {
@@ -157,6 +154,7 @@ return {
         -- Fast movement
         ["J"] = { "5j", desc = "Fast downwards movement" },
         ["K"] = { "5k", desc = "Fast upwards movement" },
+        ["<C-x>"] = { desc = "Store text for snippet" },
         -- Disable arrow keys
         ["<left>"] = { "" },
         ["<right>"] = { "" },

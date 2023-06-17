@@ -51,4 +51,11 @@ return {
             close_command = require("astronvim.utils.buffer").close,
         },
     },
+    {
+        "windwp/nvim-ts-autotag",
+        -- Fix autosnippets ending in ">" not being triggered due to nvim-ts-autotag
+        -- SEE: https://github.com/windwp/nvim-ts-autotag/issues/102
+        -- SEE: https://github.com/L3MON4D3/LuaSnip/issues/865
+        enabled = false,
+    },
 }
