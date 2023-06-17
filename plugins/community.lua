@@ -264,6 +264,7 @@ return {
         },
     },
     { import = "astrocommunity.workflow.hardtime-nvim" },
+    { "m4xshen/hardtime.nvim",                         commit = "4fa70fd" },
     { import = "astrocommunity.utility.noice-nvim" },
     {
         "folke/noice.nvim",
