@@ -132,6 +132,7 @@ return {
     t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+        ["<M-j><M-k>"] = { "<C-\\><C-n>", desc = "Exit insert mode" },
     },
     v = {
         -- Fast movement
