@@ -184,6 +184,7 @@ return {
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.rust" },
+    { "simrat39/rust-tools.nvim",                      opts = { server = { standalone = true } } },
     { "linux-cultist/venv-selector.nvim",              enabled = false },
     -- { import = "astrocommunity.test.neotest" },
     {
