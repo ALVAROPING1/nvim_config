@@ -302,4 +302,6 @@ return {
             },
         },
     },
+    { import = "astrocommunity.motion.leap-nvim" },
+    { import = "astrocommunity.motion.flit-nvim" },
 }
