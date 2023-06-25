@@ -74,4 +74,14 @@ return {
     --     }, { mode = "n", prefix = "<leader>" })
     --   end,
     -- },
+    {
+        "folke/neoconf.nvim",
+        opts = {
+            plugins = {
+                lua_ls = {
+                    enabled = true,
+                },
+            },
+        },
+    },
 }

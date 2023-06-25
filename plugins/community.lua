@@ -245,17 +245,6 @@ return {
             },
         },
     },
-    { import = "astrocommunity.project.neoconf-nvim" },
-    {
-        "folke/neoconf.nvim",
-        opts = {
-            plugins = {
-                lua_ls = {
-                    enabled = true,
-                },
-            },
-        },
-    },
     { import = "astrocommunity.project.nvim-spectre" },
     {
         "nvim-pack/nvim-spectre",
