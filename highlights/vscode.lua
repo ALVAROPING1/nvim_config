@@ -27,4 +27,5 @@ return {
     -- Handles both hover text and Lazy/Mason background. Hover text looks better with it, but Lazy/Mason don't as they don't have borders
     -- NormalFloat = { fg = "#d4d4d4", bg = "#1E1E1E" },
     TreesitterContextBottom = { underline = true, sp = "#444444" },
+    DiagnosticUnnecessary = { fg = "#8D8D8D" },
 }
