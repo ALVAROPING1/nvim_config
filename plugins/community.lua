@@ -186,6 +186,17 @@ return {
     { import = "astrocommunity.pack.rust" },
     { "simrat39/rust-tools.nvim",                      opts = { server = { standalone = true } } },
     { "linux-cultist/venv-selector.nvim",              enabled = false },
+    {
+        "mfussenegger/nvim-dap-python",
+        enabled = false, -- Doesn't support setting the cwd in the profiles
+        config = function()
+            local utils = require("user.utils")
+            require("dap-python").setup(
+                vim.env.XDG_DATA_HOME .. "/nvim/mason/packages/debugpy/venv/bin/python3",
+                { pythonPath = utils.get_python_path(vim.loop.cwd()) }
+            )
+        end,
+    },
     -- { import = "astrocommunity.test.neotest" },
     {
         "nvim-neotest/neotest",
