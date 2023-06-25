@@ -218,7 +218,7 @@ return {
             "rouge8/neotest-rust",
         },
     },
-    { import = "astrocommunity.editing-support.treej" },
+    { import = "astrocommunity.editing-support.treesj" },
     {
         "Wansmer/treesj",
         keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Join" } },
