@@ -39,6 +39,7 @@ return {
         gitblame_date_format = "%r",
         gitblame_highlight_group = "GitBlameText",
         gitblame_delay = 250,
+        lsp_lines = { "lazy", "mason" },
     },
 }
 -- If you need more control, you can use the function()...end notation

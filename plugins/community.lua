@@ -304,4 +304,17 @@ return {
     },
     { import = "astrocommunity.motion.leap-nvim" },
     { import = "astrocommunity.motion.flit-nvim" },
+    { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+            vim.diagnostic.config({
+                virtual_lines = function(_, bufnr)
+                    return not vim.tbl_contains(vim.g.lsp_lines, vim.bo[bufnr].ft) and { only_current_line = true }
+                        or false
+                end,
+            })
+        end,
+    },
 }
