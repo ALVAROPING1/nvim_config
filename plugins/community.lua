@@ -213,10 +213,16 @@ return {
                 },
             }, neotest_ns)
             require("neotest").setup({
-                -- your neotest config here
                 adapters = {
                     require("neotest-python"),
                     require("neotest-rust"),
+                },
+                quickfix = { enabled = false },
+                summary = {
+                    mappings = {
+                        next_failed = "l",
+                        prev_failed = "h",
+                    },
                 },
             })
         end,
@@ -267,7 +273,13 @@ return {
         },
     },
     { import = "astrocommunity.workflow.hardtime-nvim" },
-    { "m4xshen/hardtime.nvim",                         commit = "4fa70fd" },
+    {
+        "m4xshen/hardtime.nvim",
+        commit = "4fa70fd",
+        opts = function(_, opts)
+            vim.list_extend(opts.disabled_filetypes, { "neotest-summary" })
+        end,
+    },
     { import = "astrocommunity.utility.noice-nvim" },
     {
         "folke/noice.nvim",
@@ -292,6 +304,16 @@ return {
                         event = "msg_show",
                         kind = "",
                         find = "escritos",
+                    },
+                    opts = { skip = true },
+                },
+                {
+                    filter = {
+                        any = {
+                            { find = "Starting watcher for" },
+                            { find = "Watcher running for " },
+                            { find = "Stopping watch for " },
+                        },
                     },
                     opts = { skip = true },
                 },

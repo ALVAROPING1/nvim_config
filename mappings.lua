@@ -77,16 +77,7 @@ return {
         -- Nvim-surround group
         ["<C-s>"] = { name = "Surround", desc = "Surround" },
         -- Neotest keybinds
-        ["<leader>dt"] = {
-            name = " Unittests",
-            n = { "<cmd>lua require('neotest').run.run()<cr>", "Run nearest test" },
-            c = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run current file" },
-            r = { "<cmd>lua require('neotest').run.run({suite = true})<cr>", "Run all tests" },
-            d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug nearest test" },
-            q = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop nearest test" },
-            o = { "<cmd>lua require('neotest').output_panel.toggle()<cr>", "Toggle output panel" },
-            s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Toggle summary window" },
-        },
+        ["<leader>dt"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle tests summary window" },
         ["<leader>x"] = { name = "Trouble" },
         ["<leader>r"] = {
             "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>",
