@@ -103,6 +103,13 @@ return {
             a = { ltex_quickfix(2), "Add previous diagnostic word to dictionary" },
             d = { ltex_quickfix(3), "Ignore previous diagnostic" },
         },
+        ["<leader><leader>r"] = {
+            function()
+                vim.cmd("TSDisable rainbow")
+                vim.cmd("TSEnable rainbow")
+            end,
+            desc = "Reload rainbow parenthesis",
+        },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
