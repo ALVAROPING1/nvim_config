@@ -96,7 +96,7 @@ return {
             end,
             desc = "ToggleTerm python",
         },
-        ["<leader>a"] = { name = "Annotation" },
+        ["<leader>a"] = { name = "󱞁 Annotation" },
         ["<leader>lg"] = {
             name = "󰓆 Spelling",
             l = { ltex_quickfix(), "Fix previous mistake" },

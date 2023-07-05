@@ -6,15 +6,6 @@ return {
 
     { import = "astrocommunity.diagnostics.trouble-nvim" },
     { import = "astrocommunity.editing-support.neogen" },
-    {
-        "danymat/neogen",
-        opts = {
-            languages = {
-                lua = { template = { annotation_convention = "emmylua" } },
-                python = { template = { annotation_convention = "numpydoc" } },
-            },
-        },
-    },
     { import = "astrocommunity.editing-support.nvim-regexplainer" },
     { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
     {
