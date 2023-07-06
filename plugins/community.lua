@@ -82,6 +82,7 @@ return {
         opts = { default_delay = 5 },
     },
     { import = "astrocommunity.scrolling.satellite-nvim" },
+    { "lewis6991/satellite.nvim",                            commit = "f36c6ff" }, -- Newer versions require neovim 0.10
     -- { import = "astrocommunity.indent.mini-indentscope" },
     -- {
     --   'echasnovski/mini.indentscope',
