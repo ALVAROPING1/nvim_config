@@ -1,5 +1,7 @@
 local M = {}
 
+M.python = {}
+
 --- Gets the python executable to use
 --- Priority order:
 --- 1. Currently active venv
@@ -7,7 +9,7 @@ local M = {}
 --- 3. System python3 or python, or local python
 ---@param workspace string? Current workspace root
 ---@return string Executable Path of the python executable
-function M.get_python_path(workspace)
+function M.python.get_path(workspace)
     local path = require("lspconfig/util").path
     -- Use activated virtualenv.
     if vim.env.VIRTUAL_ENV then
@@ -24,6 +26,19 @@ function M.get_python_path(workspace)
 
     -- Fallback to system Python.
     return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+end
+
+--- Filters the paths to those found, appends them to the python sources and returns them
+---@param paths string[] List of paths to add
+---@return string[] # List of found paths
+function M.python.get_sources(paths)
+    return vim.tbl_filter(function(path)
+        local check = require("plenary.path"):new(path):is_dir()
+        if check then -- "src/main/python"
+            vim.env.PYTHONPATH = M.concat_nullable_str(path, vim.env.PYTHONPATH, ":")
+        end
+        return check
+    end, paths)
 end
 
 --- Concatenates 2 given strings with the given separator while checking if either is nil.

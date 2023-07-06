@@ -29,7 +29,6 @@ return function()
     -- Replace deleted lines symbol with diagonal lines in diff view
     vim.opt.fillchars:append({ diff = "╱" })
 
-    require("user.polish.python_setup")
     require("user.polish.custom_icons")
     -- require("user.polish.compile_spell")
     require("user.polish.autocmds")

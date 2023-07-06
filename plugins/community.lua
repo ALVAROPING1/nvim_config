@@ -159,13 +159,15 @@ return {
     { "linux-cultist/venv-selector.nvim",              enabled = false },
     {
         "mfussenegger/nvim-dap-python",
-        enabled = false, -- Doesn't support setting the cwd in the profiles
-        config = function()
-            local utils = require("user.utils")
-            require("dap-python").setup(
-                vim.env.XDG_DATA_HOME .. "/nvim/mason/packages/debugpy/venv/bin/python3",
-                { pythonPath = utils.get_python_path(vim.loop.cwd()) }
-            )
+        opts = { pythonPath = require("user.utils").python.get_path(vim.loop.cwd()) },
+        config = function(_, opts)
+            local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
+            require("dap-python").setup(path, opts)
+
+            -- Make python debugger use the current working directory instead of the file path
+            for _, config in ipairs(require("dap").configurations.python) do
+                config.cwd = vim.loop.cwd()
+            end
         end,
     },
     -- { import = "astrocommunity.test.neotest" },
