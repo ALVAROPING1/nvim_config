@@ -339,4 +339,5 @@ return {
             })
         end,
     },
+    { import = "astrocommunity.editing-support.vim-move" },
 }
