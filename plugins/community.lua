@@ -249,7 +249,6 @@ return {
     { import = "astrocommunity.workflow.hardtime-nvim" },
     {
         "m4xshen/hardtime.nvim",
-        commit = "4fa70fd",
         opts = function(_, opts)
             vim.list_extend(opts.disabled_filetypes, { "neotest-summary" })
         end,
