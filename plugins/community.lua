@@ -312,4 +312,31 @@ return {
             })
         end,
     },
+    { import = "astrocommunity.editing-support.dial-nvim" },
+    {
+        "monaqa/dial.nvim",
+        config = function()
+            local augend = require("dial.augend")
+            require("dial.config").augends:register_group({
+                default = {
+                    augend.integer.alias.decimal_int,
+                    augend.integer.new({
+                        radix = 16,
+                        prefix = "0x",
+                        natural = true,
+                        case = "upper",
+                    }),
+                    augend.integer.alias.binary,
+                    augend.date.alias["%Y/%m/%d"],
+                    augend.constant.new({ elements = { "true", "false" }, preserve_case = true }),
+                    augend.constant.new({ elements = { "and", "or" } }),
+                    augend.constant.new({ elements = { "&&", "||" }, word = false }),
+                    augend.constant.alias.alpha,
+                    augend.constant.alias.Alpha,
+                    augend.semver.alias.semver,
+                    augend.case.new({ types = { "camelCase", "PascalCase", "snake_case", "SCREAMING_SNAKE_CASE" } }),
+                },
+            })
+        end,
+    },
 }

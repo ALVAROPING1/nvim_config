@@ -23,7 +23,7 @@ return {
         softtabstop = 4,
         shiftwidth = 4,
         scrollopt = "ver,hor,jump",
-        nrformats = "bin,hex,alpha",
+        -- nrformats = "bin,hex,alpha",
         wildignorecase = true,
     },
     g = {
