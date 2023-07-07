@@ -15,7 +15,6 @@ return {
         event = "User AstroFile",
         config = true,
     },
-    "LiadOz/nvim-dap-repl-highlights",
     "jbyuki/nabla.nvim",
     {
         "lukas-reineke/lsp-format.nvim",
