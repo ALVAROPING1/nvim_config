@@ -1,4 +1,5 @@
 -- Config for the lua_ls (lua) language server
+---@type lspconfig.options.lua_ls
 return {
     settings = {
         Lua = {

@@ -1,4 +1,5 @@
 -- Config for the pyright (python) language server
+---@type lspconfig.options.pyright
 return {
     before_init = function(_, config)
         config.settings.python = {
