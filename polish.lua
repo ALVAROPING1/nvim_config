@@ -14,13 +14,6 @@ return function()
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
-    require("telescope").setup({
-        pickers = {
-            find_files = {
-                hidden = true,
-            },
-        },
-    })
 
     -- Disable search highlight being disabled on cursor movement
     ---@diagnostic disable-next-line: param-type-mismatch
