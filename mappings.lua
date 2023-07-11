@@ -54,8 +54,6 @@ return {
         -- Fast movement
         ["J"] = { "5j", desc = "Fast downwards movement" },
         ["K"] = { "5k", desc = "Fast upwards movement" },
-        -- Text search
-        ["<leader><leader>/"] = { "<cmd>noh<cr>", desc = "Clear highlighted text" },
         -- Remap replaced commands
         ["<leader>j"] = { "J", desc = "Join lines" },
         -- Insert math blocks in markdown
@@ -96,19 +94,34 @@ return {
             end,
             desc = "ToggleTerm python",
         },
+        -- Annotations
         ["<leader>a"] = { name = "󱞁 Annotation" },
+        -- Spelling
         ["<leader>lg"] = {
             name = "󰓆 Spelling",
             l = { ltex_quickfix(), "Fix previous mistake" },
             a = { ltex_quickfix(2), "Add previous diagnostic word to dictionary" },
             d = { ltex_quickfix(3), "Ignore previous diagnostic" },
         },
-        ["<leader><leader>r"] = {
-            function()
-                vim.cmd("TSDisable rainbow")
-                vim.cmd("TSEnable rainbow")
-            end,
-            desc = "Reload rainbow parenthesis",
+        ["<leader><leader>"] = {
+            name = "󰐕 More commands",
+            -- Text search
+            ["/"] = { "<cmd>noh<cr>", "Clear highlighted text" },
+            -- Rainbow delimiters
+            ["r"] = {
+                function()
+                    vim.cmd("TSDisable rainbow")
+                    vim.cmd("TSEnable rainbow")
+                end,
+                "Reload rainbow delimiters",
+            },
+            ["c"] = {
+                name = "󰅺 Comment Box",
+                n = { "<cmd>lua require('comment-box').llbox()<cr>", "Normal box" },
+                h = { "<cmd>lua require('comment-box').lcbox(7)<cr>", "Header box" },
+                s = { "<cmd>lua require('comment-box').albox(18)<cr>", "Separator box" },
+                l = { "<cmd>lua require('comment-box').cline(3)<cr>", "Centered line" },
+            },
         },
     },
     i = {

@@ -348,4 +348,15 @@ return {
             highlight_new_as_changed = true,
         },
     },
+    { import = "astrocommunity.editing-support.comment-box-nvim" },
+    {
+        "LudoPinelli/comment-box.nvim",
+        opts = {
+            box_width = 80,
+            line_width = 80,
+            outer_blank_lines = true,
+            line_blank_line_above = true,
+            line_blank_line_below = true,
+        },
+    },
 }
