@@ -7,6 +7,14 @@ return {
     { import = "astrocommunity.diagnostics.trouble-nvim" },
     { import = "astrocommunity.editing-support.neogen" },
     { import = "astrocommunity.editing-support.nvim-regexplainer" },
+    {
+        "bennypowers/nvim-regexplainer",
+        ft = { "python" },
+        opts = {
+            auto = true,
+            filetypes = { "py" },
+        },
+    },
     { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
     {
         "nvim-treesitter/nvim-treesitter",
