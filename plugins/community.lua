@@ -340,4 +340,12 @@ return {
         end,
     },
     { import = "astrocommunity.editing-support.vim-move" },
+    { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        opts = {
+            commented = false,
+            highlight_new_as_changed = true,
+        },
+    },
 }

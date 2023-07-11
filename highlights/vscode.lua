@@ -28,4 +28,6 @@ return {
     -- NormalFloat = { fg = "#d4d4d4", bg = "#1E1E1E" },
     TreesitterContextBottom = { underline = true, sp = "#444444" },
     DiagnosticUnnecessary = { fg = "#8D8D8D" },
+    NvimDapVirtualText = { fg = "#707070" },
+    NvimDapVirtualTextChanged = { link = "DiagnosticVirtualTextInfo" },
 }
