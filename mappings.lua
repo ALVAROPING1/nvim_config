@@ -76,7 +76,6 @@ return {
         ["<C-s>"] = { name = "Surround", desc = "Surround" },
         -- Neotest keybinds
         ["<leader>dt"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle tests summary window" },
-        ["<leader>x"] = { name = "Trouble" },
         ["<leader>r"] = {
             "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>",
             desc = "Toggle math rendering",
@@ -94,8 +93,6 @@ return {
             end,
             desc = "ToggleTerm python",
         },
-        -- Annotations
-        ["<leader>a"] = { name = "󱞁 Annotation" },
         -- Spelling
         ["<leader>lg"] = {
             name = "󰓆 Spelling",
