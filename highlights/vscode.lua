@@ -35,4 +35,7 @@ return {
     DiagnosticUnnecessary = { fg = "#8D8D8D" },
     NvimDapVirtualText = { fg = "#707070" },
     NvimDapVirtualTextChanged = { link = "DiagnosticVirtualTextInfo" },
+    LazyButton = { fg = "#D4D4D4", bg = "#404040" },
+    LazyH1 = { fg = "#000000", bg = "#2aaaff" },
+    LazySpecial = { fg = "#569CD6" },
 }
