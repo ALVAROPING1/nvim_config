@@ -38,4 +38,7 @@ return {
     LazyButton = { fg = "#D4D4D4", bg = "#404040" },
     LazyH1 = { fg = "#000000", bg = "#2aaaff" },
     LazySpecial = { fg = "#569CD6" },
+    -- HACK: The multicursors plugin always overrides them, so they have to be configured after the plugin is set up
+    -- MultiCursor = { link = "Visual" },
+    -- MultiCursorMain = { link = "Visual" },
 }

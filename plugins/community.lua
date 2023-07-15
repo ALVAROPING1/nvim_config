@@ -385,4 +385,17 @@ return {
         },
     },
     { import = "astrocommunity.utility.telescope-fzy-native-nvim" },
+    { import = "astrocommunity.editing-support.multicursors-nvim" },
+    {
+        "smoka7/multicursors.nvim",
+        config = function(_, opts)
+            require("multicursors").setup(opts)
+            -- HACK: The multicursors plugin always overrides them, so they have to be configured after the plugin is set up
+            vim.api.nvim_set_hl(0, "MultiCursor", { link = "Visual" })
+            vim.api.nvim_set_hl(0, "MultiCursorMain", { link = "Visual" })
+        end,
+        keys = function(_, keys)
+            keys[1].desc = "Multiselect word under cursor"
+        end,
+    },
 }
