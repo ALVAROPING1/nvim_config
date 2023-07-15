@@ -223,7 +223,9 @@ return {
     { import = "astrocommunity.editing-support.treesj" },
     {
         "Wansmer/treesj",
-        keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Join" } },
+        keys = function(_, keys)
+            keys[1][1] = "<leader>J"
+        end,
         opts = {
             max_join_length = 100,
         },
