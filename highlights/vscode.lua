@@ -34,9 +34,19 @@ return {
     NvimDapVirtualText = { fg = "#707070" },
     NvimDapVirtualTextChanged = { link = "DiagnosticVirtualTextInfo" },
     LazyButton = { fg = "#D4D4D4", bg = "#404040" },
-    LazyH1 = { fg = "#000000", bg = "#2aaaff" },
+    LazyButtonActive = { bg = "#264F78", bold = true },
+    LazyH1 = { fg = "#000000", bg = "#2aaaff", bold = true },
     LazySpecial = { fg = "#569CD6" },
-    -- Handles both hover text and Lazy/Mason background. Hover text looks better with it, but Lazy/Mason don't as they don't have borders
+    MasonHeader = { link = "LazyH1" },
+    MasonHeaderSecondary = { link = "MasonHeaderSecondary" },
+    MasonHighlightBlock = { bg = "#264F78" },
+    MasonHighlightBlockSecondary = { link = "MasonHighlightBlockSecondary" },
+    MasonHighlightBlockBold = { link = "LazyButtonActive" },
+    MasonHighlightBlockBoldSecondary = { link = "MasonHighlightBlockBold" },
+    MasonMutedBlock = { link = "LazyButton" },
+    MasonHighlight = { link = "DiagnosticInfo" },
+    MasonHighlightSecondary = { link = "MasonHighlight" },
+    MasonMuted = { link = "DiagnosticError" },
     -- Handles both hover text and Lazy/Mason/WhichKey background. Hover text looks better with it, but Lazy/Mason/WhichKey don't as they don't have borders
     -- By default links to Pmenu, so set Lazy/Mason background highlight to it and override it for the rest
     NormalFloat = { link = "Normal" },
