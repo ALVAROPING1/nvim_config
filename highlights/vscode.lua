@@ -29,8 +29,6 @@ return {
     DiffText = { bg = "#185f7a" },
     DiffChange = { bg = "#153947" },
     LspSignatureActiveParameter = { fg = "#2aaaff" },
-    -- Handles both hover text and Lazy/Mason background. Hover text looks better with it, but Lazy/Mason don't as they don't have borders
-    -- NormalFloat = { fg = "#d4d4d4", bg = "#1E1E1E" },
     TreesitterContextBottom = { underline = true, sp = "#444444" },
     DiagnosticUnnecessary = { fg = "#8D8D8D" },
     NvimDapVirtualText = { fg = "#707070" },
@@ -38,6 +36,13 @@ return {
     LazyButton = { fg = "#D4D4D4", bg = "#404040" },
     LazyH1 = { fg = "#000000", bg = "#2aaaff" },
     LazySpecial = { fg = "#569CD6" },
+    -- Handles both hover text and Lazy/Mason background. Hover text looks better with it, but Lazy/Mason don't as they don't have borders
+    -- Handles both hover text and Lazy/Mason/WhichKey background. Hover text looks better with it, but Lazy/Mason/WhichKey don't as they don't have borders
+    -- By default links to Pmenu, so set Lazy/Mason background highlight to it and override it for the rest
+    NormalFloat = { link = "Normal" },
+    LazyNormal = { link = "Pmenu" },
+    MasonNormal = { link = "Pmenu" },
+    WhichKeyFloat = { link = "Pmenu" },
     -- HACK: The multicursors plugin always overrides them, so they have to be configured after the plugin is set up
     -- MultiCursor = { link = "Visual" },
     -- MultiCursorMain = { link = "Visual" },
