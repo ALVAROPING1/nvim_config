@@ -33,3 +33,22 @@ vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "TabNewEntered" }, {
         end
     end,
 })
+
+-- Auto-save when changing buffers
+vim.api.nvim_create_autocmd("BufLeave", {
+    desc = "Auto-save when changing buffers",
+    group = vim.api.nvim_create_augroup("autosave", {}),
+    callback = function(args)
+        if vim.bo.buflisted and vim.bo.modifiable and vim.bo.modified then
+            -- HACK: Formating the buffer can lag when opening neotree at the same time, so wait a bit before formatting the buffer
+            vim.defer_fn(function()
+                vim.api.nvim_buf_call(args.buf, function()
+                    -- Trigger formatting before saving to make sure its changes are saved
+                    -- (leaving the buffer cancels the autosave after formatting)
+                    require("lsp-format").format({ fargs = { "sync" } })
+                    vim.cmd("silent! write")
+                end)
+            end, 10)
+        end
+    end,
+})
