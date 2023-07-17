@@ -40,6 +40,7 @@ return {
         gitblame_highlight_group = "GitBlameText",
         gitblame_delay = 250,
         lsp_lines = { "lazy", "mason" },
+        max_file = { size = 1024 * 1024, lines = 10000 }, -- Global limits for large files
     },
 }
 -- If you need more control, you can use the function()...end notation
