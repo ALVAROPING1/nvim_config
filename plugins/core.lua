@@ -84,4 +84,22 @@ return {
             },
         },
     },
+    {
+        "hrsh7th/nvim-cmp",
+        opts = function(_, opts)
+            -- opts parameter is the default options table
+            -- the function is lazy loaded so cmp is able to be required
+            local cmp = require("cmp")
+            local border_opts = {
+                border = "rounded",
+                winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+            }
+            opts.window = {
+                completion = cmp.config.window.bordered(border_opts),
+                documentation = cmp.config.window.bordered(border_opts),
+            }
+
+            return opts
+        end,
+    },
 }
