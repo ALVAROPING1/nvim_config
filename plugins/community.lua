@@ -400,4 +400,5 @@ return {
             keys[1].desc = "Multiselect word under cursor"
         end,
     },
+    { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
 }
