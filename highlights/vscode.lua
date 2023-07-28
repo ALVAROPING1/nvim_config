@@ -47,8 +47,8 @@ return {
     MasonHighlight = { link = "DiagnosticInfo" },
     MasonHighlightSecondary = { link = "MasonHighlight" },
     MasonMuted = { link = "DiagnosticError" },
-    -- Handles both hover text and Lazy/Mason/WhichKey background. Hover text looks better with it, but Lazy/Mason/WhichKey don't as they don't have borders
-    -- By default links to Pmenu, so set Lazy/Mason background highlight to it and override it for the rest
+    -- Handles both hover text and floating windows' background. Hover text looks better with it, but floating windows without borders don't
+    -- By default links to Pmenu, so set floating windows without borders' background highlight to it and override it for the rest
     NormalFloat = { link = "Normal" },
     LazyNormal = { link = "Pmenu" },
     MasonNormal = { link = "Pmenu" },
