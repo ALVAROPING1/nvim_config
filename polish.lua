@@ -25,4 +25,14 @@ return function()
     require("user.polish.custom_icons")
     require("user.polish.compile_spell")
     require("user.polish.autocmds")
+
+    -- Remove unused friendly-snippets snippets
+    require("luasnip").available(function(snippet)
+        if
+            vim.tbl_contains({ "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }, snippet.name)
+        then
+            snippet:invalidate()
+        end
+        return {}
+    end)
 end
