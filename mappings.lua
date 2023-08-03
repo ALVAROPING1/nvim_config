@@ -32,7 +32,7 @@ return {
             n = { "<cmd>tabnext<cr>", "Next workspace" },
             p = { "<cmd>tabprevious<cr>", "Previous workspace" },
             o = { "<cmd>tabonly<cr>", "Close all workspaces except current" },
-            c = { "<cmd>tabclose<cr>", "Close current workspace" },
+            c = { require("astronvim.utils.buffer").close_tab, "Close current workspace" },
             N = { "<cmd>tabnew<cr>", "New workspace" },
         },
         -- Buffers
