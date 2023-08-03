@@ -401,4 +401,12 @@ return {
         end,
     },
     { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
+    { import = "astrocommunity.project.projectmgr-nvim" },
+    {
+        "charludo/projectmgr.nvim",
+        opts = {
+            autogit = { enabled = false }, -- Bugs out when using ssh authentication
+            session = { enabled = false },
+        },
+    },
 }
