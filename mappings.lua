@@ -107,8 +107,7 @@ return {
             -- Rainbow delimiters
             ["r"] = {
                 function()
-                    vim.cmd("TSDisable rainbow")
-                    vim.cmd("TSEnable rainbow")
+                    vim.cmd("e")
                 end,
                 "Reload rainbow delimiters",
             },

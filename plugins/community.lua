@@ -15,21 +15,19 @@ return {
             filetypes = { "py" },
         },
     },
-    { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
+    { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
     {
-        "nvim-treesitter/nvim-treesitter",
+        "HiPhish/rainbow-delimiters.nvim",
         opts = {
-            rainbow = {
-                disable = { "markdown" },
-                querry = {
-                    "rainbow-parens",
-                    latex = "rainbow-blocks",
-                },
-                hlgroups = {
-                    "Parens1",
-                    "Parens2",
-                    "Parens3",
-                },
+            blacklist = { "markdown" },
+            query = {
+                [""] = "rainbow-delimiters",
+                latex = "rainbow-blocks",
+            },
+            highlight = {
+                "Parens1",
+                "Parens2",
+                "Parens3",
             },
         },
     },
