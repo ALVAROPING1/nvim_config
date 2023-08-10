@@ -101,6 +101,43 @@ return {
                 i = { "m][s2zg`]", "Ignore previous mistake" },
                 a = { "m][s1zg`]", "Mark previous mistake as good" },
             },
+            ["w"] = {
+                function()
+                    if vim.bo.filetype ~= "markdown" then
+                        return
+                    end
+
+                    local input_file = vim.api.nvim_buf_get_name(0)
+                    if input_file == "" then
+                        return
+                    end
+                    local output_file = input_file:match("^(.+)%.[^%.%/]+$") .. ".pdf"
+
+                    local args = require("plenary.path"):new(".pandoc"):is_dir()
+                        and { "--data-dir=.pandoc", "--defaults=pandoc_options.yaml" }
+                        or {}
+                    vim.list_extend(args, { "-o", output_file, input_file })
+
+                    local Job = require("plenary.job")
+                    Job
+                    ---@diagnostic disable-next-line: missing-fields Fields are optional
+                        :new({
+                            command = "pandoc",
+                            args = args,
+                            on_exit = function(job, exit_code)
+                                if exit_code ~= 0 then
+                                    vim.notify(table.concat(job:stderr_result(), "\n"):sub(1, -2), vim.log.levels.ERROR)
+                                else
+                                    ---@diagnostic disable-next-line: missing-fields Fields are optional
+                                    Job:new({ command = "xdg-open", args = { output_file } }):start()
+                                end
+                            end,
+                        })
+                        :start()
+                    vim.notify("Exporting PDF...", vim.log.levels.INFO)
+                end,
+                "Export to PDF with Pandoc",
+            },
         },
     },
     i = {
