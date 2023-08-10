@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
     group = vim.api.nvim_create_augroup("autosave", {}),
     callback = function(args)
         if vim.bo.buflisted and vim.bo.modifiable and vim.bo.modified then
-            -- HACK: Formating the buffer can lag when opening neotree at the same time, so wait a bit before formatting the buffer
+            -- HACK: Formatting the buffer can lag when opening neotree at the same time, so wait a bit before formatting the buffer
             vim.defer_fn(function()
                 vim.api.nvim_buf_call(args.buf, function()
                     -- Trigger formatting before saving to make sure its changes are saved

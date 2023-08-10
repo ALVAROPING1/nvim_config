@@ -34,7 +34,7 @@ return {
         icons_enabled = true,            -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
         ui_notifications_enabled = true, -- disable notifications when toggling UI elements
         gitblame_message_template = "   <author>, <date> • <summary>",
-        gitblame_message_when_not_committed = "   <author>, <date> • Uncommited changes",
+        gitblame_message_when_not_committed = "   <author>, <date> • Uncommitted changes",
         gitblame_date_format = "%r",
         gitblame_highlight_group = "GitBlameText",
         gitblame_delay = 250,
