@@ -14,6 +14,7 @@ return {
             null_ls.builtins.formatting.prettierd.with({
                 extra_args = { "--use-tabs", "--tab-width", "4" },
             }),
+            null_ls.builtins.diagnostics.typos.with({ disabled_filetypes = { "markdown" } }),
         }
         return config -- return final config table
     end,
