@@ -15,6 +15,11 @@ return {
                 extra_args = { "--use-tabs", "--tab-width", "4" },
             }),
             null_ls.builtins.diagnostics.typos.with({ disabled_filetypes = { "markdown" } }),
+            null_ls.builtins.formatting.clang_format.with({
+                extra_args = {
+                    "--style={BasedOnStyle: LLVM, AlignArrayOfStructures: Right, BreakBeforeBraces: Attach, IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty, PointerAlignment: Left, SpaceAfterCStyleCast: true, BinPackArguments: false, BinPackParameters: false, AllowShortBlocksOnASingleLine: Always, AllowShortIfStatementsOnASingleLine: AllIfsAndElse}",
+                },
+            }),
         }
         return config -- return final config table
     end,

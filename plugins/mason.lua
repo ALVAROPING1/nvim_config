@@ -5,7 +5,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         -- overrides `require("mason-lspconfig").setup(...)`
         opts = {
-            ensure_installed = {},
+            ensure_installed = { "clangd" },
         },
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
@@ -17,6 +17,7 @@ return {
                 -- "prettier",
                 -- "cspell",
                 "markdownlint",
+                "clang-format",
             },
         },
     },
