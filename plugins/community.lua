@@ -315,6 +315,18 @@ return {
                     },
                     opts = { skip = true },
                 },
+                {
+                    filter = {
+                        event = "notify",
+                        any = {
+                            { find = "no parser for 'TelescopePrompt' language, see :help treesitter%-parsers" },
+                            { find = "no parser for 'toggleterm' language, see :help treesitter%-parsers" },
+                            { find = "no parser for 'DiffviewFileHistory' language, see :help treesitter%-parsers" },
+                            { find = "no parser for 'DiffviewFiles' language, see :help treesitter%-parsers" },
+                        },
+                    },
+                    opts = { skip = true },
+                },
             },
             presets = {
                 inc_rename = true,
