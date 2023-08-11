@@ -60,4 +60,11 @@ return {
         String = "󰀬",
         TypeParameter = "󰊄",
     },
+    -- HACK: use a non breaking space after the icon to prevent it from being cut off
+    notify = {
+        ERROR = "\u{00A0}",
+        WARN = "\u{00A0}",
+        INFO = "\u{00A0}",
+        DEBUG = "\u{00A0}",
+    },
 }
