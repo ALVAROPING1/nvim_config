@@ -98,6 +98,23 @@ return {
                 completion = cmp.config.window.bordered(border_opts),
                 documentation = cmp.config.window.bordered(border_opts),
             }
+            opts.formatting.expandable_indicator = false
+            opts.formatting.format = function(entry, vim_item)
+                if vim.tbl_contains({ "path" }, entry.source.name) then
+                    local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
+                    if icon then
+                        vim_item.kind = icon .. " "
+                        vim_item.kind_hl_group = hl_group
+                        return vim_item
+                    end
+                end
+                vim_item = require("lspkind").cmp_format(require("astronvim.utils").plugin_opts("lspkind.nvim"))(
+                    entry,
+                    vim_item
+                )
+                vim_item.kind = vim_item.kind .. " "
+                return vim_item
+            end
 
             return opts
         end,
