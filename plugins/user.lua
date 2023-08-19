@@ -21,6 +21,7 @@ return {
         event = "LspAttach",
         opts = {
             lua = { order = { "null-ls", "lua_ls" } },
+            markdown = { exclude = { "null-ls" } },
         },
     },
     {

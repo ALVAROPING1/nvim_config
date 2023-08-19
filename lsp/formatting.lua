@@ -10,8 +10,7 @@ return {
             -- "python",
         },
     },
-    disabled = { -- disable formatting capabilities for the listed language servers
-        "marksman",
+    disabled = {       -- disable formatting capabilities for the listed language servers
     },
     timeout_ms = 1000, -- default format timeout
     -- filter = function(client) -- fully override the default formatting function
