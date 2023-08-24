@@ -15,7 +15,17 @@ return {
         event = "User AstroFile",
         config = true,
     },
-    "jbyuki/nabla.nvim",
+    {
+        "jbyuki/nabla.nvim",
+        keys = {
+            {
+                "<leader>r",
+                -- "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>",
+                "<cmd>lua require('nabla').popup()<cr>",
+                desc = "Open math render popup",
+            },
+        },
+    },
     {
         "lukas-reineke/lsp-format.nvim",
         event = "LspAttach",

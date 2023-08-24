@@ -59,11 +59,6 @@ return {
         ["<C-s>"] = { name = "Surround", desc = "Surround" },
         -- Neotest keybinds
         ["<leader>dt"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle tests summary window" },
-        ["<leader>r"] = {
-            -- "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>",
-            "<cmd>lua require('nabla').popup()<cr>",
-            desc = "Open math render popup",
-        },
         -- Open terminals
         ["<leader>tt"] = {
             function()
