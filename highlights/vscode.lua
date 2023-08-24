@@ -56,4 +56,5 @@ return {
     -- HACK: The multicursors plugin always overrides them, so they have to be configured after the plugin is set up
     -- MultiCursor = { link = "Visual" },
     -- MultiCursorMain = { link = "Visual" },
+    SpecialChar = { link = "Special" },
 }
