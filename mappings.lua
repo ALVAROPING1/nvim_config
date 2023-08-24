@@ -57,8 +57,6 @@ return {
         ["<leader>W"] = { "<cmd>w!<cr>", desc = "Force save" },
         -- Nvim-surround group
         ["<C-s>"] = { name = "Surround", desc = "Surround" },
-        -- Neotest keybinds
-        ["<leader>dt"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle tests summary window" },
         -- Open terminals
         ["<leader>tt"] = {
             function()

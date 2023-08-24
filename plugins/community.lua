@@ -184,9 +184,8 @@ return {
             "nvim-neotest/neotest-python",
             "rouge8/neotest-rust",
         },
-        ft = {
-            "python",
-            "rust",
+        keys = {
+            { "<leader>dt", "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle tests summary window" },
         },
         opts = function()
             return {
