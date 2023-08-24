@@ -57,6 +57,8 @@ return {
         ["<leader>W"] = { "<cmd>w!<cr>", desc = "Force save" },
         -- Nvim-surround group
         ["<C-s>"] = { name = "Surround", desc = "Surround" },
+        -- Refactor-nvim group
+        ["<leader>r"] = { name = " Refactor" },
         -- Open terminals
         ["<leader>tt"] = {
             function()
@@ -160,5 +162,7 @@ return {
         ["<right>"] = { "" },
         ["<up>"] = { "" },
         ["<down>"] = { "" },
+        -- Refactor-nvim group
+        ["<leader>r"] = { name = " Refactor" },
     },
 }

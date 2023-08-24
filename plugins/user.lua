@@ -19,7 +19,7 @@ return {
         "jbyuki/nabla.nvim",
         keys = {
             {
-                "<leader>r",
+                "<leader>M",
                 -- "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>",
                 "<cmd>lua require('nabla').popup()<cr>",
                 desc = "Open math render popup",
