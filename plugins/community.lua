@@ -234,17 +234,9 @@ return {
         opts = {
             hlgroup = "IncRenameText",
         },
-        keys = {
-            {
-                "<leader>lr",
-                function()
-                    require("inc_rename")
-                    return ":IncRename " .. vim.fn.expand("<cword>")
-                end,
-                expr = true,
-                desc = "Rename current symbol",
-            },
-        },
+        keys = function(_, keys)
+            keys[1].desc = "Rename current symbol"
+        end,
     },
     { import = "astrocommunity.project.nvim-spectre" },
     {
