@@ -40,6 +40,11 @@ return {
         gitblame_delay = 250,
         lsp_lines = { "lazy", "mason" },
         max_file = { size = 1024 * 1024, lines = 10000 }, -- Global limits for large files
+        -- Disable unused plugin interfaces
+        loaded_python3_provider = 0,
+        loaded_ruby_provider = 0,
+        loaded_node_provider = 0,
+        loaded_perl_provider = 0,
     },
 }
 -- If you need more control, you can use the function()...end notation
