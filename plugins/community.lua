@@ -422,4 +422,5 @@ return {
             }
         end,
     },
+    { import = "astrocommunity.motion.nvim-spider" },
 }
