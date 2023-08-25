@@ -57,4 +57,5 @@ return {
     -- MultiCursor = { link = "Visual" },
     -- MultiCursorMain = { link = "Visual" },
     SpecialChar = { link = "Special" },
+    MatchParen = { fg = "#11d116" },
 }

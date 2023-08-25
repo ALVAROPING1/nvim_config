@@ -423,4 +423,11 @@ return {
         end,
     },
     { import = "astrocommunity.motion.nvim-spider" },
+    { import = "astrocommunity.motion.vim-matchup" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        init = function()
+            vim.g.matchup_matchparen_offscreen = {}
+        end,
+    },
 }
