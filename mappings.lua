@@ -144,6 +144,10 @@ return {
             i = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Ignore previous mistake" },
             a = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good" },
         },
+        ["<C-a>"] = {
+            require("luasnip.extras.select_choice"),
+            desc = "Open snippet choice selection",
+        },
     },
     t = {
         -- setting a mapping to false will disable it
