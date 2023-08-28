@@ -61,7 +61,7 @@ add_snippet_group(M, limit_operators, "<>{<>}", function()
             fmt("_{<> = <>}", { node.ins(1, "i"), node.ins(2, "0") }),
             fmt("_{<> = <>}^<>", { node.ins(1, "i"), node.ins(2, "0"), node.ins(3, "\\infty") }),
         }),
-        node.choice(2, { node.ins(), fmt("\\left( <> \\right)", { node.ins(1) }) }),
+        node.choice(2, { node.restore(1, "x"), fmt("\\left( <> \\right)", { node.restore(1, "x") }) }),
     }
 end)
 
@@ -119,6 +119,11 @@ vim.list_extend(M, {
     autosnippet(
         { trig = "set", name = "Set", dscr = "Create a set" },
         fmt("\\{<>\\}", { node.ins(1) }),
+        COMMAND_BEGIN_CONDITION
+    ),
+    autosnippet(
+        { trig = "()", name = "Parenthesis", dscr = "Toggle parenthesis size" },
+        node.choice(1, { fmt("(<>)", node.restore(1, "x")), fmt("\\left( <> \\right)", node.restore(1, "x")) }),
         COMMAND_BEGIN_CONDITION
     ),
     autosnippet(
