@@ -19,7 +19,8 @@ local functions = data.functions
 local limit_operators = data.limit_operators
 local int = data.int
 local limit = data.limit
-local envs = data.envs
+local FORMAT_ENV = data.envs.FORMAT
+local envs = data.envs.math
 local txt_autosnippets = data.txt_autosnippets
 local postfix_autosnippets = data.postfix_autosnippets
 
@@ -30,8 +31,6 @@ local create_text_nodes = utils.create_text_nodes
 local create_fn_node = utils.create_fn_node
 local create_snippet = utils.create_snippet
 local add_snippet_group = utils.add_snippet_group
-
-local FORMAT_ENV = "\\begin{<>}\n\t<>\n\\end{<>}"
 
 ---------------------------------------------------------------------------------------------------------------------------------
 --- Create snippets

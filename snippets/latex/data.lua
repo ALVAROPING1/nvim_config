@@ -707,18 +707,22 @@ return {
     int = { "int", "∫" },
     ---@type SnippetSpec
     limit = { "lim", "Limit" },
-    -- Table with the math environments
+    -- Table with the environments
     envs = {
-        "aligned",
-        "alignedat",
-        "matrix",
-        "pmatrix",
-        "bmatrix",
-        "vmatrix",
-        "Vmatrix",
-        "Bmatrix",
-        "cases",
-        "rcases",
+        FORMAT = "\\begin{<>}\n\t<>\n\\end{<>}",
+        math = {
+            "aligned",
+            "alignedat",
+            "matrix",
+            "pmatrix",
+            "bmatrix",
+            "vmatrix",
+            "Vmatrix",
+            "Bmatrix",
+            "cases",
+            "rcases",
+        },
+        text = { "tikzpicture", "center", "tabular" }
     },
     ---@type AutoSnippetSpecs
     txt_autosnippets = {
