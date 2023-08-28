@@ -1,5 +1,8 @@
 local ls = require("user.snippets.luasnips")
+local snippet = ls.snippet
+local autosnippet = ls.autosnippet
 local node = ls.node
+local fmt = ls.fmt
 
 local M = {}
 
@@ -53,4 +56,71 @@ function M.create_fn_node(fn, args)
     return node.fn(fn, {}, { user_args = args })
 end
 
+--- Creates snippets for the given command
+---@param spec SnippetSpec Spec defining the snippet to create
+---@param auto boolean Whether an autosnippet should be created for the cmd
+---@param format string Format string for the command and its parameters
+---@param nodes fun(): Node[] Function creating the node list to use
+---@return { [1]: Snippet, [2]: Snippet?, [3]: Snippet? } # Created snippets
+function M.create_snippet(spec, auto, format, nodes)
+    if type(spec) == "string" then
+        spec = { spec }
+    end
+    local name = spec[2] or spec[1]
+
+    local function create_autosnippet(trig, default)
+        if trig then
+            if type(trig) == "boolean" then
+                trig = default
+            end
+            return autosnippet(
+                { trig = trig, name = name, dscr = "", priority = spec.priority },
+                fmt(format, nodes(), { strict = false, trim_empty = false }),
+                M.COMMAND_BEGIN_CONDITION
+            )
+        end
+    end
+
+    return {
+        snippet(
+            { trig = "\\" .. spec[1], name = name, dscr = "" },
+            fmt(format, nodes(), { strict = false, trim_empty = false })
+        ),
+        create_autosnippet(auto, spec[1]),
+        create_autosnippet(spec[3], spec[2]),
+    }
+end
+
+--- Creates snippets from the given table
+---@param snippets Snippet[] List of snippets in which the newly created ones should be appended
+---@param group SnippetGroup Group of commands for which to create snippets
+---@param params string Parameters format string to append after the command name
+---@param nodes fun(): Node[] Function creating the node list to use
+function M.add_snippet_group(snippets, group, params, nodes)
+    for auto, list in pairs(group) do
+        for _, spec in ipairs(list) do
+            local cmd = type(spec) == "string" and spec or spec[1]
+            vim.list_extend(snippets, M.create_snippet(spec, auto, "\\" .. cmd .. params, nodes))
+        end
+    end
+end
+
 return M
+
+--- Format: `cmd | {cmd, [name, [shortcut | true]], [priority = number]}`
+---@alias SnippetSpec string | {[1]: string, [2]: string?, [3]: (string | true)?, priority: number}
+
+--- List of `SnippetSpec`'s
+---@class SnippetSpecs
+---@field [integer] SnippetSpec
+
+--- Group of snippet specs. The key indicates whether they should also define an autosnippet or not
+---@class SnippetGroup
+---@field [boolean] SnippetSpecs
+
+--- Definition of an autosnippet
+--- Format: `{text, name}`
+---@alias AutoSnippetSpec {[1]: string, [2]: string}
+
+--- List of `AutoSnippetSpec`'s. The keys are the triggers
+---@alias AutoSnippetSpecs {[string]: AutoSnippetSpec}

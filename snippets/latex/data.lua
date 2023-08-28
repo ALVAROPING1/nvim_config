@@ -1,17 +1,5 @@
----@alias SnippetSpec string | {[1]: string, [2]: string?, [3]: (string | true)?, ["priority"]: number}
----@alias AutoSnippetSpec {[1]: string, [2]: string}
-
----@class SnippetSpecs
----@field [integer] SnippetSpec Definition of a snippet
-
---- Group of snippet specs
---- Format: `SnippetGroup[create_autosnippet] = SnippetSpecs`
----@alias SnippetGroup {[boolean]: SnippetSpecs} Snippets with/without an associated autosnippet
-
---- Block of groups of snippet specs
---- Format: `SnippetBlock[group_name][create_autosnippet] = SnippetSpecs`
----@class SnippetBlock
----@field [string] SnippetGroup Named group of snippet specs
+--- Block of groups of snippet specs. The key is the name of the group
+---@alias SnippetBlock {[string]: SnippetGroup}
 
 --- Format: `cmds[num_params][group_name][create_autosnippet] = SnippetSpecs`
 ---@class Cmds
@@ -732,15 +720,13 @@ return {
         "cases",
         "rcases",
     },
-    --- Format: `txt_autosnippets.trigger = {text, name}`
-    ---@type AutoSnippetSpec
+    ---@type AutoSnippetSpecs
     txt_autosnippets = {
         sr = { "^2", "²" },
         cb = { "^3", "³" },
         inv = { "^{-1}", "⁻¹" },
     },
-    --- Format: `txt_autosnippets.trigger = cmd`
-    ---@type AutoSnippetSpec
+    ---@type AutoSnippetSpecs
     postfix_autosnippets = {
         hat = { "hat", "Hat" },
         bar = { "overline", "Bar" },
