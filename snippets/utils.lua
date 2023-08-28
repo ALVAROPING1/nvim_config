@@ -6,7 +6,7 @@ local fmt = ls.fmt
 
 local M = {}
 
---- Opts table with snippet condition checking that the matched trigger is the beggining of a command without a "\"
+--- Opts table with snippet condition checking that the matched trigger is the beginning of a command without a "\"
 M.COMMAND_BEGIN_CONDITION = {
     ---@param line string Line up until the cursor position
     ---@param matched string Matched string

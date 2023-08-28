@@ -728,8 +728,8 @@ return {
     },
     ---@type AutoSnippetSpecs
     postfix_autosnippets = {
-        hat = { "hat", "Hat" },
+        hat = { "hat",      "Hat" },
         bar = { "overline", "Bar" },
-        vec = { "vec", "Vector" },
+        vec = { "vec",      "Vector" },
     }
 }
