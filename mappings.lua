@@ -1,3 +1,14 @@
+local function change_choice_node()
+    local ls = require("luasnip")
+    if not ls.choice_active() then
+        return
+    end
+    if #ls.get_current_choices() > 3 then
+        require("luasnip.extras.select_choice")()
+    else
+        ls.change_choice(1)
+    end
+end
 -- Mapping data with "desc" stored directly by vim.keymap.set().
 --
 -- Please use this mappings table to set keyboard mapping since this is the
@@ -144,9 +155,9 @@ return {
             i = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Ignore previous mistake" },
             a = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good" },
         },
-        ["<C-a>"] = {
-            require("luasnip.extras.select_choice"),
-            desc = "Open snippet choice selection",
+        ["<C-q>"] = {
+            change_choice_node,
+            desc = "Change current choice node",
         },
     },
     t = {
@@ -166,5 +177,9 @@ return {
         ["<down>"] = { "" },
         -- Refactor-nvim group
         ["<leader>r"] = { name = " Refactor" },
+        ["<C-q>"] = {
+            change_choice_node,
+            desc = "Change current choice node",
+        },
     },
 }
