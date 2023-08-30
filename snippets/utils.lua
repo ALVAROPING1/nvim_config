@@ -57,66 +57,55 @@ function M.create_fn_node(fn, args)
 end
 
 --- Creates snippets for the given command
----@param spec SnippetSpec Spec defining the snippet to create
----@param auto boolean Whether an autosnippet should be created for the cmd
+---@param spec SnippetSpec
 ---@param format string Format string for the command and its parameters
 ---@param nodes fun(): Node[] Function creating the node list to use
 ---@return { [1]: Snippet, [2]: Snippet?, [3]: Snippet? } # Created snippets
-function M.create_snippet(spec, auto, format, nodes)
+function M.create_snippet(spec, format, nodes)
     if type(spec) == "string" then
         spec = { spec }
     end
     local name = spec[2] or spec[1]
-
-    local function create_autosnippet(trig, default)
-        if trig then
-            if type(trig) == "boolean" then
-                trig = default
-            end
-            return autosnippet(
-                { trig = trig, name = name, dscr = "", priority = spec.priority },
-                fmt(format, nodes(), { strict = false, trim_empty = false }),
-                M.COMMAND_BEGIN_CONDITION
-            )
-        end
-    end
+    local auto_trig = type(spec[3]) == "number" and spec[spec[3]] or spec[3]
 
     return {
         snippet(
             { trig = "\\" .. spec[1], name = name, dscr = "" },
             fmt(format, nodes(), { strict = false, trim_empty = false })
         ),
-        create_autosnippet(auto, spec[1]),
-        create_autosnippet(spec[3], spec[2]),
+        spec[3] and autosnippet(
+            { trig = auto_trig, name = name, dscr = "", priority = spec.priority },
+            fmt(format, nodes(), { strict = false, trim_empty = false }),
+            M.COMMAND_BEGIN_CONDITION
+        ),
     }
 end
 
 --- Creates snippets from the given table
 ---@param snippets Snippet[] List of snippets in which the newly created ones should be appended
----@param group SnippetGroup Group of commands for which to create snippets
+---@param group SnippetGroup
 ---@param params string Parameters format string to append after the command name
 ---@param nodes fun(): Node[] Function creating the node list to use
 function M.add_snippet_group(snippets, group, params, nodes)
-    for auto, list in pairs(group) do
-        for _, spec in ipairs(list) do
-            local cmd = type(spec) == "string" and spec or spec[1]
-            vim.list_extend(snippets, M.create_snippet(spec, auto, "\\" .. cmd .. params, nodes))
-        end
+    for _, spec in ipairs(group) do
+        local cmd = type(spec) == "string" and spec or spec[1]
+        vim.list_extend(snippets, M.create_snippet(spec, "\\" .. cmd .. params, nodes))
     end
 end
 
 return M
 
---- Format: `cmd | {cmd, [name, [shortcut | true]], [priority = number]}`
----@alias SnippetSpec string | {[1]: string, [2]: string?, [3]: (string | true)?, priority: number}
+---@class SnippetSpecTable
+---@field [1] string Command
+---@field [2] string? Name, if `nil` the command should be used
+---@field [3] (string | 1 | 2)? Autosnippet trigger, if a number the field indicated by that number should be used. If nil no autosnippet should be created
+---@field priority number? Priority of the snippet
 
---- List of `SnippetSpec`'s
----@class SnippetSpecs
----@field [integer] SnippetSpec
+--- Definition an snippet with an optional autosnippet
+---@alias SnippetSpec (string | SnippetSpecTable)
 
---- Group of snippet specs. The key indicates whether they should also define an autosnippet or not
----@class SnippetGroup
----@field [boolean] SnippetSpecs
+--- Group of snippet specs
+---@alias SnippetGroup SnippetSpec[]
 
 --- Definition of an autosnippet
 --- Format: `{text, name}`

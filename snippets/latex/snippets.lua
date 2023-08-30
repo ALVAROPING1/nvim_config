@@ -67,7 +67,7 @@ end)
 
 vim.list_extend(
     M,
-    create_snippet(int, true, "\\" .. int[1] .. "<>{<> d<>}", function()
+    create_snippet(int, "\\" .. int[1] .. "<>{<> d<>}", function()
         return {
             node.choice(1, {
                 node.txt(""),
@@ -81,7 +81,7 @@ vim.list_extend(
 
 vim.list_extend(
     M,
-    create_snippet(limit, true, "\\" .. limit[1] .. "_{<> \\to <>}{<>}", function()
+    create_snippet(limit, "\\" .. limit[1] .. "_{<> \\to <>}{<>}", function()
         return { node.ins(1, "x"), node.ins(2, "\\infty"), node.ins(3) }
     end)
 )
@@ -89,13 +89,13 @@ vim.list_extend(
 -- Create environment snippets
 vim.list_extend(
     M,
-    create_snippet({ "begin", "Begin environment (generic)", "beg" }, false, FORMAT_ENV, function()
+    create_snippet({ "begin", "Begin environment (generic)", "beg" }, FORMAT_ENV, function()
         return { node.choice(1, create_text_nodes(envs)), node.ins(2), extras.dup(1) }
     end)
 )
 vim.list_extend(
     M,
-    create_snippet({ "aligned", "Begin environment (aligned)", "ali" }, false, FORMAT_ENV, function()
+    create_snippet({ "aligned", "Begin environment (aligned)", "ali" }, FORMAT_ENV, function()
         return { node.txt("aligned"), node.ins(1), node.txt("aligned") }
     end)
 )

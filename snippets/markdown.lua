@@ -62,7 +62,7 @@ vim.list_extend(M, {
 -- Create environment snippets
 vim.list_extend(
     M,
-    create_snippet({ "begin", "Begin environment (generic)", "beg" }, false, FORMAT_ENV, function()
+    create_snippet({ "begin", "Begin environment (generic)", "beg" }, FORMAT_ENV, function()
         return { node.choice(1, create_text_nodes(envs)), node.ins(2), extras.dup(1) }
     end)
 )
