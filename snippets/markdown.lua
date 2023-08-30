@@ -3,6 +3,7 @@
 ---------------------------------------------------------------------------------------------------------------------------------
 
 local ls = require("user.snippets.luasnips")
+local snippet = ls.snippet
 local autosnippet = ls.autosnippet
 local node = ls.node
 local extras = ls.extras
@@ -26,6 +27,10 @@ local create_snippet = utils.create_snippet
 
 local M = {}
 
+local function file_beginning()
+    return vim.api.nvim_win_get_cursor(0)[1] == 1
+end
+
 -- Create custom autosnippets
 vim.list_extend(M, {
     autosnippet(
@@ -46,6 +51,11 @@ vim.list_extend(M, {
                 return captures[1] == " " or captures[1] == ""
             end,
         }
+    ),
+    snippet(
+        { trig = "template", name = "Pandoc Header Template" },
+        node.txt({ "---", "header-includes: |", "    ```{=latex}", "    ```", "---", "", "" }),
+        { condition = file_beginning, show_condition = file_beginning }
     ),
 })
 

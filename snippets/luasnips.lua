@@ -40,7 +40,11 @@ M.extras = {
 }
 M.fmt = require("luasnip.extras.fmt").fmta
 
-M.conds = require("luasnip.extras.expand_conditions")
+M.conds = {
+    expand = require("luasnip.extras.conditions.expand"),
+    show = require("luasnip.extras.conditions.show"),
+    make = require("luasnip.extras.conditions").make_condition,
+}
 M.postfix = require("luasnip.extras.postfix").postfix
 -- M.types = require("luasnip.util.types")
 -- M.key = require("luasnip.nodes.key_indexer").new_key -- Not yet in the stable version of luasnip

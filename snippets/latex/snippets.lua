@@ -105,6 +105,7 @@ for trig, spec in pairs(txt_autosnippets) do
     vim.list_extend(M, { autosnippet({ trig = trig, wordTrig = false, name = spec[2], dscr = "" }, node.txt(spec[1])) })
 end
 
+-- Create postfix autosnippets
 for trig, spec in pairs(postfix_autosnippets) do
     vim.list_extend(M, {
         postfix(
@@ -114,18 +115,32 @@ for trig, spec in pairs(postfix_autosnippets) do
     })
 end
 
+-- Create subscript autosnippets
+for _, key in ipairs({ "i", "j", "k", "n", "m" }) do
+    vim.list_extend(M, {
+        autosnippet(
+            { trig = "([xyzt])" .. key:rep(2), regTrig = true, name = "Auto subscript", dscr = "" },
+            fmt("<>_" .. key, { create_fn_node(get_capture, { 1 }) }),
+            COMMAND_BEGIN_CONDITION
+        ),
+    })
+end
+
 -- Create custom autosnippets
 vim.list_extend(M, {
+    -- Set
     autosnippet(
         { trig = "set", name = "Set", dscr = "Create a set" },
         fmt("\\{<>\\}", { node.ins(1) }),
         COMMAND_BEGIN_CONDITION
     ),
+    -- Toggle parenthesis
     autosnippet(
         { trig = "()", name = "Parenthesis", dscr = "Toggle parenthesis size" },
         node.choice(1, { fmt("(<>)", node.restore(1, "x")), fmt("\\left( <> \\right)", node.restore(1, "x")) }),
         COMMAND_BEGIN_CONDITION
     ),
+    -- Auto subscripts
     autosnippet(
         { trig = "(%a)(%d)", regTrig = true, name = "Auto subscript", dscr = "" },
         fmt("<>_<>", { create_fn_node(get_capture, { 1 }), create_fn_node(get_capture, { 2 }) }),
@@ -136,8 +151,10 @@ vim.list_extend(M, {
         fmt("<>_{<>}", { create_fn_node(get_capture, { 1 }), create_fn_node(get_capture, { 2 }) }),
         COMMAND_BEGIN_CONDITION
     ),
+    -- Subscript/Superscript
     autosnippet({ trig = "ss", wordTrig = false, name = "Subscript", dscr = "" }, fmt("_{<>}", { node.ins(1) })),
     autosnippet({ trig = "SS", wordTrig = false, name = "Superscript", dscr = "" }, fmt("^{<>}", { node.ins(1) })),
+    -- Automatic fractions
     autosnippet(
         { trig = "(%b())/", regTrig = true, name = "Automatic fraction", dscr = "" },
         fmt("\\frac{<>}{<>}", { create_fn_node(get_capture, { 1, { 1, 1 } }), node.ins(1) })

@@ -151,14 +151,15 @@ return {
                     { "iff",        "⟺" },
                     { "land",       "∧" },
                     { "lor",        "∨" },
+                    { "forall",     "∀", "AA" },
+                    { "exists",     "∃", "EE" },
                     { "nexists",    "∄" },
                     { "in",         "∈", "inn" },
-                    { "notin",      "∉" },
+                    { "notin",      "∉", "ninn" },
                     { "ni",         "∋" },
                     { "neg",        "¬" },
                     { "lnot",       "¬" }
                 },
-                [true] = { { "forall", "∀", "AA" }, { "exists", "∃", "EE" } }
             },
             -- macros = {
             --     [false] = {
@@ -269,6 +270,8 @@ return {
                     { "gg",              ">>",  true },
                     { "lll",             "<<<" },
                     { "ggg",             ">>>" },
+                    { "leq",             "<=",  true },
+                    { "geq",             ">=",  true },
                     -- { "leqslant",        "⩽" },
                     -- { "geqslant",        "⩾" },
                     -- { "eqslantless",     "⪕" },
@@ -301,10 +304,12 @@ return {
                     -- { "vartriangleright", "⊳" },
                     -- { "trianglelefteq",  "⊴" },
                     -- { "trianglerighteq", "⊵" },
-                    { "not =",           "!=",  true },
+                    { "not =",           "!=", true },
+                    { "equiv",           "≡", "==" },
                     { "sim",             "∼", "~~" },
                     -- { "backsim",         "∽" },
                     -- { "thicksim",        "~" },
+                    { "approx",          "≈", "~=" },
                     -- { "thickapprox",     "≈" },
                     -- { "simeq",           "≃" },
                     -- { "backsimeq",       "⋍" },
@@ -347,12 +352,6 @@ return {
                     -- "imageof",
                     -- "origof",
                 },
-                [true] = {
-                    { "approx", "≈", "~=" },
-                    { "equiv",  "≡", "==" },
-                    { "leq",    "<=",  true },
-                    { "geq",    ">=",  true },
-                }
             },
             negated_relations = {
                 [false] = {
@@ -611,13 +610,21 @@ return {
                 [true] = { { "hspace", "Horizontal space" }, { "vspace", "Vertical space" } },
             },
             math_operators = { [false] = { "operatorname", "operatorname*", "operatornamewithlimits" } },
-            sqrt = { [true] = { { "sqrt", "√" } } },
-            extensible_arrows = { [false] = { { "xleftarrow", "Extensible <-" }, { "xrightarrow", "Extensible ->" } } },
+            sqrt = { [true] = { { "sqrt", "√", "sq" } } },
+            extensible_arrows = {
+                [false] = {
+                    { "xleftarrow",  "Extensible <-" },
+                    { "xrightarrow", "Extensible ->" },
+                    { "xLeftarrow",  "Extensible ⇐" },
+                    { "xRightarrow", "Extensible ⇒" }
+                }
+            },
             -- class_assignment = {
             --     [false] = { "mathbin", "mathclose", "mathinner", "mathop", "mathopen", "mathord", "mathpunct", "mathrel" }
             -- },
             font = {
                 [false] = {
+                    { "text",       "Text mode", "tt" },
                     { "textbf",     "Bold font" },
                     { "textit",     "Italics font" },
                     { "textrm",     "Normal font" },
@@ -631,7 +638,13 @@ return {
                     { "mathscr",    "Script font" },
                     -- "pmb",
                 },
-                [true] = { { "text", "Text mode", "txt" } }
+            },
+            custom = {
+                [false] = {
+                    {"argmin", nil, "amin"},
+                    {"argmax", nil, "amax"},
+                },
+                [true] = { "abs", "ceil", "floor" }
             }
         },
         {
@@ -644,13 +657,13 @@ return {
                 }
             },
             fractions = {
-                -- [false] = {
-                --     { "dfrac", "Display style fraction" },
-                --     { "tfrac", "Inline style fraction" },
-                --     { "cfrac", "Continued fraction" },
-                --     -- "genfrac"
-                -- },
-                [true] = { { "frac", "Fraction" } },
+                [false] = {
+                    { "frac", "Fraction" },
+                    -- { "dfrac", "Display style fraction" },
+                    -- { "tfrac", "Inline style fraction" },
+                    -- { "cfrac", "Continued fraction" },
+                    -- "genfrac"
+                },
             },
             binomial_coefficients = {
                 [false] = {
