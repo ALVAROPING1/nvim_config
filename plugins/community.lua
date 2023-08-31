@@ -266,7 +266,7 @@ return {
     {
         "m4xshen/hardtime.nvim",
         opts = function(_, opts)
-            vim.list_extend(opts.disabled_filetypes, { "neotest-summary" })
+            vim.list_extend(opts.disabled_filetypes, { "neotest-summary", "neo-tree-popup" })
         end,
     },
     { import = "astrocommunity.utility.noice-nvim" },
