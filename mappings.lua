@@ -169,7 +169,7 @@ return {
         -- Fast movement
         ["J"] = { "5j", desc = "Fast downwards movement" },
         ["K"] = { "5k", desc = "Fast upwards movement" },
-        ["<C-x>"] = { desc = "Store text for snippet" },
+        ["<C-w>"] = { desc = "Store text for snippet" },
         -- Disable arrow keys
         ["<left>"] = { "" },
         ["<right>"] = { "" },

@@ -32,7 +32,7 @@ return {
                 markdown = { "latex" },
             }),
             enable_autosnippets = true,
-            store_selection_keys = "<C-x>",
+            store_selection_keys = "<C-w>",
         },
         config = function(plugin, opts)
             require("plugins.configs.luasnip")(plugin, opts) -- include the default astronvim config that calls the setup call
