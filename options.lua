@@ -13,6 +13,8 @@ return {
         spelloptions = "camel,noplainbuffer",
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = false,        -- sets vim.opt.wrap
+        scrolloff = 8,       -- Number of lines to keep above and below the cursor
+        sidescrolloff = 8,   -- Number of columns to keep at the sides of the cursor
         linebreak = true,
         breakat = " ",
         breakindent = true,
