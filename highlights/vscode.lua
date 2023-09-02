@@ -1,5 +1,5 @@
 return {
-    -- a table of overrides/changes to the vscode theme
+    -- Table of overrides/changes to the vscode theme
     GitSignsAdd = { fg = "#487e02" },
     GitSignsChange = { fg = "#1b81a8" },
     NeoTreeGitAdded = { fg = "#73c991" },
@@ -21,9 +21,9 @@ return {
     CursorColumn = { bg = "#282828" },
     GitBlameText = { fg = "#707070", bg = "#282828" },
     IncRenameText = { bg = "#613214" },
-    SpellBad = { underline = false, fg = "#F44747" },
-    SpellCap = { underline = true, fg = "#569CD6" },
-    SpellRare = { underline = true, fg = "#DCDCAA" },
+    -- SpellBad = { underline = false, fg = "#F44747" },
+    SpellCap = { undercurl = true, fg = "#569CD6", sp = "#569CD6" },
+    SpellRare = { undercurl = true, fg = "#DCDCAA", sp = "#DCDCAA" },
     ["@comment.documentation"] = { fg = "#569cd6" },
     DiffviewDiffDeleteDim = { fg = "#414141" },
     DiffText = { bg = "#185f7a" },
