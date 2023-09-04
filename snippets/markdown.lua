@@ -31,6 +31,11 @@ local function file_beginning()
     return vim.api.nvim_win_get_cursor(0)[1] == 1
 end
 
+local ins_nodes = {}
+for i = 1, 13 do
+    table.insert(ins_nodes, node.ins(i))
+end
+
 -- Create custom autosnippets
 vim.list_extend(M, {
     autosnippet(
@@ -54,8 +59,39 @@ vim.list_extend(M, {
     ),
     snippet(
         { trig = "template", name = "Pandoc Header Template" },
-        node.txt({ "---", "header-includes: |", "    ```{=latex}", "    ```", "---", "", "" }),
-        { condition = file_beginning, show_condition = file_beginning }
+        fmt(
+            [[---
+header-includes: |
+    ```{=latex}
+    ```
+---
+
+# <>
+
+<<!-- markdownlint-disable-next-line MD001-->>
+### Temas
+
+- [Tema 1: <>](#tema-1)
+- [Tema 2: <>](#tema-2)
+- [Tema 3: <>](#tema-3)
+- [Tema 4: <>](#tema-4)
+- [Tema 5: <>](#tema-5)
+- [Tema 6: <>](#tema-6)
+- [Tema 7: <>](#tema-7)
+- [Tema 8: <>](#tema-8)
+- [Tema 9: <>](#tema-9)
+
+### Exámenes parciales
+
+1) <>
+2) <>
+3) <>
+
+## Tema 1
+
+
+]], ins_nodes, { condition = file_beginning, show_condition = file_beginning }
+        )
     ),
 })
 
