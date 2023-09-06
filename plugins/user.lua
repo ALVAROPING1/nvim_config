@@ -28,6 +28,7 @@ return {
     },
     {
         "lukas-reineke/lsp-format.nvim",
+        commit = "ca0df5c", -- Next version spams formatting after saving on config files
         event = "LspAttach",
         opts = {
             lua = { order = { "null-ls", "lua_ls" } },
