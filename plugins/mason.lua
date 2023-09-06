@@ -20,6 +20,9 @@ return {
                 "markdownlint",
                 "clang-format",
             })
+            opts.ensure_installed = vim.tbl_filter(function(v)
+                return v ~= "luacheck"
+            end, opts.ensure_installed)
         end,
     },
     {
