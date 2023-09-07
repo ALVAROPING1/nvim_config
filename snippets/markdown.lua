@@ -43,7 +43,8 @@ vim.list_extend(M, {
         fmt("$<>$<><>", {
             node.ins(1),
             node.fn(function(argnode_text)
-                return argnode_text[1][1]:sub(1, 1):match("[,%.%?%- ]") and "" or " "
+                local next_char = argnode_text[1][1]:sub(1, 1)
+                return (next_char == "" or next_char:match("[,%.%?%- ]")) and "" or " "
             end, 2),
             node.ins(2),
         })
@@ -90,7 +91,9 @@ header-includes: |
 ## Tema 1
 
 
-]], ins_nodes, { condition = file_beginning, show_condition = file_beginning }
+]],
+            ins_nodes,
+            { condition = file_beginning, show_condition = file_beginning }
         )
     ),
 })
