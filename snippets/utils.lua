@@ -14,7 +14,7 @@ M.COMMAND_BEGIN_CONDITION = {
     condition = function(line, matched)
         local pos = #line - #matched
         -- print(matched)
-        return pos == 0 or line:sub(pos, pos):match("[^\\]")
+        return pos == 0 or line:sub(pos, pos):match("[^\\%w]")
     end,
 }
 
@@ -74,7 +74,7 @@ function M.create_snippet(spec, format, nodes)
             fmt(format, nodes(), { strict = false, trim_empty = false })
         ),
         spec[3] and autosnippet(
-            { trig = auto_trig, name = name, dscr = "", priority = spec.priority },
+            { trig = auto_trig, name = name, dscr = "", priority = spec.priority, wordTrig = false },
             fmt(format, nodes(), { strict = false, trim_empty = false }),
             M.COMMAND_BEGIN_CONDITION
         ),
