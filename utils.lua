@@ -107,4 +107,14 @@ function M.other_line_diagnostic(namespace, bufnr)
     end, diagnostics)
 end
 
+-- Compile spell word dictionaries
+function M.compile_spell()
+    local paths = vim.split(vim.fn.glob(".spell/*.add"), "\n")
+    if paths[1] ~= "" then
+        for _, file in pairs(paths) do
+            vim.cmd("silent mkspell! " .. file)
+        end
+    end
+end
+
 return M

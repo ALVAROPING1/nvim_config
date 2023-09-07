@@ -23,7 +23,6 @@ return function()
     vim.opt.fillchars:append({ diff = "╱" })
 
     require("user.polish.custom_icons")
-    require("user.polish.compile_spell")
     require("user.polish.autocmds")
 
     -- Remove unused friendly-snippets snippets

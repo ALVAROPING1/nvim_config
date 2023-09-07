@@ -44,3 +44,12 @@ vim.api.nvim_create_autocmd("BufLeave", {
         end
     end,
 })
+
+-- Compile spell dictionaries when changing directory
+vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
+    desc = "Compile spell dictionaries when changing directory",
+    group = vim.api.nvim_create_augroup("autospell", {}),
+    callback = function()
+        require("user.utils").compile_spell()
+    end,
+})
