@@ -160,7 +160,7 @@ vim.list_extend(M, {
         fmt("\\frac{<>}{<>}", { create_fn_node(get_capture, { 1, { 1, 1 } }), node.ins(1) })
     ),
     autosnippet(
-        { trig = "(%d+)/", regTrig = true, name = "Automatic fraction", dscr = "" },
+        { trig = "(%w+)/", regTrig = true, name = "Automatic fraction", dscr = "" },
         fmt("\\frac{<>}{<>}", { create_fn_node(get_capture, { 1 }), node.ins(1) })
     ),
     autosnippet(
