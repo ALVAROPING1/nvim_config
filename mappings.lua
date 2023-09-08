@@ -108,13 +108,16 @@ return {
             ["w"] = {
                 function()
                     if vim.bo.filetype ~= "markdown" then
+                        vim.notify("Error: Filetype must be markdown", vim.log.levels.ERROR)
                         return
                     end
 
                     local input_file = vim.api.nvim_buf_get_name(0)
                     if input_file == "" then
+                        vim.notify("Error: Buffer must be in the disk", vim.log.levels.ERROR)
                         return
                     end
+                    vim.cmd("silent! write")
                     local output_file = input_file:match("^(.+)%.[^%.%/]+$") .. ".pdf"
 
                     local args = require("plenary.path"):new(".pandoc"):is_dir()
