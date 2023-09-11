@@ -175,10 +175,7 @@ return {
                 { "oiiint", "∰" },
             },
             binary_operators = {
-                { "pmod",            "(mod N)" },
-                { "mod",             "mod N" },
                 -- { "bmod",            "mod" },
-                -- { "pod",             "(N)" },
                 { "cdot",            "⋅",         "**" },
                 -- { "cdotp",           "∙" },
                 -- { "bullet",          "∙ (bigger)" },
@@ -574,6 +571,11 @@ return {
                 { "hspace", "Horizontal space", 1 }, { "vspace", "Vertical space", 1 },
             },
             math_operators = { "operatorname", "operatorname*", "operatornamewithlimits" },
+            binary_operators = {
+                { "pmod",            "(mod N)" },
+                { "mod",             "mod N" },
+                -- { "pod",             "(N)" },
+            },
             sqrt = { { "sqrt", "√", "sq" } },
             extensible_arrows = {
                 { "xleftarrow",  "Extensible <-" },
