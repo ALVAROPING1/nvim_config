@@ -44,7 +44,7 @@ vim.list_extend(M, {
             node.ins(1),
             node.fn(function(argnode_text)
                 local next_char = argnode_text[1][1]:sub(1, 1)
-                return (next_char == "" or next_char:match("[,%.%?%- ]")) and "" or " "
+                return (next_char == "" or next_char:match("[^%w]")) and "" or " "
             end, 2),
             node.ins(2),
         })
