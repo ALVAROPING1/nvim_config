@@ -161,6 +161,7 @@ return {
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.yaml" },
+    { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.rust" },
     { "simrat39/rust-tools.nvim",                      opts = { server = { standalone = true } } },
     { "linux-cultist/venv-selector.nvim",              enabled = false },
@@ -176,6 +177,14 @@ return {
                 config.cwd = vim.loop.cwd()
             end
         end,
+    },
+    {
+        "Civitasv/cmake-tools.nvim",
+        opts = {
+            cmake_build_directory = "build/${variant:buildType}",
+            cmake_soft_link_compile_commands = false,
+            cmake_compile_commands_from_lsp = true,
+        },
     },
     -- { import = "astrocommunity.test.neotest" },
     {
@@ -266,7 +275,7 @@ return {
     {
         "m4xshen/hardtime.nvim",
         opts = function(_, opts)
-            vim.list_extend(opts.disabled_filetypes, { "neotest-summary", "neo-tree-popup" })
+            vim.list_extend(opts.disabled_filetypes, { "neotest-summary", "neo-tree-popup", "cmake_tools_terminal" })
         end,
     },
     { import = "astrocommunity.utility.noice-nvim" },
