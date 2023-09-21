@@ -34,7 +34,7 @@ end
 function M.python.get_sources(paths)
     return vim.tbl_filter(function(path)
         local check = require("plenary.path"):new(path):is_dir()
-        if check then -- "src/main/python"
+        if check then
             vim.env.PYTHONPATH = M.concat_nullable_str(path, vim.env.PYTHONPATH, ":")
         end
         return check
