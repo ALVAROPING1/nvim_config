@@ -17,6 +17,8 @@ return {
             null_ls.builtins.diagnostics.typos.with({ disabled_filetypes = { "markdown" } }),
             null_ls.builtins.formatting.clang_format.with({
                 extra_args = {
+                    require("plenary.path"):new(".clang-format"):is_file() and "--style=file"
+                    or
                     "--style={BasedOnStyle: LLVM, AlignArrayOfStructures: Right, BreakBeforeBraces: Attach, IndentWidth: 4, AllowShortFunctionsOnASingleLine: Empty, PointerAlignment: Left, SpaceAfterCStyleCast: true, BinPackArguments: false, BinPackParameters: false, AllowShortBlocksOnASingleLine: Always, AllowShortIfStatementsOnASingleLine: AllIfsAndElse}",
                 },
             }),
