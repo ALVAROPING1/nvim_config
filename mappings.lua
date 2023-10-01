@@ -57,10 +57,10 @@ return {
             desc = "Insert diapositivas TODO comment (markdown)",
         },
         -- Disable arrow keys
-        ["<left>"] = { "" },
-        ["<right>"] = { "" },
-        ["<up>"] = { "" },
-        ["<down>"] = { "" },
+        -- ["<left>"] = { "" },
+        -- ["<right>"] = { "" },
+        -- ["<up>"] = { "" },
+        -- ["<down>"] = { "" },
         -- Move the force save key
         ["<leader>W"] = { "<cmd>w!<cr>", desc = "Force save" },
         -- Nvim-surround group
@@ -180,10 +180,10 @@ return {
         ["K"] = { "5k", desc = "Fast upwards movement" },
         ["<C-w>"] = { desc = "Store text for snippet" },
         -- Disable arrow keys
-        ["<left>"] = { "" },
-        ["<right>"] = { "" },
-        ["<up>"] = { "" },
-        ["<down>"] = { "" },
+        -- ["<left>"] = { "" },
+        -- ["<right>"] = { "" },
+        -- ["<up>"] = { "" },
+        -- ["<down>"] = { "" },
         -- Refactor-nvim group
         ["<leader>r"] = { name = " Refactor" },
         ["<C-q>"] = {
