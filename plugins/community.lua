@@ -275,7 +275,7 @@ return {
     {
         "m4xshen/hardtime.nvim",
         opts = function(_, opts)
-            vim.list_extend(opts.disabled_filetypes, { "neotest-summary", "neo-tree-popup", "cmake_tools_terminal" })
+            opts.disabled_filetypes = { "cmake_tools_terminal" }
         end,
     },
     { import = "astrocommunity.utility.noice-nvim" },
