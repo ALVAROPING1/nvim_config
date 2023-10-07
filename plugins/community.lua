@@ -275,7 +275,34 @@ return {
     {
         "m4xshen/hardtime.nvim",
         opts = function(_, opts)
-            opts.disabled_filetypes = { "cmake_tools_terminal" }
+            opts.disabled_filetypes = {
+                -- Default (required since the option is overwritten rather than merged)
+                "NvimTree",
+                "TelescopePrompt",
+                "aerial",
+                "alpha",
+                "checkhealth",
+                "dapui-repl",
+                "dapui_breakpoints",
+                "dapui_console",
+                "dapui_scopes",
+                "dapui_stacks",
+                "dapui_watches",
+                "DressingInput",
+                "DressingSelect",
+                "help",
+                "lazy",
+                "mason",
+                "neotest-summary",
+                "neo-tree",
+                "neo-tree-popup",
+                "noice",
+                "notify",
+                "prompt",
+                "qf",
+                -- Custom
+                "cmake_tools_terminal",
+            }
         end,
     },
     { import = "astrocommunity.utility.noice-nvim" },
