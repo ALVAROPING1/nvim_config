@@ -156,7 +156,7 @@ return {
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
         -- <C-v> in insert mode means inserting the next character literally
-        ["<M-j><M-k>"] = { "<C-v>j<C-v>k", desc = "Type jk character sequence" },
+        ["<M-j>"] = { "<C-v>j", desc = "Type j character" },
         -- Spelling
         ["<C-l>"] = {
             name = "󰓆 Spelling",
