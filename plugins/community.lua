@@ -1,3 +1,9 @@
+rainbow_delimiters_highlight = {
+    "Parens1",
+    "Parens2",
+    "Parens3",
+}
+
 return {
     -- Add the community repository of plugin specifications
     "AstroNvim/astrocommunity",
@@ -24,11 +30,7 @@ return {
                 [""] = "rainbow-delimiters",
                 latex = "rainbow-blocks",
             },
-            highlight = {
-                "Parens1",
-                "Parens2",
-                "Parens3",
-            },
+            highlight = rainbow_delimiters_highlight,
         },
     },
     { import = "astrocommunity.editing-support.todo-comments-nvim" },
@@ -99,39 +101,24 @@ return {
     { import = "astrocommunity.indent.indent-blankline-nvim" },
     {
         "lukas-reineke/indent-blankline.nvim",
-        opts = {
-            char = "▏",
-            -- context_char = "│",
-            context_highlight_list = {
-                "Parens1",
-                "Parens2",
-                "Parens3",
-            },
-            use_treesitter = true,
-            -- use_treesitter_scope = true,
-            max_indent_increase = 1,
-            show_current_context = true,
-            show_current_context_start = true,
-            context_patterns = {
-                "class",
-                "func",
-                "method",
-                "if",
-                "while",
-                "for",
-                "with",
-                "try",
-                "except",
-                "arguments",
-                "argument_list",
-                "object",
-                "dictionary",
-                "element",
-                "table",
-                "tuple",
-                "do_block",
-            },
-        },
+        opts = function(_, opts)
+            -- TODO: move underline position in Kitty once an updated version is on the package repos
+            opts.indent.char = "▎"
+            opts.scope = {
+                enabled = true,
+                include = {
+                    node_type = {
+                        lua = { "table_constructor", "function_call" },
+                        python = { "argument_list", "list", "tuple", "set", "dictionary" },
+                        ["*"] = { "parameters" },
+                    },
+                },
+                highlight = rainbow_delimiters_highlight,
+            }
+            -- Rainbow-Delimiters integration
+            local hooks = require("ibl.hooks")
+            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        end,
     },
     { import = "astrocommunity.scrolling.mini-animate" },
     {
@@ -338,18 +325,6 @@ return {
                             { find = "Starting watcher for" },
                             { find = "Watcher running for " },
                             { find = "Stopping watch for " },
-                        },
-                    },
-                    opts = { skip = true },
-                },
-                {
-                    filter = {
-                        event = "notify",
-                        any = {
-                            { find = "no parser for 'TelescopePrompt' language, see :help treesitter%-parsers" },
-                            { find = "no parser for 'toggleterm' language, see :help treesitter%-parsers" },
-                            { find = "no parser for 'DiffviewFileHistory' language, see :help treesitter%-parsers" },
-                            { find = "no parser for 'DiffviewFiles' language, see :help treesitter%-parsers" },
                         },
                     },
                     opts = { skip = true },
