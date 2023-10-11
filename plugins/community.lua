@@ -109,7 +109,7 @@ return {
                 include = {
                     node_type = {
                         lua = { "table_constructor", "function_call" },
-                        python = { "argument_list", "list", "tuple", "set", "dictionary" },
+                        python = { "argument_list", "list", "tuple", "set", "dictionary", "generator_expression" },
                         ["*"] = { "parameters" },
                     },
                 },
