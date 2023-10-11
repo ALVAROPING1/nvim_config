@@ -121,9 +121,10 @@ return {
                     vim.cmd("silent! write")
                     local output_file = input_file:match("^(.+)%.[^%.%/]+$") .. ".pdf"
 
-                    local args = require("plenary.path"):new(".pandoc"):is_dir()
+                    local plenary = require("plenary.path")
+                    local args = plenary:new(".pandoc"):is_dir()
                         and { "--data-dir=.pandoc", "--defaults=pandoc_options.yaml" }
-                        or {}
+                        or (plenary:new("pandoc_options.yaml"):is_file() and { "--defaults=pandoc_options.yaml" } or {})
                     vim.list_extend(args, { "-o", output_file, input_file })
 
                     local Job = require("plenary.job")
