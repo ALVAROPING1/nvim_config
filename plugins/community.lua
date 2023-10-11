@@ -289,6 +289,7 @@ return {
                 "qf",
                 -- Custom
                 "cmake_tools_terminal",
+                "query",
             }
         end,
     },
