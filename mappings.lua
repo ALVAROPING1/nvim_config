@@ -129,7 +129,6 @@ return {
 
                     local Job = require("plenary.job")
                     Job
-                    ---@diagnostic disable-next-line: missing-fields Fields are optional
                         :new({
                             command = "pandoc",
                             args = args,
@@ -142,7 +141,6 @@ return {
                                     )
                                 else
                                     vim.notify("PDF Exported", vim.log.levels.INFO, opts)
-                                    ---@diagnostic disable-next-line: missing-fields Fields are optional
                                     Job:new({ command = "xdg-open", args = { output_file } }):start()
                                 end
                             end,
