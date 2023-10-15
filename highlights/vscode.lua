@@ -53,9 +53,8 @@ return {
     LazyNormal = { link = "Pmenu" },
     MasonNormal = { link = "Pmenu" },
     WhichKeyFloat = { link = "Pmenu" },
-    -- HACK: The multicursors plugin always overrides them, so they have to be configured after the plugin is set up
-    -- MultiCursor = { link = "Visual" },
-    -- MultiCursorMain = { link = "Visual" },
+    MultiCursor = { link = "Visual" },
+    MultiCursorMain = { link = "Visual" },
     SpecialChar = { link = "Special" },
     MatchParen = { fg = "#11d116" },
 }
