@@ -57,4 +57,5 @@ return {
     MultiCursorMain = { link = "Visual" },
     SpecialChar = { link = "Special" },
     MatchParen = { fg = "#11d116" },
+    ["@punctuation.special.markdown"] = { fg = "#569CD6" },
 }
