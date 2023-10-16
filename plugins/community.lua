@@ -1,4 +1,4 @@
-rainbow_delimiters_highlight = {
+local rainbow_delimiters_highlight = {
     "Parens1",
     "Parens2",
     "Parens3",
