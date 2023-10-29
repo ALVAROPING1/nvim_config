@@ -80,6 +80,13 @@ return {
             end,
             desc = "ToggleTerm python",
         },
+        -- Move find themes from `ft` to `fT` since it will be more rarely used
+        ["<leader>fT"] = {
+            function()
+                require("telescope.builtin").colorscheme({ enable_preview = true })
+            end,
+            desc = "Find themes",
+        },
         ["<leader><leader>"] = {
             name = "󰐕 More commands",
             -- Text search

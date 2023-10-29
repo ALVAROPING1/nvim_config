@@ -34,6 +34,13 @@ return {
         },
     },
     { import = "astrocommunity.editing-support.todo-comments-nvim" },
+    {
+        "folke/todo-comments.nvim",
+        keys = {
+            { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find TODO comments" },
+            { "<leader>xt", "<cmd>TodoTrouble<cr>",   desc = "Workspace TODOs (Trouble)" },
+        },
+    },
     { import = "astrocommunity.terminal-integration.flatten-nvim" },
     { import = "astrocommunity.utility.neodim" },
     {
