@@ -42,10 +42,12 @@ return {
     -- LSPLoading3 = "",
     -- MacroRecording = "",
     -- Paste = "󰅌",
+    ScrollText = "",
     -- Search = "",
     -- Selected = "❯",
     -- Spellcheck = "󰓆",
     -- TabClose = "󰅙",
+    VimIcon = "",
     lspkind = {
         Array = "󰅪",
         Boolean = "",
