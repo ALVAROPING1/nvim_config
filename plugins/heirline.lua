@@ -1,10 +1,80 @@
+local status = require("astronvim.utils.status")
+local hl = require("astronvim.utils.status.hl")
+
+--- Gets the filename of the buffer. Falls back to the filetype if it has no name
+---@param bufnr integer Buffer number
+---@param icon_name boolean Whether to get the icon name
+---@return string
+function status.utils.get_filename(bufnr, icon_name)
+    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+    local filetype = vim.bo[bufnr].filetype
+    local term_app = filename:match("^%d*:?(.+)%s*;#toggleterm#")
+    return (
+        -- Toggleterm buffers
+           (term_app and (icon_name and "terminal" or term_app))
+        -- Neo-tree buffer
+        or (filename == "neo-tree filesystem [1]" and "neo-tree")
+        -- Plugins with dedicated icon
+        or (vim.tbl_contains({ "TelescopePrompt", "lazy" }, filetype) and filetype)
+        -- LSP-related buffers
+        or (vim.tbl_contains({ "mason", "lspinfo", "null-ls-info" }, filetype) and (icon_name and "lsp" or filetype))
+        -- Diffview buffers
+        or ((filename:match("^Diffview") or filetype:match("^Diffview")) and (icon_name and "git" or (filename ~= "" and filename or filetype)))
+        -- Fallback
+        or filename
+    )
+end
+
+--- Gets the icon of the buffer
+---@param bufnr integer Buffer number
+---@return string Character
+---@return string? Color
+function status.utils.get_file_icon(bufnr)
+    local devicons_avail, devicons = pcall(require, "nvim-web-devicons")
+    if not devicons_avail then
+        return "", nil
+    end
+    local ft_icon, ft_color = devicons.get_icon_color(status.utils.get_filename(bufnr, true))
+    if not ft_icon then
+        ft_icon, ft_color = devicons.get_icon_color_by_filetype(vim.bo[bufnr].filetype, { default = true })
+    end
+    return ft_icon, ft_color
+end
+
+---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to fix colors on buffers with filetype but no name
+function hl.filetype_color(self)
+    local _, color = status.utils.get_file_icon(self and self.bufnr or 0)
+    return { fg = color }
+end
+
+---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add more icons
+function status.provider.file_icon(opts)
+    return function(self)
+        local ft_icon, _ = status.utils.get_file_icon(self and self.bufnr or 0)
+        return status.utils.stylize(ft_icon, opts)
+    end
+end
+
+---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filetype in some cases
+function status.provider.filename(opts)
+    opts = require("astronvim.utils").extend_tbl({
+        fallback = "Untitled",
+        fname = function(nr)
+            return status.utils.get_filename(nr, false)
+        end,
+        modify = ":t",
+    }, opts)
+    return function(self)
+        local filename = opts.fname(self and self.bufnr or 0)
+        return status.utils.stylize((filename == "" and opts.fallback or filename), opts)
+    end
+end
+
 return {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
-        local status = require("astronvim.utils.status")
-        local hl = require("astronvim.utils.status.hl")
+        -- NVChad statusline
         opts.statusline = {
-            -- NVChad statusline
             -- default highlight for the entire statusline
             hl = { fg = "fg", bg = "bg" },
             -- each element following is a component in astronvim.utils.status module
@@ -34,7 +104,6 @@ return {
             status.component.file_info({
                 -- enable the file_icon and disable the highlighting based on filetype
                 file_icon = { padding = { left = 0 } },
-                filename = { fallback = "Untitled" },
                 -- add padding
                 padding = { right = 1 },
                 -- define the section separator
@@ -86,7 +155,7 @@ return {
                     -- function to get the current working directory name
                     filename = {
                         fname = function(nr)
-                            return vim.fn.getcwd(nr)
+                            return vim.fn.fnamemodify(vim.fn.getcwd(nr), ":t")
                         end,
                         padding = { left = 1 },
                     },
