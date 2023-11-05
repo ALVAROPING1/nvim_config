@@ -39,6 +39,7 @@ return {
             hl.file_info_bg = lightbg
             hl.file_info_fg = white
             hl.git_branch_fg = hl.fg
+            hl.cmd_info_fg = white
             hl.lsp_progress_fg = "#B5CEA8"
             hl.lsp_clients_fg = "#60a6e0"
             hl.folder_icon_bg = get_hlgroup("Error").fg
