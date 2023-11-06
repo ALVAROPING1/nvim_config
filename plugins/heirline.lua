@@ -4,9 +4,10 @@ local hl = require("astronvim.utils.status.hl")
 --- Gets the filename of the buffer. Falls back to the filetype if it has no name
 ---@param bufnr integer Buffer number
 ---@param icon_name boolean Whether to get the icon name
+---@param modify string Modifier of `vim.fn.fnamemodify()`
 ---@return string
-function status.utils.get_filename(bufnr, icon_name)
-    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+function status.utils.get_filename(bufnr, icon_name, modify)
+    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), modify)
     local filetype = vim.bo[bufnr].filetype
     local term_app = filename:match("^%d*:?(.+)%s*;#toggleterm#")
     return (
@@ -60,7 +61,7 @@ function status.provider.filename(opts)
     opts = require("astronvim.utils").extend_tbl({
         fallback = "Untitled",
         fname = function(nr)
-            return status.utils.get_filename(nr, false)
+            return status.utils.get_filename(nr, false, opts.modify)
         end,
         modify = ":t",
     }, opts)
@@ -73,6 +74,16 @@ end
 return {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
+        -- Fix winbar icons losing color when the window is inactive
+        -- Modified from: https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/bars-and-lines/heirline-vscode-winbar/init.lua
+        opts.winbar[1][2] = status.component.file_info({
+            file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
+            file_modified = false,
+            file_read_only = false,
+            hl = status.hl.get_attributes("winbarnc", true),
+            surround = false,
+            update = "BufEnter",
+        })
         -- NVChad statusline
         opts.statusline = {
             -- default highlight for the entire statusline
