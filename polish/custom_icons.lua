@@ -29,4 +29,9 @@ require("nvim-web-devicons").set_icon({
         color = require("user.highlights.vscode").LazyH1.bg,
         name = "LSPInfo",
     },
+    cargo = {
+        icon = "",
+        color = "#dea584",
+        name = "Cargo",
+    },
 })

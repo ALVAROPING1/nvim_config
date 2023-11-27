@@ -10,9 +10,12 @@ function status.utils.get_filename(bufnr, icon_name, modify)
     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), modify)
     local filetype = vim.bo[bufnr].filetype
     local term_app = filename:match("^%d*:?(.+)%s*;#toggleterm#")
+    local cargo_app = filename:match("^.+&& (cargo %w+)")
     return (
         -- Toggleterm buffers
            (term_app and (icon_name and "terminal" or term_app))
+        -- Cargo (Rust) buffers
+        or (cargo_app and (icon_name and "cargo" or cargo_app))
         -- Neo-tree buffer
         or (filename == "neo-tree filesystem [1]" and "neo-tree")
         -- Plugins with dedicated icon
