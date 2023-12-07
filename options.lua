@@ -26,6 +26,7 @@ return {
         scrollopt = "ver,hor,jump",
         -- nrformats = "bin,hex,alpha",
         wildignorecase = true,
+        title = false,
     },
     g = {
         mapleader = " ",                 -- sets vim.g.mapleader
