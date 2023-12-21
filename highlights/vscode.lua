@@ -59,4 +59,5 @@ return {
     MatchParen = { fg = "#11d116" },
     ["@punctuation.special.markdown"] = { fg = "#569CD6" },
     StatusLine = { fg = "#626262", bg = "#242424" },
+    FloatBorder = { link = "LspInfoBorder" },
 }
