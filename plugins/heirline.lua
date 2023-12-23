@@ -38,7 +38,7 @@ function status.utils.get_file_icon(bufnr)
     if not devicons_avail then
         return "", nil
     end
-    local ft_icon, ft_color = devicons.get_icon_color(status.utils.get_filename(bufnr, true))
+    local ft_icon, ft_color = devicons.get_icon_color(status.utils.get_filename(bufnr, true, ":t"))
     if not ft_icon then
         ft_icon, ft_color = devicons.get_icon_color_by_filetype(vim.bo[bufnr].filetype, { default = true })
     end
