@@ -47,7 +47,7 @@ return {
     -- Selected = "❯",
     -- Spellcheck = "󰓆",
     -- TabClose = "󰅙",
-    VimIcon = "",
+    VimIcon = "",
     lspkind = {
         Array = "󰅪",
         Boolean = "",
