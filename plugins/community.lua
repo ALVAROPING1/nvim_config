@@ -131,7 +131,6 @@ return {
     { import = "astrocommunity.scrolling.mini-animate" },
     {
         "echasnovski/mini.animate",
-        event = "VeryLazy",
         opts = function()
             local animate = require("mini.animate")
             return {
