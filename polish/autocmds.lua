@@ -14,12 +14,12 @@ vim.api.nvim_create_autocmd({ "FileType", "User" }, {
     desc = "Setup diffview merge conflicts menu for diffview file panel",
     pattern = { "DiffviewFiles", "DiffviewDiffBufRead" },
     group = vim.api.nvim_create_augroup("auto_diffview_merge", {}),
-    callback = function(args)
+    callback = function()
         vim.keymap.set("n", "<leader>c", "", { buffer = 0 })
 
         require("which-key").register({
             ["<leader>c"] = { name = " Merge Conflicts" },
-        }, { buffer = args.buf })
+        }, { buffer = 0 })
     end,
 })
 
