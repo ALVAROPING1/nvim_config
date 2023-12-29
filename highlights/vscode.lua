@@ -29,7 +29,7 @@ return {
     DiffText = { bg = "#185f7a" },
     DiffChange = { bg = "#153947" },
     LspSignatureActiveParameter = { fg = "#2aaaff" },
-    TreesitterContextBottom = { underline = true, sp = "#444444" },
+    TreesitterContext = { bg = "#404040" },
     DiagnosticUnnecessary = { fg = "#8D8D8D" },
     NvimDapVirtualText = { fg = "#707070" },
     NvimDapVirtualTextChanged = { link = "DiagnosticVirtualTextInfo" },
