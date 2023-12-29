@@ -96,12 +96,7 @@ return {
             -- Text search
             ["/"] = { "<cmd>noh<cr>", "Clear highlighted text" },
             -- Rainbow delimiters
-            ["r"] = {
-                function()
-                    vim.cmd("e")
-                end,
-                "Reload rainbow delimiters",
-            },
+            ["r"] = { "<cmd>e<cr>", desc = "Reload rainbow delimiters" },
             ["c"] = {
                 name = "󰅺 Comment Box",
                 n = { "<cmd>lua require('comment-box').llbox()<cr>", "Normal box" },
