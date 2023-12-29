@@ -60,12 +60,6 @@ return {
         ["K"] = { "5k", desc = "Fast upwards movement" },
         -- Remap replaced commands
         ["<leader>j"] = { "J", desc = "Join lines" },
-        -- Insert TODO comments in markdown
-        ["<leader><C-t>"] = { "a <!--TODO: completar esto--><esc>", desc = "Insert generic TODO comment (markdown)" },
-        ["<leader><C-d>"] = {
-            "a <!--TODO: diapositivas[:]--><esc>F:i",
-            desc = "Insert diapositivas TODO comment (markdown)",
-        },
         -- Disable arrow keys
         -- ["<left>"] = { "" },
         -- ["<right>"] = { "" },

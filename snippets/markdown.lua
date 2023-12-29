@@ -58,6 +58,14 @@ vim.list_extend(M, {
             end,
         }
     ),
+    autosnippet(
+        { trig = "TODOC", name = "TODO: completar esto", dscr = "TODO: completar esto" },
+        node.txt("<!--TODO: Completar esto-->")
+    ),
+    autosnippet(
+        { trig = "TODOD", name = "TODO: diapositivas", dscr = "TODO: diapositivas" },
+        fmt("<<!--TODO: diapositivas[<>:<>]-->>", { node.ins(1), node.ins(2) })
+    ),
     snippet(
         { trig = "template", name = "Pandoc Header Template" },
         fmt(
