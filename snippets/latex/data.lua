@@ -1,11 +1,27 @@
 --- Block of groups of snippet specs. The key is the name of the group
----@alias SnippetBlock {[string]: SnippetGroup}
+---@alias SnippetBlock {[string]: SnippetSpec[]}
 
 --- Format: `cmds[num_params][group_name][create_autosnippet] = SnippetSpecs`
 ---@class Cmds
 ---@field [1] SnippetBlock Commands with no arguments
 ---@field [2] SnippetBlock Commands with 1 argument
 ---@field [3] SnippetBlock Commands with 2 arguments
+
+---@class SnippetSpecTable
+---@field [1] string Command
+---@field [2] string? Name, if `nil` the command should be used
+---@field [3] (string | 1 | 2)? Autosnippet trigger, if a number the field indicated by that number should be used. If `nil` no autosnippet should be created
+---@field priority number? Priority of the snippet
+
+--- Definition a snippet with an optional autosnippet
+---@alias SnippetSpec (string | SnippetSpecTable)
+
+--- Definition of an autosnippet
+--- Format: `{text, name}`
+---@alias AutoSnippetSpec {[1]: string, [2]: string}
+
+--- List of `AutoSnippetSpec`'s. The keys are the triggers
+---@alias AutoSnippetSpecs {[string]: AutoSnippetSpec}
 
 -- stylua: ignore
 return {
@@ -25,7 +41,7 @@ return {
                 -- "ulcorner", "urcorner",
                 -- "llcorner", "lrcorner",
                 -- "lvert", "rvert", "lVert", "rVert",
-                "backslash",
+                { "backslash", "\\" },
                 -- "lBrace", "rBrace"
             },
             delimiter_sizing = {
@@ -184,7 +200,7 @@ return {
                 -- { "leftthreetimes",  "⋋" },
                 -- { "rightthreetimes", "⋌" },
                 -- { "amalg",           "⨿" },
-                { "setminus",        "∖" },
+                { "setminus",        "\\" },
                 -- { "smallsetminus",   "∖" },
                 -- { "wedge",           "∧" },
                 -- { "vee",             "∨" },
@@ -636,7 +652,7 @@ return {
         },
     },
     -- Table with function commands
-    ---@type SnippetGroup
+    ---@type SnippetSpec[]
     functions = {
         "deg", "sec",
         "cosh", "dim",
@@ -657,7 +673,7 @@ return {
         { "min",    nil, 1 }, { "max",    nil, 1 },
     },
     -- Table with the operators using subscript/superscrip limits
-    ---@type SnippetGroup
+    ---@type SnippetSpec[]
     limit_operators = {
         { "bigcap", "⋂" },
         { "bigcup", "⋃" },
@@ -670,7 +686,10 @@ return {
     limit = { "lim", "Limit", 1 },
     -- Table with the environments
     envs = {
-        FORMAT = "\\begin{<>}\n\t<>\n\\end{<>}",
+        ---@type SnippetSpec
+        generic = { "begin", "Begin environment (generic)", "beg" },
+        ---@type SnippetSpec
+        aligned = { "aligned", "Begin environment (aligned)", "ali" },
         math = {
             "aligned",
             "alignedat",
@@ -689,7 +708,9 @@ return {
     txt_autosnippets = {
         sr = { "^2", "²" },
         cb = { "^3", "³" },
-        inv = { "^{-1}", "⁻¹" },
+        inv = { "^{-1\\}", "⁻¹" },
+        ss = { "_{$1\\}", "Subscript" },
+        SS = { "^{$1\\}", "Superscript" },
     },
     ---@type AutoSnippetSpecs
     postfix_autosnippets = {
