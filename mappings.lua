@@ -100,11 +100,12 @@ return {
             ["c"] = {
                 name = "󰅺 Comment Box",
                 n = { "<cmd>lua require('comment-box').llbox()<cr>", "Normal box" },
-                h = { "<cmd>lua require('comment-box').lcbox(7)<cr>", "Header box" },
+                H = { "<cmd>lua require('comment-box').lcbox(7)<cr>", "Header box" },
+                h = { "<cmd>lua require('comment-box').lcline()<cr>", "Header line" },
                 s = { "<cmd>lua require('comment-box').albox(18)<cr>", "Separator box" },
                 l = { "<cmd>lua require('comment-box').cline(3)<cr>", "Centered line" },
-                d = { "<cmd>require('comment-box').dbox()<cr>", "Delete box" },
-                y = { "<cmd>require('comment-box').yank()<cr>", "Copy box content" },
+                d = { "<cmd>lua require('comment-box').dbox()<cr>", "Delete box" },
+                y = { "<cmd>lua require('comment-box').yank()<cr>", "Copy box content" },
             },
             -- Spelling
             ["l"] = {
