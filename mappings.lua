@@ -116,46 +116,7 @@ return {
             },
             ["w"] = {
                 function()
-                    local opts = { title = "Pandoc" }
-                    if vim.bo.filetype ~= "markdown" then
-                        vim.notify("Error: Filetype must be markdown", vim.log.levels.ERROR, opts)
-                        return
-                    end
-
-                    local input_file = vim.api.nvim_buf_get_name(0)
-                    if input_file == "" then
-                        vim.notify("Error: Buffer must be in the disk", vim.log.levels.ERROR, opts)
-                        return
-                    end
-                    vim.cmd("silent! write")
-                    local output_file = input_file:match("^(.+)%.[^%.%/]+$") .. ".pdf"
-
-                    local plenary = require("plenary.path")
-                    local args = plenary:new(".pandoc"):is_dir()
-                        and { "--data-dir=.pandoc", "--defaults=pandoc_options.yaml" }
-                        or (plenary:new("pandoc_options.yaml"):is_file() and { "--defaults=pandoc_options.yaml" } or {})
-                    vim.list_extend(args, { "-o", output_file, input_file })
-
-                    local Job = require("plenary.job")
-                    Job
-                        :new({
-                            command = "pandoc",
-                            args = args,
-                            on_exit = function(job, exit_code)
-                                if exit_code ~= 0 then
-                                    vim.notify(
-                                        table.concat(job:stderr_result(), "\n"):sub(1, -2),
-                                        vim.log.levels.ERROR,
-                                        opts
-                                    )
-                                else
-                                    vim.notify("PDF Exported", vim.log.levels.INFO, opts)
-                                    Job:new({ command = "xdg-open", args = { output_file } }):start()
-                                end
-                            end,
-                        })
-                        :start()
-                    vim.notify("Exporting PDF...", vim.log.levels.INFO, opts)
+                    require("user.pandoc").export()
                 end,
                 "Export to PDF with Pandoc",
             },

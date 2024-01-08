@@ -1,0 +1,74 @@
+local M = {}
+
+local NOTIFY_OPTS = { title = "Pandoc" }
+
+--- Creates the `pandoc` arguments table
+---@param input_file string input file to convert
+---@return string[]
+local function get_args(input_file)
+    local output_file = vim.fn.fnamemodify(input_file, ":r") .. ".pdf"
+    local Path = require("plenary.path")
+    local has_data_dir = Path:new(".pandoc"):is_dir()
+    local has_options_file = has_data_dir or Path:new("pandoc_options.yaml"):is_file()
+
+    return {
+        input_file,
+        "-o",
+        output_file,
+        has_data_dir and "--data-dir=.pandoc" or nil,
+        has_options_file and "--defaults=pandoc_options.yaml" or nil,
+    }
+end
+
+--- Exports a given file to PDF
+---@param file string File path
+---@param cleanup fun()? Cleanup function to call after `pandoc` finishes running
+local function export_file(file, cleanup)
+    local args = get_args(file)
+    local output_file = args[3]
+
+    local Job = require("plenary.job")
+    Job
+        :new({
+            command = "pandoc",
+            args = args,
+            on_exit = function(job, exit_code)
+                if cleanup then
+                    cleanup()
+                end
+                if exit_code ~= 0 then
+                    vim.notify(table.concat(job:stderr_result(), "\n"):sub(1, -2), vim.log.levels.ERROR, NOTIFY_OPTS)
+                    return
+                end
+                vim.notify("PDF Exported", vim.log.levels.INFO, NOTIFY_OPTS)
+                Job:new({ command = "xdg-open", args = { output_file } }):start()
+            end,
+        })
+        :start()
+    vim.notify("Exporting PDF...", vim.log.levels.INFO, NOTIFY_OPTS)
+end
+
+--- Table of functions to convert each supported filetype
+local CONVERSION_FUNCTION = {
+    markdown = export_file,
+}
+
+--- Exports the current buffer to PDF
+function M.export()
+    local ft = vim.bo.filetype
+    local converter = CONVERSION_FUNCTION[ft]
+    if converter == nil then
+        vim.notify(string.format("Error: Unknown filetype `%s`", ft), vim.log.levels.ERROR, NOTIFY_OPTS)
+        return
+    end
+
+    local file = vim.api.nvim_buf_get_name(0)
+    if file == "" then
+        vim.notify("Error: Buffer must be in the disk", vim.log.levels.ERROR, NOTIFY_OPTS)
+        return
+    end
+    vim.cmd("silent! write")
+    converter(file)
+end
+
+return M
