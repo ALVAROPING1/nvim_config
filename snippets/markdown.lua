@@ -72,7 +72,7 @@ local autosnippets = {
     }, "\n\\$\\$$1\\$\\$\n", { trim_empty = false }),
     parse_snippet({ trig = "TODOC", name = "TODO: completar esto" }, "<!--TODO: Completar esto-->"),
     parse_snippet({ trig = "TODOD", name = "TODO: diapositivas" }, "<!--TODO: diapositivas[$1:$2]-->"),
-    utils.environment_snippet(data.envs.generic, data.envs.text),
+    utils.environment_snippet(data.envs.generic, data.envs.text, true),
 }
 
 return snippets, autosnippets

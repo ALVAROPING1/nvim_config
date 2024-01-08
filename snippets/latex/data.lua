@@ -1,5 +1,10 @@
 --- Block of groups of snippet specs. The key is the name of the group
----@alias SnippetBlock {[string]: SnippetSpec[]}
+---@alias SnippetBlock {[string]: SnippetGroup}
+
+--- Group of snippet specs
+---@class SnippetGroup
+---@field text true? Whether the snippets will be available inside math or text environment (math by default)
+---@field [integer] SnippetSpec
 
 --- Format: `cmds[num_params][group_name][create_autosnippet] = SnippetSpecs`
 ---@class Cmds
@@ -12,6 +17,7 @@
 ---@field [2] string? Name, if `nil` the command should be used
 ---@field [3] (string | 1 | 2)? Autosnippet trigger, if a number the field indicated by that number should be used. If `nil` no autosnippet should be created
 ---@field priority number? Priority of the snippet
+---@field text true? Whether the snippet will be available inside math or text environment (math by default)
 
 --- Definition a snippet with an optional autosnippet
 ---@alias SnippetSpec (string | SnippetSpecTable)
@@ -378,7 +384,7 @@ return {
         },
     },
     -- Table with function commands
-    ---@type SnippetSpec[]
+    ---@type SnippetGroup
     functions = {
         "deg", "sec",
         "cosh", "dim",
@@ -394,7 +400,7 @@ return {
         { "min",    nil, 1 }, { "max",    nil, 1 },
     },
     -- Table with the operators using subscript/superscrip limits
-    ---@type SnippetSpec[]
+    ---@type SnippetGroup
     limit_operators = {
         { "bigcap", "⋂" },
         { "bigcup", "⋃" },
@@ -425,8 +431,9 @@ return {
         },
         text = { "tikzpicture", "center", "tabular", "align" }
     },
+    -- Postfix snippets that just append text
     ---@type AutoSnippetSpecs
-    txt_autosnippets = {
+    raw_postfix_autosnippets = {
         sr = { "^2", "²" },
         cb = { "^3", "³" },
         inv = { "^{-1\\}", "⁻¹" },

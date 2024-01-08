@@ -37,37 +37,38 @@ local snippets = {
     ),
     -- Create environment snippets
     utils.environment_snippet(data.envs.generic, data.envs.math),
+    utils.environment_snippet(data.envs.generic, data.envs.text, true),
     utils.environment_snippet(data.envs.aligned, "aligned"),
 }
 local autosnippets = {
     -- Set
-    parse_snippet({ trig = "set", name = "Set", dscr = "Create a set", condition = utils.command_begin }, "\\{$1\\\\}"),
+    parse_snippet({ trig = "set", name = "Set", dscr = "Create a set", condition = utils.in_math }, "\\{$1\\\\}"),
     -- Toggle parenthesis
     snippet(
-        { trig = "()", name = "Parenthesis", dscr = "Toggle parenthesis size", condition = utils.command_begin },
+        { trig = "()", name = "Parenthesis", dscr = "Toggle parenthesis size", condition = utils.in_math },
         node.choice(1, { fmt("(<>)", node.restore(1, "x")), fmt("\\left( <> \\right)", node.restore(1, "x")) })
     ),
     -- Auto subscripts
     multi_snippet({
-        common = { name = "Auto subscript", condition = utils.command_begin },
+        common = { name = "Auto subscript", condition = utils.in_math },
         { trig = "(%a)(%d)",                     trigEngine = "pattern" },
         { trig = "\\([xyzt]\\)\\([ijknm]\\)\\2", trigEngine = "vim" },
     }, fmt("<>_<>", { node.capture(1), node.capture(2) })),
     snippet(
-        { trig = "(%a)_(%d%d)", regTrig = true, name = "Auto subscript", condition = utils.command_begin },
+        { trig = "(%a)_(%d%d)", regTrig = true, name = "Auto subscript", condition = utils.in_math },
         fmt("<>_{<>}", { node.capture(1), node.capture(2) })
     ),
     -- Automatic fractions
     snippet(
-        { trig = "(%b())/", regTrig = true, name = "Automatic fraction" },
+        { trig = "(%b())/", regTrig = true, name = "Automatic fraction", condition = utils.in_math },
         fmt("\\frac{<>}{<>}", { node.capture(1, { 1, 1 }), node.ins(1) })
     ),
     snippet(
-        { trig = "([%w_%^\\]+)/", regTrig = true, name = "Automatic fraction" },
+        { trig = "([%w_%^\\]+)/", regTrig = true, name = "Automatic fraction", condition = utils.in_math },
         fmt("\\frac{<>}{<>}", { node.capture(1), node.ins(1) })
     ),
     snippet(
-        { trig = "//", name = "Fraction" },
+        { trig = "//", name = "Fraction", condition = utils.in_math },
         fmt("\\frac{<>}{<>}", {
             node.dynamic(1, function(_, parent)
                 if parent.snippet.env.LS_SELECT_RAW[1] ~= nil then
@@ -106,9 +107,12 @@ utils.add_snippet_group(snippets, data.limit_operators, "<>{<>}", function()
     }
 end)
 
--- Create text autosnippets
-for trig, spec in pairs(data.txt_autosnippets) do
-    table.insert(autosnippets, parse_snippet({ trig = trig, wordTrig = false, name = spec[2] }, spec[1]))
+-- Create raw postfix autosnippets
+for trig, spec in pairs(data.raw_postfix_autosnippets) do
+    table.insert(
+        autosnippets,
+        parse_snippet({ trig = trig, wordTrig = false, name = spec[2], condition = utils.in_math }, spec[1])
+    )
 end
 
 -- Create postfix autosnippets
@@ -116,7 +120,7 @@ for trig, spec in pairs(data.postfix_autosnippets) do
     table.insert(
         autosnippets,
         postfix(
-            { trig = trig, name = spec[2], priority = 800 },
+            { trig = trig, name = spec[2], priority = 800, condition = utils.in_math },
             fmt("\\" .. spec[1] .. "{<>}", { node.capture("POSTFIX_MATCH") })
         )
     )
