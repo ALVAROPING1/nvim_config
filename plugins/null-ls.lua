@@ -16,7 +16,7 @@ return {
             null_ls.builtins.formatting.prettierd.with({
                 extra_args = { "--use-tabs", "--tab-width", "4" },
             }),
-            null_ls.builtins.diagnostics.typos.with({ disabled_filetypes = { "markdown" } }),
+            null_ls.builtins.diagnostics.typos.with({ disabled_filetypes = { "markdown", "norg" } }),
             null_ls.builtins.formatting.clang_format.with({
                 extra_args = {
                     require("plenary.path"):new(".clang-format"):is_file() and "--style=file"

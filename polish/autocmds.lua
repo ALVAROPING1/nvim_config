@@ -1,7 +1,7 @@
 -- Enable wrap in text like documents
 vim.api.nvim_create_autocmd("FileType", {
     desc = "Enable wrap in text like documents",
-    pattern = { "gitcommit", "markdown", "text", "plaintex" },
+    pattern = { "gitcommit", "markdown", "text", "plaintex", "norg" },
     group = vim.api.nvim_create_augroup("auto_wrap", {}),
     callback = function()
         vim.opt_local.wrap = true

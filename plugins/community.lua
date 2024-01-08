@@ -443,4 +443,46 @@ return {
             vim.g.matchup_matchparen_offscreen = {}
         end,
     },
+    { import = "astrocommunity.note-taking.neorg" },
+    {
+        "nvim-neorg/neorg",
+        opts = function(_, opts)
+            opts.load["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.dirman" } } }
+            opts.load["core.keybinds"] = {
+                config = {
+                    hook = function(kb)
+                        local leader = kb.leader
+                        kb.map_event(
+                            "norg",
+                            "n",
+                            leader .. "c",
+                            "core.looking-glass.magnify-code-block",
+                            { desc = "[neorg] Open code block in new buffer" }
+                        )
+                        kb.remap_key("norg", "n", leader .. "id", leader .. "d")
+                        kb.remap_key("norg", "n", leader .. "nn", leader .. "n")
+                        kb.map("norg", "n", leader .. "q", "<Cmd>Neorg return<CR>", { desc = "[neorg] Exit document" })
+                    end,
+                },
+            }
+            opts.load["core.journal"] = nil
+            opts.load["core.dirman"] = nil
+            opts.load["core.export"] = {}
+            opts.load["core.export.markdown"] = { config = { extensions = "all" } }
+            opts.load["core.mode"] = {}
+            opts.load["core.highlights"] = {
+                config = {
+                    highlights = {
+                        lists = {
+                            ordered = { prefix = "+@punctuation.special" },
+                            unordered = { prefix = "+@punctuation.special" },
+                        },
+                    },
+                },
+            }
+            -- opts.load["core.ui.calendar"] = {}
+            opts.load["core.concealer"] = { config = { icons = { code_block = { spell_check = false } } } }
+            opts.load["external.context"] = {}
+        end,
+    },
 }
