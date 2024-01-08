@@ -1,4 +1,5 @@
 vim.opt_local.conceallevel = 2
+vim.bo.commentstring = "%|%s|%"
 
 require("which-key").register({
     ["<localleader>l"] = { name = "󰙅 List" },
