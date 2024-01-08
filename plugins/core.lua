@@ -30,6 +30,7 @@ return {
             ft_func = require("luasnip.extras.filetype_functions").from_pos_or_filetype,
             load_ft_func = require("luasnip.extras.filetype_functions").extend_load_ft({
                 markdown = { "latex" },
+                norg = { "norg_meta", "latex" },
             }),
             enable_autosnippets = true,
             store_selection_keys = "<C-w>",
@@ -38,6 +39,7 @@ return {
             require("plugins.configs.luasnip")(plugin, opts) -- include the default astronvim config that calls the setup call
             require("luasnip").filetype_extend("markdown_inline", { "markdown" })
             -- add more custom luasnip configuration such as filetype extend or custom snippets
+            ---@diagnostic disable-next-line: assign-type-mismatch Luasnip accepts a single string
             require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/user/snippets" })
         end,
     },

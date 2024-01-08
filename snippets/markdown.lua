@@ -26,7 +26,8 @@ local snippets = {
                 return vim.api.nvim_win_get_cursor(0)[1] == 1
             end,
         },
-        [[---
+        [[
+---
 header-includes: |
     ```{=latex}
     ```
