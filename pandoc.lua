@@ -51,6 +51,15 @@ end
 --- Table of functions to convert each supported filetype
 local CONVERSION_FUNCTION = {
     markdown = export_file,
+    norg = function(_)
+        local content, _ = require("neorg.core.modules").get_module("core.export").export(0, "markdown")
+        content = content:gsub("(\n%s*%d)%. ", "%1%) ")
+        local file = require("plenary.path"):new(".norg_export.md")
+        file:write(content, "w")
+        export_file(file.filename, function()
+            file:rm()
+        end)
+    end,
 }
 
 --- Exports the current buffer to PDF
