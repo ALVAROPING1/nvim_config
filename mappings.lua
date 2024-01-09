@@ -107,32 +107,12 @@ return {
                 d = { "<cmd>lua require('comment-box').dbox()<cr>", "Delete box" },
                 y = { "<cmd>lua require('comment-box').yank()<cr>", "Copy box content" },
             },
-            -- Spelling
-            ["l"] = {
-                name = "󰓆 Spelling",
-                l = { "m][s1z=`]", "Fix previous mistake" },
-                i = { "m][s2zg`]", "Ignore previous mistake" },
-                a = { "m][s1zg`]", "Mark previous mistake as good" },
-            },
-            ["w"] = {
-                function()
-                    require("user.pandoc").export()
-                end,
-                "Export to PDF with Pandoc",
-            },
         },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
         -- <C-v> in insert mode means inserting the next character literally
         ["<M-j>"] = { "<C-v>j", desc = "Type j character" },
-        -- Spelling
-        ["<C-l>"] = {
-            name = "󰓆 Spelling",
-            l = { "<C-g>u<Esc>[s1z=`]a<c-g>u", "Fix previous mistake" },
-            i = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Ignore previous mistake" },
-            a = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good" },
-        },
         ["<C-q>"] = {
             change_choice_node,
             desc = "Change current choice node",

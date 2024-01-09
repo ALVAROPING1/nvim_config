@@ -1,11 +1,40 @@
--- Enable wrap in text like documents
+-- Text-like document settings
 vim.api.nvim_create_autocmd("FileType", {
-    desc = "Enable wrap in text like documents",
+    desc = "Enable settings for text-like documents",
     pattern = { "gitcommit", "markdown", "text", "plaintex", "norg" },
-    group = vim.api.nvim_create_augroup("auto_wrap", {}),
+    group = vim.api.nvim_create_augroup("text_like_settings", {}),
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
+        require("astronvim.utils").set_mappings({
+            n = {
+                ["<leader><leader>l"] = {
+                    name = "󰓆 Spelling",
+                    l = { "m][s1z=`]", "Fix previous mistake" },
+                    i = { "m][s2zg`]", "Ignore previous mistake" },
+                    a = { "m][s1zg`]", "Mark previous mistake as good" },
+                },
+            },
+            i = {
+                ["<C-l>"] = {
+                    name = "󰓆 Spelling",
+                    l = { "<C-g>u<Esc>[s1z=`]a<c-g>u", "Fix previous mistake" },
+                    i = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Ignore previous mistake" },
+                    a = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good" },
+                },
+            },
+        }, { buffer = 0 })
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Export with pandoc in supported documents",
+    pattern = { "markdown", "norg" },
+    group = vim.api.nvim_create_augroup("auto_wrap", {}),
+    callback = function()
+        vim.keymap.set("n", "<leader><leader>w", function()
+            require("user.pandoc").export()
+        end, { desc = "Export to PDF with Pandoc", buffer = 0 })
     end,
 })
 
