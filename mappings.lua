@@ -96,7 +96,7 @@ return {
             -- Text search
             ["/"] = { "<cmd>noh<cr>", "Clear highlighted text" },
             -- Rainbow delimiters
-            ["r"] = { "<cmd>e<cr>", desc = "Reload rainbow delimiters" },
+            ["r"] = { "<cmd>e<cr>", "Reload rainbow delimiters" },
             ["c"] = {
                 name = "󰅺 Comment Box",
                 n = { "<cmd>lua require('comment-box').llbox()<cr>", "Normal box" },
