@@ -1,8 +1,6 @@
--- Text-like document settings
 vim.api.nvim_create_autocmd("FileType", {
     desc = "Enable settings for text-like documents",
     pattern = { "gitcommit", "markdown", "text", "plaintex", "norg" },
-    group = vim.api.nvim_create_augroup("text_like_settings", {}),
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
@@ -30,7 +28,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     desc = "Export with pandoc in supported documents",
     pattern = { "markdown", "norg" },
-    group = vim.api.nvim_create_augroup("auto_wrap", {}),
     callback = function()
         vim.keymap.set("n", "<leader><leader>w", function()
             require("user.pandoc").export()
@@ -38,11 +35,9 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Setup diffview merge conflicts menu for diffview file panel
 vim.api.nvim_create_autocmd({ "FileType", "User" }, {
     desc = "Setup diffview merge conflicts menu for diffview file panel",
     pattern = { "DiffviewFiles", "DiffviewDiffBufRead" },
-    group = vim.api.nvim_create_augroup("auto_diffview_merge", {}),
     callback = function()
         vim.keymap.set("n", "<leader>c", "", { buffer = 0 })
 
@@ -55,7 +50,6 @@ vim.api.nvim_create_autocmd({ "FileType", "User" }, {
 -- HACK: Fix for diffview breaking the tabline when opened
 vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "TabNewEntered" }, {
     desc = "Fix for tabline breaking after diffview is opened",
-    group = vim.api.nvim_create_augroup("auto_diffview_fix", {}),
     callback = function()
         if not vim.t.bufs then
             vim.t.bufs = {}
@@ -63,10 +57,8 @@ vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "TabNewEntered" }, {
     end,
 })
 
--- Auto-save when changing buffers
 vim.api.nvim_create_autocmd("BufLeave", {
     desc = "Auto-save when changing buffers",
-    group = vim.api.nvim_create_augroup("autosave", {}),
     callback = function()
         if vim.bo.buflisted and vim.bo.modifiable and vim.bo.modified then
             vim.cmd("silent! write")
@@ -77,6 +69,5 @@ vim.api.nvim_create_autocmd("BufLeave", {
 -- Compile spell dictionaries when changing directory
 vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
     desc = "Compile spell dictionaries when changing directory",
-    group = vim.api.nvim_create_augroup("autospell", {}),
     callback = require("user.utils").compile_spell,
 })
