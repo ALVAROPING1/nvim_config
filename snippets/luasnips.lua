@@ -28,8 +28,9 @@ local M = {}
 local ls = require("luasnip")
 
 M.snippet = ls.snippet
-M.parse_snippet = ls.parser.parse_snippet
 M.multi_snippet = ls.multi_snippet
+M.parse_snippet = ls.parser.parse_snippet
+M.fmt = require("luasnip.extras.fmt").fmta
 
 M.node = {
     snippet = ls.snippet_node,
@@ -53,10 +54,8 @@ M.node = {
             end
             return out
         end, {})
-    end
+    end,
 }
-
-M.events = require("luasnip.util.events")
 
 local extras = require("luasnip.extras")
 M.extras = {
@@ -66,8 +65,8 @@ M.extras = {
     match = extras.match,
     nonempty = extras.nonempty,
     dynamic_lambda = extras.dynamic_lambda,
+    postfix = require("luasnip.extras.postfix").postfix,
 }
-M.fmt = require("luasnip.extras.fmt").fmta
 
 M.conds = {
     expand = require("luasnip.extras.conditions.expand"),
@@ -75,7 +74,6 @@ M.conds = {
     ---@type fun(condition: SnippetConditionFunction): SnippetConditionObject
     make = require("luasnip.extras.conditions").make_condition,
 }
-M.postfix = require("luasnip.extras.postfix").postfix
 -- M.key = require("luasnip.nodes.key_indexer").new_key -- Not yet in the stable version of luasnip
 
 return M

@@ -8,7 +8,6 @@ local parse_snippet = ls.parse_snippet
 local multi_snippet = ls.multi_snippet
 local node = ls.node
 local fmt = ls.fmt
-local postfix = ls.postfix
 
 ---------------------------------------------------------------------------------------------------------------------------------
 --- Personal imports
@@ -119,7 +118,7 @@ end
 for trig, spec in pairs(data.postfix_autosnippets) do
     table.insert(
         autosnippets,
-        postfix(
+        ls.extras.postfix(
             { trig = trig, name = spec[2], priority = 800, condition = utils.in_math },
             fmt("\\" .. spec[1] .. "{<>}", { node.capture("POSTFIX_MATCH") })
         )
