@@ -5,18 +5,63 @@ local fmt = ls.fmt
 
 local M = {}
 
+--- Map of nodes to their associated behaviour:
+--- - `boolean`: whether the node is a math environment or not. Ends the search
+--- - `string`: restart the search using the value as the language
+--- - `nil`: ignore the node and continue searching upwards
+--- - `function`: execute the function to determine the behaviour. Returns one of the previous values
+---@alias TSNodeBehaviourMap {[string]: (boolean | string | fun(node: TSNode): (boolean | string)?)?}
+
+--- Traverses the treesitter tree searching for a node satisfying a condition
+---@param nodes TSNodeBehaviourMap
+---@param lang string? Starting treesitter language (current by default)
+---@return boolean
+local function traverse(nodes, lang)
+    local node = vim.treesitter.get_node({ lang = lang })
+    local depth = 0
+    while node do
+        local check = nodes[node:type()]
+        -- The function/`check` might return `nil`/`false`, so wrap the results in a table and get the element later
+        check = (type(check) == "function" and { check(node) } or { check })[1]
+        ---@cast check -function LuaLS can't figure out that `check` can no longer be a function after this
+        if type(check) == "boolean" then
+            return check
+        end
+        ---@cast check -boolean LuaLS can't figure out that `check` can no longer be a `bool` after this
+        local parent = node:parent()
+        node = (check ~= nil and parent ~= nil) and vim.treesitter.get_node({ lang = check }) or parent
+        depth = depth + 1
+        assert(depth < 25, "Error checking if in math zone: Too many nesting levels found (probably infinite loop)")
+    end
+    return false
+end
+
+--- Creates a condition to traverse the treesitter tree searching for a node satisfying a condition, caching the result
+---@param nodes TSNodeBehaviourMap
+---@param lang string? Starting treesitter language (current by default)
+---@return SnippetConditionObject
+local function traverse_cond(nodes, lang)
+    local value, pos = false, { -1, -1 }
+    return ls.conds.make(function()
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        -- The cache is valid if the cursor hasn't moved
+        if pos[1] == cursor[1] and pos[2] == cursor[2] then
+            return value
+        end
+        -- If the cache is invalid, calculate the result again and update it before returning the result
+        pos = cursor
+        value = traverse(nodes, lang)
+        return value
+    end)
+end
+
 -- Map of languages to their treesitter parser name
 -- HACK: `markdown` isn't parsed well when injected, so skip directly to `markdown_inline`
 local INJECTION_LANGS =
 { latex = "latex", markdown = "markdown_inline", markdown_inline = "markdown_inline", norg = "norg" }
 
--- Map of nodes to their associated behaviour:
--- - `boolean`: whether the node is a math environment or not. Ends the search
--- - `string`: restart the search using the value as the language
--- - `nil`: ignore the node and continue searching upwards
--- - `function`: execute the function to determine the behaviour. Returns one of the previous values
----@type {[string]: (boolean | string | fun(node: TSNode): (boolean | string)?)?}
-local MATH_NODES = {
+--- Snippet condition checking whether the cursor is in a math environment or not
+M.in_math = traverse_cond({
     -- Latex
     displayed_equation = true,
     inline_formula = true,
@@ -44,44 +89,7 @@ local MATH_NODES = {
         end
         return false
     end,
-}
-
---- Checks whether the cursor is inside a math environment or not
-local function in_math()
-    local node = vim.treesitter.get_node()
-    local depth = 0
-    while node do
-        local check = MATH_NODES[node:type()]
-        -- The function/`check` might return `nil`/`false`, so wrap the results in a table and get the element later
-        check = (type(check) == "function" and { check(node) } or { check })[1]
-        ---@cast check -function LuaLS can't figure out that `check` can no longer be a function after this
-        if type(check) == "boolean" then
-            return check
-        end
-        ---@cast check -boolean LuaLS can't figure out that `check` can no longer be a `bool` after this
-        local parent = node:parent()
-        node = (check ~= nil and parent ~= nil) and vim.treesitter.get_node({ lang = check }) or parent
-        depth = depth + 1
-        assert(depth < 25, "Error checking if in math zone: Too many nesting levels found (probably infinite loop)")
-    end
-    return false
-end
-
--- Cache for `in_math()` to prevent calculating it for each snippet
-local in_math_cache = { value = false, pos = { -1, -1 } }
-
---- Snippet condition checking whether the cursor is in a math environment or not
-M.in_math = ls.conds.make(function()
-    local pos = vim.api.nvim_win_get_cursor(0)
-    -- The cache is valid if the cursor hasn't moved
-    if in_math_cache.pos[1] == pos[1] and in_math_cache.pos[2] == pos[2] then
-        return in_math_cache.value
-    end
-    -- If the cache is invalid, calculate the result again and update it before returning the result
-    in_math_cache.pos = pos
-    in_math_cache.value = in_math()
-    return in_math_cache.value
-end)
+})
 -- Shorthand for `NOT in_math`
 M.in_text = -M.in_math
 
