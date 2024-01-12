@@ -446,6 +446,8 @@ return {
     { import = "astrocommunity.note-taking.neorg" },
     {
         "nvim-neorg/neorg",
+        event = false,
+        ft = "norg",
         opts = function(_, opts)
             opts.load["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.dirman" } } }
             opts.load["core.keybinds"] = {
