@@ -315,7 +315,7 @@ return {
                 -- { "boxed",      "Rectangle around contents" },
                 -- { "tag",        "Add ID to element at the side" },
             },
-            vertical_layout = { { "substack", "Multiline content" } },
+            vertical_layout = { { "shortstack", "Multiline text" }, {"substack", "Multiline annotation"} },
             spacing = {
                 -- "phantom", "hphantom", "vphantom",
                 { "hspace", "Horizontal space", 1 }, { "vspace", "Vertical space", 1 },
