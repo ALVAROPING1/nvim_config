@@ -20,6 +20,10 @@ local utils = require("user.snippets.latex.utils")
 --- Create snippets
 ---------------------------------------------------------------------------------------------------------------------------------
 
+local tikz_env = utils.in_text * utils.in_environment("tikzpicture")
+--- Snippet condition checking that the cursor is in a tikzpicture environment
+local tikz_conds = { utils.command_begin * tikz_env, tikz_env }
+
 local snippets = {
     utils.create_snippet(data.int, "\\" .. data.int[1] .. "<>{<> d<>}", {
         node.choice(1, {
@@ -38,6 +42,33 @@ local snippets = {
     utils.environment_snippet(data.envs.generic, data.envs.math),
     utils.environment_snippet(data.envs.generic, data.envs.text, true),
     utils.environment_snippet(data.envs.aligned, "aligned"),
+    -- Tikzpicture snippets
+    snippet(
+        { trig = "\\node", name = "Tikz node", condition = tikz_conds[1], show_condition = tikz_conds[2] },
+        fmt("\\node[<>] (<>) <> {<>};", {
+            node.ins(1),
+            node.ins(2, "id"),
+            node.choice(3, {
+                parse_snippet(nil, "[${1:direction} = of ${2:id}]"),
+                parse_snippet(nil, "at (${1:x}, ${2:y})"),
+            }),
+            node.ins(4, "text"),
+        })
+    ),
+    snippet(
+        { trig = "\\draw", name = "Tikz draw", condition = tikz_conds[1], show_condition = tikz_conds[2] },
+        fmt("\\draw[<>] (<>) <> (<>);", {
+            node.ins(1),
+            node.ins(2, "start"),
+            node.choice(3, {
+                node.txt("--"),
+                node.txt("-|"),
+                node.txt("|-"),
+                parse_snippet(nil, "edge[$1] node[$2] {${3:text}\\}"),
+            }),
+            node.ins(4, "end"),
+        })
+    ),
 }
 local autosnippets = {
     -- Set

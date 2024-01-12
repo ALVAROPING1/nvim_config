@@ -55,6 +55,17 @@ local function traverse_cond(nodes, lang)
     end)
 end
 
+--- Creates a condition checking if the cursor in the specified environment
+---@param environment string
+---@return SnippetConditionObject
+function M.in_environment(environment)
+    return traverse_cond({
+        generic_environment = function(node)
+            return vim.treesitter.get_node_text(node:named_child(0):named_child(0):named_child(0), 0) == environment
+        end,
+    }, "latex")
+end
+
 -- Map of languages to their treesitter parser name
 -- HACK: `markdown` isn't parsed well when injected, so skip directly to `markdown_inline`
 local INJECTION_LANGS =
