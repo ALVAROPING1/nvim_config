@@ -126,6 +126,7 @@ return {
                 )
             end
 
+            opts.sources = cmp.config.sources(opts.sources, { { name = "neorg" } })
             return opts
         end,
     },
