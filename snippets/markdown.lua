@@ -22,6 +22,7 @@ local snippets = {
         {
             trig = "template",
             name = "Pandoc Header Template",
+            desc = "",
             condition = function()
                 return vim.api.nvim_win_get_cursor(0)[1] == 1
             end,

@@ -15,6 +15,7 @@ local snippets = {
         {
             trig = "template",
             name = "Pandoc Header Template",
+            desc = "",
             condition = function()
                 return vim.api.nvim_win_get_cursor(0)[1] == 1
             end,
@@ -52,8 +53,8 @@ header-includes: [
         ]],
         { dedent = false }
     ),
-    parse_snippet({ trig = "embed", name = "Embed" }, "@embed ${1:lang}\n$2\n@end"),
-    parse_snippet({ trig = "latex", name = "Embed latex" }, "@embed latex\n$1\n@end"),
+    parse_snippet({ trig = "embed", name = "Embed", desc = "embed block" }, "@embed ${1:lang}\n$2\n@end"),
+    parse_snippet({ trig = "latex", name = "Embed latex", desc = "latex block" }, "@embed latex\n$1\n@end"),
 }
 local autosnippets = {
     parse_snippet({ trig = "tm", name = "Inline math" }, "\\$|$1|\\$"),
