@@ -3,6 +3,7 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "gitcommit", "markdown", "text", "plaintex", "norg" },
     callback = function()
         vim.opt_local.wrap = true
+        vim.opt_local.colorcolumn = ""
         vim.opt_local.spell = true
         require("astronvim.utils").set_mappings({
             n = {

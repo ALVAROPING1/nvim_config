@@ -27,6 +27,7 @@ return {
         -- nrformats = "bin,hex,alpha",
         wildignorecase = true,
         title = false,
+        colorcolumn = "80",
     },
     g = {
         mapleader = " ",                 -- sets vim.g.mapleader

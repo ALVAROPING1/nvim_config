@@ -60,4 +60,9 @@ return {
         enabled = false,
     },
     "max397574/neorg-contexts",
+    {
+        "Bekaboo/deadcolumn.nvim",
+        event = "User AstroFile",
+        opts = { blending = { threshold = 0.5 }, warning = { hlgroup = { "Error", "fg" } } },
+    },
 }
