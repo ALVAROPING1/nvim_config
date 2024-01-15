@@ -46,7 +46,7 @@ return {
     },
     {
         "axkirillov/hbac.nvim",
-        event = "VeryLazy",
+        event = "User AstroFile",
         opts = {
             threshold = 5,
             close_command = require("astronvim.utils.buffer").close,

@@ -409,6 +409,7 @@ return {
     { import = "astrocommunity.editing-support.multicursors-nvim" },
     {
         "smoka7/multicursors.nvim",
+        event = false,
         keys = function(_, keys)
             keys[1].desc = "Multiselect word under cursor"
         end,
@@ -417,6 +418,8 @@ return {
     { import = "astrocommunity.project.projectmgr-nvim" },
     {
         "charludo/projectmgr.nvim",
+        event = false,
+        lazy = true,
         opts = {
             autogit = { enabled = false }, -- Bugs out when using ssh authentication
             session = { enabled = false },
