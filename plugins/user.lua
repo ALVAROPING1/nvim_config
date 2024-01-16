@@ -18,11 +18,11 @@ return {
     {
         "jbyuki/nabla.nvim",
         keys = {
+            { "<leader>M", "<cmd>lua require('nabla').popup({border='rounded'})<cr>", desc = "Open math render popup" },
             {
-                "<leader>M",
-                -- "<cmd>lua require('nabla').toggle_virt({autogen = true})<cr>",
-                "<cmd>lua require('nabla').popup()<cr>",
-                desc = "Open math render popup",
+                "<leader><leader>M",
+                "<cmd>lua require('nabla').toggle_virt({autogen=true})<cr>",
+                desc = "Render math with virtual lines",
             },
         },
     },
