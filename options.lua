@@ -28,6 +28,8 @@ return {
         wildignorecase = true,
         title = false,
         colorcolumn = "80",
+        textwidth = 80,
+        formatoptions = "c,r,o",
     },
     g = {
         mapleader = " ",                 -- sets vim.g.mapleader
