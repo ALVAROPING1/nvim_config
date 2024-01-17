@@ -59,8 +59,8 @@ header-includes: [
 local autosnippets = {
     parse_snippet({ trig = "tm", name = "Inline math" }, "\\$|$1|\\$"),
     parse_snippet({ trig = "dm", name = "Display math" }, "@math\n$1\n@end"),
-    parse_snippet({ trig = "TODOC", name = "TODO: completar esto" }, "%TODO: Completar esto%"),
-    parse_snippet({ trig = "TODOD", name = "TODO: diapositivas" }, "%TODO: diapositivas\\[$1:$2\\]%"),
+    parse_snippet({ trig = "TODOC", name = "TODO: completar esto" }, "%| TODO: Completar esto |%"),
+    parse_snippet({ trig = "TODOD", name = "TODO: diapositivas" }, "%| TODO: diapositivas\\[$1:$2\\] |%"),
 }
 
 return snippets, autosnippets
