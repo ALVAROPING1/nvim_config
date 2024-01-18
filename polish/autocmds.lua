@@ -4,6 +4,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.colorcolumn = ""
+        vim.opt_local.textwidth = 0
         vim.opt_local.spell = true
         require("astronvim.utils").set_mappings({
             n = {
