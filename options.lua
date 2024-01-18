@@ -29,7 +29,7 @@ return {
         title = false,
         colorcolumn = "80",
         textwidth = 80,
-        formatoptions = "c,r,o",
+        formatoptions = "cqjro",
     },
     g = {
         mapleader = " ",                 -- sets vim.g.mapleader
