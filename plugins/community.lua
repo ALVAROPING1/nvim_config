@@ -488,6 +488,25 @@ return {
             -- opts.load["core.ui.calendar"] = {}
             opts.load["core.concealer"] = { config = { icons = { code_block = { spell_check = false } } } }
             opts.load["external.context"] = {}
+            -- HACK: render correct indentation for nested lists. This would be better done with
+            -- https://github.com/nvim-neorg/neorg/pull/1179, but it's not been merged yet
+            -- This only works for up to 6 levels of nesting
+            opts.load["core.esupports.indent"] = {
+                config = {
+                    tweaks = {
+                        unordered_list2 = 1,
+                        unordered_list3 = 2,
+                        unordered_list4 = 3,
+                        unordered_list5 = 4,
+                        unordered_list6 = 5,
+                        ordered_list2 = 1,
+                        ordered_list3 = 2,
+                        ordered_list4 = 3,
+                        ordered_list5 = 4,
+                        ordered_list6 = 5,
+                    },
+                },
+            }
         end,
     },
 }
