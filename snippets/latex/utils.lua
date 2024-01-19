@@ -14,10 +14,14 @@ local M = {}
 
 --- Traverses the treesitter tree searching for a node satisfying a condition
 ---@param nodes TSNodeBehaviourMap
----@param lang string? Starting treesitter language (current by default)
+---@param start_leaf true? Whether the starting language should be a leaf at the cursor
 ---@return boolean
-local function traverse(nodes, lang)
-    local node = vim.treesitter.get_node({ lang = lang })
+local function traverse(nodes, start_leaf)
+    local lang_tree = vim.treesitter.get_parser()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local range = { cursor[1] - 1, cursor[2], cursor[1] - 1, cursor[2] }
+    lang_tree = start_leaf and lang_tree:language_for_range(range) or lang_tree
+    local node = lang_tree:named_node_for_range(range)
     local depth = 0
     while node do
         local check = nodes[node:type()]
@@ -28,8 +32,11 @@ local function traverse(nodes, lang)
             return check
         end
         ---@cast check -boolean LuaLS can't figure out that `check` can no longer be a `bool` after this
-        local parent = node:parent()
-        node = (check ~= nil and parent ~= nil) and vim.treesitter.get_node({ lang = check }) or parent
+        node = node:parent()
+        if check ~= nil and node ~= nil then
+            lang_tree = lang_tree:children()[check]
+            node = lang_tree:named_node_for_range(range)
+        end
         depth = depth + 1
         assert(depth < 25, "Error checking if in math zone: Too many nesting levels found (probably infinite loop)")
     end
@@ -38,9 +45,9 @@ end
 
 --- Creates a condition to traverse the treesitter tree searching for a node satisfying a condition, caching the result
 ---@param nodes TSNodeBehaviourMap
----@param lang string? Starting treesitter language (current by default)
+---@param start_leaf true? Whether the starting language should be a leaf at the cursor
 ---@return SnippetConditionObject
-local function traverse_cond(nodes, lang)
+local function traverse_cond(nodes, start_leaf)
     local value, pos = false, { -1, -1 }
     return ls.conds.make(function()
         local cursor = vim.api.nvim_win_get_cursor(0)
@@ -50,7 +57,7 @@ local function traverse_cond(nodes, lang)
         end
         -- If the cache is invalid, calculate the result again and update it before returning the result
         pos = cursor
-        value = traverse(nodes, lang)
+        value = traverse(nodes, start_leaf)
         return value
     end)
 end
@@ -63,13 +70,11 @@ function M.in_environment(environment)
         generic_environment = function(node)
             return vim.treesitter.get_node_text(node:named_child(0):named_child(0):named_child(0), 0) == environment
         end,
-    }, "latex")
+    }, true)
 end
 
 -- Map of languages to their treesitter parser name
--- HACK: `markdown` isn't parsed well when injected, so skip directly to `markdown_inline`
-local INJECTION_LANGS =
-{ latex = "latex", markdown = "markdown_inline", markdown_inline = "markdown_inline", norg = "norg" }
+local INJECTION_LANGS = { latex = true, markdown = true, markdown_inline = true, norg = true }
 
 --- Snippet condition checking whether the cursor is in a math environment or not
 M.in_math = traverse_cond({
@@ -83,7 +88,7 @@ M.in_math = traverse_cond({
     inline = "markdown_inline",
     fenced_code_block = function(node)
         local lang = vim.treesitter.get_node_text(node:named_child(1), 0)
-        return INJECTION_LANGS[lang] or false
+        return INJECTION_LANGS[lang] and lang or false
     end,
     -- Neorg
     inline_math = true,
@@ -96,7 +101,7 @@ M.in_math = traverse_cond({
         end
         if ({ code = true, embed = true })[name] then
             local lang = vim.treesitter.get_node_text(name_node:next_named_sibling(), 0)
-            return INJECTION_LANGS[lang] or false
+            return INJECTION_LANGS[lang] and lang or false
         end
         return false
     end,
