@@ -16,17 +16,18 @@ local M = {}
 ---@alias LanguageBehaviourMap {[string]: TSNodeBehaviourMap?}
 
 --- Traverses the treesitter tree searching for a node satisfying a condition
----@param nodes LanguageBehaviourMap
+---@param lang_map LanguageBehaviourMap
 ---@param start_leaf true? Whether the starting language should be a leaf at the cursor
 ---@return boolean
-local function traverse(nodes, start_leaf)
+local function traverse(lang_map, start_leaf)
     local lang_tree = vim.treesitter.get_parser()
     local cursor = vim.api.nvim_win_get_cursor(0)
     local range = { cursor[1] - 1, cursor[2], cursor[1] - 1, cursor[2] }
     lang_tree = start_leaf and lang_tree:language_for_range(range) or lang_tree
+    local node_map = lang_map[lang_tree:lang()]
     local node = lang_tree:named_node_for_range(range)
-    while node and lang_tree do
-        local check = nodes[lang_tree:lang()][node:type()]
+    while node and node_map and lang_tree do
+        local check = node_map[node:type()]
         -- The function/`check` might return `nil`/`false`, so wrap the results in a table and get the element later
         check = (type(check) == "function" and { check(node) } or { check })[1]
         ---@cast check -function LuaLS can't figure out that `check` can no longer be a function after this
@@ -36,7 +37,8 @@ local function traverse(nodes, start_leaf)
         node = node:parent()
         if check ~= nil then
             lang_tree = lang_tree:children()[check]
-            node = lang_tree and lang_tree:named_node_for_range(range)
+            node_map, node =
+                unpack(lang_tree and { lang_map[lang_tree:lang()], lang_tree:named_node_for_range(range) } or {})
         end
     end
     return false
