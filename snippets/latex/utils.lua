@@ -76,9 +76,6 @@ function M.in_environment(environment)
     }, true)
 end
 
--- Map of languages to their treesitter parser name
-local INJECTION_LANGS = { latex = true, markdown = true, markdown_inline = true, norg = true }
-
 --- Snippet condition checking whether the cursor is in a math environment or not
 M.in_math = traverse_cond({
     latex = {
@@ -91,8 +88,7 @@ M.in_math = traverse_cond({
     markdown = {
         inline = "markdown_inline",
         fenced_code_block = function(node)
-            local lang = vim.treesitter.get_node_text(node:named_child(1), 0)
-            return INJECTION_LANGS[lang] and lang or false
+            return vim.treesitter.get_node_text(node:named_child(1), 0)
         end,
     },
     norg = {
@@ -101,14 +97,9 @@ M.in_math = traverse_cond({
             ---@diagnostic disable-next-line: undefined-field # Field exists, but the type annotation isn't in neovim 0.9.5. TODO: remove after neovim 0.10 is stable
             local name_node = node:field("name")[1]
             local name = vim.treesitter.get_node_text(name_node, 0)
-            if name == "math" then
-                return true
-            end
-            if ({ code = true, embed = true })[name] then
-                local lang = vim.treesitter.get_node_text(name_node:next_named_sibling(), 0)
-                return INJECTION_LANGS[lang] and lang or false
-            end
-            return false
+            return name == "math"
+                or ({ code = true, embed = true })[name]
+                and vim.treesitter.get_node_text(name_node:next_named_sibling(), 0)
         end,
     },
 })
