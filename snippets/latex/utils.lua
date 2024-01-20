@@ -12,8 +12,11 @@ local M = {}
 --- - `function`: execute the function to determine the behaviour. Returns one of the previous values
 ---@alias TSNodeBehaviourMap {[string]: (boolean | string | fun(node: TSNode): (boolean | string)?)?}
 
+--- Map of languages to their associated node behaviour map
+---@alias LanguageBehaviourMap {[string]: TSNodeBehaviourMap?}
+
 --- Traverses the treesitter tree searching for a node satisfying a condition
----@param nodes TSNodeBehaviourMap
+---@param nodes LanguageBehaviourMap
 ---@param start_leaf true? Whether the starting language should be a leaf at the cursor
 ---@return boolean
 local function traverse(nodes, start_leaf)
@@ -22,9 +25,8 @@ local function traverse(nodes, start_leaf)
     local range = { cursor[1] - 1, cursor[2], cursor[1] - 1, cursor[2] }
     lang_tree = start_leaf and lang_tree:language_for_range(range) or lang_tree
     local node = lang_tree:named_node_for_range(range)
-    local depth = 0
-    while node do
-        local check = nodes[node:type()]
+    while node and lang_tree do
+        local check = nodes[lang_tree:lang()][node:type()]
         -- The function/`check` might return `nil`/`false`, so wrap the results in a table and get the element later
         check = (type(check) == "function" and { check(node) } or { check })[1]
         ---@cast check -function LuaLS can't figure out that `check` can no longer be a function after this
@@ -33,18 +35,16 @@ local function traverse(nodes, start_leaf)
         end
         ---@cast check -boolean LuaLS can't figure out that `check` can no longer be a `bool` after this
         node = node:parent()
-        if check ~= nil and node ~= nil then
+        if check ~= nil then
             lang_tree = lang_tree:children()[check]
-            node = lang_tree:named_node_for_range(range)
+            node = lang_tree and lang_tree:named_node_for_range(range)
         end
-        depth = depth + 1
-        assert(depth < 25, "Error checking if in math zone: Too many nesting levels found (probably infinite loop)")
     end
     return false
 end
 
 --- Creates a condition to traverse the treesitter tree searching for a node satisfying a condition, caching the result
----@param nodes TSNodeBehaviourMap
+---@param nodes LanguageBehaviourMap
 ---@param start_leaf true? Whether the starting language should be a leaf at the cursor
 ---@return SnippetConditionObject
 local function traverse_cond(nodes, start_leaf)
@@ -67,9 +67,11 @@ end
 ---@return SnippetConditionObject
 function M.in_environment(environment)
     return traverse_cond({
-        generic_environment = function(node)
-            return vim.treesitter.get_node_text(node:named_child(0):named_child(0):named_child(0), 0) == environment
-        end,
+        latex = {
+            generic_environment = function(node)
+                return vim.treesitter.get_node_text(node:named_child(0):named_child(0):named_child(0), 0) == environment
+            end,
+        },
     }, true)
 end
 
@@ -78,33 +80,36 @@ local INJECTION_LANGS = { latex = true, markdown = true, markdown_inline = true,
 
 --- Snippet condition checking whether the cursor is in a math environment or not
 M.in_math = traverse_cond({
-    -- Latex
-    displayed_equation = true,
-    inline_formula = true,
-    math_environment = true,
-    text_mode = false,
-    -- Markdown
-    latex_block = true,
-    inline = "markdown_inline",
-    fenced_code_block = function(node)
-        local lang = vim.treesitter.get_node_text(node:named_child(1), 0)
-        return INJECTION_LANGS[lang] and lang or false
-    end,
-    -- Neorg
-    inline_math = true,
-    ranged_verbatim_tag = function(node)
-        ---@diagnostic disable-next-line: undefined-field # Field exists, but the type annotation isn't in neovim 0.9.5. TODO: remove after neovim 0.10 is stable
-        local name_node = node:field("name")[1]
-        local name = vim.treesitter.get_node_text(name_node, 0)
-        if name == "math" then
-            return true
-        end
-        if ({ code = true, embed = true })[name] then
-            local lang = vim.treesitter.get_node_text(name_node:next_named_sibling(), 0)
+    latex = {
+        displayed_equation = true,
+        inline_formula = true,
+        math_environment = true,
+        text_mode = false,
+    },
+    markdown_inline = { latex_block = true },
+    markdown = {
+        inline = "markdown_inline",
+        fenced_code_block = function(node)
+            local lang = vim.treesitter.get_node_text(node:named_child(1), 0)
             return INJECTION_LANGS[lang] and lang or false
-        end
-        return false
-    end,
+        end,
+    },
+    norg = {
+        inline_math = true,
+        ranged_verbatim_tag = function(node)
+            ---@diagnostic disable-next-line: undefined-field # Field exists, but the type annotation isn't in neovim 0.9.5. TODO: remove after neovim 0.10 is stable
+            local name_node = node:field("name")[1]
+            local name = vim.treesitter.get_node_text(name_node, 0)
+            if name == "math" then
+                return true
+            end
+            if ({ code = true, embed = true })[name] then
+                local lang = vim.treesitter.get_node_text(name_node:next_named_sibling(), 0)
+                return INJECTION_LANGS[lang] and lang or false
+            end
+            return false
+        end,
+    },
 })
 -- Shorthand for `NOT in_math`
 M.in_text = -M.in_math
