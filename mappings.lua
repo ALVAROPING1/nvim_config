@@ -29,21 +29,17 @@ return {
             c = { require("astronvim.utils.buffer").close_tab, "Close current workspace" },
             N = { "<cmd>tabnew<cr>", "New workspace" },
         },
-        -- Buffers
-        ["<leader>b"] = {
-            name = "Buffers",
-            n = {
-                function()
-                    require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
-                end,
-                "Next buffer",
-            },
-            p = {
-                function()
-                    require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
-                end,
-                "Previous buffer",
-            },
+        ["<tab>"] = {
+            function()
+                require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+            end,
+            desc = "Next buffer",
+        },
+        ["<S-tab>"] = {
+            function()
+                require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+            end,
+            desc = "Previous buffer",
         },
         ["<leader>c"] = {
             function()
