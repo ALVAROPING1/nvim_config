@@ -6,11 +6,11 @@ local fmt = ls.fmt
 local M = {}
 
 --- Map of nodes to their associated behaviour:
---- - `boolean`: whether the node is a math environment or not. Ends the search
---- - `string`: restart the search using the value as the language
---- - `nil`: ignore the node and continue searching upwards
+--- - `boolean`: Result of the search
+--- - `string`: enter the child tree with this name
+--- - `nil`: ignore the node and continue searching upwards through the current language's tree
 --- - `function`: execute the function to determine the behaviour. Returns one of the previous values
----@alias TSNodeBehaviourMap {[string]: (boolean | string | fun(node: TSNode): (boolean | string)?)?}
+---@alias TSNodeBehaviourMap {[string]: (boolean | string | fun(node: TSNode): ((boolean | string)?))?}
 
 --- Map of languages to their associated node behaviour map
 ---@alias LanguageBehaviourMap {[string]: TSNodeBehaviourMap?}
@@ -33,7 +33,6 @@ local function traverse(nodes, start_leaf)
         if type(check) == "boolean" then
             return check
         end
-        ---@cast check -boolean LuaLS can't figure out that `check` can no longer be a `bool` after this
         node = node:parent()
         if check ~= nil then
             lang_tree = lang_tree:children()[check]
