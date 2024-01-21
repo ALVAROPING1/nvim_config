@@ -353,7 +353,6 @@ return {
             vim.diagnostic.config({
                 virtual_lines = function(_, bufnr)
                     return not vim.tbl_contains(vim.g.lsp_lines, vim.bo[bufnr].ft) and { only_current_line = true }
-                        or false
                 end,
             })
         end,
