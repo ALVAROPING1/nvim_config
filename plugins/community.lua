@@ -348,6 +348,7 @@ return {
     { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
     {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        keys = false,
         config = function()
             require("lsp_lines").setup()
             vim.diagnostic.config({
