@@ -112,7 +112,7 @@ return {
             -- Icon opts
             opts.formatting.expandable_indicator = false
             opts.formatting.format = function(entry, vim_item)
-                if vim.tbl_contains({ "path" }, entry.source.name) then
+                if entry.source.name == "path" then
                     local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
                     if icon then
                         vim_item.kind = icon

@@ -27,12 +27,8 @@ return function()
 
     -- Remove unused friendly-snippets snippets
     require("luasnip").available(function(snippet)
-        if
-            vim.tbl_contains({ "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }, snippet.name)
-        then
-            snippet:invalidate()
-        end
-        return {}
+        local names = { "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }
+        return vim.tbl_contains(names, snippet.name) and snippet:invalidate()
     end)
 
     -- Adds rounded borders to the LSPInfo floating window
