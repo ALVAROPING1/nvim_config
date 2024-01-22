@@ -59,7 +59,8 @@ return {
     MultiCursorMain = { link = "Visual" },
     SpecialChar = { link = "Special" },
     MatchParen = { fg = "#11d116" },
-    ["@punctuation.special"] = { fg = "#569CD6" },
+    ["@punctuation.special"] = { fg = "#569CD6" }, -- Legacy
+    ["@markup.list"] = { fg = "#569CD6" },
     StatusLine = { fg = "#626262", bg = "#242424" },
     FloatBorder = { link = "LspInfoBorder" },
     NullLsInfoBorder = { link = "FloatBorder" },

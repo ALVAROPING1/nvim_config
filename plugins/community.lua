@@ -479,8 +479,8 @@ return {
                 config = {
                     highlights = {
                         lists = {
-                            ordered = { prefix = "+@punctuation.special" },
-                            unordered = { prefix = "+@punctuation.special" },
+                            ordered = { prefix = "+@markup.list" },
+                            unordered = { prefix = "+@markup.list" },
                         },
                     },
                 },
