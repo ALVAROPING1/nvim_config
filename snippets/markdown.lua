@@ -16,6 +16,10 @@ local utils = require("user.snippets.latex.utils")
 --- Create snippets
 ---------------------------------------------------------------------------------------------------------------------------------
 
+local function first_line()
+    return vim.api.nvim_win_get_cursor(0)[1] == 1
+end
+
 -- Create custom autosnippets
 local snippets = {
     parse_snippet(
@@ -23,9 +27,8 @@ local snippets = {
             trig = "template",
             name = "Pandoc Header Template",
             desc = "",
-            condition = function()
-                return vim.api.nvim_win_get_cursor(0)[1] == 1
-            end,
+            condition = first_line,
+            show_condition = first_line,
         },
         [[
 ---
