@@ -66,15 +66,7 @@ header-includes: |
 }
 local autosnippets = {
     parse_snippet({ trig = "tm", name = "Inline math" }, "\\$$1\\$"),
-    parse_snippet({
-        trig = "(.?)dm",
-        regTrig = true,
-        wordTrig = false,
-        name = "Display math",
-        condition = function(_, _, captures)
-            return captures[1] == " " or captures[1] == ""
-        end,
-    }, "\n\\$\\$$1\\$\\$\n", { trim_empty = false }),
+    parse_snippet({ trig = "dm", name = "Display math" }, "\\$\\$$1\\$\\$"),
     parse_snippet({ trig = "TODOC", name = "TODO: completar esto" }, "<!--TODO: Completar esto-->"),
     parse_snippet({ trig = "TODOD", name = "TODO: diapositivas" }, "<!--TODO: diapositivas[$1:$2]-->"),
     utils.environment_snippet(data.envs.generic, data.envs.text, true),
