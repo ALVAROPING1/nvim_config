@@ -1,8 +1,4 @@
-local rainbow_delimiters_highlight = {
-    "Parens1",
-    "Parens2",
-    "Parens3",
-}
+local rainbow_delimiters_highlight = { "Delimiter1", "Delimiter2", "Delimiter3" }
 
 return {
     -- Add the community repository of plugin specifications
