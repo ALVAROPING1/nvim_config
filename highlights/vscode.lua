@@ -62,6 +62,7 @@ return {
     ["@punctuation.special"] = { fg = "#569CD6" }, -- Legacy
     ["@markup.list"] = { fg = "#569CD6" },
     ["@markup.link.url"] = { fg = "#2aaaff", underline = true },
+    ["@markup.underline"] = { underline = true },
     StatusLine = { fg = "#626262", bg = "#242424" },
     FloatBorder = { link = "LspInfoBorder" },
     NullLsInfoBorder = { link = "FloatBorder" },
