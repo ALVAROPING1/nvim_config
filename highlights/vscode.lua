@@ -1,19 +1,27 @@
+local blue = "#569CD6"
+local light_blue = "#2aaaff"
+local tabline_bg = "#141414"
+local CursorLineBg = "#282828"
+local grey = "#404040"
+local light_grey = "#707070"
 -- Table of overrides/changes to the vscode theme
 return {
     -- UI Elements
-    TabLineFill = { bg = "#141414" }, -- Backgroup of buffers line
-    LineNr = { fg = "#858585" },
+    TabLineFill = { bg = tabline_bg }, -- Background of buffers line
+    LineNr = { fg = light_grey },
     CursorLineNr = { fg = "#c6c6c6" },
-    CursorLine = { bg = "#282828" },
+    CursorLine = { bg = CursorLineBg },
     CursorColumn = { link = "CursorLine" },
-    ColorColumn = { bg = "#404040" },
+    ColorColumn = { bg = grey },
     -- SpecialChar = { link = "Special" }, -- Can be removed?
+
     -- Diagnostics
-    DiagnosticUnnecessary = { fg = "#8D8D8D" },
+    -- DiagnosticUnnecessary = { fg = "#8D8D8D" }, -- Can be removed?
+
     -- Spelling
-    -- SpellBad = { underline = false, fg = "#F44747" },
-    SpellCap = { undercurl = true, fg = "#569CD6", sp = "#569CD6" },
-    SpellRare = { undercurl = true, fg = "#DCDCAA", sp = "#DCDCAA" },
+    SpellBad = { undercurl = true, fg = "#F44747" },
+    SpellCap = { undercurl = true, sp = blue },
+    SpellRare = { undercurl = true, sp = "#DCDCAA" },
 
     -- Floating windows
     -- Background
@@ -29,57 +37,56 @@ return {
     NullLsInfoBorder = { link = "FloatBorder" },
 
     -- Treesitter
-    ["@punctuation.special"] = { fg = "#569CD6" }, -- Legacy
-    ["@markup.list"] = { fg = "#569CD6" },
-    ["@markup.link.url"] = { fg = "#2aaaff", underline = true },
+    ["@punctuation.special"] = { link = "@markup.list" }, -- Legacy
+    ["@markup.list"] = { fg = blue },
+    ["@markup.link.url"] = { fg = light_blue, underline = true },
     ["@markup.underline"] = { underline = true },
-    ["@comment.documentation"] = { fg = "#569cd6" },
+    ["@comment.documentation"] = { fg = blue },
 
     -- NeoTree
-    NeoTreeGitAdded = { fg = "#73c991" },
-    NeoTreeGitDeleted = { fg = "#c74e39" },
-    NeoTreeGitIgnored = { fg = "#8c8c8c" },
-    NeoTreeGitModified = { fg = "#e2c08d" },
-    NeoTreeGitUnstaged = { fg = "#e2c08d" },
-    NeoTreeGitUntracked = { fg = "#73c991" },
-    NeoTreeGitStaged = { fg = "#e2c08d" },
-    NeoTreeTitleBar = { fg = "#d4d4d4", bg = "#444444" },
-    NeoTreeTabSeparatorActive = { fg = "#1E1E1E", bg = "#1E1E1E" },
-    NeoTreeTabSeparatorInactive = { fg = "#141414", bg = "#141414" },
-    NeoTreeDirectoryIcon = { fg = "#569CD6" },
-    NeoTreeDirectoryName = { fg = "#569CD6" },
+    NeoTreeGitAdded = { link = "NvimTreeGitRenamed" },
+    NeoTreeGitDeleted = { link = "NvimTreeGitDeleted" },
+    NeoTreeGitIgnored = { link = "NvimTreeGitIgnored" },
+    NeoTreeGitModified = { link = "NvimTreeGitDirty" },
+    NeoTreeGitUnstaged = { link = "NvimTreeGitDirty" },
+    NeoTreeGitUntracked = { link = "NvimTreeGitRenamed" },
+    NeoTreeGitStaged = { link = "NvimTreeGitStaged" },
+    NeoTreeTitleBar = { fg = "fg", bg = grey },
+    NeoTreeFloatBorder = { fg = grey },
+    NeoTreeTabSeparatorActive = { link = "NvimTreeVertSplit" },
+    NeoTreeTabSeparatorInactive = { fg = tabline_bg, bg = tabline_bg },
 
     -- Lazy
-    LazyButton = { fg = "#D4D4D4", bg = "#404040" },
+    LazyButton = { fg = "fg", bg = grey },
     LazyButtonActive = { bg = "#264F78", bold = true },
-    LazyH1 = { fg = "#000000", bg = "#2aaaff", bold = true },
-    LazySpecial = { fg = "#569CD6" },
+    LazyH1 = { fg = "#000000", bg = light_blue, bold = true },
+    LazySpecial = { fg = blue },
 
     -- Mason
     MasonHeader = { link = "LazyH1" },
     MasonHeaderSecondary = { link = "MasonHeaderSecondary" },
-    MasonHighlightBlock = { bg = "#264F78" },
+    MasonHighlightBlock = { link = "Visual" },
     MasonHighlightBlockSecondary = { link = "MasonHighlightBlockSecondary" },
     MasonHighlightBlockBold = { link = "LazyButtonActive" },
     MasonHighlightBlockBoldSecondary = { link = "MasonHighlightBlockBold" },
     MasonMutedBlock = { link = "LazyButton" },
-    MasonHighlight = { link = "DiagnosticInfo" },
+    MasonHighlight = { fg = blue },
     MasonHighlightSecondary = { link = "MasonHighlight" },
     MasonMuted = { link = "DiagnosticError" },
 
     -- Heirline
-    StatusLine = { fg = "#626262", bg = "#242424" },
+    StatusLine = { fg = light_grey, bg = "#242424" },
 
     -- GitSigns
     GitSignsAdd = { fg = "#487e02" },
     GitSignsChange = { fg = "#1b81a8" },
 
     -- Nvim DAP Virtual text
-    NvimDapVirtualText = { fg = "#707070" },
+    NvimDapVirtualText = { fg = light_grey },
     NvimDapVirtualTextChanged = { link = "DiagnosticVirtualTextInfo" },
 
     -- Diffview
-    DiffviewDiffDeleteDim = { fg = "#414141" },
+    DiffviewDiffDeleteDim = { fg = grey },
     DiffText = { bg = "#185f7a" },
     DiffChange = { bg = "#153947" },
 
@@ -88,10 +95,10 @@ return {
     MultiCursorMain = { link = "Visual" },
 
     -- Misc Plugins
-    GitBlameText = { fg = "#707070", bg = "#282828" }, -- GitBlame text on current line
-    IncRenameText = { bg = "#613214" },                -- Background of replaced text
-    LspSignatureActiveParameter = { fg = "#2aaaff" },  -- Current parameter in function signature
-    TreesitterContext = { bg = "#404040" },
+    GitBlameText = { fg = light_grey, bg = CursorLineBg }, -- GitBlame text on current line
+    IncRenameText = { link = "Search" },                   -- Background of replaced text
+    LspSignatureActiveParameter = { fg = light_blue },     -- Current parameter in function signature
+    TreesitterContext = { bg = grey },
     NeorgContext = { link = "TreesitterContext" },
     MatchParen = { fg = "#11d116" },
 }

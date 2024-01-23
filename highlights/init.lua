@@ -1,18 +1,20 @@
+local blue = "#0095FF"
+local red = "#FF0000"
 return {
     -- this table overrides highlights in all themes
     -- Normal = { bg = "#000000" },
     -- Rainbow Delimiters
-    Delimiter1 = { fg = "#0095ff" },
-    Delimiter2 = { fg = "#ff1919" },
+    Delimiter1 = { fg = blue },
+    Delimiter2 = { fg = red },
     Delimiter3 = { fg = "#32ff32" },
 
     -- Treesitter
-    ["@punctuation.bracket"] = { fg = "#0095ff" },
-    ["@markup.link"] = { fg = "#0095ff" },
+    ["@punctuation.bracket"] = { fg = blue },
+    ["@markup.link"] = { link = "@punctuation.bracket" },
 
     -- Leap
     LeapMatch = { fg = "#487e02" },
-    LeapLabelPrimary = { fg = "#ff0000" },
-    LeapLabelSecondary = { fg = "#0095ff" },
+    LeapLabelPrimary = { fg = red },
+    LeapLabelSecondary = { fg = blue },
     LeapBackdrop = { fg = "#777777" },
 }

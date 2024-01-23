@@ -12,7 +12,7 @@ require("nvim-web-devicons").set_icon({
     },
     ["neo-tree"] = {
         icon = require("astronvim.utils").get_icon("FolderClosed"),
-        color = require("user.highlights.vscode").NeoTreeDirectoryIcon.fg,
+        color = require("astronvim.utils").get_hlgroup("Directory").fg,
         name = "NeoTree",
     },
     TelescopePrompt = {
