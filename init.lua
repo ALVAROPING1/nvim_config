@@ -9,6 +9,7 @@ return {
         servers = {
             -- "pyright"
             "vhdl_ls",
+            "ghdl_ls",
         },
     },
     -- Configure require("lazy").setup() options
