@@ -13,7 +13,7 @@ return {
     CursorLine = { bg = CursorLineBg },
     CursorColumn = { link = "CursorLine" },
     ColorColumn = { bg = grey },
-    -- SpecialChar = { link = "Special" }, -- Can be removed?
+    SpecialChar = { link = "Special" }, -- Special characters in strings
 
     -- Diagnostics
     -- DiagnosticUnnecessary = { fg = "#8D8D8D" }, -- Can be removed?
