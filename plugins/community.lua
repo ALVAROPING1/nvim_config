@@ -489,7 +489,6 @@ return {
             -- This only works for up to 6 levels of nesting
             opts.load["core.esupports.indent"] = {
                 config = {
-                    dedent_excess = false,
                     tweaks = {
                         unordered_list2 = 1,
                         unordered_list3 = 2,
