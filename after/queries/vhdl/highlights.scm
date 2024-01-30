@@ -48,7 +48,7 @@
 
 [ "for" "loop" "while" ] @keyword.repeat
 
-[ "if" "elsif" "else" "case" "then" "when" ] @keyword.conditional
+[ "if" "elsif" "else" "case" "then" "when" "with" "select" ] @keyword.conditional
 
 (function_body
     designator: (identifier) @function)
@@ -113,6 +113,7 @@
     (#has-ancestor? @constant range_constraint)
     (#has-ancestor? @constant subtype_indication))
 ((simple_name) @constant
+    (#not-has-parent? @constant type_mark)
     (#has-ancestor? @constant index_constraint)
     (#has-ancestor? @constant subtype_indication))
 
@@ -201,10 +202,6 @@
     (constant_interface_declaration
         (identifier_list
             (identifier) @variable.parameter)))
-
-(selected_concurrent_signal_assignment
-  _ @keyword.conditional (#any-of? @keyword.conditional "with" "select"))
-
 
 (ambiguous_name
     prefix: (simple_name) @function.builtin (#match? @function.builtin
