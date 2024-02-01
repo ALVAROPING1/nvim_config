@@ -110,11 +110,8 @@
     designator: (_) @variable.member)
 
 ((simple_name) @constant
-    (#has-ancestor? @constant range_constraint)
-    (#has-ancestor? @constant subtype_indication))
-((simple_name) @constant
     (#not-has-parent? @constant type_mark)
-    (#has-ancestor? @constant index_constraint)
+    (#has-ancestor? @constant index_constraint range_constraint)
     (#has-ancestor? @constant subtype_indication))
 
 ((simple_name) @variable (#set! "priority" 90))
@@ -151,10 +148,10 @@
 (if_generate_statement
     at_end: (simple_name) @label)
 
-(entity_instantiation
-    entity: (selected_name
-        prefix: (simple_name) @module
-        suffix: (simple_name) @module))
+((selected_name
+    prefix: (_) @module
+    suffix: (simple_name) @type) @_instantiation
+    (#has-parent? @_instantiation entity_instantiation component_instantiation))
 
 (library_clause
     (logical_name_list
