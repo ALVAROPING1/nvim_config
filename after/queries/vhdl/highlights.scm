@@ -65,13 +65,15 @@
 [ "." ";" "," ":" ] @punctuation.delimiter
 
 [
-    "=>" "<=" "+" ":=" "=" "/=" "<" ">" "-" "*" "/"
+    "=>" "<=" ":=" "=" "/=" "<" ">" "+" "-" "*" "/" "&"
     (attribute_name "'")
     (index_subtype_definition (any))
 ] @operator
 
 [
     "not" "xor" "and" "nand" "or" "nor"
+    "sll" "srl" "sla" "sra" "rol" "ror"
+    "mod" "rem" "abs"
     (attribute_name "'")
     (index_subtype_definition (any))
 ] @keyword.operator
