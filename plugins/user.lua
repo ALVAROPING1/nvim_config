@@ -65,4 +65,14 @@ return {
         event = "User AstroFile",
         opts = { blending = { threshold = 0.5 }, warning = { hlgroup = { "Error", "fg" } } },
     },
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "natecraddock/telescope-zf-native.nvim",
+            { "nvim-telescope/telescope-fzf-native.nvim", enabled = false },
+        },
+        opts = function()
+            require("telescope").load_extension("zf-native")
+        end,
+    },
 }

@@ -401,7 +401,6 @@ return {
             line_blank_line_below = true,
         },
     },
-    { import = "astrocommunity.utility.telescope-fzy-native-nvim" },
     { import = "astrocommunity.editing-support.multicursors-nvim" },
     {
         "smoka7/multicursors.nvim",
