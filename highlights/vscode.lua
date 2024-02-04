@@ -16,7 +16,7 @@ return {
     SpecialChar = { link = "Special" }, -- Special characters in strings
 
     -- Diagnostics
-    -- DiagnosticUnnecessary = { fg = "#8D8D8D" }, -- Can be removed?
+    DiagnosticUnnecessary = { fg = "#8D8D8D" }, -- Used by python
 
     -- Spelling
     SpellBad = { undercurl = true, fg = "#F44747" },
