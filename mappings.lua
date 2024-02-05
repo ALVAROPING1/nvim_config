@@ -103,6 +103,7 @@ return {
                 d = { "<cmd>lua require('comment-box').dbox()<cr>", "Delete box" },
                 y = { "<cmd>lua require('comment-box').yank()<cr>", "Copy box content" },
             },
+            ["i"] = { "m]gg=G`]", "Indent file" },
         },
     },
     i = {
