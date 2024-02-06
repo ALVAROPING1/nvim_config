@@ -504,4 +504,5 @@ return {
             }
         end,
     },
+    { import = "astrocommunity.git.diffview-nvim" },
 }

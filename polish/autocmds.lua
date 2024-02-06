@@ -49,16 +49,6 @@ vim.api.nvim_create_autocmd({ "FileType", "User" }, {
     end,
 })
 
--- HACK: Fix for diffview breaking the tabline when opened
-vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "TabNewEntered" }, {
-    desc = "Fix for tabline breaking after diffview is opened",
-    callback = function()
-        if not vim.t.bufs then
-            vim.t.bufs = {}
-        end
-    end,
-})
-
 vim.api.nvim_create_autocmd("BufLeave", {
     desc = "Auto-save when changing buffers",
     callback = function()
