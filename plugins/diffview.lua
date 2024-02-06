@@ -1,5 +1,12 @@
 return {
     "sindrets/diffview.nvim",
+    event = false,
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    keys = {
+        { "<leader>gD", "<cmd>DiffviewOpen<cr>",          desc = "View project Git diff" },
+        { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "View file history" },
+        { "<leader>gF", "<cmd>DiffviewFileHistory<cr>",   desc = "View branch history" },
+    },
     opts = function(_, opts)
         local cmd = require("diffview.actions")
         opts.signs = { done = " " } -- Finished resolving merge conflicts
@@ -130,11 +137,4 @@ return {
             },
         }
     end,
-    event = false,
-    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
-    keys = {
-        { "<leader>gD", "<cmd>DiffviewOpen<cr>",          desc = "View project Git diff" },
-        { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "View file history" },
-        { "<leader>gF", "<cmd>DiffviewFileHistory<cr>",   desc = "View branch history" },
-    },
 }
