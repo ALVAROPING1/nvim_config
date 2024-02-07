@@ -81,11 +81,11 @@ local autosnippets = {
     -- Auto subscripts
     multi_snippet({
         common = { name = "Auto subscript", condition = utils.in_math },
-        { trig = "(%a)(%d)",                     trigEngine = "pattern" },
-        { trig = "\\([xyzt]\\)\\([ijknm]\\)\\2", trigEngine = "vim" },
+        { trig = "(%a'*)(%d)",                     trigEngine = "pattern" },
+        { trig = "\\([xyzt]'*\\)\\([ijknm]\\)\\2", trigEngine = "vim" },
     }, fmt("<>_<>", { node.capture(1), node.capture(2) })),
     snippet(
-        { trig = "(%a)_(%d%d)", regTrig = true, name = "Auto subscript", condition = utils.in_math },
+        { trig = "(%a'*)_(%d%d)", regTrig = true, name = "Auto subscript", condition = utils.in_math },
         fmt("<>_{<>}", { node.capture(1), node.capture(2) })
     ),
     -- Automatic fractions
