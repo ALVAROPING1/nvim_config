@@ -33,6 +33,4 @@ return function()
 
     -- Adds rounded borders to the LSPInfo floating window
     require("lspconfig.ui.windows").default_options.border = "rounded"
-    -- Adds the after folder to the runtime path to define custom ftplugins
-    vim.opt.rtp:append(vim.fn.stdpath("config") .. "/lua/user/after/")
 end
