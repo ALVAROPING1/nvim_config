@@ -62,5 +62,12 @@ vim.api.nvim_create_autocmd("BufLeave", {
 -- Compile spell dictionaries when changing directory
 vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
     desc = "Compile spell dictionaries when changing directory",
-    callback = require("user.utils").compile_spell,
+    callback = function()
+        local paths = vim.split(vim.fn.glob(".spell/*.add"), "\n")
+        if paths[1] ~= "" then
+            for _, file in pairs(paths) do
+                vim.cmd("silent mkspell! " .. file)
+            end
+        end
+    end,
 })

@@ -157,7 +157,7 @@ return {
     { "linux-cultist/venv-selector.nvim",              enabled = false },
     {
         "mfussenegger/nvim-dap-python",
-        opts = { pythonPath = require("user.utils").python.get_path(vim.loop.cwd()) },
+        opts = { pythonPath = require("user.python_utils").get_path(vim.loop.cwd()) },
         config = function(_, opts)
             local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
             require("dap-python").setup(path, opts)
