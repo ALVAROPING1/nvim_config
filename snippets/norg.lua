@@ -31,7 +31,9 @@ header-includes: [
 @end
 
 * $1
+
 *** Temas
+
     - {** Tema 1}[Tema 1: $2]
     - {** Tema 2}[Tema 2: $3]
     - {** Tema 3}[Tema 3: $4]
@@ -43,11 +45,13 @@ header-includes: [
     - {** Tema 9}[Tema 9: $10]
 
 *** Exámenes parciales
+
     ~ $11
     ~ $12
     ~ $13
 
 ** Tema 1
+
    - $0
         ]],
         { dedent = false }
