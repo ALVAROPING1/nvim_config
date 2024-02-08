@@ -6,13 +6,14 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.colorcolumn = ""
         vim.opt_local.textwidth = 0
         vim.opt_local.spell = true
+        local utils = require("user.utils")
         require("astronvim.utils").set_mappings({
             n = {
                 ["<leader><leader>l"] = {
                     name = "󰓆 Spelling",
-                    l = { "m][s1z=`]", "Fix previous mistake" },
-                    i = { "m][s2zg`]", "Ignore previous mistake" },
-                    a = { "m][s1zg`]", "Mark previous mistake as good" },
+                    l = { utils.restore_view("[s1z="), "Fix previous mistake" },
+                    i = { utils.restore_view("[s2zg"), "Ignore previous mistake" },
+                    a = { utils.restore_view("[s1zg"), "Mark previous mistake as good" },
                 },
             },
             i = {

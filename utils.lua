@@ -117,4 +117,12 @@ function M.compile_spell()
     end
 end
 
+--- Creates a mapping that saves the view, executes another mapping, and restores the view
+---@param mapping string Mapping to execute
+---@return string
+function M.restore_view(mapping)
+    -- See: `:h restore-position`
+    return "msHmt" .. mapping .. "'tzt`s"
+end
+
 return M
