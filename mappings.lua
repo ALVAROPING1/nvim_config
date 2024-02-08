@@ -103,8 +103,8 @@ return {
                 d = { "<cmd>lua require('comment-box').dbox()<cr>", "Delete box" },
                 y = { "<cmd>lua require('comment-box').yank()<cr>", "Copy box content" },
             },
-            ["i"] = { require("user.utils").restore_view("gg=G"), "Indent file" },
         },
+        ["=a"] = { require("user.utils").restore_view("gg=G"), desc = "Indent file" },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
