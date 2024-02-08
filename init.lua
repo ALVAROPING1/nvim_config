@@ -15,6 +15,7 @@ return {
     -- Configure require("lazy").setup() options
     lazy = {
         defaults = { lazy = true },
+        diff = { cmd = "terminal_git" },
         performance = {
             rtp = {
                 -- customize default disabled vim plugins
