@@ -1,6 +1,7 @@
 vim.opt_local.conceallevel = 2
 vim.bo.commentstring = "%|%s|%"
 vim.opt_local.comments = "fb:*,fb:-,fb:~,fn:*,fn:-,fn:~"
+vim.opt_local.foldmethod = "expr"
 
 require("which-key").register({
     ["<localleader>l"] = { name = "󰙅 List" },
