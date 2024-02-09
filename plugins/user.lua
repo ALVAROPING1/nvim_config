@@ -33,6 +33,8 @@ return {
         opts = {
             lua = { order = { "null-ls", "lua_ls" } },
             markdown = { exclude = { "null-ls" } },
+            c = { exclude = { "clangd" } },
+            cpp = { exclude = { "clangd" } },
         },
     },
     {
