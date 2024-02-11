@@ -137,6 +137,7 @@ function M.create_snippet(spec, format, nodes, text)
             trig = type(spec[3]) == "number" and spec[spec[3]] or spec[3],
             priority = spec.priority,
             snippetType = "autosnippet",
+            wordTrig = false,
         } or nil,
     }, fmt(format, nodes, { strict = false, trim_empty = false }))
 end
