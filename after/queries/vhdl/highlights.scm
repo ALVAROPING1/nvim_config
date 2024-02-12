@@ -71,7 +71,7 @@
 ] @operator
 
 [
-    "not" "xor" "and" "nand" "or" "nor"
+    "not" "xor" "xnor" "and" "nand" "or" "nor"
     "sll" "srl" "sla" "sra" "rol" "ror"
     "mod" "rem" "abs"
     (attribute_name "'")
