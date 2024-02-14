@@ -131,7 +131,11 @@ utils.add_snippet_group(snippets, data.limit_operators, "<>{<>}", function()
     return {
         node.choice(
             1,
-            { parse_snippet(nil, "_$1"), parse_snippet(nil, "_{$1 = $2}"), parse_snippet(nil, "_{$1 = $2}^$3") }
+            {
+                parse_snippet(nil, "_${1:i}"),
+                parse_snippet(nil, "_{${1:i} = ${2:0}}"),
+                parse_snippet(nil, "_{${1:i} = ${2:0}}^${3:\\infty}"),
+            }
         ),
         node.choice(2, { node.restore(1, "x"), fmt("\\left( <> \\right)", { node.restore(1, "x") }) }),
     }
