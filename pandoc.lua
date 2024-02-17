@@ -2,11 +2,19 @@ local M = {}
 
 local NOTIFY_OPTS = { title = "Pandoc" }
 
+--- Replaces the extension of the file name
+---@param filename string Original filename
+---@param extension string New extension
+---@return string
+local function change_extension(filename, extension)
+    return vim.fn.fnamemodify(filename, ":r") .. extension
+end
+
 --- Creates the `pandoc` arguments table
 ---@param input_file string input file to convert
 ---@return string[]
 local function get_args(input_file)
-    local output_file = vim.fn.fnamemodify(input_file, ":r") .. ".pdf"
+    local output_file = change_extension(input_file, ".pdf")
     local Path = require("plenary.path")
     local has_data_dir = Path:new(".pandoc"):is_dir()
     local has_options_file = has_data_dir or Path:new("pandoc_options.yaml"):is_file()
@@ -51,10 +59,10 @@ end
 --- Table of functions to convert each supported filetype
 local CONVERSION_FUNCTION = {
     markdown = export_file,
-    norg = function(_)
+    norg = function(filename)
         local content, _ = require("neorg.core.modules").get_module("core.export").export(0, "markdown")
         content = content:gsub("(\n%s*%d)%. ", "%1%) ")
-        local file = require("plenary.path"):new(".norg_export.md")
+        local file = require("plenary.path"):new(change_extension(filename, ".md"))
         file:write(content, "w")
         export_file(file.filename, function()
             file:rm()
