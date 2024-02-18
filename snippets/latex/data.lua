@@ -388,7 +388,7 @@ return {
     functions = {
         "deg",
         -- "sec", "cot", "csc",
-        -- "cosh", "sinh", "tanh", "coth",
+        { "cosh", nil, "hcos" }, { "sinh", nil, "hsin" }, { "tanh", nil, "htan" }, -- "coth",
         -- "ker", "det", "dim",
         "arg", -- "lg",
         "inf", "sup",
