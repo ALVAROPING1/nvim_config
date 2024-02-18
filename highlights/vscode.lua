@@ -1,5 +1,6 @@
 local blue = "#569CD6"
 local light_blue = "#2aaaff"
+local red = "#F44747"
 local tabline_bg = "#141414"
 local CursorLineBg = "#282828"
 local grey = "#404040"
@@ -16,12 +17,13 @@ return {
     SpecialChar = { link = "Special" }, -- Special characters in strings
 
     -- Diagnostics
+    Error = { undercurl = true, fg = red, sp = red },
     DiagnosticUnnecessary = { fg = "#8D8D8D" }, -- Used by python
 
     -- Spelling
-    SpellBad = { undercurl = true, fg = "#F44747" },
-    SpellCap = { undercurl = true, sp = blue },
-    SpellRare = { undercurl = true, sp = "#DCDCAA" },
+    SpellBad = { link = "Error" },
+    SpellCap = { link = "DiagnosticUnderlineInfo" },
+    SpellRare = { link = "DiagnosticUnderlineWarn" },
 
     -- Floating windows
     -- Background
