@@ -2,6 +2,7 @@ return {
     "nvim-neorg/neorg",
     event = false,
     ft = "norg",
+    dependencies = { "max397574/neorg-contexts" },
     opts = function(_, opts)
         opts.load["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.dirman" } } }
         opts.load["core.keybinds"] = {

@@ -60,7 +60,6 @@ return {
         -- SEE: https://github.com/L3MON4D3/LuaSnip/issues/865
         enabled = false,
     },
-    "max397574/neorg-contexts",
     {
         "Bekaboo/deadcolumn.nvim",
         event = "User AstroFile",
