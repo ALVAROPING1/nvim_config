@@ -42,7 +42,7 @@ return {
     ["@punctuation.special"] = { link = "@markup.list" }, -- Legacy
     ["@markup.list"] = { fg = blue },
     ["@markup.link.url"] = { fg = light_blue, underline = true },
-    ["@markup.underline"] = { underline = true },
+    ["@markup.underline"] = { link = "Underlined" },
     ["@comment.documentation"] = { fg = blue },
 
     -- NeoTree
