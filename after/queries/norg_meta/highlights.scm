@@ -8,5 +8,8 @@
     (#eq? @_name "header-includes")
     (array
         (string) @_line @nospell
-        (#not-match? @_line "^#")
-    ))
+        (#not-match? @_line "^#")))
+
+(array
+    (string) @_line @comment
+    (#match? @_line "^#"))
