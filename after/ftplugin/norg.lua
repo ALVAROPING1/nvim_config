@@ -1,5 +1,11 @@
-vim.opt_local.conceallevel = 2
 vim.bo.commentstring = "%|%s|%"
+
+-- Indentation
+vim.bo.tabstop = 4
+vim.bo.softtabstop = 4
+vim.bo.shiftwidth = 4
+
+vim.opt_local.conceallevel = 2
 vim.opt_local.comments = "fb:*,fb:-,fb:~,fn:*,fn:-,fn:~"
 vim.opt_local.foldmethod = "expr"
 
