@@ -99,7 +99,7 @@ return {
                 -- { "varpi",      "ϖ" },
                 -- { "varrho",     "𝝔" },
                 -- { "varsigma",   "ς" },
-                -- { "varphi",     "𝝋" },
+                { "varphi",     "𝝋" },
                 -- { "digamma",    "ϝ" },
             },
             other_letters = {
