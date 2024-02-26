@@ -394,7 +394,7 @@ return {
     {
         "LudoPinelli/comment-box.nvim",
         opts = {
-            box_width = 80,
+            box_width = 78,
             line_width = 80,
             outer_blank_lines = true,
             line_blank_line_above = true,
