@@ -20,14 +20,20 @@ return {
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
     {
         "HiPhish/rainbow-delimiters.nvim",
-        opts = {
-            blacklist = { "markdown" },
-            query = {
-                [""] = "rainbow-delimiters",
-                latex = "rainbow-blocks",
-            },
-            highlight = rainbow_delimiters_highlight,
-        },
+        opts = function()
+            return {
+                strategy = {
+                    [""] = require("rainbow-delimiters").strategy["global"],
+                    norg = require("rainbow-delimiters").strategy["noop"],
+                    markdown = require("rainbow-delimiters").strategy["noop"],
+                },
+                query = {
+                    [""] = "rainbow-delimiters",
+                    latex = "rainbow-blocks",
+                },
+                highlight = rainbow_delimiters_highlight,
+            }
+        end,
     },
     { import = "astrocommunity.editing-support.todo-comments-nvim" },
     {
