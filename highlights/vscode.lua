@@ -37,6 +37,7 @@ return {
     -- Borders
     FloatBorder = { link = "LspInfoBorder" },
     NullLsInfoBorder = { link = "FloatBorder" },
+    DapUIFloatBorder = { link = "FloatBorder" },
 
     -- Treesitter
     ["@punctuation.special"] = { link = "@markup.list" }, -- Legacy
@@ -76,6 +77,22 @@ return {
     MasonHighlightSecondary = { link = "MasonHighlight" },
     MasonMuted = { link = "DiagnosticError" },
 
+    -- Nvim Dap UI
+    DapUIModifiedValue = { link = "DiagnosticVirtualTextInfo" },
+    DapUIScope = { fg = blue },
+    DapUIBreakpointsPath = { link = "DapUIScope" },
+    DapUIStoppedThread = { link = "DapUIScope" },
+    DapUIWatchesValue = { link = "DapUIScope" },
+    DapUIStepBack = { fg = blue },
+    DapUIStepBackNC = { link = "DapUIStepBack" },
+    DapUIStepInto = { link = "DapUIStepBack" },
+    DapUIStepIntoNC = { link = "DapUIStepBack" },
+    DapUIStepOut = { link = "DapUIStepBack" },
+    DapUIStepOutNC = { link = "DapUIStepBack" },
+    DapUIStepOver = { link = "DapUIStepBack" },
+    DapUIStepOverNC = { link = "DapUIStepBack" },
+    DapUIType = { link = "@type" },
+
     -- Heirline
     StatusLine = { fg = light_grey, bg = "#242424" },
 
@@ -85,7 +102,7 @@ return {
 
     -- Nvim DAP Virtual text
     NvimDapVirtualText = { fg = light_grey },
-    NvimDapVirtualTextChanged = { link = "DiagnosticVirtualTextInfo" },
+    NvimDapVirtualTextChanged = { link = "DapUIModifiedValue" },
 
     -- Diffview
     DiffviewDiffDeleteDim = { fg = grey },
