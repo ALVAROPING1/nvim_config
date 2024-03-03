@@ -45,6 +45,8 @@ return {
     ["@markup.link.url"] = { fg = light_blue, underline = true },
     ["@markup.underline"] = { link = "Underlined" },
     ["@comment.documentation"] = { fg = blue },
+    ["@operator.regex"] = { link = "SpecialChar" },
+    ["@punctuation.delimiter.regex"] = { link = "jsRegexpString" },
 
     -- NeoTree
     NeoTreeGitAdded = { link = "NvimTreeGitRenamed" },
