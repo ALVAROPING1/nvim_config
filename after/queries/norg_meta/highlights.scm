@@ -11,5 +11,5 @@
         (#not-match? @_line "^#")))
 
 (array
-    (string) @_line @comment
-    (#match? @_line "^#"))
+    (string) @comment
+    (#match? @comment "^#"))
