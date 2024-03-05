@@ -33,7 +33,6 @@ return {
                 highlights = {
                     lists = {
                         ordered = { prefix = "+@markup.list" },
-                        unordered = { prefix = "+@markup.list" },
                     },
                 },
             },
