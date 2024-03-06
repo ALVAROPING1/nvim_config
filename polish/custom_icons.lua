@@ -1,4 +1,14 @@
-require("nvim-web-devicons").set_icon({
+local devicons = require("nvim-web-devicons")
+
+devicons.set_icon_by_filetype({
+    toggleterm = "terminal",
+    latex = "tex",
+    mason = "lsp",
+    lspinfo = "lsp",
+    ["null-ls-info"] = "lsp",
+})
+
+devicons.set_icon({
     md = {
         icon = "",
         color = "#519aba",
@@ -19,7 +29,7 @@ require("nvim-web-devicons").set_icon({
         icon = require("astronvim.utils").get_icon("Search"),
         name = "Telescope",
     },
-    lazy = {
+    Lazy = {
         icon = "󰒲",
         color = require("user.highlights.vscode").LazyH1.bg,
         name = "Lazy",

@@ -9,21 +9,19 @@ local hl = require("astronvim.utils.status.hl")
 function status.utils.get_filename(bufnr, icon_name, modify)
     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), modify)
     local filetype = vim.bo[bufnr].filetype
-    local term_app = filename:match("^%d*:?(.+)%s*;#toggleterm#")
+    local term_app = filename:match("^%d*:?(.-)%s*;#toggleterm#")
     local cargo_app = filename:match("^.+&& (cargo %w+)")
     return (
         -- Toggleterm buffers
-           (term_app and (icon_name and "terminal" or term_app))
+           term_app
         -- Cargo (Rust) buffers
         or (cargo_app and (icon_name and "cargo" or cargo_app))
         -- Neo-tree buffer
-        or (filename == "neo-tree filesystem [1]" and "neo-tree")
-        -- Plugins with dedicated icon
-        or (vim.tbl_contains({ "TelescopePrompt", "lazy" }, filetype) and filetype)
-        -- LSP-related buffers
-        or (vim.tbl_contains({ "mason", "lspinfo", "null-ls-info" }, filetype) and (icon_name and "lsp" or filetype))
+        or (filename == "neo-tree filesystem [1]" and "Neo-tree")
+        -- Plugins with floating window UI
+        or (vim.tbl_contains({ "TelescopePrompt", "lazy", "mason", "lspinfo", "null-ls-info" }, filetype) and filetype:gsub("^%a", string.upper))
         -- Diffview buffers
-        or ((filename:match("^Diffview") or filetype:match("^Diffview")) and (icon_name and "git" or (filename ~= "" and filename or filetype)))
+        or (filename:match("^Diffview") and icon_name and "git")
         -- Fallback
         or filename
     )
