@@ -350,8 +350,6 @@ return {
                 -- { "pmb",        "Bold font on characters without bold glyph" },
             },
             custom = {
-                { "argmin", nil, "amin" },
-                { "argmax", nil, "amax" },
                 { "abs",    nil, 1 },
                 { "ceil",   nil, 1 },
                 { "floor",  nil, 1 },
@@ -397,6 +395,7 @@ return {
         { "sin",    nil, 1 }, { "cos",    nil, 1 }, { "tan",    nil, 1 },
         { "exp",    nil, 1 }, { "log",    nil, 1 }, { "ln",     nil, 1 },
         { "min",    nil, 1 }, { "max",    nil, 1 },
+        { "argmin", nil, "amin" }, { "argmax", nil, "amax" },
     },
     -- Table with the operators using subscript/superscrip limits
     ---@type SnippetGroup
