@@ -108,7 +108,7 @@ return {
                 { "nabla",   "∇" },
                 { "partial", "∂" },
                 { "aleph",   "א" },
-                -- { "hbar",    "ħ" }, { "hslash", "ħ" },
+                { "hbar",    "ħ" }, -- { "hslash", "ħ" },
                 { "N", "ℕ", "NN" }, { "Z", "ℤ", "ZZ" }, { "Q", "ℚ", "QQ" }, { "R", "ℝ", "RR" },
             },
             -- vertical_layout = { { "atop", "Character above character" } },
