@@ -6,6 +6,7 @@ devicons.set_icon_by_filetype({
     mason = "lsp",
     lspinfo = "lsp",
     ["null-ls-info"] = "lsp",
+    cargo = "rs",
 })
 
 devicons.set_icon({
@@ -38,10 +39,5 @@ devicons.set_icon({
         icon = require("astronvim.utils").get_icon("ActiveLSP"),
         color = require("user.highlights.vscode").LazyH1.bg,
         name = "LSPInfo",
-    },
-    cargo = {
-        icon = "",
-        color = "#dea584",
-        name = "Cargo",
     },
 })
