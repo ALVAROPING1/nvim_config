@@ -6,7 +6,11 @@ return {
         "williamboman/mason-lspconfig.nvim",
         -- overrides `require("mason-lspconfig").setup(...)`
         opts = function(_, opts)
-            opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "clangd" })
+            -- Disable upstream's `pyright` since it's replaced with `basedpyright`
+            opts.ensure_installed = vim.tbl_filter(function(x)
+                return x ~= "pyright"
+            end, opts.ensure_installed)
+            opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "clangd", "basedpyright" })
         end,
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
