@@ -447,6 +447,5 @@ return {
             vim.g.matchup_matchparen_offscreen = {}
         end,
     },
-    { import = "astrocommunity.note-taking.neorg" },
     { import = "astrocommunity.git.diffview-nvim" },
 }
