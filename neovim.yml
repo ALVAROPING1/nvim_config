@@ -1,0 +1,5 @@
+# TODO: mirar necesidad, ¿config de selene?
+base: lua51
+globals:
+  vim:
+    any: true
