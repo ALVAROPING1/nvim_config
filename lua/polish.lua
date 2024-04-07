@@ -22,7 +22,6 @@ vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
 -- Replace deleted lines symbol with diagonal lines in diff view
 vim.opt.fillchars:append({ diff = "╱" })
 
-require("polish.custom_icons")
 require("polish.autocmds")
 
 -- Remove unused friendly-snippets snippets

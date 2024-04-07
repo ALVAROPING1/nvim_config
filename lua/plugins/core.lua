@@ -1,3 +1,5 @@
+local utils = require("astroui")
+
 return {
     -- customize alpha options
     {
@@ -169,6 +171,59 @@ return {
             -- Rainbow-Delimiters integration
             local hooks = require("ibl.hooks")
             hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        end,
+    },
+    {
+        "nvim-tree/nvim-web-devicons",
+        opts = {
+            override = {
+                md = {
+                    icon = "",
+                    color = "#519aba",
+                    name = "Markdown",
+                },
+                latex = {
+                    icon = "󰙩",
+                    color = "#3D6117",
+                    cterm_color = "22",
+                    name = "Tex",
+                },
+                ["Neo-tree"] = {
+                    icon = utils.get_icon("FolderClosed"),
+                    color = utils.get_hlgroup("Directory").fg,
+                    name = "NeoTree",
+                },
+                TelescopePrompt = {
+                    icon = utils.get_icon("Search"),
+                    name = "Telescope",
+                },
+                Lazy = {
+                    icon = "󰒲",
+                    color = require("highlights.vscode").LazyH1.bg,
+                    name = "Lazy",
+                },
+                lsp = {
+                    icon = utils.get_icon("ActiveLSP"),
+                    color = require("highlights.vscode").LazyH1.bg,
+                    name = "LSPInfo",
+                },
+                alpha = {
+                    icon = "α",
+                    color = require("highlights.vscode").LazyH1.bg,
+                    name = "Alpha",
+                },
+            },
+        },
+        config = function(_, opts)
+            require("nvim-web-devicons").setup(opts)
+            require("nvim-web-devicons").set_icon_by_filetype({
+                toggleterm = "terminal",
+                latex = "tex",
+                mason = "lsp",
+                lspinfo = "lsp",
+                ["null-ls-info"] = "lsp",
+                cargo = "rs",
+            })
         end,
     },
 }
