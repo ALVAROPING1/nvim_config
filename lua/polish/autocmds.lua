@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("FileType", {
         require("astrocore").set_mappings({
             n = {
                 ["<leader><leader>l"] = {
-                    name = "󰓆 Spelling",
+                    desc = "󰓆 Spelling",
                     l = { utils.restore_view("[s1z="), "Fix previous mistake" },
                     i = { utils.restore_view("[s2zg"), "Ignore previous mistake" },
                     a = { utils.restore_view("[s1zg"), "Mark previous mistake as good" },
@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
             },
             i = {
                 ["<C-l>"] = {
-                    name = "󰓆 Spelling",
+                    desc = "󰓆 Spelling",
                     l = { "<C-g>u<Esc>[s1z=`]a<c-g>u", "Fix previous mistake" },
                     i = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Ignore previous mistake" },
                     a = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good" },

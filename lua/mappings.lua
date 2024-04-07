@@ -27,7 +27,7 @@ return {
 
         -- Workspaces
         ["<Leader>s"] = {
-            name = "󰓩 Wokspaces",
+            desc = "󰓩 Wokspaces",
             n = { "<Cmd>tabnext<CR>", "Next workspace" },
             p = { "<Cmd>tabprevious<CR>", "Previous workspace" },
             o = { "<Cmd>tabonly<CR>", "Close all workspaces except current" },
@@ -70,9 +70,9 @@ return {
         -- Move the force save key
         ["<Leader>W"] = { "<Cmd>w!<CR>", desc = "Force save" },
         -- Nvim-surround group
-        ["<C-s>"] = { name = "Surround", desc = "Surround" },
+        ["<C-s>"] = { desc = "Surround" },
         -- Refactor-nvim group
-        ["<Leader>r"] = { name = " Refactor" },
+        ["<Leader>r"] = { desc = " Refactor" },
         -- Open terminals
         ["<Leader>tt"] = {
             function()
@@ -113,7 +113,7 @@ return {
             -- Rainbow delimiters
             ["r"] = { "<Cmd>e<CR>", "Reload rainbow delimiters" },
             ["c"] = {
-                name = "󰅺 Comment Box",
+                desc = "󰅺 Comment Box",
                 n = { "<Cmd>lua require('comment-box').llbox()<CR>", "Normal box" },
                 H = { "<Cmd>lua require('comment-box').lcbox(7)<CR>", "Header box" },
                 h = { "<Cmd>lua require('comment-box').lcline()<CR>", "Header line" },
@@ -149,7 +149,7 @@ return {
         -- ["<Up>"] = { "" },
         -- ["<Down>"] = { "" },
         -- Refactor-nvim group
-        ["<Leader>r"] = { name = " Refactor" },
+        ["<Leader>r"] = { desc = " Refactor" },
         ["<C-q>"] = {
             change_choice_node,
             desc = "Change current choice node",
