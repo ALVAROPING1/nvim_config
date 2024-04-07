@@ -1,36 +1,35 @@
--- This function is run last and is a good place to configuring
--- augroups/autocommands and custom filetypes also this just pure lua so
--- anything that doesn't fit in the normal config locations above can go here
-return function()
-    -- Set up custom filetypes
-    -- vim.filetype.add {
-    --   extension = {
-    --     foo = "fooscript",
-    --   },
-    --   filename = {
-    --     ["Foofile"] = "fooscript",
-    --   },
-    --   pattern = {
-    --     ["~/%.config/foo/.*"] = "fooscript",
-    --   },
-    -- }
+-- This will run last in the setup process and is a good place to configure
+-- things like custom filetypes. This just pure lua so anything that doesn't
+-- fit in the normal config locations above can go here
 
-    -- Disable search highlight being disabled on cursor movement
-    ---@diagnostic disable-next-line: param-type-mismatch
-    vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
+-- Set up custom filetypes
+-- vim.filetype.add {
+--   extension = {
+--     foo = "fooscript",
+--   },
+--   filename = {
+--     ["Foofile"] = "fooscript",
+--   },
+--   pattern = {
+--     ["~/%.config/foo/.*"] = "fooscript",
+--   },
+-- }
 
-    -- Replace deleted lines symbol with diagonal lines in diff view
-    vim.opt.fillchars:append({ diff = "╱" })
+-- Disable search highlight being disabled on cursor movement
+---@diagnostic disable-next-line: param-type-mismatch
+vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
 
-    require("user.polish.custom_icons")
-    require("user.polish.autocmds")
+-- Replace deleted lines symbol with diagonal lines in diff view
+vim.opt.fillchars:append({ diff = "╱" })
 
-    -- Remove unused friendly-snippets snippets
-    require("luasnip").available(function(snippet)
-        local names = { "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }
-        return vim.tbl_contains(names, snippet.name) and snippet:invalidate()
-    end)
+require("polish.custom_icons")
+require("polish.autocmds")
 
-    -- Adds rounded borders to the LSPInfo floating window
-    require("lspconfig.ui.windows").default_options.border = "rounded"
-end
+-- Remove unused friendly-snippets snippets
+require("luasnip").available(function(snippet)
+    local names = { "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }
+    return vim.tbl_contains(names, snippet.name) and snippet:invalidate()
+end)
+
+-- Adds rounded borders to the LSPInfo floating window
+require("lspconfig.ui.windows").default_options.border = "rounded"

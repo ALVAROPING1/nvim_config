@@ -1,4 +1,5 @@
 local devicons = require("nvim-web-devicons")
+local utils = require("astroui")
 
 devicons.set_icon_by_filetype({
     toggleterm = "terminal",
@@ -22,27 +23,27 @@ devicons.set_icon({
         name = "Tex",
     },
     ["Neo-tree"] = {
-        icon = require("astronvim.utils").get_icon("FolderClosed"),
-        color = require("astronvim.utils").get_hlgroup("Directory").fg,
+        icon = utils.get_icon("FolderClosed"),
+        color = utils.get_hlgroup("Directory").fg,
         name = "NeoTree",
     },
     TelescopePrompt = {
-        icon = require("astronvim.utils").get_icon("Search"),
+        icon = utils.get_icon("Search"),
         name = "Telescope",
     },
     Lazy = {
         icon = "󰒲",
-        color = require("user.highlights.vscode").LazyH1.bg,
+        color = require("highlights.vscode").LazyH1.bg,
         name = "Lazy",
     },
     lsp = {
-        icon = require("astronvim.utils").get_icon("ActiveLSP"),
-        color = require("user.highlights.vscode").LazyH1.bg,
+        icon = utils.get_icon("ActiveLSP"),
+        color = require("highlights.vscode").LazyH1.bg,
         name = "LSPInfo",
     },
     alpha = {
         icon = "α",
-        color = require("user.highlights.vscode").LazyH1.bg,
+        color = require("highlights.vscode").LazyH1.bg,
         name = "Alpha",
     },
 })

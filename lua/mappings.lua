@@ -9,43 +9,49 @@ local function change_choice_node()
         ls.change_choice(1)
     end
 end
+
 -- Mapping data with "desc" stored directly by vim.keymap.set().
 --
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
+--
+-- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
 return {
-    -- first key is the mode
+    -- First key is the mode
     n = {
-        -- second key is the lefthand side of the map
-        -- tables with the `name` key will be registered with which-key if it's installed
+        -- Second key is the lefthand side of the map
+
+        -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
+
         -- Workspaces
-        ["<leader>s"] = {
+        ["<Leader>s"] = {
             name = "󰓩 Wokspaces",
-            n = { "<cmd>tabnext<cr>", "Next workspace" },
-            p = { "<cmd>tabprevious<cr>", "Previous workspace" },
-            o = { "<cmd>tabonly<cr>", "Close all workspaces except current" },
-            c = { require("astronvim.utils.buffer").close_tab, "Close current workspace" },
-            N = { "<cmd>tabnew<cr>", "New workspace" },
+            n = { "<Cmd>tabnext<CR>", "Next workspace" },
+            p = { "<Cmd>tabprevious<CR>", "Previous workspace" },
+            o = { "<Cmd>tabonly<CR>", "Close all workspaces except current" },
+            c = { require("astrocore.buffer").close_tab, "Close current workspace" },
+            N = { "<Cmd>tabnew<CR>", "New workspace" },
         },
-        ["<tab>"] = {
+        -- Navigate buffer tabs with `Tab` and `Shift-Tab`
+        ["<Tab>"] = {
             function()
-                require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+                require("astrocore.buffer").nav(vim.v.count1)
             end,
             desc = "Next buffer",
         },
-        ["<S-tab>"] = {
+        ["<S-Tab>"] = {
             function()
-                require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+                require("astrocore.buffer").nav(-vim.v.count1)
             end,
             desc = "Previous buffer",
         },
-        ["<leader>c"] = {
+        ["<Leader>c"] = {
             function()
                 local bufs = vim.fn.getbufinfo({ buflisted = true })
-                require("astronvim.utils.buffer").close(0)
-                if require("astronvim.utils").is_available("alpha-nvim") and not bufs[2] then
+                require("astrocore.buffer").close(0)
+                if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
                     require("alpha").start(true)
                 end
             end,
@@ -55,40 +61,40 @@ return {
         ["J"] = { "5j", desc = "Fast downwards movement" },
         ["K"] = { "5k", desc = "Fast upwards movement" },
         -- Remap replaced commands
-        ["<leader>j"] = { "J", desc = "Join lines" },
+        ["<Leader>j"] = { "J", desc = "Join lines" },
         -- Disable arrow keys
-        -- ["<left>"] = { "" },
-        -- ["<right>"] = { "" },
-        -- ["<up>"] = { "" },
-        -- ["<down>"] = { "" },
+        -- ["<Left>"] = { "" },
+        -- ["<Right>"] = { "" },
+        -- ["<Up>"] = { "" },
+        -- ["<Down>"] = { "" },
         -- Move the force save key
-        ["<leader>W"] = { "<cmd>w!<cr>", desc = "Force save" },
+        ["<Leader>W"] = { "<Cmd>w!<CR>", desc = "Force save" },
         -- Nvim-surround group
         ["<C-s>"] = { name = "Surround", desc = "Surround" },
         -- Refactor-nvim group
-        ["<leader>r"] = { name = " Refactor" },
+        ["<Leader>r"] = { name = " Refactor" },
         -- Open terminals
-        ["<leader>tt"] = {
+        ["<Leader>tt"] = {
             function()
-                require("astronvim.utils").toggle_term_cmd("btop")
+                require("astrocore").toggle_term_cmd("btop")
             end,
             desc = "ToggleTerm btop",
         },
-        ["<leader>tp"] = {
+        ["<Leader>tp"] = {
             function()
-                require("astronvim.utils").toggle_term_cmd("ipython")
+                require("astrocore").toggle_term_cmd("ipython")
             end,
             desc = "ToggleTerm python",
         },
-        -- Move find themes from `ft` to `fT` since it will be more rarely used
-        ["<leader>ft"] = false,
-        ["<leader>fT"] = {
+        -- Move find themes from `ft` to `fT` since it will be more rarely used than find TODOs
+        ["<Leader>ft"] = false,
+        ["<Leader>fT"] = {
             function()
                 require("telescope.builtin").colorscheme({ enable_preview = true })
             end,
             desc = "Find themes",
         },
-        ["<leader>fH"] = {
+        ["<Leader>fH"] = {
             function()
                 require("telescope.builtin").highlights()
             end,
@@ -100,24 +106,23 @@ return {
             end,
             desc = "Toggle virtual diagnostic lines",
         },
-        ["<leader><leader>"] = {
-            name = "󰐕 More commands",
+        ["<Leader><Leader>"] = {
+            desc = "󰐕 More commands",
             -- Text search
-            ["/"] = { "<cmd>noh<cr>", "Clear highlighted text" },
+            ["/"] = { "<Cmd>noh<CR>", "Clear highlighted text" },
             -- Rainbow delimiters
-            ["r"] = { "<cmd>e<cr>", "Reload rainbow delimiters" },
+            ["r"] = { "<Cmd>e<CR>", "Reload rainbow delimiters" },
             ["c"] = {
                 name = "󰅺 Comment Box",
-                n = { "<cmd>lua require('comment-box').llbox()<cr>", "Normal box" },
-                H = { "<cmd>lua require('comment-box').lcbox(7)<cr>", "Header box" },
-                h = { "<cmd>lua require('comment-box').lcline()<cr>", "Header line" },
-                s = { "<cmd>lua require('comment-box').albox(18)<cr>", "Separator box" },
-                l = { "<cmd>lua require('comment-box').cline(3)<cr>", "Centered line" },
-                d = { "<cmd>lua require('comment-box').dbox()<cr>", "Delete box" },
-                y = { "<cmd>lua require('comment-box').yank()<cr>", "Copy box content" },
+                n = { "<Cmd>lua require('comment-box').llbox()<CR>", "Normal box" },
+                H = { "<Cmd>lua require('comment-box').lcbox(7)<CR>", "Header box" },
+                h = { "<Cmd>lua require('comment-box').lcline()<CR>", "Header line" },
+                s = { "<Cmd>lua require('comment-box').albox(18)<CR>", "Separator box" },
+                d = { "<Cmd>lua require('comment-box').dbox()<CR>", "Delete box" },
+                y = { "<Cmd>lua require('comment-box').yank()<CR>", "Copy box content" },
             },
         },
-        ["=a"] = { require("user.utils").restore_view("gg=G"), desc = "Indent file" },
+        ["=a"] = { require("utils").restore_view("gg=G"), desc = "Indent file" },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
@@ -129,8 +134,8 @@ return {
         },
     },
     t = {
-        -- setting a mapping to false will disable it
-        -- ["<esc>"] = false,
+        -- Setting a mapping to false will disable it
+        -- ["<Esc>"] = false,
         ["<M-j><M-k>"] = { "<C-\\><C-n>", desc = "Exit insert mode" },
     },
     v = {
@@ -139,12 +144,12 @@ return {
         ["K"] = { "5k", desc = "Fast upwards movement" },
         ["<C-w>"] = { desc = "Store text for snippet" },
         -- Disable arrow keys
-        -- ["<left>"] = { "" },
-        -- ["<right>"] = { "" },
-        -- ["<up>"] = { "" },
-        -- ["<down>"] = { "" },
+        -- ["<Left>"] = { "" },
+        -- ["<Right>"] = { "" },
+        -- ["<Up>"] = { "" },
+        -- ["<Down>"] = { "" },
         -- Refactor-nvim group
-        ["<leader>r"] = { name = " Refactor" },
+        ["<Leader>r"] = { name = " Refactor" },
         ["<C-q>"] = {
             change_choice_node,
             desc = "Change current choice node",

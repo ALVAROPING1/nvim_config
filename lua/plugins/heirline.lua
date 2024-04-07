@@ -1,5 +1,5 @@
-local status = require("astronvim.utils.status")
-local hl = require("astronvim.utils.status.hl")
+local status = require("astroui.status")
+local hl = require("astroui.status.hl")
 
 --- Gets the filename of the buffer. Falls back to the filetype if it has no name
 ---@param bufnr integer Buffer number
@@ -59,7 +59,7 @@ end
 
 ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filetype in some cases
 function status.provider.filename(opts)
-    opts = require("astronvim.utils").extend_tbl({
+    opts = require("astrocore").extend_tbl({
         fallback = "Untitled",
         fname = function(nr)
             return status.utils.get_file_text(nr, 1, opts.modify)
@@ -83,7 +83,7 @@ return {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
         -- Fix winbar icons losing color when the window is inactive
-        -- Modified from: https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/bars-and-lines/heirline-vscode-winbar/init.lua
+        -- Modified from: https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/recipes/heirline-vscode-winbar/init.lua
         opts.winbar[1][2] = status.component.file_info({
             file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
             file_modified = false,
@@ -96,7 +96,7 @@ return {
         opts.statusline = {
             -- default highlight for the entire statusline
             hl = { fg = "fg", bg = "bg" },
-            -- each element following is a component in astronvim.utils.status module
+            -- each element following is a component in astroui.status module
 
             -- add the vim mode component
             status.component.mode({
@@ -106,7 +106,7 @@ return {
                 surround = {
                     -- it's a left element, so use the left separator
                     separator = "left",
-                    -- set the color of the surrounding based on the current mode using astronvim.utils.status module
+                    -- set the color of the surrounding based on the current mode using astroui.status module
                     color = function()
                         return { main = status.hl.mode_bg(), right = "blank_bg" }
                     end,
@@ -165,8 +165,8 @@ return {
             {
                 -- define a simple component where the provider is just a folder icon
                 status.component.builder({
-                    -- astronvim.get_icon gets the user interface icon for a closed folder with a space after it
-                    { provider = require("astronvim.utils").get_icon("FolderClosed") },
+                    -- astrocore.get_icon gets the user interface icon for a closed folder with a space after it
+                    { provider = require("astroui").get_icon("FolderClosed") },
                     -- add padding after icon
                     padding = { right = 1 },
                     -- set the foreground color to be used for the icon
@@ -198,7 +198,7 @@ return {
             { -- make nav section with icon border
                 -- define a custom component with just a file icon
                 status.component.builder({
-                    { provider = require("astronvim.utils").get_icon("ScrollText") },
+                    { provider = require("astroui").get_icon("ScrollText") },
                     -- add padding after icon
                     padding = { right = 1 },
                     -- set the icon foreground

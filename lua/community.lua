@@ -1,10 +1,13 @@
-local rainbow_delimiters_highlight = { "Delimiter1", "Delimiter2", "Delimiter3" }
+-- AstroCommunity: import any community modules here
+-- We import this file in `lazy_setup.lua` before the `plugins/` folder.
+-- This guarantees that the specs are processed before any user plugins.
 
+---@type LazySpec
 return {
     -- Add the community repository of plugin specifications
     "AstroNvim/astrocommunity",
-    -- example of importing a plugin, comment out to use it or add your own
-    -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
+    -- Import/override with your plugins folder
+    -- Available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
     { import = "astrocommunity.diagnostics.trouble-nvim" },
     { import = "astrocommunity.editing-support.neogen" },
@@ -37,17 +40,9 @@ return {
                     [""] = "rainbow-delimiters",
                     latex = "rainbow-blocks",
                 },
-                highlight = rainbow_delimiters_highlight,
+                highlight = vim.g.rainbow_delimiters_highlight,
             }
         end,
-    },
-    { import = "astrocommunity.editing-support.todo-comments-nvim" },
-    {
-        "folke/todo-comments.nvim",
-        keys = {
-            { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find TODO comments" },
-            { "<leader>xt", "<cmd>TodoTrouble<cr>",   desc = "Workspace TODOs (Trouble)" },
-        },
     },
     { import = "astrocommunity.terminal-integration.flatten-nvim" },
     { import = "astrocommunity.utility.neodim" },
@@ -105,7 +100,7 @@ return {
         opts = { default_delay = 5 },
     },
     { import = "astrocommunity.scrolling.satellite-nvim" },
-    { "lewis6991/satellite.nvim",                            commit = "f36c6ff" }, -- Newer versions require neovim 0.10
+    { "lewis6991/satellite.nvim",                        commit = "f36c6ff" }, -- Newer versions require neovim 0.10
     -- { import = "astrocommunity.indent.mini-indentscope" },
     -- {
     --   'echasnovski/mini.indentscope',
@@ -113,29 +108,6 @@ return {
     --     symbol = "▏"
     --   }
     -- },
-    { import = "astrocommunity.indent.indent-blankline-nvim" },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        opts = function(_, opts)
-            -- TODO: move underline position in Kitty once an updated version is on the package repos
-            opts.debounce = 500
-            opts.indent.char = "▎"
-            opts.scope = {
-                enabled = true,
-                include = {
-                    node_type = {
-                        lua = { "table_constructor", "function_call" },
-                        python = { "argument_list", "list", "tuple", "set", "dictionary", "generator_expression" },
-                        ["*"] = { "parameters" },
-                    },
-                },
-                highlight = rainbow_delimiters_highlight,
-            }
-            -- Rainbow-Delimiters integration
-            local hooks = require("ibl.hooks")
-            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-        end,
-    },
     { import = "astrocommunity.scrolling.mini-animate" },
     {
         "echasnovski/mini.animate",
@@ -162,11 +134,11 @@ return {
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.rust" },
-    { "simrat39/rust-tools.nvim",                      opts = { server = { standalone = true } } },
-    { "linux-cultist/venv-selector.nvim",              enabled = false },
+    { "simrat39/rust-tools.nvim",                opts = { server = { standalone = true } } },
+    { "linux-cultist/venv-selector.nvim",        enabled = false },
     {
         "mfussenegger/nvim-dap-python",
-        opts = { pythonPath = require("user.python_utils").get_path(vim.loop.cwd()) },
+        opts = { pythonPath = require("python_utils").get_path(vim.loop.cwd()) },
         config = function(_, opts)
             local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
             require("dap-python").setup(path, opts)
@@ -259,7 +231,7 @@ return {
             maps.n[nprefix] = { desc = icon .. "Search / Replace" }
             maps.x[prefix] = { desc = icon .. "Search / Replace" }
 
-            require("astronvim.utils").set_mappings(maps)
+            require("astrocore").set_mappings(maps)
             for _, mapping in pairs(keys) do
                 mapping[1] = mapping.mode == "x" and prefix or nprefix .. mapping[1]:sub(-1)
             end

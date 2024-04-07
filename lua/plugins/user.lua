@@ -1,3 +1,6 @@
+-- You can also add or configure plugins by creating files in this `plugins/` folder
+
+---@type LazySpec
 return {
     -- You can also add new plugins here as well:
     -- Add plugins, the lazy syntax
@@ -50,7 +53,7 @@ return {
         event = "User AstroFile",
         opts = {
             threshold = 5,
-            close_command = require("astronvim.utils.buffer").close,
+            close_command = require("astrocore.buffer").close,
         },
     },
     {

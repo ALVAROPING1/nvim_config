@@ -6,8 +6,8 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.colorcolumn = ""
         vim.opt_local.textwidth = 0
         vim.opt_local.spell = true
-        local utils = require("user.utils")
-        require("astronvim.utils").set_mappings({
+        local utils = require("utils")
+        require("astrocore").set_mappings({
             n = {
                 ["<leader><leader>l"] = {
                     name = "󰓆 Spelling",
@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "markdown", "norg" },
     callback = function()
         vim.keymap.set("n", "<leader><leader>w", function()
-            require("user.pandoc").export()
+            require("pandoc").export()
         end, { desc = "Export to PDF with Pandoc", buffer = 0 })
     end,
 })

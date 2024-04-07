@@ -1,4 +1,4 @@
--- customize lsp formatting options
+-- Customize lsp formatting options
 return {
     -- control auto formatting on save
     format_on_save = {

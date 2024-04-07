@@ -36,11 +36,11 @@ return {
             store_selection_keys = "<C-w>",
         },
         config = function(plugin, opts)
-            require("plugins.configs.luasnip")(plugin, opts) -- include the default astronvim config that calls the setup call
+            require("astronvim.plugins.configs.luasnip")(plugin, opts) -- include the default astronvim config that calls the setup call
             require("luasnip").filetype_extend("markdown_inline", { "markdown" })
             -- add more custom luasnip configuration such as filetype extend or custom snippets
             ---@diagnostic disable-next-line: assign-type-mismatch Luasnip accepts a single string
-            require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/user/snippets" })
+            require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets" })
         end,
     },
     -- {
@@ -120,10 +120,7 @@ return {
                         return vim_item
                     end
                 end
-                return require("lspkind").cmp_format(require("astronvim.utils").plugin_opts("lspkind.nvim"))(
-                    entry,
-                    vim_item
-                )
+                return require("lspkind").cmp_format(require("astrocore").plugin_opts("lspkind.nvim"))(entry, vim_item)
             end
 
             opts.sources = cmp.config.sources(opts.sources, { { name = "neorg" } })
@@ -137,4 +134,41 @@ return {
     --         return opts
     --     end,
     -- },
+    {
+        "folke/todo-comments.nvim",
+        keys = {
+            { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
+            { "<leader>xt", "<cmd>TodoTrouble<cr>",   desc = "Workspace TODOs (Trouble)" },
+        },
+        dependencies = {
+            {
+                "AstroNvim/astrocore",
+                opts = function(_, opts)
+                    vim.print(opts.mappings.n["<Leader>fT"]) -- TODO: ver que mapping pilla, debería ser find theme
+                end,
+            },
+        },
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        opts = function(_, opts)
+            -- TODO: move underline position in Kitty once an updated version is on the package repos
+            opts.debounce = 500
+            opts.indent.char = "▎"
+            opts.scope = {
+                enabled = true,
+                include = {
+                    node_type = {
+                        lua = { "table_constructor", "function_call" },
+                        python = { "argument_list", "list", "tuple", "set", "dictionary", "generator_expression" },
+                        ["*"] = { "parameters" },
+                    },
+                },
+                highlight = vim.g.rainbow_delimiters_highlight,
+            }
+            -- Rainbow-Delimiters integration
+            local hooks = require("ibl.hooks")
+            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        end,
+    },
 }

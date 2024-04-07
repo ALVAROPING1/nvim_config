@@ -2,15 +2,15 @@
 --- Luasnip imports
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local ls = require("user.snippets.luasnips")
+local ls = require("snippets.luasnips")
 local parse_snippet = ls.parse_snippet
 
 ---------------------------------------------------------------------------------------------------------------------------------
 --- Personal imports
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local data = require("user.snippets.latex.data")
-local utils = require("user.snippets.latex.utils")
+local data = require("snippets.latex.data")
+local utils = require("snippets.latex.utils")
 
 ---------------------------------------------------------------------------------------------------------------------------------
 --- Create snippets

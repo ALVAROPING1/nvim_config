@@ -1,4 +1,4 @@
-local ls = require("user.snippets.luasnips")
+local ls = require("snippets.luasnips")
 local parse_snippet = ls.parse_snippet
 local multi_snippet = ls.multi_snippet
 local fmt = ls.fmt
