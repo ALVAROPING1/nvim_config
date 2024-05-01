@@ -148,8 +148,6 @@ return {
         -- ["<Right>"] = { "" },
         -- ["<Up>"] = { "" },
         -- ["<Down>"] = { "" },
-        -- Refactor-nvim group
-        ["<Leader>r"] = { desc = " Refactor" },
         ["<C-q>"] = {
             change_choice_node,
             desc = "Change current choice node",
