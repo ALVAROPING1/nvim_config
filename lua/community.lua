@@ -101,13 +101,6 @@ return {
     },
     { import = "astrocommunity.scrolling.satellite-nvim" },
     { "lewis6991/satellite.nvim",                        commit = "f36c6ff" }, -- Newer versions require neovim 0.10
-    -- { import = "astrocommunity.indent.mini-indentscope" },
-    -- {
-    --   'echasnovski/mini.indentscope',
-    --   opts = {
-    --     symbol = "▏"
-    --   }
-    -- },
     { import = "astrocommunity.scrolling.mini-animate" },
     {
         "echasnovski/mini.animate",
