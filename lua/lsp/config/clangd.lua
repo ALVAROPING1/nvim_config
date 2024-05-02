@@ -3,9 +3,9 @@
 ---@type lspconfig.options.clangd
 return {
     cmd = { "clangd", "--query-driver=/usr/bin/c++", "--clang-tidy" },
-    capabilities = {
-        offsetEncoding = "utf-8",
-    },
+    -- capabilities = {
+    --     offsetEncoding = "utf-8",
+    -- },
     settings = {
         clangd = {},
     },
