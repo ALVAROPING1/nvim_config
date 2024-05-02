@@ -27,6 +27,7 @@ return {
         },
     },
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+    { import = "astrocommunity.pack.rainbow-delimiter-indent-blankline" },
     {
         "HiPhish/rainbow-delimiters.nvim",
         opts = function()
@@ -40,7 +41,7 @@ return {
                     [""] = "rainbow-delimiters",
                     latex = "rainbow-blocks",
                 },
-                highlight = vim.g.rainbow_delimiters_highlight,
+                highlight = vim.g.rainbow_delimiters.highlight,
             }
         end,
     },

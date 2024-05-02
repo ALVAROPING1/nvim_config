@@ -153,12 +153,11 @@ return {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        opts = function(_, opts)
+        opts = {
             -- TODO: move underline position in Kitty once an updated version is on the package repos
-            opts.debounce = 500
-            opts.indent.char = "▎"
-            opts.scope = {
-                enabled = true,
+            debounce = 500,
+            indent = { char = "▎" },
+            scope = {
                 include = {
                     node_type = {
                         lua = { "table_constructor", "function_call" },
@@ -166,12 +165,9 @@ return {
                         ["*"] = { "parameters" },
                     },
                 },
-                highlight = vim.g.rainbow_delimiters_highlight,
-            }
-            -- Rainbow-Delimiters integration
-            local hooks = require("ibl.hooks")
-            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-        end,
+            },
+            -- TODO: check that astrocommunity integration works
+        },
     },
     {
         "nvim-tree/nvim-web-devicons",
