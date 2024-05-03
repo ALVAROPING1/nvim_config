@@ -12,7 +12,7 @@ return {
     },
     opts = {
         load = {
-            ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.todo-introspector" } } },
+            ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc" } } },
             ["core.keybinds"] = {
                 config = {
                     hook = function(kb)
