@@ -61,7 +61,7 @@ local CONVERSION_FUNCTION = {
     markdown = export_file,
     norg = function(filename)
         local content, _ = require("neorg.core.modules").get_module("core.export").export(0, "markdown")
-        content = content:gsub("(\n%s*%d)%. ", "%1%) ")
+        content = content:gsub("(\n%s*%d+)%. ", "%1%) ")
         local file = require("plenary.path"):new(change_extension(filename, ".md"))
         file:write(content, "w")
         export_file(file.filename, function()
