@@ -21,7 +21,7 @@ devicons.set_icon({
         cterm_color = "22",
         name = "Tex",
     },
-    ["neo-tree"] = {
+    ["Neo-tree"] = {
         icon = require("astronvim.utils").get_icon("FolderClosed"),
         color = require("astronvim.utils").get_hlgroup("Directory").fg,
         name = "NeoTree",
