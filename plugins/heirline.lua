@@ -140,11 +140,12 @@ return {
             -- the elements after this will appear on the right of the statusline
             status.component.fill(),
             -- add a component for the current diagnostics if it exists and use the right separator for the section
-            status.component.diagnostics({ surround = { separator = "right" } }),
+            status.component.diagnostics({ surround = { separator = "right" }, padding = { right = 1 } }),
             -- add a component to display LSP clients, disable showing LSP progress, and use the right separator
             status.component.lsp({
                 lsp_progress = false,
                 hl = hl.get_attributes("lsp_clients"),
+                padding = { right = 1 },
                 surround = { separator = "right" },
             }),
             -- NvChad has some nice icons to go along with information, so we can create a parent component to do this
@@ -169,7 +170,7 @@ return {
                         fname = function(nr)
                             return vim.fn.fnamemodify(vim.fn.getcwd(nr), ":t")
                         end,
-                        padding = { left = 1 },
+                        padding = { left = 1, right = 1 },
                     },
                     -- disable all other elements of the file_info component
                     file_icon = false,
