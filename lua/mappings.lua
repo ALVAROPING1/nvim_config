@@ -71,8 +71,6 @@ return {
         ["<Leader>W"] = { "<Cmd>w!<CR>", desc = "Force save" },
         -- Nvim-surround group
         ["<C-s>"] = { desc = "Surround" },
-        -- Refactor-nvim group
-        ["<Leader>r"] = { desc = " Refactor" },
         -- Open terminals
         ["<Leader>tt"] = {
             function()
