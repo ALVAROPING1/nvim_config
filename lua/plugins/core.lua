@@ -139,8 +139,8 @@ return {
     {
         "folke/todo-comments.nvim",
         keys = {
-            { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
-            { "<leader>xt", "<cmd>TodoTrouble<cr>",   desc = "Workspace TODOs (Trouble)" },
+            { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Find TODOs" },
+            { "<leader>xt", "<cmd>TodoTrouble<cr>",                           desc = "Workspace TODOs (Trouble)" },
         },
         dependencies = {
             {
