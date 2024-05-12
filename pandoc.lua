@@ -19,13 +19,13 @@ local function get_args(input_file)
     local has_data_dir = Path:new(".pandoc"):is_dir()
     local has_options_file = has_data_dir or Path:new("pandoc_options.yaml"):is_file()
 
-    return {
+    return vim.tbl_flatten({ -- Use flatten to filter nil values
         input_file,
         "-o",
         output_file,
-        has_data_dir and "--data-dir=.pandoc" or nil,
-        has_options_file and "--defaults=pandoc_options.yaml" or nil,
-    }
+        { has_data_dir and "--data-dir=.pandoc" or nil },
+        { has_options_file and "--defaults=pandoc_options.yaml" or nil },
+    })
 end
 
 --- Exports a given file to PDF
