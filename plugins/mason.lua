@@ -10,7 +10,8 @@ return {
             opts.ensure_installed = vim.tbl_filter(function(x)
                 return x ~= "pyright"
             end, opts.ensure_installed)
-            opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "clangd", "basedpyright" })
+            opts.ensure_installed =
+                utils.list_insert_unique(opts.ensure_installed, { "clangd", "basedpyright", "vhdl_ls" })
         end,
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
