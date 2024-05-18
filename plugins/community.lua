@@ -238,6 +238,7 @@ return {
         "smjonas/inc-rename.nvim",
         opts = {
             hlgroup = "IncRenameText",
+            save_in_cmdline_history = false,
         },
         keys = function(_, keys)
             keys[1].desc = "Rename current symbol"
