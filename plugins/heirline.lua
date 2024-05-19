@@ -122,8 +122,8 @@ return {
             -- add a section for the currently opened filetype information
             status.component.file_info({
                 -- enable the file_icon and disable the highlighting based on filetype
-                file_icon = { padding = { left = 0 } },
-                filetype = {},
+                file_icon = { padding = { left = 0, right = 0 } },
+                filetype = { padding = { left = 1 } },
                 -- disable all other elements of the file_info component
                 filename = false,
                 file_modified = false,
