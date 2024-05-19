@@ -88,6 +88,12 @@ return {
             end,
             desc = "Find themes",
         },
+        ["<leader>fH"] = {
+            function()
+                require("telescope.builtin").highlights()
+            end,
+            desc = "Find highlight groups",
+        },
         ["<leader><leader>"] = {
             name = "󰐕 More commands",
             -- Text search
