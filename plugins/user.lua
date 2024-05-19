@@ -9,7 +9,7 @@ return {
     --     require("lsp_signature").setup()
     --   end,
     -- },
-    "Mofiqul/vscode.nvim",
+    { "Mofiqul/vscode.nvim", opts = { terminal_colors = false } },
     {
         "nvim-treesitter/nvim-treesitter-context",
         event = "User AstroFile",

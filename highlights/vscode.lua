@@ -18,12 +18,11 @@ return {
 
     -- Diagnostics
     Error = { undercurl = true, fg = red, sp = red },
-    DiagnosticUnnecessary = { fg = "#8D8D8D" }, -- Used by python
 
     -- Spelling
     SpellBad = { link = "Error" },
-    SpellCap = { link = "DiagnosticUnderlineInfo" },
-    SpellRare = { link = "DiagnosticUnderlineWarn" },
+    SpellCap = { link = "DiagnosticUnderlineWarn" },
+    SpellRare = { link = "DiagnosticUnderlineInfo" },
 
     -- Floating windows
     -- Background
@@ -47,6 +46,7 @@ return {
     ["@comment.documentation"] = { fg = blue },
     ["@operator.regex"] = { link = "SpecialChar" },
     ["@punctuation.delimiter.regex"] = { link = "jsRegexpString" },
+    ["@type.builtin"] = { fg = blue },
 
     -- NeoTree
     NeoTreeGitAdded = { link = "NvimTreeGitRenamed" },
