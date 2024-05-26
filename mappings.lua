@@ -94,6 +94,12 @@ return {
             end,
             desc = "Find highlight groups",
         },
+        ["<Leader>lv"] = {
+            function()
+                vim.diagnostic.config({ virtual_text = not require("lsp_lines").toggle() })
+            end,
+            desc = "Toggle virtual diagnostic lines",
+        },
         ["<leader><leader>"] = {
             name = "󰐕 More commands",
             -- Text search
