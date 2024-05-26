@@ -334,8 +334,8 @@ return {
                     filter = {
                         any = {
                             { find = "Starting watcher for" },
-                            { find = "Watcher running for " },
-                            { find = "Stopping watch for " },
+                            { find = "Watcher running for" },
+                            { find = "Stopping watch for" },
                         },
                     },
                     opts = { skip = true },
