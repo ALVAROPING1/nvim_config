@@ -15,6 +15,12 @@ return {
         opts = {
             auto = true,
             filetypes = { "py" },
+            popup = {
+                border = {
+                    style = "rounded",
+                    padding = { 0, 1 },
+                },
+            },
         },
     },
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
