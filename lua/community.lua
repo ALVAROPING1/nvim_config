@@ -158,7 +158,6 @@ return {
             "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim", -- TODO: remove on neovim 0.10
-            "nvim-neotest/neotest-python",
             {
                 "folke/neodev.nvim",
                 opts = function(_, opts)
@@ -176,9 +175,6 @@ return {
         },
         opts = function()
             return {
-                adapters = {
-                    require("neotest-python")(require("astrocore").plugin_opts("neotest-python")),
-                },
                 quickfix = { enabled = false },
                 summary = {
                     mappings = {
