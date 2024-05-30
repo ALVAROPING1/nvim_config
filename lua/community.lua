@@ -45,7 +45,7 @@ return {
             }
         end,
     },
-    { import = "astrocommunity.terminal-integration.flatten-nvim" },
+    -- { import = "astrocommunity.terminal-integration.flatten-nvim" },
     { import = "astrocommunity.utility.neodim" },
     {
         "zbirenbaum/neodim",
