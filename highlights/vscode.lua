@@ -122,4 +122,5 @@ return {
     TreesitterContext = { bg = grey },
     NeorgContext = { link = "TreesitterContext" },
     MatchParen = { fg = "#11d116" },
+    TroubleIconDirectory = { link = "Directory" },
 }
