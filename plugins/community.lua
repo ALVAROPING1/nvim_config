@@ -153,9 +153,6 @@ return {
                 },
             }
         end,
-        config = function(_, opts)
-            require("mini.animate").setup(opts)
-        end,
     },
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.lua" },
