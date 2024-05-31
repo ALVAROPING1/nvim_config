@@ -43,7 +43,6 @@ return {
         gitblame_message_when_not_committed = "   <author>, <date> • Uncommitted changes",
         gitblame_date_format = "%r",
         gitblame_highlight_group = "GitBlameText",
-        gitblame_delay = 250,
         max_file = { size = 1024 * 1024, lines = 10000 }, -- Global limits for large files
         -- Disable unused plugin interfaces
         loaded_python3_provider = 0,
