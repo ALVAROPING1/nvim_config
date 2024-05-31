@@ -274,8 +274,8 @@ return {
     { import = "astrocommunity.workflow.hardtime-nvim" },
     {
         "m4xshen/hardtime.nvim",
-        opts = function(_, opts)
-            opts.disabled_filetypes = {
+        opts = {
+            disabled_filetypes = {
                 -- Default (required since the option is overwritten rather than merged)
                 "NvimTree",
                 "TelescopePrompt",
@@ -303,8 +303,8 @@ return {
                 -- Custom
                 "cmake_tools_terminal",
                 "query",
-            }
-        end,
+            },
+        },
     },
     { import = "astrocommunity.utility.noice-nvim" },
     {
