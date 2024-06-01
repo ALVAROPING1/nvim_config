@@ -197,15 +197,6 @@ return {
         end,
     },
     { import = "astrocommunity.editing-support.treesj" },
-    {
-        "Wansmer/treesj",
-        keys = function(_, keys)
-            keys[1][1] = "<leader>J"
-        end,
-        opts = {
-            max_join_length = 100,
-        },
-    },
     { import = "astrocommunity.git.git-blame-nvim" },
     { import = "astrocommunity.lsp.inc-rename-nvim" },
     {
@@ -214,9 +205,6 @@ return {
             hlgroup = "IncRenameText",
             save_in_cmdline_history = false,
         },
-        keys = function(_, keys)
-            keys[1].desc = "Rename current symbol"
-        end,
     },
     -- { import = "astrocommunity.project.nvim-spectre" },
     -- {

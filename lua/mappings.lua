@@ -34,19 +34,6 @@ return {
             c = { require("astrocore.buffer").close_tab, "Close current workspace" },
             N = { "<Cmd>tabnew<CR>", "New workspace" },
         },
-        -- Navigate buffer tabs with `Tab` and `Shift-Tab`
-        ["<Tab>"] = {
-            function()
-                require("astrocore.buffer").nav(vim.v.count1)
-            end,
-            desc = "Next buffer",
-        },
-        ["<S-Tab>"] = {
-            function()
-                require("astrocore.buffer").nav(-vim.v.count1)
-            end,
-            desc = "Previous buffer",
-        },
         ["<Leader>c"] = {
             function()
                 local bufs = vim.fn.getbufinfo({ buflisted = true })
@@ -83,14 +70,6 @@ return {
                 require("astrocore").toggle_term_cmd("ipython")
             end,
             desc = "ToggleTerm python",
-        },
-        -- Move find themes from `ft` to `fT` since it will be more rarely used than find TODOs
-        ["<Leader>ft"] = false,
-        ["<Leader>fT"] = {
-            function()
-                require("telescope.builtin").colorscheme({ enable_preview = true })
-            end,
-            desc = "Find themes",
         },
         ["<Leader>fH"] = {
             function()

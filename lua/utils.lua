@@ -43,4 +43,13 @@ function M.restore_view(mapping)
     return "msHmt" .. mapping .. "'tzt`s"
 end
 
+--- Moves a value of a table to a different key
+---@param tbl table
+---@param dest any
+---@param src any
+function M.tbl_move(tbl, dest, src)
+    tbl[dest] = tbl[src]
+    tbl[src] = nil
+end
+
 return M
