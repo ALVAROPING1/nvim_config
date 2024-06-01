@@ -40,4 +40,9 @@ devicons.set_icon({
         color = require("user.highlights.vscode").LazyH1.bg,
         name = "LSPInfo",
     },
+    alpha = {
+        icon = "α",
+        color = require("user.highlights.vscode").LazyH1.bg,
+        name = "Alpha",
+    },
 })
