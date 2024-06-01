@@ -94,7 +94,7 @@ return {
             move_cursor = false,
         },
     },
-    { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
+    { import = "astrocommunity.recipes.heirline-vscode-winbar" },
     { import = "astrocommunity.scrolling.cinnamon-nvim" },
     {
         "declancm/cinnamon.nvim",
