@@ -14,11 +14,6 @@ return {
     -- },
     { "Mofiqul/vscode.nvim", opts = { terminal_colors = false } },
     {
-        "nvim-treesitter/nvim-treesitter-context",
-        event = "User AstroFile",
-        config = true,
-    },
-    {
         "jbyuki/nabla.nvim",
         keys = {
             { "<leader>M", "<cmd>lua require('nabla').popup({border='rounded'})<cr>", desc = "Open math render popup" },

@@ -371,4 +371,5 @@ return {
         end,
     },
     { import = "astrocommunity.git.diffview-nvim" },
+    { import = "astrocommunity.editing-support.nvim-treesitter-context" },
 }
