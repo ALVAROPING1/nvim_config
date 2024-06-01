@@ -179,7 +179,7 @@ return {
                     name = "Markdown",
                 },
                 latex = {
-                    icon = "󰙩",
+                    icon = "",
                     color = "#3D6117",
                     cterm_color = "22",
                     name = "Tex",
