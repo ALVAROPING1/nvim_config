@@ -11,7 +11,7 @@ return {
         -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
         highlights = {
             init = require("highlights.init"),
-            astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
+            astrodark = { -- a table of overrides/changes when applying the astrotheme theme
                 -- Normal = { bg = "#000000" },
             },
             vscode = require("highlights.vscode"),
