@@ -151,50 +151,21 @@ return {
             cmake_compile_commands_from_lsp = true,
         },
     },
-    -- { import = "astrocommunity.test.neotest" },
+    { import = "astrocommunity.test.neotest" },
     {
         "nvim-neotest/neotest",
         dependencies = {
-            "nvim-neotest/nvim-nio",
-            "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim", -- TODO: remove on neovim 0.10
-            {
-                "folke/neodev.nvim",
-                opts = function(_, opts)
-                    vim.print(opts.library) -- TODO: check what it contains
-                    opts.library = opts.library or {}
-                    if opts.library.plugins ~= true then
-                        opts.library.plugins =
-                            require("astrocore").list_insert_unique(opts.library.plugins, { "neotest" })
-                    end
-                end,
+        },
+        opts = {
+            quickfix = { enabled = false },
+            summary = {
+                mappings = {
+                    next_failed = "l",
+                    prev_failed = "h",
+                },
             },
         },
-        keys = {
-            { "<leader>dt", "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle tests summary window" },
-        },
-        opts = function()
-            return {
-                quickfix = { enabled = false },
-                summary = {
-                    mappings = {
-                        next_failed = "l",
-                        prev_failed = "h",
-                    },
-                },
-            }
-        end,
-        config = function(_, opts)
-            -- get neotest namespace (api call creates or returns namespace)
-            vim.diagnostic.config({
-                virtual_text = {
-                    format = function(diagnostic)
-                        return diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
-                    end,
-                },
-            }, vim.api.nvim_create_namespace("neotest"))
-            require("neotest").setup(opts)
-        end,
     },
     { import = "astrocommunity.editing-support.treesj" },
     { import = "astrocommunity.git.git-blame-nvim" },
