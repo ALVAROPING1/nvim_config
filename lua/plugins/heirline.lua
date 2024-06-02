@@ -1,87 +1,87 @@
-local status = require("astroui.status")
-local hl = require("astroui.status.hl")
-
---- Gets the filename of the buffer. Falls back to the filetype if it has no name
----@param bufnr integer Buffer number
----@param type 0 | 1 | 2 Whether to get the icon name (0), file name (1), or filetype (2)
----@param modify string? Modifier of `vim.fn.fnamemodify()`
----@return string
-function status.utils.get_file_text(bufnr, type, modify)
-    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), modify or ":t")
-    local filetype = vim.bo[bufnr].filetype
-    local term_app = filename:match("^%d*:?(.-)%s*;#toggleterm#")
-    local cargo_app = filename:match("^.+&& (cargo %w+)")
-    return (
-        -- Toggleterm buffers
-           term_app
-        -- Cargo (Rust) buffers
-        or (cargo_app and (type == 0 and "cargo" or cargo_app))
-        -- Neo-tree buffer
-        or (filename == "neo-tree filesystem [1]" and "Neo-tree")
-        -- Plugins with floating window UI
-        or (vim.tbl_contains({ "TelescopePrompt", "lazy", "mason", "lspinfo", "null-ls-info" }, filetype) and filetype:gsub("^%a", string.upper))
-        -- Diffview buffers
-        or (filename:match("^Diffview") and type == 0 and "git")
-        -- Fallback
-        or (type == 1 and filename or filetype)
-    )
-end
-
---- Gets the icon of the buffer
----@param bufnr integer Buffer number
----@return string Character
----@return string? Color
-function status.utils.get_file_icon(bufnr)
-    local devicons_avail, devicons = pcall(require, "nvim-web-devicons")
-    if not devicons_avail then
-        return "", nil
-    end
-    local ft_icon, ft_color = devicons.get_icon_color(status.utils.get_file_text(bufnr, 0))
-    if not ft_icon then
-        ft_icon, ft_color = devicons.get_icon_color_by_filetype(vim.bo[bufnr].filetype, { default = true })
-    end
-    return ft_icon, ft_color
-end
-
----@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to fix colors on buffers with filetype but no name
-function hl.filetype_color(self)
-    local _, color = status.utils.get_file_icon(self and self.bufnr or 0)
-    return { fg = color }
-end
-
----@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add more icons
-function status.provider.file_icon(opts)
-    return function(self)
-        local ft_icon, _ = status.utils.get_file_icon(self and self.bufnr or 0)
-        return status.utils.stylize(ft_icon, opts)
-    end
-end
-
----@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filetype in some cases
-function status.provider.filename(opts)
-    opts = require("astrocore").extend_tbl({
-        fallback = "Untitled",
-        fname = function(nr)
-            return status.utils.get_file_text(nr, 1, opts.modify)
-        end,
-        modify = ":t",
-    }, opts)
-    return function(self)
-        local filename = opts.fname(self and self.bufnr or 0)
-        return status.utils.stylize((filename == "" and opts.fallback or filename), opts)
-    end
-end
-
----@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filenames in some cases
-function status.provider.filetype(opts)
-  return function(_)
-    return status.utils.stylize(status.utils.get_file_text(0, 2), opts)
-  end
-end
-
 return {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
+        local status = require("astroui.status")
+        local hl = require("astroui.status.hl")
+
+        --- Gets the filename of the buffer. Falls back to the filetype if it has no name
+        ---@param bufnr integer Buffer number
+        ---@param type 0 | 1 | 2 Whether to get the icon name (0), file name (1), or filetype (2)
+        ---@param modify string? Modifier of `vim.fn.fnamemodify()`
+        ---@return string
+        function status.utils.get_file_text(bufnr, type, modify)
+            local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), modify or ":t")
+            local filetype = vim.bo[bufnr].filetype
+            local term_app = filename:match("^%d*:?(.-)%s*;#toggleterm#")
+            local cargo_app = filename:match("^.+&& (cargo %w+)")
+            return (
+                -- Toggleterm buffers
+                   term_app
+                -- Cargo (Rust) buffers
+                or (cargo_app and (type == 0 and "cargo" or cargo_app))
+                -- Neo-tree buffer
+                or (filename == "neo-tree filesystem [1]" and "Neo-tree")
+                -- Plugins with floating window UI
+                or (vim.tbl_contains({ "TelescopePrompt", "lazy", "mason", "lspinfo", "null-ls-info" }, filetype) and filetype:gsub("^%a", string.upper))
+                -- Diffview buffers
+                or (filename:match("^Diffview") and type == 0 and "git")
+                -- Fallback
+                or (type == 1 and filename or filetype)
+            )
+        end
+
+        --- Gets the icon of the buffer
+        ---@param bufnr integer Buffer number
+        ---@return string Character
+        ---@return string? Color
+        function status.utils.get_file_icon(bufnr)
+            local devicons_avail, devicons = pcall(require, "nvim-web-devicons")
+            if not devicons_avail then
+                return "", nil
+            end
+            local ft_icon, ft_color = devicons.get_icon_color(status.utils.get_file_text(bufnr, 0))
+            if not ft_icon then
+                ft_icon, ft_color = devicons.get_icon_color_by_filetype(vim.bo[bufnr].filetype, { default = true })
+            end
+            return ft_icon, ft_color
+        end
+
+        ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to fix colors on buffers with filetype but no name
+        function hl.filetype_color(self)
+            local _, color = status.utils.get_file_icon(self and self.bufnr or 0)
+            return { fg = color }
+        end
+
+        ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add more icons
+        function status.provider.file_icon(opt)
+            return function(self)
+                local ft_icon, _ = status.utils.get_file_icon(self and self.bufnr or 0)
+                return status.utils.stylize(ft_icon, opt)
+            end
+        end
+
+        ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filetype in some cases
+        function status.provider.filename(opt)
+            opt = require("astrocore").extend_tbl({
+                fallback = "Untitled",
+                fname = function(nr)
+                    return status.utils.get_file_text(nr, 1, opt.modify)
+                end,
+                modify = ":t",
+            }, opt)
+            return function(self)
+                local filename = opt.fname(self and self.bufnr or 0)
+                return status.utils.stylize((filename == "" and opt.fallback or filename), opt)
+            end
+        end
+
+        ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filenames in some cases
+        function status.provider.filetype(opt)
+            return function(_)
+                return status.utils.stylize(status.utils.get_file_text(0, 2), opt)
+            end
+        end
+
         -- Fix winbar icons losing color when the window is inactive
         -- Modified from: https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/recipes/heirline-vscode-winbar/init.lua
         opts.winbar[1][2] = status.component.file_info({
@@ -122,7 +122,7 @@ return {
             -- add a section for the currently opened filetype information
             status.component.file_info({
                 -- enable the file_icon and disable the highlighting based on filetype
-                file_icon = { padding = { left = 0, right = 0 } },
+                file_icon = { padding = { left = 0, right = 0 }, condition = false },
                 filetype = { padding = { left = 1 } },
                 -- disable all other elements of the file_info component
                 filename = false,
@@ -179,6 +179,7 @@ return {
                         padding = { left = 1, right = 1 },
                     },
                     -- disable all other elements of the file_info component
+                    filetype = false,
                     file_icon = false,
                     file_modified = false,
                     file_read_only = false,
