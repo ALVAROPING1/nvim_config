@@ -180,13 +180,15 @@ return {
                 ["null-ls-info"] = "lsp",
                 cargo = "rs",
             })
+            local md = {
+                icon = "",
+                color = "#519aba",
+                name = "Markdown",
+            }
             return vim.tbl_deep_extend("force", opts, {
                 override = {
-                    md = {
-                        icon = "",
-                        color = "#519aba",
-                        name = "Markdown",
-                    },
+                    markdown = md,
+                    md = md,
                     ["neo-tree"] = {
                         icon = utils.get_icon("FolderClosed"),
                         color = utils.get_hlgroup("Directory").fg,
