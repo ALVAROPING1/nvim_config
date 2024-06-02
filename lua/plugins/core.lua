@@ -178,12 +178,6 @@ return {
                     color = "#519aba",
                     name = "Markdown",
                 },
-                latex = {
-                    icon = "",
-                    color = "#3D6117",
-                    cterm_color = "22",
-                    name = "Tex",
-                },
                 ["Neo-tree"] = {
                     icon = utils.get_icon("FolderClosed"),
                     color = utils.get_hlgroup("Directory").fg,
