@@ -342,8 +342,8 @@ return {
     { import = "astrocommunity.project.projectmgr-nvim" },
     {
         "charludo/projectmgr.nvim",
-        event = false,
         lazy = true,
+        cmd = { "ProjectMgr" },
         opts = {
             autogit = { enabled = false }, -- Bugs out when using ssh authentication
             session = { enabled = false },
