@@ -1,5 +1,3 @@
-local utils = require("astroui")
-
 return {
     -- customize alpha options
     {
@@ -171,41 +169,9 @@ return {
     },
     {
         "nvim-tree/nvim-web-devicons",
-        opts = {
-            override = {
-                md = {
-                    icon = "",
-                    color = "#519aba",
-                    name = "Markdown",
-                },
-                ["Neo-tree"] = {
-                    icon = utils.get_icon("FolderClosed"),
-                    color = utils.get_hlgroup("Directory").fg,
-                    name = "NeoTree",
-                },
-                TelescopePrompt = {
-                    icon = utils.get_icon("Search"),
-                    name = "Telescope",
-                },
-                Lazy = {
-                    icon = "󰒲",
-                    color = require("highlights.vscode").LazyH1.bg,
-                    name = "Lazy",
-                },
-                lsp = {
-                    icon = utils.get_icon("ActiveLSP"),
-                    color = require("highlights.vscode").LazyH1.bg,
-                    name = "LSPInfo",
-                },
-                alpha = {
-                    icon = "α",
-                    color = require("highlights.vscode").LazyH1.bg,
-                    name = "Alpha",
-                },
-            },
-        },
-        config = function(_, opts)
-            require("nvim-web-devicons").setup(opts)
+        opts = function(_, opts)
+            local utils = require("astroui")
+            local vscode = require("highlights.vscode")
             require("nvim-web-devicons").set_icon_by_filetype({
                 toggleterm = "terminal",
                 latex = "tex",
@@ -213,6 +179,39 @@ return {
                 lspinfo = "lsp",
                 ["null-ls-info"] = "lsp",
                 cargo = "rs",
+            })
+            return vim.tbl_deep_extend("force", opts, {
+                override = {
+                    md = {
+                        icon = "",
+                        color = "#519aba",
+                        name = "Markdown",
+                    },
+                    ["neo-tree"] = {
+                        icon = utils.get_icon("FolderClosed"),
+                        color = utils.get_hlgroup("Directory").fg,
+                        name = "NeoTree",
+                    },
+                    telescopeprompt = {
+                        icon = utils.get_icon("Search"),
+                        name = "Telescope",
+                    },
+                    lazy = {
+                        icon = "󰒲",
+                        color = vscode.LazyH1.bg,
+                        name = "Lazy",
+                    },
+                    lsp = {
+                        icon = utils.get_icon("ActiveLSP"),
+                        color = vscode.LazyH1.bg,
+                        name = "LSPInfo",
+                    },
+                    alpha = {
+                        icon = "α",
+                        color = vscode.LazyH1.bg,
+                        name = "Alpha",
+                    },
+                },
             })
         end,
     },
