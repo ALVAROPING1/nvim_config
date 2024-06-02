@@ -127,13 +127,7 @@ return {
             return opts
         end,
     },
-    -- {
-    --     "rcarriga/nvim-notify",
-    --     opts = function(_, opts)
-    --         opts.icons = require("user.icons").notify
-    --         return opts
-    --     end,
-    -- },
+    { "rcarriga/nvim-notify", opts = { icons = { INFO = "" } } },
     {
         "folke/todo-comments.nvim",
         keys = {
