@@ -82,16 +82,6 @@ return {
             end
         end
 
-        -- Fix winbar icons losing color when the window is inactive
-        -- Modified from: https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/recipes/heirline-vscode-winbar/init.lua
-        opts.winbar[1][2] = status.component.file_info({
-            file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
-            file_modified = false,
-            file_read_only = false,
-            hl = status.hl.get_attributes("winbarnc", true),
-            surround = false,
-            update = "BufEnter",
-        })
         -- NVChad statusline
         opts.statusline = {
             -- default highlight for the entire statusline

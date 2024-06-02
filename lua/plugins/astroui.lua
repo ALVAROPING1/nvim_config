@@ -50,6 +50,12 @@ return {
                 return hl
             end,
             attributes = { mode = { bold = true } },
+            icon_highlights = {
+                -- Enable or disable the highlighting of filetype icons in the winbar
+                file_icon = {
+                    winbar = true,
+                },
+            },
         },
     },
 }
