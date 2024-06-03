@@ -130,17 +130,7 @@ return {
     { "rcarriga/nvim-notify", opts = { icons = { INFO = "" } } },
     {
         "folke/todo-comments.nvim",
-        keys = {
-            { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Find TODOs" },
-        },
-        dependencies = {
-            {
-                "AstroNvim/astrocore",
-                opts = function(_, opts)
-                    vim.print(opts.mappings.n["<Leader>fT"]) -- TODO: ver que mapping pilla, debería ser find theme
-                end,
-            },
-        },
+        keys = { { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Find TODOs" } },
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -157,7 +147,6 @@ return {
                     },
                 },
             },
-            -- TODO: check that astrocommunity integration works
         },
     },
     {
