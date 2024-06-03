@@ -365,10 +365,13 @@ return {
     { import = "astrocommunity.motion.nvim-spider" },
     { import = "astrocommunity.motion.vim-matchup" },
     {
-        "nvim-treesitter/nvim-treesitter",
-        init = function()
-            vim.g.matchup_matchparen_offscreen = {}
-        end,
+        "andymass/vim-matchup",
+        dependencies = {
+            "AstroNvim/astrocore",
+            opts = function(_, opts)
+                opts.options.g.matchup_matchparen_offscreen = {}
+            end,
+        },
     },
     { import = "astrocommunity.git.diffview-nvim" },
     { import = "astrocommunity.editing-support.nvim-treesitter-context" },
