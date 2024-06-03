@@ -233,6 +233,7 @@ return {
                 -- Custom
                 "cmake_tools_terminal",
                 "query",
+                "trouble",
             },
         },
     },
