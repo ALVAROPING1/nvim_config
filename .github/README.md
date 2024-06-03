@@ -4,6 +4,19 @@
 
 A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
+## ⚡ Requirements
+
+- [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+- [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) and Node (To generate the `Latex` TS parser)
+- `lua5.1` and lua library files (`liblua5.1-0-dev`) packages - `luarocks` support for plugin installation
+- Terminal with true color support and good font icons handling (Kitty)
+- Optional Requirements:
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) - live grep telescope search (`<Leader>fw`)
+  - [lazygit](https://github.com/jesseduffield/lazygit) - git ui toggle terminal (`<Leader>tl` or `<Leader>gg`)
+  - [btop](https://github.com/aristocratos/btop) - process viewer toggle terminal (`<Leader>tt`)
+  - [IPython](https://github.com/ipython/ipython) - python repl toggle terminal (`<Leader>tp`)
+  - [Node](https://nodejs.org/en/) - Node is needed for a lot of the LSPs, and for the node repl toggle terminal (`<Leader>tn`)
+
 ## 🛠️ Installation
 
 #### Make a backup of your current nvim and shared folder
