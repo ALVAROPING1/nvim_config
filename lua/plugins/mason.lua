@@ -14,7 +14,7 @@ return {
                 return x ~= "pyright"
             end, opts.ensure_installed)
             opts.ensure_installed =
-                utils.list_insert_unique(opts.ensure_installed, { "clangd", "basedpyright", "vhdl_ls" })
+                utils.list_insert_unique(opts.ensure_installed, { "clangd", "basedpyright", "vhdl_ls", "typos_lsp" })
         end,
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
