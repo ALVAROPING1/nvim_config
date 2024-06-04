@@ -206,6 +206,7 @@ return {
             current_line_blame_opts = {
                 delay = 250,
                 ignore_whitespace = true,
+                virt_text_priority = 5000,
             },
             current_line_blame_formatter = "   <author>, <author_time:%R> • <summary>",
         },
