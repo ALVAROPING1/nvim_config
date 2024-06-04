@@ -203,6 +203,7 @@ return {
     { import = "astrocommunity.workflow.hardtime-nvim" },
     {
         "m4xshen/hardtime.nvim",
+        commit = "e560175", -- TODO: remove on Neovim 0.10
         opts = {
             disabled_filetypes = {
                 -- Default (required since the option is overwritten rather than merged)
