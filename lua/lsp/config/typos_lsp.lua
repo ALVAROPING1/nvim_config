@@ -4,7 +4,12 @@
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function(opt)
-        if not vim.tbl_contains({ "markdown", "norg" }, vim.bo[opt.buf].ft) and vim.bo[opt.buf].buftype ~= "nofile" then
+        local nr = opt.buf
+        if
+            not vim.tbl_contains({ "markdown", "norg" }, vim.bo[nr].ft)
+            and vim.bo[nr].buftype == ""
+            and vim.api.nvim_buf_get_name(nr) ~= ""
+        then
             require("lspconfig").typos_lsp.launch()
         end
     end,
