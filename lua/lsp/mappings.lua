@@ -6,6 +6,7 @@ return {
                 vim.lsp.buf.hover()
             end,
             desc = "Hover symbol details",
+            cond = "textDocument/hover",
         },
         ["K"] = false,
         ["<leader>lr"] = false,
