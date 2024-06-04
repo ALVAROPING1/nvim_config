@@ -116,7 +116,7 @@ return {
     MultiCursorMain = { link = "Visual" },
 
     -- Misc Plugins
-    GitBlameText = { fg = light_grey, bg = CursorLineBg }, -- GitBlame text on current line
+    GitSignsCurrentLineBlame = { fg = light_grey },
     IncRenameText = { link = "Search" },                   -- Background of replaced text
     LspSignatureActiveParameter = { fg = light_blue },     -- Current parameter in function signature
     TreesitterContext = { bg = grey },

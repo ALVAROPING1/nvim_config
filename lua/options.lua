@@ -36,10 +36,6 @@ return {
     -- This can be found in the `lua/lazy_setup.lua` file
     g = {
         -- vim.g.<key>
-        gitblame_message_template = "   <author>, <date> • <summary>",
-        gitblame_message_when_not_committed = "   <author>, <date> • Uncommitted changes",
-        gitblame_date_format = "%r",
-        gitblame_highlight_group = "GitBlameText",
         rainbow_delimiters = { highlight = { "Delimiter1", "Delimiter2", "Delimiter3" } },
         -- Disable unused plugin interfaces
         loaded_python3_provider = 0,
