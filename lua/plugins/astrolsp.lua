@@ -44,6 +44,7 @@ return {
                 cond = "textDocument/documentHighlight",
                 -- cond = function(client, bufnr) return client.name == "lua_ls" end,
                 -- list of auto commands to set
+                -- Highlights all occurrences of the symbol under the cursor
                 {
                     -- events to trigger
                     event = { "CursorHold", "CursorHoldI" },
