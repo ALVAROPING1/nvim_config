@@ -25,7 +25,8 @@ return {
         options = require("options"),
         -- Mappings can be configured through AstroCore as well.
         mappings = require("mappings"),
-        on_keys = { auto_hlsearch = {} },
+        -- Disable search highlight being disabled on cursor movement
+        on_keys = { auto_hlsearch = false },
         rooter = { enabled = false },
     },
 }

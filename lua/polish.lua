@@ -15,10 +15,6 @@
 --   },
 -- }
 
--- Disable search highlight being disabled on cursor movement
----@diagnostic disable-next-line: param-type-mismatch
--- vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
-
 -- Replace deleted lines symbol with diagonal lines in diff view
 vim.opt.fillchars:append({ diff = "╱" })
 
