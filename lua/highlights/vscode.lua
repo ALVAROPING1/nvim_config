@@ -2,19 +2,19 @@ local blue = "#569CD6"
 local light_blue = "#2aaaff"
 local red = "#F44747"
 local tabline_bg = "#141414"
-local CursorLineBg = "#282828"
 local grey = "#404040"
 local light_grey = "#707070"
 -- Table of overrides/changes to the vscode theme
 return {
     -- UI Elements
     TabLineFill = { bg = tabline_bg }, -- Background of buffers line
-    LineNr = { fg = light_grey },
+    LineNr = { link = "VirtualText" },
     CursorLineNr = { fg = "#c6c6c6" },
-    CursorLine = { bg = CursorLineBg },
+    CursorLine = { bg = "#282828" },
     CursorColumn = { link = "CursorLine" },
     ColorColumn = { bg = grey },
     SpecialChar = { link = "Special" }, -- Special characters in strings
+    VirtualText = { fg = light_grey },  -- Custom group for virtual text
 
     -- Diagnostics
     Error = { undercurl = true, fg = red, sp = red },
@@ -101,9 +101,10 @@ return {
     -- GitSigns
     GitSignsAdd = { fg = "#487e02" },
     GitSignsChange = { fg = "#1b81a8" },
+    GitSignsCurrentLineBlame = { link = "VirtualText" },
 
     -- Nvim DAP Virtual text
-    NvimDapVirtualText = { fg = light_grey },
+    NvimDapVirtualText = { link = "VirtualText" },
     NvimDapVirtualTextChanged = { link = "DapUIModifiedValue" },
 
     -- Diffview
@@ -116,9 +117,8 @@ return {
     MultiCursorMain = { link = "Visual" },
 
     -- Misc Plugins
-    GitSignsCurrentLineBlame = { fg = light_grey },
-    IncRenameText = { link = "Search" },                   -- Background of replaced text
-    LspSignatureActiveParameter = { fg = light_blue },     -- Current parameter in function signature
+    IncRenameText = { link = "Search" },               -- Background of replaced text
+    LspSignatureActiveParameter = { fg = light_blue }, -- Current parameter in function signature
     TreesitterContext = { bg = grey },
     NeorgContext = { link = "TreesitterContext" },
     MatchParen = { fg = "#11d116" },
