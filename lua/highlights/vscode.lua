@@ -14,6 +14,7 @@ return {
     CursorColumn = { link = "CursorLine" },
     ColorColumn = { bg = grey },
     PMenuSel = { bg = "#004b72" },
+    CurSearch = { link = "Search" },
     SpecialChar = { link = "Special" }, -- Special characters in strings
     VirtualText = { fg = light_grey },  -- Custom group for virtual text
 
