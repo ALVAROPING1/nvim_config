@@ -123,7 +123,7 @@ return {
                 return require("lspkind").cmp_format(require("astrocore").plugin_opts("lspkind.nvim"))(entry, vim_item)
             end
 
-            opts.sources = cmp.config.sources(opts.sources, { { name = "neorg" } })
+            table.insert(opts.sources, { name = "neorg" })
             return opts
         end,
     },
