@@ -70,7 +70,8 @@ function M.in_environment(environment)
     return traverse_cond({
         latex = {
             generic_environment = function(node)
-                return vim.treesitter.get_node_text(node:named_child(0):named_child(0):named_child(0), 0) == environment
+                node = node:named_child(0):named_child(0):named_child(0) --[[@as TSNode]]
+                return vim.treesitter.get_node_text(node, 0) == environment
             end,
         },
     }, true)
@@ -88,7 +89,7 @@ M.in_math = traverse_cond({
     markdown = {
         inline = "markdown_inline",
         fenced_code_block = function(node)
-            return vim.treesitter.get_node_text(node:named_child(1), 0)
+            return vim.treesitter.get_node_text(node:named_child(1) --[[@as TSNode]], 0)
         end,
     },
     norg = {
@@ -99,7 +100,7 @@ M.in_math = traverse_cond({
             local name = vim.treesitter.get_node_text(name_node, 0)
             return name == "math"
                 or ({ code = true, embed = true })[name]
-                and vim.treesitter.get_node_text(name_node:next_named_sibling(), 0)
+                and vim.treesitter.get_node_text(name_node:next_named_sibling() --[[@as TSNode]], 0)
         end,
     },
 })
