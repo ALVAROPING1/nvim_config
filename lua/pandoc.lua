@@ -13,7 +13,7 @@ end
 --- Creates the `pandoc` arguments table
 ---@param input_file string input file to convert
 ---@return string[]
-local function get_args(input_file)
+local function get_cmd(input_file)
     local output_file = change_extension(input_file, ".pdf")
     local Path = require("plenary.path")
     local has_data_dir = Path:new(".pandoc"):is_dir()
@@ -21,6 +21,7 @@ local function get_args(input_file)
 
     -- stylua: ignore
     return vim.tbl_filter(function(x) return x ~= nil end, {
+        "pandoc",
         input_file,
         "-o",
         output_file,
@@ -33,27 +34,21 @@ end
 ---@param file string File path
 ---@param cleanup fun()? Cleanup function to call after `pandoc` finishes running
 local function export_file(file, cleanup)
-    local args = get_args(file)
-    local output_file = args[3]
+    local cmd = get_cmd(file)
+    local output_file = cmd[4]
 
-    local Job = require("plenary.job")
-    Job
-        :new({
-            command = "pandoc",
-            args = args,
-            on_exit = function(job, exit_code)
-                if cleanup then
-                    cleanup()
-                end
-                if exit_code ~= 0 then
-                    vim.notify(table.concat(job:stderr_result(), "\n"):sub(1, -2), vim.log.levels.ERROR, NOTIFY_OPTS)
-                    return
-                end
-                vim.notify("PDF Exported", vim.log.levels.INFO, NOTIFY_OPTS)
-                Job:new({ command = "xdg-open", args = { output_file } }):start()
-            end,
-        })
-        :start()
+    ---@param out vim.SystemCompleted
+    vim.system(cmd, { text = true }, function(out)
+        if cleanup then
+            cleanup()
+        end
+        if out.code ~= 0 then
+            vim.notify(out.stderr:sub(1, -3), vim.log.levels.ERROR, NOTIFY_OPTS)
+            return
+        end
+        vim.notify("PDF Exported", vim.log.levels.INFO, NOTIFY_OPTS)
+        vim.system({ "xdg-open", output_file })
+    end)
     vim.notify("Exporting PDF...", vim.log.levels.INFO, NOTIFY_OPTS)
 end
 
