@@ -281,6 +281,14 @@ return {
         },
     },
     { import = "astrocommunity.motion.leap-nvim" },
+    {
+        "ggandor/leap.nvim",
+        keys = {
+            { "s",  "<Plug>(leap-forward)",     mode = { "n", "x", "o" } },
+            { "S",  "<Plug>(leap-backward)",    mode = { "n", "x", "o" } },
+            { "gs", "<Plug>(leap-from-window)", mode = { "n", "x", "o" } },
+        },
+    },
     { import = "astrocommunity.motion.flit-nvim" },
     -- { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
     { "https://git.sr.ht/~whynothugo/lsp_lines.nvim",     opts = {} },
