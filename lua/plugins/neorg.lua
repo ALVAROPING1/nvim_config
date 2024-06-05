@@ -9,21 +9,15 @@ return {
             priority = 1000, -- We'd like this plugin to load first out of the rest
             config = true,
         },
+        "jmbuhr/otter.nvim",
     },
     opts = {
         load = {
-            ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc" } } },
+            ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.looking-glass" } } },
             ["core.keybinds"] = {
                 config = {
                     hook = function(kb)
                         local leader = kb.leader
-                        kb.map_event(
-                            "norg",
-                            "n",
-                            leader .. "c",
-                            "core.looking-glass.magnify-code-block",
-                            { desc = "[neorg] Open code block in new buffer" }
-                        )
                         kb.remap_key("norg", "n", leader .. "id", leader .. "d")
                         kb.remap_key("norg", "n", leader .. "nn", leader .. "n")
                         kb.map("norg", "n", leader .. "q", "<Cmd>Neorg return<CR>", { desc = "[neorg] Exit document" })
@@ -61,6 +55,19 @@ return {
                         ordered_list4 = 3,
                         ordered_list5 = 4,
                         ordered_list6 = 5,
+                    },
+                },
+            },
+            ["core.integrations.otter"] = {
+                config = {
+                    keys = {
+                        hover = "gh",
+                        definition = "gd",
+                        type_definition = "gD",
+                        references = "gr",
+                        rename = "<Leader>lr",
+                        format = "<Leader>lf",
+                        document_symbols = "<Leader>lS",
                     },
                 },
             },

@@ -120,7 +120,7 @@ return {
                 return require("lspkind").cmp_format(require("astrocore").plugin_opts("lspkind.nvim"))(entry, vim_item)
             end
 
-            table.insert(opts.sources, { name = "neorg" })
+            vim.list_extend(opts.sources, { { name = "neorg" }, { name = "otter" } })
             return opts
         end,
     },
