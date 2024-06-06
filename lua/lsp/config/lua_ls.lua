@@ -9,8 +9,6 @@ return {
                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                 version = "LuaJIT",
             },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = { enable = false },
             format = {
                 defaultConfig = {
                     indent_style = "space",
@@ -22,6 +20,10 @@ return {
                     break_all_list_when_line_exceed = true,
                     auto_collapse_lines = true,
                 },
+            },
+            hint = {
+                enable = true,
+                arrayIndex = "Disable",
             },
         },
     },
