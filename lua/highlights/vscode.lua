@@ -15,6 +15,7 @@ return {
     ColorColumn = { bg = grey },
     PMenuSel = { bg = "#004b72" },
     CurSearch = { link = "Search" },
+    LspInlayHint = { link = "VirtualText" },
     SpecialChar = { link = "Special" }, -- Special characters in strings
     VirtualText = { fg = light_grey },  -- Custom group for virtual text
 
@@ -49,6 +50,10 @@ return {
     ["@operator.regex"] = { link = "SpecialChar" },
     ["@punctuation.delimiter.regex"] = { link = "jsRegexpString" },
     ["@type.builtin"] = { fg = blue },
+    ["@module.builtin"] = { link = "@module" },
+    ["@keyword.define"] = { link = "Define" },
+    ["@string.special.url"] = { link = "@markup.link.url" },
+    ["@variable.parameter.builtin"] = { link = "@variable.builtin" },
 
     -- NeoTree
     NeoTreeGitAdded = { link = "NvimTreeGitRenamed" },
