@@ -111,10 +111,7 @@ return {
     },
     { import = "astrocommunity.recipes.heirline-vscode-winbar" },
     { import = "astrocommunity.scrolling.cinnamon-nvim" },
-    {
-        "declancm/cinnamon.nvim",
-        opts = { default_delay = 5 },
-    },
+    { "declancm/cinnamon.nvim",                                opts = { default_delay = 5 } },
     { import = "astrocommunity.scrolling.satellite-nvim" },
     { import = "astrocommunity.scrolling.mini-animate" },
     {
@@ -122,15 +119,9 @@ return {
         opts = function()
             local animate = require("mini.animate")
             return {
-                resize = {
-                    timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
-                },
-                scroll = {
-                    enable = false,
-                },
-                cursor = {
-                    timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
-                },
+                resize = { timing = animate.gen_timing.linear({ duration = 100, unit = "total" }) },
+                scroll = { enable = false },
+                cursor = { timing = animate.gen_timing.linear({ duration = 100, unit = "total" }) },
             }
         end,
     },
@@ -289,9 +280,7 @@ return {
                     opts = { skip = true },
                 },
             },
-            presets = {
-                lsp_doc_border = true,
-            },
+            presets = { lsp_doc_border = true },
         },
     },
     -- { import = "astrocommunity.motion.leap-nvim" },
