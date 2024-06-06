@@ -128,7 +128,6 @@ return {
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.rust" },
-    { "simrat39/rust-tools.nvim",                opts = { server = { standalone = true } } },
     { "linux-cultist/venv-selector.nvim",        enabled = false },
     {
         "mfussenegger/nvim-dap-python",
