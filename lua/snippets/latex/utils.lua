@@ -95,7 +95,6 @@ M.in_math = traverse_cond({
     norg = {
         inline_math = true,
         ranged_verbatim_tag = function(node)
-            ---@diagnostic disable-next-line: undefined-field # Field exists, but the type annotation isn't in neovim 0.9.5. TODO: remove after neovim 0.10 is stable
             local name_node = node:field("name")[1]
             local name = vim.treesitter.get_node_text(name_node, 0)
             return name == "math"

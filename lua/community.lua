@@ -116,7 +116,6 @@ return {
         opts = { default_delay = 5 },
     },
     { import = "astrocommunity.scrolling.satellite-nvim" },
-    { "lewis6991/satellite.nvim",                        commit = "f36c6ff" }, -- Newer versions require neovim 0.10
     { import = "astrocommunity.scrolling.mini-animate" },
     {
         "echasnovski/mini.animate",
@@ -171,7 +170,7 @@ return {
     {
         "nvim-neotest/neotest",
         dependencies = {
-            "antoinemadec/FixCursorHold.nvim", -- TODO: remove on neovim 0.10
+            "antoinemadec/FixCursorHold.nvim", -- TODO: is this needed on neovim 0.10?
         },
         opts = {
             quickfix = { enabled = false },
@@ -219,7 +218,6 @@ return {
     { import = "astrocommunity.workflow.hardtime-nvim" },
     {
         "m4xshen/hardtime.nvim",
-        commit = "e560175", -- TODO: remove on Neovim 0.10
         opts = {
             disabled_filetypes = {
                 -- Default (required since the option is overwritten rather than merged)
