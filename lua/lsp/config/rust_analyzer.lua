@@ -6,16 +6,20 @@ return {
         ["rust-analyzer"] = {
             check = {
                 command = "clippy",
-                extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used" },
+                -- stylua: ignore
+                extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used", "--no-deps" },
             },
             assist = {
                 importPrefix = "self",
+                emitMustUse = true, -- TODO: check what this does
             },
             completion = {
                 postfix = {
                     enable = true,
                 },
             },
+            diagnostics = { styleLints = { enable = true } },
+            inlayHints = { closureReturnTypeHints = { enable = "with_block" } },
         },
     },
 }
