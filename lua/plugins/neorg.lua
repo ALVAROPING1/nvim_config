@@ -28,15 +28,7 @@ return {
             ["core.export"] = {},
             ["core.export.markdown"] = { config = { extensions = "all" } },
             ["core.mode"] = {},
-            ["core.highlights"] = {
-                config = {
-                    highlights = {
-                        lists = {
-                            ordered = { prefix = "+@markup.list" },
-                        },
-                    },
-                },
-            },
+            ["core.highlights"] = { config = { highlights = { lists = { ordered = { prefix = "+@markup.list" } } } } },
             -- ["core.ui.calendar"] = {}
             ["core.concealer"] = { config = { icons = { code_block = { spell_check = false } } } },
             -- HACK: render correct indentation for nested lists. This would be better done with
