@@ -150,6 +150,7 @@ return {
             cmake_compile_commands_from_lsp = true,
         },
     },
+    { "mrcjkb/rustaceanvim",                 opts = { tools = { hover_actions = { border = "rounded" } } } },
     { import = "astrocommunity.test.neotest" },
     {
         "nvim-neotest/neotest",
