@@ -90,7 +90,7 @@ return {
             -- Rainbow delimiters
             ["r"] = { "<Cmd>e<CR>", "Reload rainbow delimiters" },
             ["c"] = {
-                desc = "󰅺 Comment Box",
+                name = "󰅺 Comment Box",
                 n = { "<Cmd>lua require('comment-box').llbox()<CR>", "Normal box" },
                 H = { "<Cmd>lua require('comment-box').lcbox(7)<CR>", "Header box" },
                 h = { "<Cmd>lua require('comment-box').lcline()<CR>", "Header line" },
