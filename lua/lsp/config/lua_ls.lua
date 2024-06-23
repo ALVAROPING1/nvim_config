@@ -1,7 +1,8 @@
 -- Config for the lua_ls (lua) language server
 ---@diagnostic disable: missing-fields
----@type lspconfig.options.lua_ls
+---@type lspconfig
 return {
+    ---@type lspconfig.settings.lua_ls
     settings = {
         Lua = {
             completion = { callSnippet = "Replace" },

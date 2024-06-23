@@ -1,7 +1,8 @@
 -- Config for the rust_analyzer (rust) language server
 ---@diagnostic disable: missing-fields
----@type lspconfig.options.rust_analyzer
+---@type lspconfig
 return {
+    ---@type lspconfig.settings.rust_analyzer
     settings = {
         ["rust-analyzer"] = {
             check = {

@@ -15,9 +15,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+---@type lspconfig
 return {
     autostart = false,
-    init_options = {
-        diagnosticSeverity = "Warning",
-    },
+    init_options = { diagnosticSeverity = "Warning" },
 }

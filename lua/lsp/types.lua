@@ -1,0 +1,39 @@
+---@meta
+
+---@class lspconfig : vim.lsp.ClientConfig
+---
+---Returns either a filepath (string) or nil. The language server will only
+---start if the function returns a filepath.
+---
+---If a root directory (string) is returned which is unique from any
+---previously returned root_dir, a new server will be spawned with that
+---root directory. See |lspconfig-root-detection| for more details
+---@field root_dir? fun(filename: string, bufnr: integer): string?
+---
+---Defaults to the server's name (`clangd`, `pyright`, etc.).
+---@field name? string
+---
+---Set of filetypes for which to attempt to resolve {root_dir}.
+---
+---May be empty, or server may specify a default value.
+---@field filetypes? string[]?
+---
+---Controls if the `FileType` autocommand that launches a language server is
+---created. If `false`, allows for deferring language servers until manually
+---launched with `:LspStart` (|lspconfig-commands|). (Default: `true`)
+---@field autostart? boolean
+---
+---Determines if a server is started without a matching root directory.
+---See |lspconfig-single-file-support|. (Default: `nil`)
+---@field single_file_support? boolean?
+---
+---Function executed after a root directory is detected. This is used to
+---modify the server configuration (including `cmd` itself). Most commonly,
+---this is used to inject additional arguments into `cmd`.
+---
+---If overriding `on_new_config`, ensure that you read the
+---`on_new_config` defined in the source file of the default configuration
+---in `lspconfig`. The original `on_new_config` snippet for a given server
+---should likely be included in your new override. Some configurations
+---use `on_new_config` to dynamically set or modify `cmd`.
+---@field on_new_config? fun(new_config: lspconfig, new_root_dir: string)
