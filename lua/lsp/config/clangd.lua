@@ -11,4 +11,7 @@ return {
     on_new_config = function(new_config, _)
         require("cmake-tools").clangd_on_new_config(new_config)
     end,
+    -- This is needed to prevent clangd from auto-expanding function completions sometimes when selecting them on cmp?
+    -- TODO: check if it has any sideeffects
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
 }

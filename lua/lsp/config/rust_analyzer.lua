@@ -15,9 +15,8 @@ return {
                 emitMustUse = true, -- TODO: check what this does
             },
             completion = {
-                postfix = {
-                    enable = true,
-                },
+                postfix = { enable = true },
+                callable = { snippets = "none" }, -- "fill_arguments" causes functions to be auto-expanded when selected on cmp
             },
             diagnostics = { styleLints = { enable = true } },
             inlayHints = { closureReturnTypeHints = { enable = "with_block" } },
