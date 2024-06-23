@@ -10,6 +10,21 @@ return {
     -- Available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
     { import = "astrocommunity.diagnostics.trouble-nvim" },
+    {
+        "folke/trouble.nvim",
+        opts = function(_, opts)
+            opts.modes = {
+                todo = {
+                    groups = {
+                        { "tag",      format = " {todo_icon}{tag}" },
+                        { "filename", format = "{file_icon} {filename} {count}" },
+                    },
+                },
+            }
+            opts.icons.folder_closed = " " .. opts.icons.folder_closed
+            opts.icons.folder_open = " " .. opts.icons.folder_open
+        end,
+    },
     { import = "astrocommunity.editing-support.neogen" },
     { import = "astrocommunity.editing-support.nvim-regexplainer" },
     {
