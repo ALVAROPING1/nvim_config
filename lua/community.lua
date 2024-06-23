@@ -153,6 +153,7 @@ return {
 
             -- Make python debugger use the current working directory instead of the file path
             for _, config in ipairs(require("dap").configurations.python) do
+                ---@diagnostic disable-next-line: inject-field This field does exist
                 config.cwd = vim.loop.cwd()
             end
         end,
@@ -370,7 +371,9 @@ return {
     { import = "astrocommunity.editing-support.multicursors-nvim" },
     {
         "smoka7/multicursors.nvim",
+        ---@diagnostic disable-next-line: assign-type-mismatch Hack disable upstream event to enable lazy loading
         event = false,
+        ---@type fun(_, keys: LazyKeysSpec[]): nil This type of function does work as well
         keys = function(_, keys)
             keys[1].desc = "Multiselect word under cursor"
         end,
