@@ -403,4 +403,5 @@ return {
     { import = "astrocommunity.git.diffview-nvim" },
     { import = "astrocommunity.editing-support.nvim-treesitter-context" },
     { import = "astrocommunity.recipes.telescope-lsp-mappings" },
+    { import = "astrocommunity.motion.tabout-nvim" },
 }

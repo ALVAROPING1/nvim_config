@@ -94,6 +94,7 @@
   "rustaceanvim": { "branch": "master", "commit": "d6d7620b66d74b3b16defcf85cbef7b3582795b3" },
   "satellite.nvim": { "branch": "main", "commit": "777ed56e1ef45ec808df701730b6597fc4fb0fbc" },
   "smart-splits.nvim": { "branch": "master", "commit": "66fda3a601a5b4c679656f15eb6ddd613c8d3216" },
+  "tabout.nvim": { "branch": "master", "commit": "3d7fbc7f5e91ef0f96b4d787c78ad9f8820de3ec" },
   "telescope-zf-native.nvim": { "branch": "master", "commit": "3f565ad0c0643d6592b5c3fc44b09b4fb2badc21" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   "todo-comments.nvim": { "branch": "main", "commit": "a7e39ae9e74f2c8c6dc4eea6d40c3971ae84752d" },
