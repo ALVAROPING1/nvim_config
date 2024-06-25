@@ -75,7 +75,7 @@ return {
     },
     {
         "3rd/image.nvim",
-        dependencies = { { "vhyrro/luarocks.nvim", opts = { rocks = { "magick" } } } },
+        dependencies = { "leafo/magick" },
         config = true,
     },
 }

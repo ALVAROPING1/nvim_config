@@ -2,15 +2,7 @@ return {
     "nvim-neorg/neorg",
     ft = "norg",
     cmd = "Neorg",
-    dependencies = {
-        "max397574/neorg-contexts",
-        {
-            "vhyrro/luarocks.nvim",
-            priority = 1000, -- We'd like this plugin to load first out of the rest
-            config = true,
-        },
-        "jmbuhr/otter.nvim",
-    },
+    dependencies = { "max397574/neorg-contexts", "jmbuhr/otter.nvim" },
     opts = {
         load = {
             ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.looking-glass" } } },
