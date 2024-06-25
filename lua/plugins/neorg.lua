@@ -21,6 +21,13 @@ return {
                         kb.remap_key("norg", "n", leader .. "id", leader .. "d")
                         kb.remap_key("norg", "n", leader .. "nn", leader .. "n")
                         kb.map("norg", "n", leader .. "q", "<Cmd>Neorg return<CR>", { desc = "[neorg] Exit document" })
+                        kb.map(
+                            "norg",
+                            "n",
+                            leader .. "r",
+                            "<Cmd>Neorg render-latex toggle<CR>",
+                            { desc = "[neorg] Toggle latex rendering" }
+                        )
                     end,
                 },
             },
