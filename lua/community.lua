@@ -110,8 +110,6 @@ return {
         },
     },
     { import = "astrocommunity.recipes.heirline-vscode-winbar" },
-    { import = "astrocommunity.scrolling.cinnamon-nvim" },
-    { "declancm/cinnamon.nvim",                                opts = { default_delay = 5 } },
     { import = "astrocommunity.scrolling.satellite-nvim" },
     { import = "astrocommunity.scrolling.mini-animate" },
     {
