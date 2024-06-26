@@ -73,9 +73,5 @@ return {
             require("telescope").load_extension("zf-native")
         end,
     },
-    {
-        "3rd/image.nvim",
-        dependencies = { "leafo/magick" },
-        config = true,
-    },
+    { "3rd/image.nvim",      config = true },
 }

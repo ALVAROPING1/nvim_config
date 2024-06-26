@@ -2,7 +2,7 @@ return {
     "nvim-neorg/neorg",
     ft = "norg",
     cmd = "Neorg",
-    dependencies = { "max397574/neorg-contexts", "jmbuhr/otter.nvim" },
+    dependencies = { "max397574/neorg-contexts", { "jmbuhr/otter.nvim", version = "v1.15.1" } },
     opts = {
         load = {
             ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.looking-glass" } } },
