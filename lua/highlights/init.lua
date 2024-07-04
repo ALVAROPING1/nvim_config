@@ -14,7 +14,6 @@ return {
 
     -- Leap
     LeapMatch = { fg = "#487e02" },
-    LeapLabelPrimary = { fg = red },
-    LeapLabelSecondary = { fg = blue },
+    LeapLabel = { fg = red },
     LeapBackdrop = { fg = "#777777" },
 }
