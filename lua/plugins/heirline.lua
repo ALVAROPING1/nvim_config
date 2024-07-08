@@ -132,7 +132,6 @@ return {
     end,
     init = function()
         local status = require("astroui.status")
-        local hl = require("astroui.status.hl")
 
         --- Gets the filename of the buffer. Falls back to the filetype if it has no name
         ---@param bufnr integer Buffer number
@@ -165,32 +164,14 @@ return {
         ---@param bufnr integer Buffer number
         ---@return string Character
         ---@return string? Color
-        ---@diagnostic disable-next-line: inject-field
-        function status.utils.get_file_icon(bufnr)
-            local devicons_avail, devicons = pcall(require, "nvim-web-devicons")
-            if not devicons_avail then
-                return "", nil
-            end
+        ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add more icons
+        function status.utils.icon_provider(bufnr)
+            local devicons = require("nvim-web-devicons")
             local ft_icon, ft_color = devicons.get_icon_color(status.utils.get_file_text(bufnr, 0))
             if not ft_icon then
                 ft_icon, ft_color = devicons.get_icon_color_by_filetype(vim.bo[bufnr].filetype, { default = true })
             end
             return ft_icon, ft_color
-        end
-
-        ---@param self { bufnr: integer }? # component state that may hold the buffer number
-        ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to fix colors on buffers with filetype but no name
-        function hl.filetype_color(self)
-            local _, color = status.utils.get_file_icon(self and self.bufnr or 0)
-            return { fg = color }
-        end
-
-        ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add more icons
-        function status.provider.file_icon(opt)
-            return function(self)
-                local ft_icon, _ = status.utils.get_file_icon(self and self.bufnr or 0)
-                return status.utils.stylize(ft_icon, opt)
-            end
         end
 
         ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filetype in some cases
