@@ -29,10 +29,10 @@ return {
     { import = "astrocommunity.editing-support.nvim-regexplainer" },
     {
         "bennypowers/nvim-regexplainer",
-        ft = { "python" },
+        ft = { "python", "javascript" },
         opts = {
             auto = true,
-            filetypes = { "py" },
+            filetypes = { "py", "js" },
             popup = {
                 border = {
                     style = "rounded",

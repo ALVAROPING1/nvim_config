@@ -7,8 +7,10 @@ return {
         "williamboman/mason-lspconfig.nvim",
         -- overrides `require("mason-lspconfig").setup(...)`
         opts = function(_, opts)
-            opts.ensure_installed =
-                require("astrocore").list_insert_unique(opts.ensure_installed, { "clangd", "vhdl_ls", "typos_lsp" })
+            opts.ensure_installed = require("astrocore").list_insert_unique(
+                opts.ensure_installed,
+                { "clangd", "vhdl_ls", "typos_lsp", "vtsls", "eslint" }
+            )
         end,
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
