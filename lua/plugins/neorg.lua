@@ -2,6 +2,7 @@ return {
     "nvim-neorg/neorg",
     ft = "norg",
     cmd = "Neorg",
+    version = "*",
     dependencies = { "max397574/neorg-contexts", { "jmbuhr/otter.nvim", version = "v1.15.1" } },
     opts = {
         load = {

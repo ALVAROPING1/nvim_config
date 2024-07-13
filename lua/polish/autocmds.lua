@@ -44,8 +44,8 @@ vim.api.nvim_create_autocmd({ "FileType", "User" }, {
     callback = function()
         vim.keymap.set("n", "<leader>c", "", { buffer = 0 })
 
-        require("which-key").register({
-            ["<leader>c"] = { name = " Merge Conflicts" },
+        require("which-key").add({
+            ["<leader>c"] = { group = " Merge Conflicts" },
         }, { buffer = 0 })
     end,
 })

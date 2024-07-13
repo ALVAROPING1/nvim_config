@@ -35,7 +35,7 @@ return {
     NormalFloat = { link = "Normal" },
     LazyNormal = { link = "Pmenu" },
     MasonNormal = { link = "Pmenu" },
-    WhichKeyFloat = { link = "Pmenu" },
+    WhichKeyNormal = { link = "Pmenu" },
     -- Borders
     FloatBorder = { link = "LspInfoBorder" },
     NullLsInfoBorder = { link = "FloatBorder" },

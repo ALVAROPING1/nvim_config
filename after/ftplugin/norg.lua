@@ -10,8 +10,8 @@ vim.opt_local.concealcursor = "nc"
 vim.opt_local.comments = "fb:*,fb:-,fb:~,fn:*,fn:-,fn:~"
 vim.opt_local.foldmethod = "expr"
 
-require("which-key").register({
-    ["<localleader>l"] = { name = "󰙅 List" },
-    ["<localleader>m"] = { name = "Mode" },
-    ["<localleader>t"] = { name = "󰄲 Task" },
+require("which-key").add({
+    ["<localleader>l"] = { group = "󰙅 List" },
+    ["<localleader>m"] = { group = "Mode" },
+    ["<localleader>t"] = { group = "󰄲 Task" },
 }, { buffer = 0 })

@@ -26,14 +26,12 @@ return {
         -- this is useful for naming menus
 
         -- Workspaces
-        ["<Leader>s"] = {
-            desc = "󰓩 Wokspaces",
-            n = { "<Cmd>tabnext<CR>", "Next workspace" },
-            p = { "<Cmd>tabprevious<CR>", "Previous workspace" },
-            o = { "<Cmd>tabonly<CR>", "Close all workspaces except current" },
-            c = { require("astrocore.buffer").close_tab, "Close current workspace" },
-            N = { "<Cmd>tabnew<CR>", "New workspace" },
-        },
+        ["<Leader>s"] = { group = "󰓩 Wokspaces" },
+        ["<Leader>sn"] = { "<Cmd>tabnext<CR>", desc = "Next workspace" },
+        ["<Leader>sp"] = { "<Cmd>tabprevious<CR>", desc = "Previous workspace" },
+        ["<Leader>so"] = { "<Cmd>tabonly<CR>", desc = "Close all workspaces except current" },
+        ["<Leader>sc"] = { require("astrocore.buffer").close_tab, desc = "Close current workspace" },
+        ["<Leader>sN"] = { "<Cmd>tabnew<CR>", desc = "New workspace" },
         ["<Leader>c"] = {
             function()
                 local bufs = vim.fn.getbufinfo({ buflisted = 1 })
@@ -57,7 +55,7 @@ return {
         -- Move the force save key
         ["<Leader>W"] = { "<Cmd>w!<CR>", desc = "Force save" },
         -- Nvim-surround group
-        ["<C-s>"] = { desc = "Surround" },
+        ["<C-s>"] = { group = "Surround" },
         -- Open terminals
         ["<Leader>tt"] = {
             function()
@@ -83,22 +81,18 @@ return {
             end,
             desc = "Toggle virtual diagnostic lines",
         },
-        ["<Leader><Leader>"] = {
-            desc = "󰐕 More commands",
-            -- Text search
-            ["/"] = { "<Cmd>noh<CR>", "Clear highlighted text" },
-            -- Rainbow delimiters
-            ["r"] = { "<Cmd>e<CR>", "Reload rainbow delimiters" },
-            ["c"] = {
-                name = "󰅺 Comment Box",
-                n = { "<Cmd>lua require('comment-box').llbox()<CR>", "Normal box" },
-                H = { "<Cmd>lua require('comment-box').lcbox(7)<CR>", "Header box" },
-                h = { "<Cmd>lua require('comment-box').lcline()<CR>", "Header line" },
-                s = { "<Cmd>lua require('comment-box').albox(18)<CR>", "Separator box" },
-                d = { "<Cmd>lua require('comment-box').dbox()<CR>", "Delete box" },
-                y = { "<Cmd>lua require('comment-box').yank()<CR>", "Copy box content" },
-            },
-        },
+        ["<Leader><Leader>"] = { group = "󰐕 More commands" },
+        -- Text search
+        ["<Leader><Leader>/"] = { "<Cmd>noh<CR>", desc = "Clear highlighted text" },
+        -- Rainbow delimiters
+        ["<Leader><Leader>r"] = { "<Cmd>e<CR>", desc = "Reload rainbow delimiters" },
+        ["<Leader><Leader>c"] = { group = "󰅺 Comment Box" },
+        ["<Leader><Leader>cn"] = { "<Cmd>lua require('comment-box').llbox()<CR>", desc = "Normal box" },
+        ["<Leader><Leader>cH"] = { "<Cmd>lua require('comment-box').lcbox(7)<CR>", desc = "Header box" },
+        ["<Leader><Leader>ch"] = { "<Cmd>lua require('comment-box').lcline()<CR>", desc = "Header line" },
+        ["<Leader><Leader>cs"] = { "<Cmd>lua require('comment-box').albox(18)<CR>", desc = "Separator box" },
+        ["<Leader><Leader>cd"] = { "<Cmd>lua require('comment-box').dbox()<CR>", desc = "Delete box" },
+        ["<Leader><Leader>cy"] = { "<Cmd>lua require('comment-box').yank()<CR>", desc = "Copy box content" },
         ["=a"] = { require("utils").restore_view("gg=G"), desc = "Indent file" },
     },
     i = {

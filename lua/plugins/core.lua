@@ -73,17 +73,31 @@ return {
     --   end,
     -- },
     -- By adding to the which-key config and using our helper function you can add more which-key registered bindings
-    -- {
-    --   "folke/which-key.nvim",
-    --   config = function(plugin, opts)
-    --     require "plugins.configs.which-key"(plugin, opts) -- include the default astronvim config that calls the setup call
-    --     -- Add bindings which show up as group name
-    --     local wk = require "which-key"
-    --     wk.register({
-    --       b = { name = "Buffer" },
-    --     }, { mode = "n", prefix = "<leader>" })
-    --   end,
-    -- },
+    {
+        "folke/which-key.nvim",
+        -- config = function(plugin, opts)
+        --   require "plugins.configs.which-key"(plugin, opts) -- include the default astronvim config that calls the setup call
+        --   -- Add bindings which show up as group name
+        --   local wk = require "which-key"
+        --   wk.add({
+        --     b = { name = "Buffer" },
+        --   }, { mode = "n", prefix = "<leader>" })
+        -- end,
+        opts = {
+            spec = { { "<Leader>", group = "User mappings", mode = { "n", "i", "x", "s", "o", "t", "c" } } },
+            icons = {
+                keys = {
+                    Up = " ",
+                    Down = " ",
+                    Left = " ",
+                    Right = " ",
+                    C = "C-",
+                    M = "A-",
+                    BS = "󰁮 ",
+                },
+            },
+        },
+    },
     {
         "folke/neoconf.nvim",
         opts = {
