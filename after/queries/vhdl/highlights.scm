@@ -15,9 +15,11 @@
 [
     "alias"
     "package"
+    "body"
     "entity"
     "architecture"
     "type"
+    "subtype"
     "to"
     "downto"
     "signal"
@@ -32,6 +34,7 @@
     "generic"
     "generate"
     "function"
+    "procedure"
     "return"
     "range"
     "map"
@@ -122,6 +125,11 @@
 (package_declaration
     name: (identifier) @module)
 (package_declaration
+    at_end: (simple_name) @module)
+
+(package_body
+    package: (simple_name) @module)
+(package_body
     at_end: (simple_name) @module)
 
 (entity_declaration
