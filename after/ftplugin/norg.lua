@@ -12,6 +12,8 @@ vim.opt_local.foldmethod = "expr"
 
 require("which-key").add({
     ["<localleader>l"] = { group = "󰙅 List" },
-    ["<localleader>m"] = { group = "Mode" },
     ["<localleader>t"] = { group = "󰄲 Task" },
+    { "<localleader>d", "<Plug>(neorg.tempus.insert-date)",   desc = "[neorg] Insert Date" },
+    { "<localleader>q", "<Cmd>Neorg return<CR>",              desc = "[neorg] Exit document" },
+    { "<localleader>r", "<Cmd>Neorg render-latex toggle<CR>", desc = "[neorg] Toggle latex rendering" },
 }, { buffer = 0 })

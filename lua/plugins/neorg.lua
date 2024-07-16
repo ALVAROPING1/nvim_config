@@ -2,32 +2,15 @@ return {
     "nvim-neorg/neorg",
     ft = "norg",
     cmd = "Neorg",
+    keys = { { "<localleader>n", "<Plug>(neorg.dirman.new-note)", desc = "[neorg] Create New Note" } },
     version = "*",
     dependencies = { "max397574/neorg-contexts", { "jmbuhr/otter.nvim", version = "v1.15.1" } },
     opts = {
         load = {
             ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.looking-glass" } } },
-            ["core.keybinds"] = {
-                config = {
-                    hook = function(kb)
-                        local leader = kb.leader
-                        kb.remap_key("norg", "n", leader .. "id", leader .. "d")
-                        kb.remap_key("norg", "n", leader .. "nn", leader .. "n")
-                        kb.map("norg", "n", leader .. "q", "<Cmd>Neorg return<CR>", { desc = "[neorg] Exit document" })
-                        kb.map(
-                            "norg",
-                            "n",
-                            leader .. "r",
-                            "<Cmd>Neorg render-latex toggle<CR>",
-                            { desc = "[neorg] Toggle latex rendering" }
-                        )
-                    end,
-                },
-            },
             ["core.completion"] = { config = { engine = "nvim-cmp" } },
             ["core.export"] = {},
             ["core.export.markdown"] = { config = { extensions = "all" } },
-            ["core.mode"] = {},
             ["core.highlights"] = { config = { highlights = { lists = { ordered = { prefix = "+@markup.list" } } } } },
             -- ["core.ui.calendar"] = {}
             ["core.concealer"] = {
