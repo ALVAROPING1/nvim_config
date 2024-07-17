@@ -144,7 +144,8 @@
 
 (architecture_body
     name: (identifier) @function.method
-    entity: (simple_name) @module
+    entity: (simple_name) @module)
+(architecture_body
     at_end: (simple_name) @function.method)
 
 (label (identifier) @label)
