@@ -84,7 +84,10 @@ return {
         --   }, { mode = "n", prefix = "<leader>" })
         -- end,
         opts = {
-            spec = { { "<Leader>", group = "User mappings", mode = { "n", "i", "x", "s", "o", "t", "c" } } },
+            spec = {
+                { "<Leader>",      group = "User mappings",          mode = { "n", "i", "x", "s", "o", "t", "c" } },
+                { "<LocalLeader>", group = "User mappings (Buffer)", mode = { "n", "i", "x", "s", "o", "t", "c" } },
+            },
             icons = {
                 keys = {
                     Up = " ",
