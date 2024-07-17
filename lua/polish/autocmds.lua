@@ -9,20 +9,16 @@ vim.api.nvim_create_autocmd("FileType", {
         local utils = require("utils")
         require("astrocore").set_mappings({
             n = {
-                ["<leader><leader>l"] = {
-                    desc = "󰓆 Spelling",
-                    l = { utils.restore_view("[s1z="), "Fix previous mistake" },
-                    i = { utils.restore_view("[s2zg"), "Ignore previous mistake" },
-                    a = { utils.restore_view("[s1zg"), "Mark previous mistake as good" },
-                },
+                ["<leader><leader>l"] = { group = "󰓆 Spelling" },
+                ["<leader><leader>ll"] = { utils.restore_view("[s1z="), desc = "Fix previous mistake" },
+                ["<leader><leader>li"] = { utils.restore_view("[s2zg"), desc = "Ignore previous mistake" },
+                ["<leader><leader>la"] = { utils.restore_view("[s1zg"), desc = "Mark previous mistake as good" },
             },
             i = {
-                ["<C-l>"] = {
-                    desc = "󰓆 Spelling",
-                    l = { "<C-g>u<Esc>[s1z=`]a<c-g>u", "Fix previous mistake" },
-                    i = { "<C-g>u<Esc>[s2zg`]a<c-g>u", "Ignore previous mistake" },
-                    a = { "<C-g>u<Esc>[s1zg`]a<c-g>u", "Mark previous mistake as good" },
-                },
+                ["<C-l>"] = { group = "󰓆 Spelling" },
+                ["<C-l>l"] = { "<C-g>u<Esc>[s1z=`]a<c-g>u", desc = "Fix previous mistake" },
+                ["<C-l>i"] = { "<C-g>u<Esc>[s2zg`]a<c-g>u", desc = "Ignore previous mistake" },
+                ["<C-l>a"] = { "<C-g>u<Esc>[s1zg`]a<c-g>u", desc = "Mark previous mistake as good" },
             },
         }, { buffer = 0 })
     end,
@@ -45,7 +41,7 @@ vim.api.nvim_create_autocmd({ "FileType", "User" }, {
         vim.keymap.set("n", "<leader>c", "", { buffer = 0 })
 
         require("which-key").add({
-            ["<leader>c"] = { group = " Merge Conflicts" },
+            { "<leader>c", group = " Merge Conflicts" },
         }, { buffer = 0 })
     end,
 })
