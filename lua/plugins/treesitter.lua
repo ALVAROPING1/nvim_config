@@ -10,13 +10,5 @@ return {
             opts.ensure_installed,
             { "gitignore", "latex", "c", "cpp", "html", "vhdl", "javascript", "jsdoc" }
         )
-        ---@diagnostic disable-next-line: inject-field Documentation indicates this is how parsers are added
-        require("nvim-treesitter.parsers").get_parser_configs().vhdl = {
-            install_info = {
-                url = "https://github.com/alemuller/tree-sitter-vhdl",
-                files = { "src/parser.c" },
-                branch = "main",
-            },
-        }
     end,
 }
