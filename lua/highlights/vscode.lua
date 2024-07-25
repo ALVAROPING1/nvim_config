@@ -54,6 +54,7 @@ return {
     ["@keyword.define"] = { link = "Define" },
     ["@string.special.url"] = { link = "@markup.link.url" },
     ["@variable.parameter.builtin"] = { link = "@variable.builtin" },
+    ["@lsp.type.operator.lua"] = { link = "@comment.documentation" },
 
     -- NeoTree
     NeoTreeGitAdded = { link = "NvimTreeGitRenamed" },
