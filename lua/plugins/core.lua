@@ -111,7 +111,6 @@ return {
             },
         },
     },
-    { "folke/neodev.nvim", opts = { library = { plugins = true } } },
     {
         "hrsh7th/nvim-cmp",
         opts = function(_, opts)

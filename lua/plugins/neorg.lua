@@ -12,7 +12,6 @@ return {
             ["core.export"] = {},
             ["core.export.markdown"] = { config = { extensions = "all" } },
             ["core.highlights"] = { config = { highlights = { lists = { ordered = { prefix = "+@markup.list" } } } } },
-            -- ["core.ui.calendar"] = {}
             ["core.concealer"] = {
                 config = {
                     icons = {
