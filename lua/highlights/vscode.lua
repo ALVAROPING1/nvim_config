@@ -51,9 +51,10 @@ return {
     ["@punctuation.delimiter.regex"] = { link = "jsRegexpString" },
     ["@type.builtin"] = { fg = blue },
     ["@module.builtin"] = { link = "@module" },
-    ["@keyword.define"] = { link = "Define" },
+    ["@keyword.directive.define"] = { link = "Define" },
     ["@string.special.url"] = { link = "@markup.link.url" },
     ["@variable.parameter.builtin"] = { link = "@variable.builtin" },
+    -- LSP semantic tokens
     ["@lsp.type.operator.lua"] = { link = "@comment.documentation" },
 
     -- NeoTree
