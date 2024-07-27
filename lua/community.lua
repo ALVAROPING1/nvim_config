@@ -402,4 +402,6 @@ return {
     { import = "astrocommunity.editing-support.nvim-treesitter-context" },
     { import = "astrocommunity.recipes.telescope-lsp-mappings" },
     { import = "astrocommunity.motion.tabout-nvim" },
+    { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
+    { "nvim-zh/colorful-winsep.nvim",                                   opts = { only_line_seq = false } },
 }

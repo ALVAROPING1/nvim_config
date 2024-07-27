@@ -16,4 +16,7 @@ return {
     LeapMatch = { fg = "#487e02" },
     LeapLabel = { fg = red },
     LeapBackdrop = { fg = "#777777" },
+
+    -- Colorful-winsep
+    NvimSeparator = { fg = "#3DAEE9" },
 }
