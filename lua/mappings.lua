@@ -59,13 +59,13 @@ return {
         -- Open terminals
         ["<Leader>tt"] = {
             function()
-                require("astrocore").toggle_term_cmd("btop")
+                require("astrocore").toggle_term_cmd({ cmd = "btop", direction = "float" })
             end,
             desc = "ToggleTerm btop",
         },
         ["<Leader>tp"] = {
             function()
-                require("astrocore").toggle_term_cmd("ipython")
+                require("astrocore").toggle_term_cmd({ cmd = "ipython", direction = "float" })
             end,
             desc = "ToggleTerm python",
         },
