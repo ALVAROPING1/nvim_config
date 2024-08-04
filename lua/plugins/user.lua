@@ -73,5 +73,9 @@ return {
             require("telescope").load_extension("zf-native")
         end,
     },
-    { "3rd/image.nvim",      config = true },
+    {
+        "3rd/image.nvim",
+        dependencies = { { "vhyrro/luarocks.nvim", priority = 1001, opts = { rocks = { "magick" } } } },
+        config = true,
+    },
 }
