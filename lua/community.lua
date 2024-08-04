@@ -134,7 +134,7 @@ return {
     { "linux-cultist/venv-selector.nvim",        enabled = false },
     {
         "mfussenegger/nvim-dap-python",
-        opts = { pythonPath = require("python_utils").get_path(vim.loop.cwd()) },
+        opts = { pythonPath = require("python_utils").get_path(vim.uv.cwd()) },
         config = function(_, opts)
             local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
             require("dap-python").setup(path, opts)
@@ -142,7 +142,7 @@ return {
             -- Make python debugger use the current working directory instead of the file path
             for _, config in ipairs(require("dap").configurations.python) do
                 ---@diagnostic disable-next-line: inject-field This field does exist
-                config.cwd = vim.loop.cwd()
+                config.cwd = vim.uv.cwd()
             end
         end,
     },
@@ -378,7 +378,7 @@ return {
     {
         "ThePrimeagen/refactoring.nvim",
         opts = function()
-            local mods = vim.loop.cwd():match("Trailmakers/mods$")
+            local mods = vim.uv.cwd():match("Trailmakers/mods$")
             local fn_print = mods and "tm.os.Log(%s)" or "print(%s)"
             local fn_tostring = mods and "tostring(%s)" or "vim.inspect(%s)"
             return {
