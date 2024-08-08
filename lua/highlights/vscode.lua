@@ -49,7 +49,6 @@ return {
     ["@comment.documentation"] = { fg = blue },
     ["@operator.regex"] = { link = "SpecialChar" },
     ["@punctuation.delimiter.regex"] = { link = "jsRegexpString" },
-    ["@type.builtin"] = { fg = blue },
     ["@module.builtin"] = { link = "@module" },
     ["@keyword.directive.define"] = { link = "Define" },
     ["@string.special.url"] = { link = "@markup.link.url" },
@@ -58,6 +57,13 @@ return {
     ["@lsp.type.operator.lua"] = { link = "@comment.documentation" },
 
     -- NeoTree
+    NeoTreeCursorLine = { link = "CursorLine" },
+    NeoTreeDimText = { fg = "#555555" },
+    NeoTreeDirectoryName = { link = "NeoTreeDirectoryIcon" },
+    NeoTreeDotFile = { fg = "#626262" },
+    NeoTreeFileIcon = { link = "NeoTreeDirectoryIcon" },
+    NeoTreeFileNameOpened = { bold = true },
+    NeoTreeFilterTerm = { link = "SpecialChar" },
     NeoTreeGitAdded = { link = "NvimTreeGitRenamed" },
     NeoTreeGitDeleted = { link = "NvimTreeGitDeleted" },
     NeoTreeGitIgnored = { link = "NvimTreeGitIgnored" },
