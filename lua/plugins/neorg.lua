@@ -2,7 +2,7 @@ return {
     "nvim-neorg/neorg",
     ft = "norg",
     cmd = "Neorg",
-    keys = { { "<localleader>n", "<Plug>(neorg.dirman.new-note)", desc = "[neorg] Create New Note" } },
+    keys = { { "<LocalLeader>n", "<Plug>(neorg.dirman.new-note)", desc = "[neorg] Create New Note" } },
     version = "*",
     dependencies = { "max397574/neorg-contexts", { "jmbuhr/otter.nvim", version = "v1.15.1" } },
     opts = {

@@ -9,10 +9,10 @@ vim.api.nvim_create_autocmd("FileType", {
         local utils = require("utils")
         require("astrocore").set_mappings({
             n = {
-                ["<leader><leader>l"] = { group = "󰓆 Spelling" },
-                ["<leader><leader>ll"] = { utils.restore_view("[s1z="), desc = "Fix previous mistake" },
-                ["<leader><leader>li"] = { utils.restore_view("[s2zg"), desc = "Ignore previous mistake" },
-                ["<leader><leader>la"] = { utils.restore_view("[s1zg"), desc = "Mark previous mistake as good" },
+                ["<Leader><Leader>l"] = { group = "󰓆 Spelling" },
+                ["<Leader><Leader>ll"] = { utils.restore_view("[s1z="), desc = "Fix previous mistake" },
+                ["<Leader><Leader>li"] = { utils.restore_view("[s2zg"), desc = "Ignore previous mistake" },
+                ["<Leader><Leader>la"] = { utils.restore_view("[s1zg"), desc = "Mark previous mistake as good" },
             },
             i = {
                 ["<C-l>"] = { group = "󰓆 Spelling" },
@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd("FileType", {
     desc = "Export with pandoc in supported documents",
     pattern = { "markdown", "norg" },
     callback = function()
-        vim.keymap.set("n", "<leader><leader>w", function()
+        vim.keymap.set("n", "<Leader><Leader>w", function()
             require("pandoc").export()
         end, { desc = "Export to PDF with Pandoc", buffer = 0 })
     end,
@@ -38,10 +38,10 @@ vim.api.nvim_create_autocmd({ "FileType", "User" }, {
     desc = "Setup diffview merge conflicts menu for diffview file panel",
     pattern = { "DiffviewFiles", "DiffviewDiffBufRead" },
     callback = function()
-        vim.keymap.set("n", "<leader>c", "", { buffer = 0 })
+        vim.keymap.set("n", "<Leader>c", "", { buffer = 0 })
 
         require("which-key").add({
-            { "<leader>c", group = " Merge Conflicts" },
+            { "<Leader>c", group = " Merge Conflicts" },
         }, { buffer = 0 })
     end,
 })

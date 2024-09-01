@@ -2,11 +2,11 @@ vim.opt_local.colorcolumn = "100"
 
 require("astrocore").set_mappings({
     n = {
-        ["<localleader>m"] = { "<Cmd>RustLsp expandMacro<CR>", desc = "Expand macro recursively" },
-        ["<localleader>e"] = { "<Cmd>RustLsp explainError current<CR>", desc = "Explain error" },
-        ["<localleader>r"] = { "<Cmd>RustLsp renderDiagnostic current<CR>", desc = "Render diagnostic" },
-        ["<localleader>d"] = { "<Cmd>RustLsp openDocs<CR>", desc = "Open doc.rs symbol documentation" },
-        ["<localleader>D"] = {
+        ["<LocalLeader>m"] = { "<Cmd>RustLsp expandMacro<CR>", desc = "Expand macro recursively" },
+        ["<LocalLeader>e"] = { "<Cmd>RustLsp explainError current<CR>", desc = "Explain error" },
+        ["<LocalLeader>r"] = { "<Cmd>RustLsp renderDiagnostic current<CR>", desc = "Render diagnostic" },
+        ["<LocalLeader>d"] = { "<Cmd>RustLsp openDocs<CR>", desc = "Open doc.rs symbol documentation" },
+        ["<LocalLeader>D"] = {
             function()
                 local NOTIFY_OPTS = { title = "Cargo" }
                 vim.system({ "cargo", "doc", "--open" }, { text = true }, function(out)
