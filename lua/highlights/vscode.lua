@@ -131,6 +131,14 @@ return {
     MultiCursor = { link = "Visual" },
     MultiCursorMain = { link = "Visual" },
 
+    -- Neorg
+    NeorgH1 = { fg = "#bd5eff" },
+    NeorgH2 = { fg = "#4fc1ff" },
+    NeorgH3 = { fg = "#5eff6c" },
+    NeorgH4 = { fg = "#ffbd5e" },
+    NeorgH5 = { fg = "#4a90e2" },
+    NeorgH6 = { fg = "#ff6e5e" },
+
     -- Misc Plugins
     IncRenameText = { link = "Search" },               -- Background of replaced text
     LspSignatureActiveParameter = { fg = light_blue }, -- Current parameter in function signature
