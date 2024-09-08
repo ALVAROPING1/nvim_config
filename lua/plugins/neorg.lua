@@ -11,7 +11,14 @@ return {
             ["core.completion"] = { config = { engine = "nvim-cmp" } },
             ["core.export"] = {},
             ["core.export.markdown"] = { config = { extensions = "all" } },
-            ["core.highlights"] = { config = { highlights = { lists = { ordered = { prefix = "+@markup.list" } } } } },
+            ["core.highlights"] = {
+                config = {
+                    highlights = {
+                        lists = { ordered = { prefix = "+@markup.list" } },
+                        delimiters = { horizontal_line = "+VirtualText" },
+                    },
+                },
+            },
             ["core.concealer"] = {
                 config = {
                     icons = {
