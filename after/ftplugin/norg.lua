@@ -16,4 +16,13 @@ require("which-key").add({
     { "<LocalLeader>q", "<Cmd>Neorg return<CR>", desc = "[neorg] Exit document" },
     { "<LocalLeader>r", "<Cmd>Neorg render-latex toggle<CR>", desc = "[neorg] Toggle latex rendering" },
     { "<Plug>(NOP)", "<Plug>(neorg.looking-glass.magnify-code-block)" },
+    {
+        "<Leader>j",
+        function()
+            vim.api.nvim_feedkeys("J", "n", true)
+            vim.cmd.Neorg("toggle-concealer")
+            vim.cmd.Neorg("toggle-concealer")
+        end,
+        desc = "Join lines",
+    },
 }, { buffer = 0 })
