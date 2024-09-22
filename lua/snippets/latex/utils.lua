@@ -109,7 +109,8 @@ M.in_text = -M.in_math
 --- Snippet condition checking that the matched trigger is the beginning of a command without a "\"
 M.command_begin = ls.conds.make(function(line, matched)
     local pos = #line - #matched
-    return line:sub(pos, pos):match("^[^\\%w]$")
+    local char = line:sub(pos, pos)
+    return char == "" or char:match("^[^\\%w]$")
 end)
 
 -- Shorthand for `command_begin AND in_math`
