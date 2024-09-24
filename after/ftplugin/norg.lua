@@ -24,5 +24,6 @@ require("which-key").add({
             vim.cmd.Neorg("toggle-concealer")
         end,
         desc = "Join lines",
+        buffer = 0,
     },
 }, { buffer = 0 })
