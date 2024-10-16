@@ -26,7 +26,7 @@ return {
                     reportOptionalMemberAccess = "error",
                     reportOptionalSubscript = "error",
                     reportPrivateImportUsage = "error",
-                    reportPrivateUsage = "erorr",
+                    reportPrivateUsage = "error",
                     reportUnnecessaryCast = "information",
                     reportUnnecessaryComparison = "information",
                     reportUnnecessaryContains = "information",
