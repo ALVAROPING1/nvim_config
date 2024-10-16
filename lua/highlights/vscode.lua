@@ -37,7 +37,7 @@ return {
     MasonNormal = { link = "Pmenu" },
     WhichKeyNormal = { link = "Pmenu" },
     -- Borders
-    FloatBorder = { link = "LspInfoBorder" },
+    FloatBorder = { fg = "#5A5A5A" },
     NullLsInfoBorder = { link = "FloatBorder" },
     DapUIFloatBorder = { link = "FloatBorder" },
 

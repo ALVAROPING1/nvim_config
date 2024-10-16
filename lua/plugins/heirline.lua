@@ -152,7 +152,7 @@ return {
                 -- Neo-tree buffer
                 or (filename == "neo-tree filesystem [1]" and "Neo-tree")
                 -- Plugins with floating window UI
-                or (vim.list_contains({ "TelescopePrompt", "lazy", "mason", "lspinfo", "null-ls-info" }, filetype) and filetype:gsub("^%a", string.upper))
+                or (vim.list_contains({ "TelescopePrompt", "lazy", "mason", "null-ls-info" }, filetype) and filetype:gsub("^%a", string.upper))
                 -- Diffview buffers
                 or (filename:match("^Diffview") and type == 0 and "git")
                 -- Fallback

@@ -25,6 +25,3 @@ require("luasnip").available(function(snippet)
     local names = { "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }
     return vim.list_contains(names, snippet.name) and snippet:invalidate()
 end)
-
--- Adds rounded borders to the LSPInfo floating window
-require("lspconfig.ui.windows").default_options.border = "rounded"

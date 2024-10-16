@@ -172,8 +172,6 @@ return {
                 toggleterm = "terminal",
                 latex = "tex",
                 mason = "lsp",
-                lspinfo = "lsp",
-                ["null-ls-info"] = "lsp",
                 cargo = "rs",
             })
             local md = {
@@ -199,10 +197,10 @@ return {
                         color = vscode.LazyH1.bg,
                         name = "Lazy",
                     },
-                    lsp = {
+                    ["null-ls-info"] = {
                         icon = utils.get_icon("ActiveLSP"),
                         color = vscode.LazyH1.bg,
-                        name = "LSPInfo",
+                        name = "Null-LS-Info",
                     },
                     alpha = {
                         icon = "α",
