@@ -84,9 +84,24 @@ return {
         --   }, { mode = "n", prefix = "<leader>" })
         -- end,
         opts = {
+            -- stylua: ignore
             spec = {
                 { "<Leader>",      group = "User mappings",          mode = { "n", "i", "x", "s", "o", "t", "c" } },
                 { "<LocalLeader>", group = "User mappings (Buffer)", mode = { "n", "i", "x", "s", "o", "t", "c" } },
+                -- Fast movement
+                { "J",             "5j",                             desc = "Fast downwards movement",            mode = { "n", "v" } },
+                { "K",             "5k",                             desc = "Fast upwards movement",              mode = { "n", "v" } },
+                -- Disable keys
+                { "<Left>",        "<nop>",                          mode = { "n", "v", "i" } },
+                { "<Right>",       "<nop>",                          mode = { "n", "v", "i" } },
+                { "<Up>",          "<nop>",                          mode = { "n", "v", "i" } },
+                { "<Down>",        "<nop>",                          mode = { "n", "v", "i" } },
+                { "<Insert>",      "<nop>",                          mode = { "n", "v", "i" } },
+                { "<Home>",        "<nop>",                          mode = { "n", "v", "i" } },
+                { "<End>",         "<nop>",                          mode = { "n", "v", "i" } },
+                { "<PageUp>",      "<nop>",                          mode = { "n", "v", "i" } },
+                { "<PageDown>",    "<nop>",                          mode = { "n", "v", "i" } },
+                { "<F1>",        "<nop>",                          mode = { "n", "v", "i" } },
             },
             icons = {
                 keys = {

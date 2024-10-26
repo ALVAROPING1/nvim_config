@@ -42,16 +42,8 @@ return {
             end,
             desc = "Close buffer",
         },
-        -- Fast movement
-        ["J"] = { "5j", desc = "Fast downwards movement" },
-        ["K"] = { "5k", desc = "Fast upwards movement" },
         -- Remap replaced commands
         ["<Leader>j"] = { "J", desc = "Join lines" },
-        -- Disable arrow keys
-        -- ["<Left>"] = { "" },
-        -- ["<Right>"] = { "" },
-        -- ["<Up>"] = { "" },
-        -- ["<Down>"] = { "" },
         -- Move the force save key
         ["<Leader>W"] = { "<Cmd>w!<CR>", desc = "Force save" },
         -- Nvim-surround group
@@ -105,20 +97,12 @@ return {
         },
     },
     t = {
-        -- Setting a mapping to false will disable it
-        -- ["<Esc>"] = false,
+        -- Setting a mapping to "<nop>" will disable it
+        -- ["<Esc>"] = { "<nop>" },
         ["<M-j><M-k>"] = { "<C-\\><C-n>", desc = "Exit insert mode" },
     },
     v = {
-        -- Fast movement
-        ["J"] = { "5j", desc = "Fast downwards movement" },
-        ["K"] = { "5k", desc = "Fast upwards movement" },
         ["<C-w>"] = { desc = "Store text for snippet" },
-        -- Disable arrow keys
-        -- ["<Left>"] = { "" },
-        -- ["<Right>"] = { "" },
-        -- ["<Up>"] = { "" },
-        -- ["<Down>"] = { "" },
         ["<C-q>"] = {
             change_choice_node,
             desc = "Change current choice node",

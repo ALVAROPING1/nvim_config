@@ -30,6 +30,8 @@ return {
         colorcolumn = "80",
         textwidth = 80,
         formatoptions = "cqjro",
+        mouse = "",
+        mousescroll = "ver:0,hor:0",
     },
     -- configure global vim variables (vim.g)
     -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
