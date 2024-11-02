@@ -18,6 +18,7 @@ return {
         },
         -- Icons can be configured throughout the interface
         icons = require("icons"),
+        lazygit = false,
         status = {
             -- Define the separators between each section
             separators = {
