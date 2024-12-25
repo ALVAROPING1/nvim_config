@@ -101,7 +101,7 @@ return {
                 { "<End>",         "<nop>",                          mode = { "n", "v", "i" } },
                 { "<PageUp>",      "<nop>",                          mode = { "n", "v", "i" } },
                 { "<PageDown>",    "<nop>",                          mode = { "n", "v", "i" } },
-                { "<F1>",        "<nop>",                          mode = { "n", "v", "i" } },
+                { "<F1>",          "<nop>",                          mode = { "n", "v", "i" } },
             },
             icons = {
                 keys = {
@@ -221,6 +221,11 @@ return {
                         icon = "α",
                         color = vscode.LazyH1.bg,
                         name = "Alpha",
+                    },
+                    norg = {
+                        icon = "",
+                        color = "#4878be",
+                        name = "Norg",
                     },
                 },
             })
