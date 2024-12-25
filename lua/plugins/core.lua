@@ -194,6 +194,12 @@ return {
                 color = "#519aba",
                 name = "Markdown",
             }
+            local readme = {
+                icon = "󰂾",
+                color = "#519aba",
+                cterm_color = "255",
+                name = "Readme",
+            }
             return vim.tbl_deep_extend("force", opts, {
                 override = {
                     markdown = md,
@@ -227,6 +233,8 @@ return {
                         color = "#4878be",
                         name = "Norg",
                     },
+                    ["readme"] = readme,
+                    ["readme.md"] = readme,
                 },
             })
         end,
