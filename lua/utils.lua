@@ -52,4 +52,17 @@ function M.tbl_move(tbl, dest, src)
     tbl[src] = nil
 end
 
+--- Creates a buffer-local mapping that runs the current buffer with the clipboard as `STDIN` using the specified program
+---@param program string Program to run the buffer with. The buffer file name will be appended as the last argument
+function M.run_file_mapping(program)
+    local function cb()
+        require("astrocore").toggle_term_cmd({
+            cmd = "xclip -o -selection clipboard | " .. program .. ' "' .. vim.api.nvim_buf_get_name(0) .. '"',
+            direction = "float",
+            close_on_exit = false,
+        })
+    end
+    require("which-key").add({ { "<LocalLeader>r", cb, desc = "Run file with clipboard" } }, { buffer = 0 })
+end
+
 return M
