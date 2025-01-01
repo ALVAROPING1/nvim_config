@@ -31,6 +31,7 @@ return {
             load_ft_func = require("luasnip.extras.filetype_functions").extend_load_ft({
                 markdown = { "latex" },
                 norg = { "norg_meta", "latex" },
+                tex = { "latex" },
             }),
             enable_autosnippets = true,
             store_selection_keys = "<C-w>",
