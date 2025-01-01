@@ -39,6 +39,7 @@ return {
     g = {
         -- vim.g.<key>
         rainbow_delimiters = { highlight = { "Delimiter1", "Delimiter2", "Delimiter3" } },
+        tex_flavor = "latex",
         -- Disable unused plugin interfaces
         loaded_python3_provider = 0,
         loaded_ruby_provider = 0,
