@@ -2,8 +2,6 @@
 --- Utils
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local i = require("neogen.types.template").item
-
 --- Returns the lines of text for a header
 ---@param prefix string Text to add at the beginning of each line
 ---@param name string Name of the header
@@ -37,6 +35,7 @@ end
 
 local function rust_template()
     local out = require("neogen.templates.rustdoc")
+    local i = require("neogen.types.template").item
 
     table.insert(
         out,
