@@ -26,22 +26,30 @@ return {
     -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
     {
         "L3MON4D3/LuaSnip",
-        opts = {
-            ft_func = require("luasnip.extras.filetype_functions").from_pos_or_filetype,
-            load_ft_func = require("luasnip.extras.filetype_functions").extend_load_ft({
+        opts = function(_, opts)
+            local filetype_functions = require("luasnip.extras.filetype_functions")
+            opts.ft_func = filetype_functions.from_pos_or_filetype
+            opts.load_ft_func = filetype_functions.extend_load_ft({
                 markdown = { "latex" },
                 norg = { "norg_meta", "latex" },
                 tex = { "latex" },
-            }),
-            enable_autosnippets = true,
-            store_selection_keys = "<C-w>",
-        },
+            })
+            opts.enable_autosnippets = true
+            opts.store_selection_keys = "<C-w>"
+        end,
         config = function(plugin, opts)
+            local luasnip = require("luasnip")
             require("astronvim.plugins.configs.luasnip")(plugin, opts) -- include the default astronvim config that calls the setup call
-            require("luasnip").filetype_extend("markdown_inline", { "markdown" })
+            luasnip.filetype_extend("markdown_inline", { "markdown" })
             -- add more custom luasnip configuration such as filetype extend or custom snippets
             ---@diagnostic disable-next-line: assign-type-mismatch Luasnip accepts a single string
             require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets" })
+
+            -- Remove unused friendly-snippets snippets
+            luasnip.available(function(snippet)
+                local names = { "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }
+                return vim.list_contains(names, snippet.name) and snippet:invalidate()
+            end)
         end,
     },
     -- {
@@ -252,4 +260,5 @@ return {
             current_line_blame_formatter = "   <author>, <author_time:%R> • <summary>",
         },
     },
+    {"JoosepAlviste/nvim-ts-context-commentstring", event = "User AstroFile"}
 }

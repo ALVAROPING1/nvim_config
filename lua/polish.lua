@@ -19,9 +19,3 @@
 vim.opt.fillchars:append({ diff = "╱" })
 
 require("polish.autocmds")
-
--- Remove unused friendly-snippets snippets
-require("luasnip").available(function(snippet)
-    local names = { "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }
-    return vim.list_contains(names, snippet.name) and snippet:invalidate()
-end)
