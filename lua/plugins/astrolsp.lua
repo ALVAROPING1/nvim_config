@@ -19,6 +19,7 @@ return {
         servers = {
             -- "pyright"
             "ghdl_ls",
+            -- "ltex_plus",
         },
         -- customize language server configuration options passed to `lspconfig`
         ---@diagnostic disable: missing-fields

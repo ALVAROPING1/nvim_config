@@ -73,5 +73,11 @@ return {
             require("telescope").load_extension("zf-native")
         end,
     },
-    { "3rd/image.nvim", config = true },
+    { "3rd/image.nvim",      config = true },
+    {
+        "barreiroleo/ltex_extra.nvim",
+        branch = "dev",
+        event = "VeryLazy",
+        opts = { load_langs = { "es", "en-US" } },
+    },
 }

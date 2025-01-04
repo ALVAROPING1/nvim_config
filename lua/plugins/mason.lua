@@ -9,7 +9,7 @@ return {
         opts = function(_, opts)
             opts.ensure_installed = require("astrocore").list_insert_unique(
                 opts.ensure_installed,
-                { "clangd", "vhdl_ls", "typos_lsp", "vtsls", "eslint" }
+                { "clangd", "vhdl_ls", "typos_lsp", "vtsls", "eslint", "ltex" }
             )
         end,
     },

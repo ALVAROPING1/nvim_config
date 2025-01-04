@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function(opt)
         local nr = opt.buf
         if
-            not vim.list_contains({ "markdown", "norg" }, vim.bo[nr].ft)
+            not vim.list_contains({ "markdown", "norg", "tex" }, vim.bo[nr].ft)
             and vim.bo[nr].buftype == ""
             and vim.api.nvim_buf_get_name(nr) ~= ""
         then
