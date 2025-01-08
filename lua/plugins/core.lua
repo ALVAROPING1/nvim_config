@@ -237,11 +237,6 @@ return {
                         color = vscode.LazyH1.bg,
                         name = "Alpha",
                     },
-                    norg = {
-                        icon = "",
-                        color = "#4878be",
-                        name = "Norg",
-                    },
                     ["readme"] = readme,
                     ["readme.md"] = readme,
                 },
