@@ -10,6 +10,7 @@ vim.opt_local.concealcursor = "nc"
 vim.opt_local.comments = "fb:*,fb:-,fb:~,fn:*,fn:-,fn:~"
 
 require("which-key").add({
+    buffer = 0,
     { "<LocalLeader>l", group = "󰙅 List" },
     { "<LocalLeader>t", group = "󰄲 Task" },
     { "<LocalLeader>d", "<Plug>(neorg.tempus.insert-date)", desc = "[neorg] Insert Date" },
@@ -29,6 +30,5 @@ require("which-key").add({
             vim.cmd.Neorg("toggle-concealer")
         end,
         desc = "Join lines",
-        buffer = 0,
     },
-}, { buffer = 0 })
+})
