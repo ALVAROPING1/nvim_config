@@ -22,13 +22,5 @@ require("which-key").add({
         desc = "[neorg] Restart concealer",
     },
     { "<Plug>(NOP)", "<Plug>(neorg.looking-glass.magnify-code-block)" },
-    {
-        "<Leader>j",
-        function()
-            vim.api.nvim_feedkeys("J", "n", true)
-            vim.cmd.Neorg("toggle-concealer")
-            vim.cmd.Neorg("toggle-concealer")
-        end,
-        desc = "Join lines",
-    },
+    { "<Leader>j",   "J<Cmd>Neorg toggle-concealer<CR><Cmd>Neorg toggle-concealer<CR>", desc = "Join lines" },
 })
