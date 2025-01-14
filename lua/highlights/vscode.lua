@@ -20,6 +20,8 @@ return {
     SpecialChar = { link = "Special" }, -- Special characters in strings
     VirtualText = { fg = light_grey },  -- Custom group for virtual text
 
+    MarkupVerbatim = { fg = "#77a1f5", bg = "#3a4160" },
+
     -- Diagnostics
     Error = { undercurl = true, fg = red, sp = red },
 
@@ -47,6 +49,7 @@ return {
     ["@markup.list"] = { fg = blue },
     ["@markup.link.url"] = { fg = light_blue, underline = true },
     ["@markup.underline"] = { link = "Underlined" },
+    ["@markup.raw.markdown_inline"] = { link = "MarkupVerbatim" },
     ["@comment.documentation"] = { fg = blue },
     ["@operator.regex"] = { link = "SpecialChar" },
     ["@punctuation.delimiter.regex"] = { link = "jsRegexpString" },

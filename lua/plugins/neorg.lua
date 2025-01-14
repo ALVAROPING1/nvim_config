@@ -16,6 +16,7 @@ return {
                     highlights = {
                         lists = { ordered = { prefix = "+@markup.list" } },
                         delimiters = { horizontal_line = "+VirtualText" },
+                        markup = { verbatim = { [""] = "+MarkupVerbatim" } },
                         headings = {
                             ["1"] = { title = "+NeorgH1", prefix = "+NeorgH1" },
                             ["2"] = { title = "+NeorgH2", prefix = "+NeorgH2" },
@@ -55,4 +56,11 @@ return {
             ["external.context"] = {},
         },
     },
+    config = function(_, opts)
+        require("neorg").setup(opts)
+        -- HACK: by default, neorg uses the `dim` highlight table to set the highlight group of verbatim text. This should
+        -- check that the group hasn't been set already, but for some reason noice conflicts with the checking logic and
+        -- causes the check to fail when the cmdline is opened
+        require("neorg.modules.core.highlights.module").config.public.dim.markup.verbatim = nil
+    end,
 }
