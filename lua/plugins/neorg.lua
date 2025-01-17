@@ -1,3 +1,27 @@
+local ns = vim.api.nvim_create_namespace("neorg-conceals")
+
+---@alias RenderFn fun(config: table, bufid: integer, node: TSNode)
+
+---@type RenderFn
+local function add_icon(config, bufid, node)
+    local row, col = node:start()
+    vim.api.nvim_buf_set_extmark(bufid, ns, row, col, {
+        virt_text = { config.icon },
+        virt_text_pos = "inline",
+        hl_mode = "combine",
+    })
+end
+
+---@type RenderFn
+local function clear_icon(_, bufid, node)
+    local row, col = node:start()
+    local marks = vim.api.nvim_buf_get_extmarks(bufid, ns, { row, col }, { row, col + 1 }, {})
+    for _, result in ipairs(marks) do
+        local extmark_id = result[1]
+        vim.api.nvim_buf_del_extmark(bufid, ns, extmark_id)
+    end
+end
+
 return {
     "nvim-neorg/neorg",
     ft = "norg",
@@ -35,6 +59,42 @@ return {
                         ordered = { icons = { "1)", " 1)", "  1)", "   1)", "    1)", "     1)" } },
                         list = { icons = { "•", " •", "  •", "   •", "    •", "     •" } },
                         heading = { icons = { "󰼏", "󰼐", "󰼑", "󰼒", "󰼓", "󰼔" } },
+                        link = {
+                            link = {
+                                icons = {
+                                    default = { "󰌹", "@markup.link" },
+                                    link_target_url = { "󰖟", "@markup.link" },
+                                    link_file_text = { "", "DevIconNorg" },
+                                    link_target_timestamp = { "󰃭", "@markup.link" },
+                                    link_target_external_file = function(bufid, node)
+                                        node = node:next_named_sibling() --[[@as TSNode]]
+                                        local name = vim.treesitter.get_node_text(node, bufid)
+                                        return { require("nvim-web-devicons").get_icon(name, nil, { default = true }) }
+                                    end,
+                                    link_target_footnote = function(bufid, node)
+                                        node = node:next_named_sibling()
+                                        local link_title = vim.treesitter.get_node_text(node, bufid)
+                                        return link_title:match("^[-0-9]+$") ~= nil or nil
+                                    end,
+                                },
+                                nodes = { "link", "anchor_definition", "anchor_declaration" },
+                                ---@type RenderFn
+                                render = function(config, bufid, node)
+                                    local location_node =
+                                        node:named_child(node:type() == "anchor_definition" and 1 or 0):named_child(0) --[[@as TSNode]]
+                                    local icon = config.icons[location_node:type()]
+                                    if type(icon) == "function" then
+                                        icon = icon(bufid, location_node)
+                                        if icon == true then
+                                            return
+                                        end
+                                    end
+                                    icon = icon or config.icons.default
+                                    add_icon({ icon = { icon[1] .. " ", icon[2] } }, bufid, node)
+                                end,
+                                clear = clear_icon,
+                            },
+                        },
                     },
                 },
             },
