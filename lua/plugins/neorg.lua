@@ -31,7 +31,7 @@ return {
             ["core.concealer"] = {
                 config = {
                     icons = {
-                        code_block = { spell_check = false },
+                        code_block = { spell_check = false, content_only = false },
                         ordered = { icons = { "1)", " 1)", "  1)", "   1)", "    1)", "     1)" } },
                         list = { icons = { "•", " •", "  •", "   •", "    •", "     •" } },
                         heading = { icons = { "󰼏", "󰼐", "󰼑", "󰼒", "󰼓", "󰼔" } },
