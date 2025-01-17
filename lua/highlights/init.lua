@@ -10,7 +10,6 @@ return {
 
     -- Treesitter
     ["@punctuation.bracket"] = { fg = blue },
-    ["@markup.link"] = { link = "@punctuation.bracket" },
 
     -- Leap
     LeapMatch = { fg = "#487e02" },

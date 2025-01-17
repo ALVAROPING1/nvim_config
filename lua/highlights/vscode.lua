@@ -47,6 +47,8 @@ return {
     -- Treesitter
     ["@punctuation.special"] = { link = "@markup.list" }, -- Legacy
     ["@markup.list"] = { fg = blue },
+    ["@markup.link"] = { fg = light_blue },
+    -- TODO: change underline for underdash when Kitty's version supports it
     ["@markup.link.url"] = { fg = light_blue, underline = true },
     ["@markup.underline"] = { link = "Underlined" },
     ["@markup.raw.markdown_inline"] = { link = "MarkupVerbatim" },
