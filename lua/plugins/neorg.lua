@@ -22,6 +22,12 @@ local function clear_icon(_, bufid, node)
     end
 end
 
+---@param level integer
+---@param attr string
+local function heading_hl(level, attr)
+    return "@neorg.headings." .. level .. "." .. attr
+end
+
 return {
     "nvim-neorg/neorg",
     ft = "norg",
@@ -58,7 +64,48 @@ return {
                         code_block = { spell_check = false, content_only = false },
                         ordered = { icons = { "1)", " 1)", "  1)", "   1)", "    1)", "     1)" } },
                         list = { icons = { "•", " •", "  •", "   •", "    •", "     •" } },
-                        heading = { icons = { "󰼏", "󰼐", "󰼑", "󰼒", "󰼓", "󰼔" } },
+                        heading = {
+                            icons = { "󰼏", "󰼐", "󰼑", "󰼒", "󰼓", "󰼔" },
+                            above = "▄",
+                            below = "▀",
+                            ---@type RenderFn
+                            render = function(config, bufid, node)
+                                local concealer = require("neorg.modules.core.concealer.module")
+                                concealer.public.icon_renderers.multilevel_on_right(false)(config, bufid, node)
+                                if node:type():sub(1, 11) == "link_target" then
+                                    return
+                                end
+
+                                ---@param icon string
+                                ---@param level integer
+                                ---@return { [1]: string, [2]: string }[]
+                                local function line(icon, level)
+                                    local indent = level - 1
+                                    return {
+                                        { (" "):rep(indent) },
+                                        { icon:rep(vim.o.columns - indent), heading_hl(level, "fg") },
+                                    }
+                                end
+
+                                local text = vim.treesitter.get_node_text(node, bufid)
+                                local level = text:find("%s") or text:len() + 1
+                                level = level - 1
+                                local row, col = node:start()
+                                vim.api.nvim_buf_set_extmark(bufid, ns, row, col, {
+                                    virt_lines = { line(config.above, level) },
+                                    virt_lines_above = true,
+                                })
+                                vim.api.nvim_buf_set_extmark(bufid, ns, row, col, {
+                                    virt_lines = { line(config.below, level) },
+                                })
+                                vim.api.nvim_buf_set_extmark(bufid, ns, row, col + level - 1, {
+                                    end_row = row + 1,
+                                    hl_group = heading_hl(level, "bg"),
+                                    hl_eol = true,
+                                    priority = 0,
+                                })
+                            end,
+                        },
                         link = {
                             link = {
                                 icons = {
@@ -118,9 +165,15 @@ return {
     },
     config = function(_, opts)
         require("neorg").setup(opts)
+        local hl = require("neorg.modules.core.highlights.module")
         -- HACK: by default, neorg uses the `dim` highlight table to set the highlight group of verbatim text. This should
         -- check that the group hasn't been set already, but for some reason noice conflicts with the checking logic and
         -- causes the check to fail when the cmdline is opened
-        require("neorg.modules.core.highlights.module").config.public.dim.markup.verbatim = nil
+        hl.config.public.dim.markup.verbatim = nil
+        for i = 1, 6 do
+            local color = hl.public.dim_color(hl.public.get_attribute(heading_hl(i, "prefix"), "foreground"), 65)
+            vim.api.nvim_set_hl(0, heading_hl(i, "bg"), { bg = color })
+            vim.api.nvim_set_hl(0, heading_hl(i, "fg"), { fg = color })
+        end
     end,
 }
