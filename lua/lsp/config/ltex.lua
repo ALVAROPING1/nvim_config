@@ -1,7 +1,7 @@
 -- Config for the rust_analyzer (rust) language server
 
 local words = {}
-for i = 1, 100 do
+for i = 1, 1000 do
     words[i] = "Dummy" .. i - 1
 end
 vim.list_extend(words, { "Dummies" })
