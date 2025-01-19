@@ -268,8 +268,6 @@ return {
         },
         opts = { labeled_modes = "nx" },
     },
-    -- { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
-    { "https://git.sr.ht/~whynothugo/lsp_lines.nvim",     opts = {} },
     { import = "astrocommunity.editing-support.dial-nvim" },
     {
         "monaqa/dial.nvim",

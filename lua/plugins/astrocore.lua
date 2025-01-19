@@ -18,7 +18,6 @@ return {
         -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
         diagnostics = {
             virtual_text = true,
-            virtual_lines = false, -- lsp_lines plugin
             underline = true,
         },
         -- vim options can be configured here
