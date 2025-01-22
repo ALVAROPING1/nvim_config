@@ -224,13 +224,18 @@ return {
         -- check that the group hasn't been set already, but for some reason noice conflicts with the checking logic and
         -- causes the check to fail when the cmdline is opened
         hl.config.public.dim.markup.verbatim = nil
-        for i = 1, 6 do
-            local color = hl.public.dim_color(hl.public.get_attribute(heading_hl(i, "prefix"), "foreground"), 65)
-            vim.api.nvim_set_hl(0, heading_hl(i, "bg"), { bg = color })
-            vim.api.nvim_set_hl(0, heading_hl(i, "fg"), { fg = color })
+
+        local function create_highlights()
+            for i = 1, 6 do
+                local color = hl.public.dim_color(hl.public.get_attribute(heading_hl(i, "prefix"), "foreground"), 65)
+                vim.api.nvim_set_hl(0, heading_hl(i, "bg"), { bg = color })
+                vim.api.nvim_set_hl(0, heading_hl(i, "fg"), { fg = color })
+            end
+            local code_block = "@neorg.tags.ranged_verbatim.code_block"
+            local color = hl.public.get_attribute(code_block, "background")
+            vim.api.nvim_set_hl(0, code_block .. ".fg", { fg = "#" .. color })
         end
-        local code_block = "@neorg.tags.ranged_verbatim.code_block"
-        local color = hl.public.get_attribute(code_block, "background")
-        vim.api.nvim_set_hl(0, code_block .. ".fg", { fg = "#" .. color })
+        create_highlights()
+        vim.api.nvim_create_autocmd("ColorScheme", { callback = create_highlights })
     end,
 }
