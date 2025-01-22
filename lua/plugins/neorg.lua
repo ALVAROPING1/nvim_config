@@ -61,9 +61,63 @@ return {
             ["core.concealer"] = {
                 config = {
                     icons = {
-                        code_block = { spell_check = false, content_only = false },
                         ordered = { icons = { "1)", " 1)", "  1)", "   1)", "    1)", "     1)" } },
                         list = { icons = { "•", " •", "  •", "   •", "    •", "     •" } },
+                        code_block = {
+                            spell_check = false,
+                            content_only = false,
+                            below = "▀",
+                            icons = { code = "", embed = "" },
+                            type_highlight = "@neorg.tags.ranged_verbatim.name.word",
+                            ---@type RenderFn
+                            render = function(config, bufid, node)
+                                local concealer = require("neorg.modules.core.concealer.module")
+                                concealer.public.icon_renderers.render_code_block(config, bufid, node)
+                                local name_node = node:named_child(0) --[[@as TSNode]]
+                                local name = vim.treesitter.get_node_text(name_node, bufid)
+                                if not (name == "code" or name == "embed") or not (vim.wo.conceallevel >= 2) then
+                                    return
+                                end
+
+                                local cursor_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+                                local concealcursor = vim.wo.concealcursor:find(vim.api.nvim_get_mode().mode) ~= nil
+                                local function should_conceal(row)
+                                    return row ~= cursor_row or concealcursor
+                                end
+
+                                local row, col, end_row = node:range()
+                                if should_conceal(end_row) then
+                                    vim.api.nvim_buf_set_extmark(bufid, ns, end_row, col, {
+                                        virt_text = { { config.below:rep(vim.o.columns), config.highlight .. ".fg" } },
+                                        virt_text_pos = "overlay",
+                                    })
+                                end
+
+                                if should_conceal(row) then
+                                    local name_icon = config.icons[name]
+                                    vim.api.nvim_buf_set_extmark(bufid, ns, row, col, {
+                                        end_col = ({ name_node:end_() })[2],
+                                        virt_text = { { name_icon, { config.type_highlight, config.highlight } } },
+                                        virt_text_pos = "overlay",
+                                        conceal = " ",
+                                    })
+                                    local lang_node = node:named_child(1)
+                                    if lang_node ~= nil and lang_node:type() == "tag_parameters" then
+                                        local _, lang_col, _, end_col = lang_node:range()
+                                        local lang = vim.treesitter.get_node_text(lang_node, bufid)
+                                        local icon, icon_hl = require("nvim-web-devicons").get_icon_by_filetype(lang)
+                                        if icon ~= nil then
+                                            vim.api.nvim_buf_set_extmark(bufid, ns, row, lang_col, {
+                                                virt_text = { { icon .. " ", { icon_hl, config.highlight } } },
+                                                virt_text_pos = "inline",
+                                                hl_group = icon_hl,
+                                                end_col = end_col,
+                                            })
+                                        end
+                                    end
+                                end
+                            end,
+                        },
                         heading = {
                             icons = { "󰼏", "󰼐", "󰼑", "󰼒", "󰼓", "󰼔" },
                             above = "▄",
@@ -175,5 +229,8 @@ return {
             vim.api.nvim_set_hl(0, heading_hl(i, "bg"), { bg = color })
             vim.api.nvim_set_hl(0, heading_hl(i, "fg"), { fg = color })
         end
+        local code_block = "@neorg.tags.ranged_verbatim.code_block"
+        local color = hl.public.get_attribute(code_block, "background")
+        vim.api.nvim_set_hl(0, code_block .. ".fg", { fg = "#" .. color })
     end,
 }
