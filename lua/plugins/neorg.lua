@@ -41,6 +41,7 @@ return {
             ["core.completion"] = { config = { engine = "nvim-cmp" } },
             ["core.export"] = {},
             ["core.export.markdown"] = { config = { extensions = "all" } },
+            ["core.todo-introspector"] = { config = { highlight_group = "VirtualText" } },
             ["core.highlights"] = {
                 config = {
                     highlights = {
