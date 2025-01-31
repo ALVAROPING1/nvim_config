@@ -39,13 +39,17 @@ return {
                     ["\\subsectionref{}"] = "dummy",
                     ["\\tableref{}"] = "dummy",
                     ["\\figureref{}"] = "dummy",
-                    ["\\reqref{}"] = "dummy",
+                    ["\\sreqref{}"] = "dummy",
+                    ["\\ureqref{}"] = "dummy",
                     ["\\ProvidesPackage{}[]"] = "ignore",
                     ["\\newglossaryentry{}{}"] = "ignore",
                     ["\\newglossaryentrywithacronym{}{}"] = "ignore",
                     ["\\newacronym{}{}{}"] = "ignore",
                     ["\\traceabilityTable{}{}{}"] = "ignore",
                 },
+                environments = {
+                    grammar = "ignore"
+                }
             },
         },
     },
