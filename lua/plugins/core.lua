@@ -255,5 +255,6 @@ return {
             current_line_blame_formatter = "   <author>, <author_time:%R> • <summary>",
         },
     },
-    {"JoosepAlviste/nvim-ts-context-commentstring", event = "User AstroFile"}
+    { "JoosepAlviste/nvim-ts-context-commentstring", event = "User AstroFile" },
+    { "folke/lazydev.nvim", opts = { library = { "nvim-dap-ui" } } },
 }
