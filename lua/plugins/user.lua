@@ -58,11 +58,7 @@ return {
         -- SEE: https://github.com/L3MON4D3/LuaSnip/issues/865
         enabled = false,
     },
-    {
-        "Bekaboo/deadcolumn.nvim",
-        event = "User AstroFile",
-        opts = { blending = { threshold = 0.5 }, warning = { hlgroup = { "Error", "fg" } } },
-    },
+    { "Bekaboo/deadcolumn.nvim", event = "User AstroFile", opts = { warning = { hlgroup = { "Error", "fg" } } } },
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
