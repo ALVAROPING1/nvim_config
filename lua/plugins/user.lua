@@ -80,4 +80,15 @@ return {
         event = "VeryLazy",
         opts = { load_langs = { "es", "en-US" } },
     },
+    {
+        "cappyzawa/trim.nvim",
+        keys = { { "<Leader><Leader>w", "<Cmd>Trim<CR>", desc = "Trim whitespace" } },
+        opts = {
+            ft_blocklist = { "markdown" },
+            trim_last_line = false,
+            trim_first_line = false,
+            trim_on_write = false,
+            notifications = false,
+        },
+    },
 }
