@@ -14,6 +14,7 @@ return {
     CursorLine = { bg = "#282828" },
     CursorColumn = { link = "CursorLine" },
     ColorColumn = { bg = grey },
+    PMenu = { fg = "#BBBBBB", bg = "#272727" },
     PMenuSel = { bg = "#004b72" },
     CurSearch = { link = "Search" },
     LspInlayHint = { link = "VirtualText" },
@@ -162,4 +163,6 @@ return {
     NeorgContext = { link = "TreesitterContext" },
     MatchParen = { fg = "#11d116" },
     TroubleIconDirectory = { link = "Directory" },
+    TelescopeSelection = { link = "PMenuSel" },
+    TelescopeMultiSelection = { link = "TelescopeSelection" },
 }
