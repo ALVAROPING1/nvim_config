@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
     "rebelot/heirline.nvim",
     opts = function(_, opts)
@@ -195,5 +196,5 @@ return {
                 return status.utils.stylize(status.utils.get_file_text(0, 2), opt)
             end
         end
-    end
+    end,
 }

@@ -36,6 +36,7 @@ local function line(icon, indent, hl)
     return { { (" "):rep(indent) }, { icon:rep(vim.o.columns - indent), hl } }
 end
 
+---@type LazySpec
 return {
     "nvim-neorg/neorg",
     ft = "norg",

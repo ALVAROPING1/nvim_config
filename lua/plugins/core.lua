@@ -1,24 +1,27 @@
+---@type LazySpec
 return {
-    -- customize alpha options
+    -- customize dashboard options
     {
-        "goolord/alpha-nvim",
-        opts = function(_, opts)
-            -- customize the dashboard header
-            opts.section.header.val = {
-                " █████  ███████ ████████ ██████   ██████",
-                "██   ██ ██         ██    ██   ██ ██    ██",
-                "███████ ███████    ██    ██████  ██    ██",
-                "██   ██      ██    ██    ██   ██ ██    ██",
-                "██   ██ ███████    ██    ██   ██  ██████",
-                " ",
-                "    ███    ██ ██    ██ ██ ███    ███",
-                "    ████   ██ ██    ██ ██ ████  ████",
-                "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-                "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-                "    ██   ████   ████   ██ ██      ██",
-            }
-            return opts
-        end,
+        "folke/snacks.nvim",
+        opts = {
+            dashboard = {
+                preset = {
+                    header = table.concat({
+                        " █████  ███████ ████████ ██████   ██████ ",
+                        "██   ██ ██         ██    ██   ██ ██    ██",
+                        "███████ ███████    ██    ██████  ██    ██",
+                        "██   ██      ██    ██    ██   ██ ██    ██",
+                        "██   ██ ███████    ██    ██   ██  ██████ ",
+                        "",
+                        "███    ██ ██    ██ ██ ███    ███", -- TODO: should this be centered manually?
+                        "████   ██ ██    ██ ██ ████  ████",
+                        "██ ██  ██ ██    ██ ██ ██ ████ ██",
+                        "██  ██ ██  ██  ██  ██ ██  ██  ██",
+                        "██   ████   ████   ██ ██      ██",
+                    }, "\n"),
+                },
+            },
+        },
     },
     -- You can disable default plugins as follows:
     -- { "max397574/better-escape.nvim", enabled = false },
