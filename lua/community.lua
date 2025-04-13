@@ -367,4 +367,29 @@ return {
     { import = "astrocommunity.motion.tabout-nvim" },
     { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
     { "nvim-zh/colorful-winsep.nvim",                                   opts = { only_line_seq = false } },
+    { import = "astrocommunity.lsp.actions-preview-nvim" },
+    {
+        "aznhe21/actions-preview.nvim",
+        opts = function(_, opts)
+            opts.telescope = {
+                results_title = false,
+                layout_strategy = "center",
+                layout_config = {
+                    width = 0.8,
+                    height = 0.25,
+                    prompt_position = "top",
+                    preview_cutoff = 1,
+                    anchor = "N",
+                },
+                borderchars = {
+                    prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+                    results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+                    preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                },
+            }
+            opts.highlight_command = {
+                require("actions-preview.highlight").delta(),
+            }
+        end,
+    },
 }
