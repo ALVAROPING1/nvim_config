@@ -249,13 +249,14 @@ return {
     -- { import = "astrocommunity.motion.leap-nvim" },
     {
         "ggandor/leap.nvim",
+        event = "VeryLazy",
         dependencies = { "tpope/vim-repeat" },
-        keys = {
-            { "s",  "<Plug>(leap-forward)",     mode = { "n", "x", "o" }, desc = "Leap forward" },
-            { "S",  "<Plug>(leap-backward)",    mode = { "n", "x", "o" }, desc = "Leap backward" },
-            { "gs", "<Plug>(leap-from-window)", mode = { "n", "x", "o" }, desc = "Leap from window" },
-        },
         opts = { equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" } },
+        config = function(_, opts)
+            local leap = require("leap")
+            leap.opts = vim.tbl_deep_extend("force", leap.opts, opts)
+            leap.set_default_mappings()
+        end,
     },
     -- { import = "astrocommunity.motion.flit-nvim" },
     {
