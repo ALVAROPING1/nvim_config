@@ -156,6 +156,15 @@ return {
     NotifyDEBUGBody = normal,
     NotifyTRACEBody = normal,
 
+    -- Snacks
+    -- Dashboard
+    SnacksDashboardHeader = { link = "DashboardHeader" },
+    SnacksDashboardFooter = { fg = blue, bold = true },
+    SnacksDashboardSpecial = { fg = blue, bold = true, italic = true },
+    SnacksDashboardDesc = { link = "Normal" },
+    SnacksDashboardKey = { link = "DashboardShortCut" },
+    SnacksDashboardIcon = { link = "Normal" },
+
     -- Misc Plugins
     IncRenameText = { link = "Search" },               -- Background of replaced text
     LspSignatureActiveParameter = { fg = light_blue }, -- Current parameter in function signature
