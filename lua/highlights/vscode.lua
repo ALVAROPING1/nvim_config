@@ -4,7 +4,6 @@ local red = "#F44747"
 local tabline_bg = "#141414"
 local grey = "#404040"
 local light_grey = "#707070"
-local normal = { fg = "#d4d4d4", bg = "#1f1f1f" }
 -- Table of overrides/changes to the vscode theme
 return {
     -- UI Elements
@@ -145,16 +144,6 @@ return {
     NeorgH4 = { fg = "#ffbd5e" },
     NeorgH5 = { fg = "#4a90e2" },
     NeorgH6 = { fg = "#ff6e5e" },
-
-    -- nvim-notify
-    -- Make sure notifications use the correct background color by copying the `Normal` hl group
-    -- instead of linking to it, since Lazy overrides the `Normal` hl group
-    NotifyBackground = normal,
-    NotifyERRORBody = normal,
-    NotifyWARNBody = normal,
-    NotifyINFOBody = normal,
-    NotifyDEBUGBody = normal,
-    NotifyTRACEBody = normal,
 
     -- Snacks
     -- Dashboard

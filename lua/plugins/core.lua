@@ -25,6 +25,7 @@ return {
                     hl = { "Delimiter1", "Delimiter2", "Delimiter3" },
                 },
             },
+            notifier = { timeout = 5000 },
         },
     },
     -- You can disable default plugins as follows:
@@ -172,7 +173,6 @@ return {
             return opts
         end,
     },
-    { "rcarriga/nvim-notify", opts = { icons = { INFO = "" } } },
     {
         "folke/todo-comments.nvim",
         keys = { { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Find TODOs" } },
