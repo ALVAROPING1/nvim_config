@@ -5,7 +5,7 @@ local tabline_bg = "#141414"
 local grey = "#404040"
 local light_grey = "#707070"
 -- Table of overrides/changes to the vscode theme
-return {
+local hl = {
     -- UI Elements
     TabLineFill = { bg = tabline_bg }, -- Background of buffers line
     LineNr = { link = "VirtualText" },
@@ -182,3 +182,11 @@ return {
     TelescopeSelection = { link = "PMenuSel" },
     TelescopeMultiSelection = { link = "TelescopeSelection" },
 }
+
+local kind_table = require("icons").lsp
+for kind, _ in pairs(vim.lsp.protocol.CompletionItemKind) do
+    if type(kind) == "string" then
+        hl["BlinkCmpKind" .. kind] = { link = kind_table[kind:lower()].hl }
+    end
+end
+return hl
