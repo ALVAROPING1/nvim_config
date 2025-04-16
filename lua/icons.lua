@@ -48,7 +48,7 @@ return {
     -- Spellcheck = "󰓆",
     -- TabClose = "󰅙",
     VimIcon = "",
-    lspkind = {
+    lsp = {
         Array = "󰅪",
         Boolean = "󰨙",
         Constructor = "",

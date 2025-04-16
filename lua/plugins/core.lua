@@ -178,61 +178,68 @@ return {
         keys = { { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Find TODOs" } },
     },
     {
-        "nvim-tree/nvim-web-devicons",
+        "echasnovski/mini.icons",
         opts = function(_, opts)
-            local utils = require("astroui")
-            local vscode = require("highlights.vscode")
-            require("nvim-web-devicons").set_icon_by_filetype({
-                toggleterm = "terminal",
-                latex = "tex",
-                mason = "lsp",
-                cargo = "rs",
-            })
-            local md = {
-                icon = "",
-                color = "#519aba",
-                name = "Markdown",
-            }
-            local readme = {
-                icon = "󰂾",
-                color = "#519aba",
-                cterm_color = "255",
-                name = "Readme",
-            }
-            return vim.tbl_deep_extend("force", opts, {
-                override = {
-                    markdown = md,
-                    md = md,
-                    ["neo-tree"] = {
-                        icon = utils.get_icon("FolderClosed"),
-                        color = utils.get_hlgroup("Directory").fg,
-                        name = "NeoTree",
-                    },
-                    telescopeprompt = {
-                        icon = utils.get_icon("Search"),
-                        name = "Telescope",
-                    },
-                    lazy = {
-                        icon = "󰒲",
-                        color = vscode.LazyH1.bg,
-                        name = "Lazy",
-                    },
-                    ["null-ls-info"] = {
-                        icon = utils.get_icon("ActiveLSP"),
-                        color = vscode.LazyH1.bg,
-                        name = "Null-LS-Info",
-                    },
-                    alpha = {
-                        icon = "α",
-                        color = vscode.LazyH1.bg,
-                        name = "Alpha",
-                    },
-                    ["readme"] = readme,
-                    ["readme.md"] = readme,
-                },
-            })
+            opts.lsp = require("icons").lsp
         end,
     },
+    -- TODO: actually replace with mini.icons?
+    -- {
+    --     "nvim-tree/nvim-web-devicons",
+    --     opts = function(_, opts)
+    --         local utils = require("astroui")
+    --         local vscode = require("highlights.vscode")
+    --         require("nvim-web-devicons").set_icon_by_filetype({
+    --             toggleterm = "terminal",
+    --             latex = "tex",
+    --             mason = "lsp",
+    --             cargo = "rs",
+    --         })
+    --         local md = {
+    --             icon = "",
+    --             color = "#519aba",
+    --             name = "Markdown",
+    --         }
+    --         local readme = {
+    --             icon = "󰂾",
+    --             color = "#519aba",
+    --             cterm_color = "255",
+    --             name = "Readme",
+    --         }
+    --         return vim.tbl_deep_extend("force", opts, {
+    --             override = {
+    --                 markdown = md,
+    --                 md = md,
+    --                 ["neo-tree"] = {
+    --                     icon = utils.get_icon("FolderClosed"),
+    --                     color = utils.get_hlgroup("Directory").fg,
+    --                     name = "NeoTree",
+    --                 },
+    --                 telescopeprompt = {
+    --                     icon = utils.get_icon("Search"),
+    --                     name = "Telescope",
+    --                 },
+    --                 lazy = {
+    --                     icon = "󰒲",
+    --                     color = vscode.LazyH1.bg,
+    --                     name = "Lazy",
+    --                 },
+    --                 ["null-ls-info"] = {
+    --                     icon = utils.get_icon("ActiveLSP"),
+    --                     color = vscode.LazyH1.bg,
+    --                     name = "Null-LS-Info",
+    --                 },
+    --                 alpha = {
+    --                     icon = "α",
+    --                     color = vscode.LazyH1.bg,
+    --                     name = "Alpha",
+    --                 },
+    --                 ["readme"] = readme,
+    --                 ["readme.md"] = readme,
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "lewis6991/gitsigns.nvim",
         opts = {
