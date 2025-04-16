@@ -26,6 +26,16 @@ return {
                 },
             },
             notifier = { timeout = 5000 },
+            picker = {
+                previewers = {
+                    diff = { builtin = false, cmd = { "delta" } }, -- Use delta to preview diffs
+                    git = { builtin = false },                     -- Use delta to preview git output
+                },
+                layouts = {
+                    default = { layout = { width = 0.87, [2] = { width = 0.575 } } },
+                    vscode = { layout = { [2] = { wo = { winhighlight = "NormalFloat:Pmenu" } } } },
+                },
+            },
         },
     },
     -- You can disable default plugins as follows:
@@ -181,7 +191,16 @@ return {
     },
     {
         "folke/todo-comments.nvim",
-        keys = { { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Find TODOs" } },
+        keys = {
+            {
+                "<leader>ft",
+                function()
+                    ---@diagnostic disable-next-line: undefined-field
+                    require("snacks.picker").todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+                end,
+                desc = "Find TODOs",
+            },
+        },
     },
     {
         "echasnovski/mini.icons",

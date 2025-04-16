@@ -12,7 +12,7 @@ return {
     --     require("lsp_signature").setup()
     --   end,
     -- },
-    { "Mofiqul/vscode.nvim", opts = { terminal_colors = false } },
+    { "Mofiqul/vscode.nvim",     opts = { terminal_colors = false } },
     {
         "jbyuki/nabla.nvim",
         keys = {
@@ -58,18 +58,8 @@ return {
         -- SEE: https://github.com/L3MON4D3/LuaSnip/issues/865
         enabled = false,
     },
-    { "Bekaboo/deadcolumn.nvim", event = "User AstroFile", opts = { warning = { hlgroup = { "Error", "fg" } } } },
-    {
-        "nvim-telescope/telescope.nvim",
-        dependencies = {
-            "natecraddock/telescope-zf-native.nvim",
-            { "nvim-telescope/telescope-fzf-native.nvim", enabled = false },
-        },
-        opts = function()
-            require("telescope").load_extension("zf-native")
-        end,
-    },
-    { "3rd/image.nvim",      config = true },
+    { "Bekaboo/deadcolumn.nvim", event = "User AstroFile",          opts = { warning = { hlgroup = { "Error", "fg" } } } },
+    { "3rd/image.nvim",          config = true },
     {
         "barreiroleo/ltex_extra.nvim",
         branch = "dev",

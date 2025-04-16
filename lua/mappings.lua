@@ -61,11 +61,27 @@ return {
             end,
             desc = "ToggleTerm python",
         },
+        ["<Leader>fa"] = {
+            function()
+                require("snacks").picker.files({
+                    dirs = { vim.fn.stdpath("config") },
+                    cwd = vim.fn.stdpath("config"),
+                    desc = "Config Files",
+                })
+            end,
+            desc = "Find AstroNvim config files",
+        },
         ["<Leader>fH"] = {
             function()
-                require("telescope.builtin").highlights()
+                require("snacks.picker").highlights()
             end,
             desc = "Find highlight groups",
+        },
+        ["<Leader>fi"] = {
+            function()
+                require("snacks.picker").icons()
+            end,
+            desc = "Find icons",
         },
         ["<Leader><Leader>"] = { group = "󰐕 More commands" },
         -- Text search

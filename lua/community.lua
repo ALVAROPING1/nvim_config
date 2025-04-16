@@ -128,7 +128,7 @@ return {
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.rust" },
-    { "linux-cultist/venv-selector.nvim",        enabled = false },
+    { "linux-cultist/venv-selector.nvim",         enabled = false },
     {
         "mfussenegger/nvim-dap-python",
         opts = { pythonPath = require("python_utils").get_path(vim.uv.cwd()) },
@@ -324,7 +324,7 @@ return {
     },
     { import = "astrocommunity.git.diffview-nvim" },
     { import = "astrocommunity.editing-support.nvim-treesitter-context" },
-    { import = "astrocommunity.recipes.telescope-lsp-mappings" },
+    { import = "astrocommunity.recipes.picker-lsp-mappings" },
     { import = "astrocommunity.motion.tabout-nvim" },
     { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
     { "nvim-zh/colorful-winsep.nvim",                                   opts = { only_line_seq = false } },
@@ -332,25 +332,17 @@ return {
     {
         "aznhe21/actions-preview.nvim",
         opts = function(_, opts)
-            opts.telescope = {
-                results_title = false,
-                layout_strategy = "center",
-                layout_config = {
-                    width = 0.8,
-                    height = 0.25,
-                    prompt_position = "top",
-                    preview_cutoff = 1,
-                    anchor = "N",
-                },
-                borderchars = {
-                    prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-                    results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-                    preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+            opts.snacks = {
+                layout = {
+                    preset = "vertical",
+                    layout = {
+                        width = 0.8,
+                        [2] = { height = 0.2 },
+                        [3] = { height = false },
+                    },
                 },
             }
-            opts.highlight_command = {
-                require("actions-preview.highlight").delta(),
-            }
+            opts.highlight_command = { require("actions-preview.highlight").delta() }
         end,
     },
 }

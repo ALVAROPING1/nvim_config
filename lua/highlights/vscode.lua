@@ -19,6 +19,8 @@ return {
     LspInlayHint = { link = "VirtualText" },
     SpecialChar = { link = "Special" }, -- Special characters in strings
     VirtualText = { fg = light_grey },  -- Custom group for virtual text
+    Bold = { bold = true },
+    Italic = { italic = true },
 
     MarkupVerbatim = { fg = "#77a1f5", bg = "#3a4160" },
 
@@ -43,6 +45,7 @@ return {
     FloatBorder = { fg = "#5A5A5A" },
     NullLsInfoBorder = { link = "FloatBorder" },
     DapUIFloatBorder = { link = "FloatBorder" },
+    SnacksPickerBorder = { link = "FloatBorder" },
 
     -- Treesitter
     ["@punctuation.special"] = { link = "@markup.list" }, -- Legacy
@@ -87,6 +90,7 @@ return {
     LazyButtonActive = { bg = "#264F78", bold = true },
     LazyH1 = { fg = "#000000", bg = light_blue, bold = true },
     LazySpecial = { fg = blue },
+    LazyCommitType = { fg = "#4fc1ff", bold = true },
 
     -- Mason
     MasonHeader = { link = "LazyH1" },
@@ -146,6 +150,10 @@ return {
     NeorgH6 = { fg = "#ff6e5e" },
 
     -- Snacks
+    -- General
+    SnacksWinKey = { link = "WhichKey" },
+    SnacksWinKeySep = { link = "WhichKeySeparator" },
+    SnacksWinKeyDesc = { link = "WhichKeyDesc" },
     -- Dashboard
     SnacksDashboardHeader = { link = "DashboardHeader" },
     SnacksDashboardFooter = { fg = blue, bold = true },
@@ -155,6 +163,14 @@ return {
     SnacksDashboardIcon = { link = "Normal" },
     -- Indent
     SnacksIndent = { fg = "#5a5a5a" },
+    -- Picker
+    SnacksPickerMatch = { link = "TelescopeMatching" },
+    SnacksPickerPreviewCursorLine = { link = "CursorLine" },
+    SnacksPickerTotals = { link = "VirtualText" },
+    SnacksPickerGitDate = { link = "Comment" },
+    SnacksPickerSpecial = { link = "Comment" },
+    SnacksPickerGitType = { link = "LazyCommitType" },
+    SnacksPickerGitbreaking = { fg = red, bold = true },
 
     -- Misc Plugins
     IncRenameText = { link = "Search" },               -- Background of replaced text
