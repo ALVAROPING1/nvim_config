@@ -19,4 +19,6 @@ return {
 
     -- Colorful-winsep
     NvimSeparator = { fg = "#3DAEE9" },
+
+    BlinkCmpLabelDeprecated = { link = "CmpItemAbbrDeprecated" },
 }

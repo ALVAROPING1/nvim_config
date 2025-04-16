@@ -144,34 +144,40 @@ return {
         },
     },
     {
-        "hrsh7th/nvim-cmp",
-        opts = function(_, opts)
-            -- opts parameter is the default options table
-            -- the function is lazy loaded so cmp is able to be required
-            local cmp = require("cmp")
-            -- Floating window opts
-            opts.window.completion = cmp.config.window.bordered({
-                col_offset = -3,
-                border = "rounded",
-                winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-            })
-            -- Icon opts
-            opts.formatting.expandable_indicator = false
-            opts.formatting.format = function(entry, vim_item)
-                if entry.source.name == "path" then
-                    local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
-                    if icon then
-                        vim_item.kind = icon
-                        vim_item.kind_hl_group = hl_group
-                        return vim_item
-                    end
-                end
-                return require("lspkind").cmp_format(require("astrocore").plugin_opts("lspkind.nvim"))(entry, vim_item)
-            end
-
-            vim.list_extend(opts.sources, { { name = "neorg" }, { name = "otter" } })
-            return opts
-        end,
+        "Saghen/blink.cmp",
+        specs = { "xzbdmw/colorful-menu.nvim" },
+        opts = {
+            completion = {
+                menu = {
+                    draw = {
+                        columns = { { "kind_icon" }, { "label", gap = 1 } },
+                        components = {
+                            label = {
+                                text = function(ctx)
+                                    return require("colorful-menu").blink_components_text(ctx)
+                                end,
+                                highlight = function(ctx)
+                                    local client = vim.lsp.get_client_by_id(ctx.item.client_id)
+                                    -- Don't use colorful-menu.nvim for lua_ls, since LSP highlights better function arguments
+                                    if client and not client:is_stopped() and client.name ~= "lua_ls" then
+                                        return require("colorful-menu").blink_components_highlight(ctx)
+                                    end
+                                    local draw = require("blink.cmp.config.completion.menu").default.draw
+                                    return draw.components.label.highlight(ctx, "")
+                                end,
+                            },
+                        },
+                    },
+                },
+            },
+            sources = {
+                providers = {
+                    path = { opts = { ignore_root_slash = true } },
+                    snippets = { opts = { show_autosnippets = true } },
+                },
+            },
+            cmdline = { completion = { ghost_text = { enabled = true } } },
+        },
     },
     {
         "folke/todo-comments.nvim",
