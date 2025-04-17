@@ -45,19 +45,17 @@ return {
     { import = "astrocommunity.pack.rainbow-delimiter-indent-blankline" },
     {
         "HiPhish/rainbow-delimiters.nvim",
-        opts = function()
-            return {
-                strategy = {
-                    [""] = require("rainbow-delimiters").strategy["global"],
-                    norg = require("rainbow-delimiters").strategy["noop"],
-                    markdown = require("rainbow-delimiters").strategy["noop"],
-                },
-                query = {
-                    [""] = "rainbow-delimiters",
-                    latex = "rainbow-blocks",
-                },
-                highlight = vim.g.rainbow_delimiters.highlight,
+        opts = function(_, opts)
+            opts.strategy = {
+                [""] = require("rainbow-delimiters").strategy["global"],
+                norg = require("rainbow-delimiters").strategy["noop"],
+                markdown = require("rainbow-delimiters").strategy["noop"],
             }
+            opts.query = {
+                [""] = "rainbow-delimiters",
+                latex = "rainbow-blocks",
+            }
+            opts.highlight = vim.g.rainbow_delimiters.highlight
         end,
     },
     -- { import = "astrocommunity.terminal-integration.flatten-nvim" },
