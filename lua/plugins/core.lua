@@ -37,6 +37,20 @@ return {
                 },
             },
         },
+        -- selene: allow(global_usage)
+        init = function()
+            _G.dd = function(...)
+                require("snacks.debug").inspect(...)
+                return ...
+            end
+            _G.bt = function(...)
+                require("snacks.debug").backtrace(...)
+            end
+            _G.log = function(...)
+                require("snacks.debug").log(...)
+            end
+            vim.print = _G.dd
+        end,
     },
     -- You can disable default plugins as follows:
     -- { "max397574/better-escape.nvim", enabled = false },

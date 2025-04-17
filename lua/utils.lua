@@ -23,17 +23,6 @@ local M = {}
 --     end
 -- end
 
---- Logs a message to a file
----@param obj any Message to be logged
-function M.log(obj)
-    local log_file = io.open("log.log", "a")
-    if log_file ~= nil then
-        io.output(log_file)
-        io.write(vim.inspect(obj) .. "\n")
-        io.close(log_file)
-    end
-end
-
 --- Creates a mapping that saves the view, executes another mapping, and restores the view
 ---@param mapping string Mapping to execute
 ---@return string
