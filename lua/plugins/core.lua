@@ -17,6 +17,14 @@ return {
                     }, "\n"),
                 },
             },
+            indent = {
+                indent = { char = "▎" },
+                scope = {
+                    char = "▎",
+                    underline = true,
+                    hl = { "Delimiter1", "Delimiter2", "Delimiter3" },
+                },
+            },
         },
     },
     -- You can disable default plugins as follows:
@@ -168,23 +176,6 @@ return {
     {
         "folke/todo-comments.nvim",
         keys = { { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Find TODOs" } },
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        opts = {
-            -- TODO: move underline position in Kitty once an updated version is on the package repos
-            debounce = 500,
-            indent = { char = "▎" },
-            scope = {
-                include = {
-                    node_type = {
-                        lua = { "table_constructor", "function_call" },
-                        python = { "argument_list", "list", "tuple", "set", "dictionary", "generator_expression" },
-                        ["*"] = { "parameters" },
-                    },
-                },
-            },
-        },
     },
     {
         "nvim-tree/nvim-web-devicons",

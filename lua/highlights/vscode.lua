@@ -164,6 +164,8 @@ return {
     SnacksDashboardDesc = { link = "Normal" },
     SnacksDashboardKey = { link = "DashboardShortCut" },
     SnacksDashboardIcon = { link = "Normal" },
+    -- Indent
+    SnacksIndent = { fg = "#5a5a5a" },
 
     -- Misc Plugins
     IncRenameText = { link = "Search" },               -- Background of replaced text
