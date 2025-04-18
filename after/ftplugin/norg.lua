@@ -9,6 +9,9 @@ vim.opt_local.conceallevel = 2
 vim.opt_local.concealcursor = "nc"
 vim.opt_local.comments = "fb:*,fb:-,fb:~,fn:*,fn:-,fn:~"
 
+-- TODO: replace with snacks_scope on newer versions of snacks
+vim.b.snacks_indent = false
+
 require("which-key").add({
     buffer = 0,
     { "<LocalLeader>l", group = "󰙅 List" },

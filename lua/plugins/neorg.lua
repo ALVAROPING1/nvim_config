@@ -43,11 +43,15 @@ return {
     cmd = "Neorg",
     keys = { { "<LocalLeader>n", "<Plug>(neorg.dirman.new-note)", desc = "[neorg] Create New Note" } },
     version = "*",
-    dependencies = { "max397574/neorg-contexts", { "jmbuhr/otter.nvim", version = "v1.15.1" } },
+    dependencies = {
+        "max397574/neorg-contexts",
+        { "jmbuhr/otter.nvim", version = "v1.15.1" },
+        "benlubas/neorg-interim-ls",
+    },
     opts = {
         load = {
             ["core.defaults"] = { config = { disable = { "core.journal", "core.qol.toc", "core.looking-glass" } } },
-            ["core.completion"] = { config = { engine = "nvim-cmp" } },
+            ["core.completion"] = { config = { engine = { module_name = "external.lsp-completion" } } },
             ["core.export"] = {},
             ["core.export.markdown"] = { config = { extensions = "all" } },
             ["core.todo-introspector"] = { config = { highlight_group = "VirtualText" } },
@@ -222,6 +226,7 @@ return {
             ["core.integrations.image"] = {},
             ["core.latex.renderer"] = {},
             ["external.context"] = {},
+            ["external.interim-ls"] = {},
         },
     },
     config = function(_, opts)
