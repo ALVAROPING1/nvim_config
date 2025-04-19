@@ -53,25 +53,10 @@ return {
                     return ft_icon, ft_color
                 end
 
-                ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filetype in some cases
-                function status.provider.filename(opt)
-                    opt = require("astrocore").extend_tbl({
-                        fallback = "Untitled",
-                        fname = function(nr)
-                            return status.utils.get_file_text(nr, 1, opt.modify)
-                        end,
-                        modify = ":t",
-                    }, opt)
-                    return function(self)
-                        local filename = opt.fname(self and self.bufnr or 0)
-                        return status.utils.stylize((filename == "" and opt.fallback or filename), opt)
-                    end
-                end
-
                 ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filenames in some cases
                 function status.provider.filetype(opt)
-                    return function(_)
-                        return status.utils.stylize(status.utils.get_file_text(0, 2), opt)
+                    return function(self)
+                        return status.utils.stylize(status.utils.get_file_text(self and self.bufnr or 0, 2), opt)
                     end
                 end
             end,
