@@ -62,7 +62,6 @@ return {
             -- add a component to display LSP clients, disable showing LSP progress, and use the right separator
             status.component.lsp({
                 lsp_progress = false,
-                hl = hl.get_attributes("lsp_clients"),
                 padding = { right = 1 },
                 surround = { separator = "right" },
             }),
@@ -76,7 +75,9 @@ return {
                     -- add padding after icon
                     padding = { right = 1 },
                     -- set the foreground color to be used for the icon
-                    hl = hl.get_attributes("folder_icon"),
+                    hl = function()
+                        return hl.get_attributes("folder_icon")
+                    end,
                     -- use the right separator and define the background color
                     surround = { separator = "right", color = "folder_icon_bg" },
                 }),
@@ -97,7 +98,9 @@ return {
                     file_read_only = false,
                     -- use no separator for this part but define a background color
                     surround = { separator = "none", color = "folder_bg", condition = false },
-                    hl = hl.get_attributes("folder", true),
+                    hl = function()
+                        return hl.get_attributes("folder", true)
+                    end,
                 }),
             },
             -- the final component of the NvChad statusline is the navigation section
@@ -109,7 +112,9 @@ return {
                     -- add padding after icon
                     padding = { right = 1 },
                     -- set the icon foreground
-                    hl = hl.get_attributes("nav_icon"),
+                    hl = function()
+                        return hl.get_attributes("nav_icon")
+                    end,
                     -- use the right separator and define the background color
                     -- as well as the color to the left of the separator
                     surround = { separator = "right", color = { main = "nav_icon_bg", left = "folder_bg" } },
