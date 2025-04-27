@@ -28,6 +28,14 @@ local function heading_hl(level, attr)
     return "@neorg.headings." .. level .. "." .. attr
 end
 
+---@param icon string
+---@param indent integer
+---@param hl string
+---@return { [1]: string, [2]: string }[]
+local function line(icon, indent, hl)
+    return { { (" "):rep(indent) }, { icon:rep(vim.o.columns - indent), hl } }
+end
+
 return {
     "nvim-neorg/neorg",
     ft = "norg",
@@ -88,13 +96,16 @@ return {
                                 end
 
                                 local row, col, end_row = node:range()
+                                -- Conceal `@end` tag line
                                 if should_conceal(end_row) then
-                                    vim.api.nvim_buf_set_extmark(bufid, ns, end_row, col, {
-                                        virt_text = { { config.below:rep(vim.o.columns), config.highlight .. ".fg" } },
+                                    vim.api.nvim_buf_set_extmark(bufid, ns, end_row, 0, {
+                                        -- Conceal the entire line to avoid errors if the `@name` tag is more indented than `@end`
+                                        virt_text = line(config.below, col, config.highlight .. ".fg"),
                                         virt_text_pos = "overlay",
                                     })
                                 end
 
+                                -- Conceal `@name` tag line with icons
                                 if should_conceal(row) then
                                     local name_icon = config.icons[name]
                                     vim.api.nvim_buf_set_extmark(bufid, ns, row, col, {
@@ -132,29 +143,19 @@ return {
                                     return
                                 end
 
-                                ---@param icon string
-                                ---@param indent integer
-                                ---@param level integer
-                                ---@return { [1]: string, [2]: string }[]
-                                local function line(icon, indent, level)
-                                    return {
-                                        { (" "):rep(indent) },
-                                        { icon:rep(vim.o.columns - indent), heading_hl(level, "fg") },
-                                    }
-                                end
-
                                 local text = vim.treesitter.get_node_text(node, bufid)
                                 local level = text:find("%s") or text:len() + 1
                                 level = level - 1
                                 local row, col = node:start()
                                 local indent = col + level - 1
+                                local hl = heading_hl(level, "fg")
                                 -- Add border above/below heading as virtual lines
                                 vim.api.nvim_buf_set_extmark(bufid, ns, row, indent, {
-                                    virt_lines = { line(config.above, indent, level) },
+                                    virt_lines = { line(config.above, indent, hl) },
                                     virt_lines_above = true,
                                 })
                                 vim.api.nvim_buf_set_extmark(bufid, ns, row, indent, {
-                                    virt_lines = { line(config.below, indent, level) },
+                                    virt_lines = { line(config.below, indent, hl) },
                                 })
                                 -- Add border background to the heading itself
                                 vim.api.nvim_buf_set_extmark(bufid, ns, row, indent, {
