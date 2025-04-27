@@ -133,10 +133,10 @@ return {
                                 end
 
                                 ---@param icon string
+                                ---@param indent integer
                                 ---@param level integer
                                 ---@return { [1]: string, [2]: string }[]
-                                local function line(icon, level)
-                                    local indent = level - 1
+                                local function line(icon, indent, level)
                                     return {
                                         { (" "):rep(indent) },
                                         { icon:rep(vim.o.columns - indent), heading_hl(level, "fg") },
@@ -147,14 +147,17 @@ return {
                                 local level = text:find("%s") or text:len() + 1
                                 level = level - 1
                                 local row, col = node:start()
-                                vim.api.nvim_buf_set_extmark(bufid, ns, row, col, {
-                                    virt_lines = { line(config.above, level) },
+                                local indent = col + level - 1
+                                -- Add border above/below heading as virtual lines
+                                vim.api.nvim_buf_set_extmark(bufid, ns, row, indent, {
+                                    virt_lines = { line(config.above, indent, level) },
                                     virt_lines_above = true,
                                 })
-                                vim.api.nvim_buf_set_extmark(bufid, ns, row, col, {
-                                    virt_lines = { line(config.below, level) },
+                                vim.api.nvim_buf_set_extmark(bufid, ns, row, indent, {
+                                    virt_lines = { line(config.below, indent, level) },
                                 })
-                                vim.api.nvim_buf_set_extmark(bufid, ns, row, col + level - 1, {
+                                -- Add border background to the heading itself
+                                vim.api.nvim_buf_set_extmark(bufid, ns, row, indent, {
                                     end_row = row + 1,
                                     hl_group = heading_hl(level, "bg"),
                                     hl_eol = true,
