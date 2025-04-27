@@ -57,6 +57,7 @@ return {
                             ["6"] = { title = "+NeorgH6", prefix = "+NeorgH6" },
                         },
                     },
+                    dim = { tags = { ranged_verbatim = { code_block = { percentage = 60 } } } },
                 },
             },
             ["core.concealer"] = {
