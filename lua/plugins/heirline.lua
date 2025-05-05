@@ -33,6 +33,8 @@ return {
                         or (vim.list_contains({ "TelescopePrompt", "lazy", "mason", "null-ls-info" }, filetype) and filetype:gsub("^%a", string.upper))
                         -- Diffview buffers
                         or (filename:match("^Diffview") and type == 0 and "git")
+                        -- Snacks.picker buffers
+                        or (filetype:match("^snacks_picker") and type == 0 and "snacks_picker")
                         -- Fallback
                         or (type == 1 and filename or filetype)
                     )

@@ -181,6 +181,7 @@ local hl = {
     TroubleIconDirectory = { link = "Directory" },
     TelescopeSelection = { link = "PMenuSel" },
     TelescopeMultiSelection = { link = "TelescopeSelection" },
+    MiniIconsOrange = { link = "CmpItemKindConstructor" },
 }
 
 local kind_table = require("icons").lsp

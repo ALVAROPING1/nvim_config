@@ -21,4 +21,6 @@ return {
     NvimSeparator = { fg = "#3DAEE9" },
 
     BlinkCmpLabelDeprecated = { link = "CmpItemAbbrDeprecated" },
+
+    DevIconMarkdown = { fg = "#519aba" },
 }

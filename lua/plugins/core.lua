@@ -218,67 +218,99 @@ return {
     },
     {
         "echasnovski/mini.icons",
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        init = false,
+        dependencies = {
+            {
+                "nvim-tree/nvim-web-devicons",
+                config = true,
+                -- Extract icons/hl groups from nvim-web-devicons and translate them to the format used by mini.icons
+                -- NOTE: this operation is expensive due to having many icons, so we do it in a build step so that it's
+                -- only done once whenever the plugin updates
+                build = function()
+                    ---@param src table<string, Icon>
+                    ---@return table<string, MiniIconsCategory>
+                    local function translate(src)
+                        local tbl = {}
+                        for k, v in pairs(src) do
+                            tbl[k] = { glyph = v.icon, hl = "DevIcon" .. v.name }
+                        end
+                        return tbl
+                    end
+
+                    -- Get the filetype -> icon name translation table
+                    local devicons_ft = require("nvim-web-devicons.filetypes")
+                    -- Get the extension and filename icon tables
+                    local devicons_ext = require("nvim-web-devicons.default.icons_by_file_extension")
+                    local devicons_name = require("nvim-web-devicons.default.icons_by_filename")
+                    -- Result filetype icons
+                    local filetype = {}
+                    -- Hashset of extension icons with a filetype associated
+                    local ext_with_filetype = {}
+                    -- Iterate through default filetypes. For each, translate it to an icon name, get its icon data, and
+                    -- mark the extension as seen
+                    for _, ft in ipairs(vim.fn.getcompletion("", "filetype")) do
+                        local name = devicons_ft[ft]
+                        if name ~= nil then
+                            ext_with_filetype[name] = true
+                        end
+                        local icon = devicons_ext[name] or devicons_name[name]
+                        filetype[ft] = icon
+                    end
+                    -- Get all remaining extension icons
+                    local extension = {}
+                    for k, v in pairs(devicons_ext) do
+                        -- Only keep the icon if we haven't processed it yet and it doesn't correspond with an extension
+                        -- that vim.filetype.match() recognizes
+                        if
+                            filetype[k] == nil
+                            and not ext_with_filetype[k]
+                            and vim.filetype.match({ filename = "." .. k }) == nil
+                        then
+                            extension[k] = v
+                        end
+                    end
+
+                    local os = require("nvim-web-devicons.default.icons_by_operating_system")
+                    -- Store the resulting table in a file
+                    local M = {
+                        extension = translate(extension),
+                        filetype = translate(filetype),
+                        os = translate(os),
+                    }
+                    local path = vim.fn.stdpath("data") .. "/lazy/nvim-web-devicons/lua/nvim-web-devicons/mini.lua"
+                    local fd = assert(io.open(path, "w+"))
+                    fd:write("return " .. vim.inspect(M))
+                    fd:close()
+                end,
+            },
+        },
         opts = function(_, opts)
-            opts.lsp = require("icons").lsp
+            ---@param icons MiniIconsCategory
+            ---@param config DeviconsOverrides?
+            local function apply_config(icons, config)
+                config = config or {}
+                for _, name in ipairs(config.mini_icons or {}) do
+                    icons[name].glyph = nil
+                end
+                for _, name in ipairs(config.mini_all or {}) do
+                    icons[name] = nil
+                end
+                return vim.tbl_deep_extend("force", icons, config.overrides or {})
+            end
+
+            local icons = require("icons")
+            local devicons = require("nvim-web-devicons.mini")
+
+            opts.directory = icons.directory
+            opts.extension = apply_config(devicons.extension, icons.extension)
+            opts.filetype = apply_config(devicons.filetype, icons.filetype)
+            opts.file = icons.file
+            opts.os = devicons.os
+            opts.lsp = icons.lsp
+            require("mini.icons").mock_nvim_web_devicons()
         end,
     },
-    -- TODO: actually replace with mini.icons?
-    -- {
-    --     "nvim-tree/nvim-web-devicons",
-    --     opts = function(_, opts)
-    --         local utils = require("astroui")
-    --         local vscode = require("highlights.vscode")
-    --         require("nvim-web-devicons").set_icon_by_filetype({
-    --             toggleterm = "terminal",
-    --             latex = "tex",
-    --             mason = "lsp",
-    --             cargo = "rs",
-    --         })
-    --         local md = {
-    --             icon = "",
-    --             color = "#519aba",
-    --             name = "Markdown",
-    --         }
-    --         local readme = {
-    --             icon = "󰂾",
-    --             color = "#519aba",
-    --             cterm_color = "255",
-    --             name = "Readme",
-    --         }
-    --         return vim.tbl_deep_extend("force", opts, {
-    --             override = {
-    --                 markdown = md,
-    --                 md = md,
-    --                 ["neo-tree"] = {
-    --                     icon = utils.get_icon("FolderClosed"),
-    --                     color = utils.get_hlgroup("Directory").fg,
-    --                     name = "NeoTree",
-    --                 },
-    --                 telescopeprompt = {
-    --                     icon = utils.get_icon("Search"),
-    --                     name = "Telescope",
-    --                 },
-    --                 lazy = {
-    --                     icon = "󰒲",
-    --                     color = vscode.LazyH1.bg,
-    --                     name = "Lazy",
-    --                 },
-    --                 ["null-ls-info"] = {
-    --                     icon = utils.get_icon("ActiveLSP"),
-    --                     color = vscode.LazyH1.bg,
-    --                     name = "Null-LS-Info",
-    --                 },
-    --                 alpha = {
-    --                     icon = "α",
-    --                     color = vscode.LazyH1.bg,
-    --                     name = "Alpha",
-    --                 },
-    --                 ["readme"] = readme,
-    --                 ["readme.md"] = readme,
-    --             },
-    --         })
-    --     end,
-    -- },
     {
         "lewis6991/gitsigns.nvim",
         opts = {

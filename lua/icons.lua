@@ -1,3 +1,9 @@
+---@class MiniIconsSpec
+---@field glyph string? Icon
+---@field hl string? Highlight group
+
+---@alias MiniIconsCategory table<string, MiniIconsSpec>
+
 -- Custom icons to use. Commented lines use the default
 return {
     -- ActiveLSP = "",
@@ -50,6 +56,27 @@ return {
     VimIcon = "",
     -- stylua: ignore
     ---@format disable-next
+    ---@type MiniIconsCategory
+    directory = {
+        doc             = {              hl = "MiniIconsBlue"               },
+        docs            = {              hl = "MiniIconsBlue"               },
+        src             = {              hl = "MiniIconsBlue"               },
+    },
+    -- stylua: ignore
+    ---@format disable-next
+    ---@type MiniIconsCategory
+    file = {
+        CODEOWNERS      = {              hl = "MiniIconsBlue"               },
+        LICENSE         = {              hl = "MiniIconsYellow"             },
+        ['LICENSE.md']  = {              hl = "MiniIconsYellow"             },
+        ['LICENSE.txt'] = {              hl = "MiniIconsYellow"             },
+        TODO            = {              hl = "MiniIconsBlue"               },
+        ['TODO.md']     = {              hl = "MiniIconsBlue"               },
+        ['init.lua']    = { glyph = "", hl = "DevIconLua"                  },
+    },
+    -- stylua: ignore
+    ---@format disable-next
+    ---@type MiniIconsCategory
     lsp = {
         array         = { glyph = "󰅪", hl = "@variable"                     },
         boolean       = { glyph = "󰨙", hl = "@variable"                     },
@@ -86,4 +113,30 @@ return {
         value         = { glyph = "󰎠", hl = "@variable"                     },
         variable      = { glyph = "󰀫", hl = "@variable"                     },
     },
+    -- stylua: ignore
+    ---@format disable-next
+    ---@class DeviconsOverrides
+    filetype = {
+        ---@type string[]?
+        mini_icons = { "cfg", "conf", "git", "gitattributes", "gitcommit", "gitconfig", "gitignore", "go", "lua", "typescript", "vim", "vue" },
+        ---@type string[]?
+        mini_all   = { "bib", "checkhealth", "csv", "desktop", "diff", "javascript", "json", "json5", "jsonc", "query", "sql", "yaml" },
+        ---@type MiniIconsCategory?
+        overrides = {
+            -- Default filetypes
+            markdown           = { hl = "DevIconMarkdown" },
+            latex              = { hl = "DevIconTex",      glyph = "" },
+            -- Plugin filetypes
+            cargo              = { hl = "DevIconRs",       glyph = "" },
+            ["neo-tree"]       = { hl = "MiniIconsBlue"   },
+            ["neo-tree-popup"] = { hl = "MiniIconsBlue"   },
+            ["null-ls-info"]   = { hl = "MiniIconsBlue",   glyph = "" },
+            toggleterm         = { hl = "DevIconTerminal", glyph = "" },
+            snacks_dashboard   = { hl = "MiniIconsBlue",   glyph = "󰕮" },
+            snacks_notif       = { hl = "MiniIconsBlue",   glyph = "" },
+            snacks_picker      = { hl = "MiniIconsGrey",   glyph = "" },
+        }
+    },
+    ---@class DeviconsOverrides
+    extension = { mini_all = { "ipynb" } },
 }
