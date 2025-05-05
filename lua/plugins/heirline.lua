@@ -1,7 +1,6 @@
 ---@type LazySpec
 return {
     "rebelot/heirline.nvim",
-    -- dependencies = {  },
     specs = {
         {
             "AstroNvim/astroui",
@@ -11,12 +10,10 @@ return {
 
                 --- Gets the filename of the buffer. Falls back to the filetype if it has no name
                 ---@param bufnr integer Buffer number
-                ---@param type 0 | 1 | 2 Whether to get the icon name (0), file name (1), or filetype (2)
-                ---@param modify string? Modifier of `vim.fn.fnamemodify()`
+                ---@param type 0 | 2 Whether to get the icon name (0) or filetype (2)
                 ---@return string
-                ---@diagnostic disable-next-line: inject-field
-                function status.utils.get_file_text(bufnr, type, modify)
-                    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), modify or ":t")
+                local function get_file_text(bufnr, type)
+                    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
                     local filetype = vim.bo[bufnr].filetype
                     local term_app = filename:match("^%d*:?(.-)%s*;#toggleterm#")
                     local cargo_app = filename:match("^.+&& (cargo %w+)")
@@ -24,19 +21,15 @@ return {
                     ---@format disable-next
                     return (
                         -- Toggleterm buffers
-                        term_app
+                        (term_app and (type == 2 and term_app))
                         -- Cargo (Rust) buffers
                         or (cargo_app and (type == 0 and "cargo" or cargo_app))
-                        -- Neo-tree buffer
-                        or (filename == "neo-tree filesystem [1]" and "Neo-tree")
-                        -- Plugins with floating window UI
-                        or (vim.list_contains({ "TelescopePrompt", "lazy", "mason", "null-ls-info" }, filetype) and filetype:gsub("^%a", string.upper))
                         -- Diffview buffers
                         or (filename:match("^Diffview") and type == 0 and "git")
                         -- Snacks.picker buffers
                         or (filetype:match("^snacks_picker") and type == 0 and "snacks_picker")
                         -- Fallback
-                        or (type == 1 and filename or filetype)
+                        or filetype
                     )
                 end
 
@@ -46,19 +39,18 @@ return {
                 ---@return string? Color
                 ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add more icons
                 function status.utils.icon_provider(bufnr)
-                    local devicons = require("nvim-web-devicons")
-                    local ft_icon, ft_color = devicons.get_icon_color(status.utils.get_file_text(bufnr, 0))
-                    if not ft_icon then
-                        ft_icon, ft_color =
-                            devicons.get_icon_color_by_filetype(vim.bo[bufnr].filetype, { default = true })
+                    local icon, hl = require("mini.icons").get("filetype", get_file_text(bufnr, 0))
+                    local color = require("astroui").get_hlgroup(hl).fg
+                    if type(color) == "number" then
+                        color = string.format("#%06x", color)
                     end
-                    return ft_icon, ft_color
+                    return icon, color
                 end
 
                 ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filenames in some cases
                 function status.provider.filetype(opt)
                     return function(self)
-                        return status.utils.stylize(status.utils.get_file_text(self and self.bufnr or 0, 2), opt)
+                        return status.utils.stylize(get_file_text(self and self.bufnr or 0, 2), opt)
                     end
                 end
             end,
