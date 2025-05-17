@@ -325,19 +325,6 @@ return {
             session = { enabled = false },
         },
     },
-    { import = "astrocommunity.editing-support.refactoring-nvim" },
-    {
-        "ThePrimeagen/refactoring.nvim",
-        opts = function()
-            local mods = vim.uv.cwd():match("Trailmakers/mods$")
-            local fn_print = mods and "tm.os.Log(%s)" or "print(%s)"
-            local fn_tostring = mods and "tostring(%s)" or "vim.inspect(%s)"
-            return {
-                printf_statements = { lua = { fn_print:format('"Reached %s"') } },
-                print_var_statements = { lua = { fn_print:format('"Variable %s " .. ' .. fn_tostring) } },
-            }
-        end,
-    },
     { import = "astrocommunity.motion.nvim-spider" },
     { import = "astrocommunity.motion.vim-matchup" },
     {
