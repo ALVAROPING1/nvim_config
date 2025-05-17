@@ -314,16 +314,6 @@ return {
             line_blank_line_below = true,
         },
     },
-    { import = "astrocommunity.editing-support.multicursors-nvim" },
-    {
-        "smoka7/multicursors.nvim",
-        ---@diagnostic disable-next-line: assign-type-mismatch Hack disable upstream event to enable lazy loading
-        event = false,
-        ---@type fun(_, keys: LazyKeysSpec[]): nil This type of function does work as well
-        keys = function(_, keys)
-            keys[1].desc = "Multiselect word under cursor"
-        end,
-    },
     { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
     { import = "astrocommunity.project.projectmgr-nvim" },
     {
