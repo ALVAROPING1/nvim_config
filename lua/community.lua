@@ -128,7 +128,6 @@ return {
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.cpp" },
-    { import = "astrocommunity.pack.cs-omnisharp" },
     { import = "astrocommunity.pack.rust" },
     { "linux-cultist/venv-selector.nvim",        enabled = false },
     {
