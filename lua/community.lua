@@ -243,29 +243,16 @@ return {
             presets = { lsp_doc_border = true },
         },
     },
-    -- { import = "astrocommunity.motion.leap-nvim" },
+    { import = "astrocommunity.motion.flash-nvim" },
     {
-        "ggandor/leap.nvim",
-        event = "VeryLazy",
-        dependencies = { "tpope/vim-repeat" },
-        opts = { equivalence_classes = { " \t\r\n", "([{", ")]}", "'\"`" } },
-        config = function(_, opts)
-            local leap = require("leap")
-            leap.opts = vim.tbl_deep_extend("force", leap.opts, opts)
-            leap.set_default_mappings()
-        end,
-    },
-    -- { import = "astrocommunity.motion.flit-nvim" },
-    {
-        "ggandor/flit.nvim",
-        dependencies = { "ggandor/leap.nvim" },
-        keys = {
-            { "f", mode = { "n", "x", "o" }, desc = "f" },
-            { "F", mode = { "n", "x", "o" }, desc = "F" },
-            { "t", mode = { "n", "x", "o" }, desc = "t" },
-            { "T", mode = { "n", "x", "o" }, desc = "T" },
+        "folke/flash.nvim",
+        opts = {
+            search = { multi_window = false },
+            modes = {
+                treesitter = { label = { rainbow = { enabled = true } } },
+                treesitter_search = { label = { rainbow = { enabled = true } } },
+            },
         },
-        opts = { labeled_modes = "nx" },
     },
     { import = "astrocommunity.editing-support.dial-nvim" },
     {
