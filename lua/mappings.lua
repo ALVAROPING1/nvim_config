@@ -83,6 +83,7 @@ return {
             end,
             desc = "Find icons",
         },
+        ["<Leader>P"] = { function() require("snacks.picker").projects() end, desc = "Find projects" },
         ["<Leader><Leader>"] = { group = "󰐕 More commands" },
         -- Text search
         ["<Leader><Leader>/"] = { "<Cmd>noh<CR>", desc = "Clear highlighted text" },

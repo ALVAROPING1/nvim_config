@@ -301,16 +301,6 @@ return {
         },
     },
     { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
-    { import = "astrocommunity.project.projectmgr-nvim" },
-    {
-        "charludo/projectmgr.nvim",
-        lazy = true,
-        cmd = { "ProjectMgr" },
-        opts = {
-            autogit = { enabled = false }, -- Bugs out when using ssh authentication
-            session = { enabled = false },
-        },
-    },
     { import = "astrocommunity.motion.nvim-spider" },
     { import = "astrocommunity.motion.vim-matchup" },
     {

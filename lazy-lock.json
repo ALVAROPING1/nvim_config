@@ -76,7 +76,6 @@
   "otter.nvim": { "branch": "main", "commit": "cbb1be0586eae18cbea38ada46af428d2bebf81a" },
   "pathlib.nvim": { "branch": "main", "commit": "57e5598af6fe253761c1b48e0b59b7cd6699e2c1" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
-  "projectmgr.nvim": { "branch": "main", "commit": "2d29b21b5afefa7a1690854c56db9b43195d9a10" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "55ad4fb76ab68460f700599b7449385f0c4e858e" },
   "resession.nvim": { "branch": "master", "commit": "cc819b0489938d03e4f3532a583354f0287c015b" },
   "rustaceanvim": { "branch": "master", "commit": "69636cedf0d6aabf0eac3dfbce24883fe1051a3d" },

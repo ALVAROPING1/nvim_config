@@ -35,6 +35,19 @@ return {
                     default = { layout = { width = 0.87, [2] = { width = 0.575 } } },
                     vscode = { layout = { [2] = { wo = { winhighlight = "NormalFloat:Pmenu" } } } },
                 },
+                sources = {
+                    projects = {
+                        formatters = { file = { filename_only = true } },
+                        config = function(opts)
+                            local ok, projects = pcall(require, "projects")
+                            if not ok then
+                                return opts
+                            end
+                            projects.projects = vim.tbl_map(vim.fs.normalize, projects.projects)
+                            return vim.tbl_extend("force", opts, projects)
+                        end,
+                    },
+                },
             },
         },
         -- selene: allow(global_usage)
