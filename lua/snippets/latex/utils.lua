@@ -135,11 +135,11 @@ end
 ---@param snippets Snippet[] List of snippets in which the newly created ones should be appended
 ---@param group SnippetGroup
 ---@param suffix string Suffix format string to append after the command name
----@param nodes fun(): Node[] Function creating the node list to use
+---@param nodes Node[] Node list to use
 function M.add_snippet_group(snippets, group, suffix, nodes)
     for _, spec in ipairs(group) do
         local cmd = type(spec) == "string" and spec or spec[1]
-        table.insert(snippets, M.create_snippet(spec, "\\" .. cmd .. suffix, nodes(), group.text))
+        table.insert(snippets, M.create_snippet(spec, "\\" .. cmd .. suffix, vim.deepcopy(nodes), group.text))
     end
 end
 
