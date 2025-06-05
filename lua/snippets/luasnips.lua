@@ -73,6 +73,9 @@ M.conds = {
     show = require("luasnip.extras.conditions.show"),
     ---@type fun(condition: SnippetConditionFunction): SnippetConditionObject
     make = require("luasnip.extras.conditions").make_condition,
+    disabled = function()
+        return false
+    end,
 }
 -- M.key = require("luasnip.nodes.key_indexer").new_key -- Not yet in the stable version of luasnip
 

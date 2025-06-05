@@ -303,10 +303,10 @@ return {
                 -- { "mathring",            "å" },
                 { "dot",                 "ȧ" },
                 { "ddot",                "ä" },
-                { "hat",                 "â",            "hat" },
+                { "hat",                 "â",            1 },
                 { "widehat",             "Extensible â" },
                 { "overline",            "ā",            "bar" },
-                { "vec",                 "Thin a⃗",     "vec" },
+                { "vec",                 "Thin a⃗",       1 },
                 -- { "overrightarrow",      "Extensible a⃗" },
             },
             annotation = {

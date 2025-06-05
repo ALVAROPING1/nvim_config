@@ -106,18 +106,6 @@ M.in_math = traverse_cond({
 -- Shorthand for `NOT in_math`
 M.in_text = -M.in_math
 
---- Snippet condition checking that the matched trigger is the beginning of a command without a "\"
-M.command_begin = ls.conds.make(function(line, matched)
-    local pos = #line - #matched
-    local char = line:sub(pos, pos)
-    return char == "" or char:match("^[^\\%w]$")
-end)
-
--- Shorthand for `command_begin AND in_math`
-M.math_command = M.command_begin * M.in_math
--- Shorthand for `command_begin AND in_text`
-M.text_command = M.command_begin - M.in_math
-
 --- Creates snippets for the given command
 ---@param spec SnippetSpec
 ---@param format string Format string for the command and its parameters
@@ -126,21 +114,21 @@ M.text_command = M.command_begin - M.in_math
 ---@return Snippet # Created snippets
 function M.create_snippet(spec, format, nodes, text)
     text = spec.text == nil and text or spec.text
-    local conds = text and { M.text_command, M.in_text } or { M.math_command, M.in_math }
-    if type(spec) == "string" then
-        spec = { spec }
-    end
+    local cond = text and M.in_text or M.in_math
+    spec = type(spec) == "string" and { spec } or spec
 
-    return multi_snippet({
-        common = { name = spec[2] or spec[1], condition = conds[1], show_condition = conds[2] },
-        { trig = "\\" .. spec[1] },
+    local contexts = {
+        common = { name = spec[2] or spec[1], condition = cond, show_condition = cond },
         spec[3] and {
             trig = type(spec[3]) == "number" and spec[spec[3]] or spec[3],
             priority = spec.priority,
             snippetType = "autosnippet",
-            wordTrig = false,
         } or nil,
-    }, fmt(format, nodes, { strict = false, trim_empty = false }))
+    }
+    if spec[3] ~= 1 then
+        table.insert(contexts, { trig = spec[1] })
+    end
+    return multi_snippet(contexts, fmt(format, nodes, { strict = false, trim_empty = false }))
 end
 
 --- Creates snippets from the given table

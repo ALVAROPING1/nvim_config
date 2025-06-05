@@ -8,6 +8,7 @@ local parse_snippet = ls.parse_snippet
 local multi_snippet = ls.multi_snippet
 local node = ls.node
 local fmt = ls.fmt
+local disabled = ls.conds.disabled
 
 ---------------------------------------------------------------------------------------------------------------------------------
 --- Personal imports
@@ -20,9 +21,8 @@ local utils = require("snippets.latex.utils")
 --- Create snippets
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local tikz_env = utils.in_text * utils.in_environment("tikzpicture")
 --- Snippet condition checking that the cursor is in a tikzpicture environment
-local tikz_conds = { utils.command_begin * tikz_env, tikz_env }
+local tikz_cond = utils.in_text * utils.in_environment("tikzpicture")
 
 local snippets = {
     utils.create_snippet(data.int, "\\" .. data.int[1] .. "<>{<> d<>}", {
@@ -44,7 +44,7 @@ local snippets = {
     utils.environment_snippet(data.envs.aligned, "aligned"),
     -- Tikzpicture snippets
     snippet(
-        { trig = "\\node", name = "Tikz node", condition = tikz_conds[1], show_condition = tikz_conds[2] },
+        { trig = "node", name = "Tikz node", condition = tikz_cond, show_condition = tikz_cond },
         fmt("\\node[<>] (<>) <> {<>};", {
             node.ins(1),
             node.ins(2, "id"),
@@ -56,7 +56,7 @@ local snippets = {
         })
     ),
     snippet(
-        { trig = "\\draw", name = "Tikz draw", condition = tikz_conds[1], show_condition = tikz_conds[2] },
+        { trig = "draw", name = "Tikz draw", condition = tikz_cond[1], show_condition = tikz_cond[2] },
         fmt("\\draw[<>] (<>) <> (<>);", {
             node.ins(1),
             node.ins(2, "start"),
@@ -70,35 +70,42 @@ local snippets = {
         })
     ),
 }
+
+---@param context table
+---@return table
+local function ctx(context)
+    return vim.tbl_extend("force", { condition = utils.in_math, show_condition = disabled }, context)
+end
+
 local autosnippets = {
     -- Set
     parse_snippet({ trig = "set", name = "Set", dscr = "Create a set", condition = utils.in_math }, "\\{$1\\\\}"),
     -- Toggle parenthesis
     snippet(
-        { trig = "()", name = "Parenthesis", dscr = "Toggle parenthesis size", condition = utils.in_math },
+        ctx({ trig = "()", name = "Parenthesis", dscr = "Toggle parenthesis size" }),
         node.choice(1, { fmt("(<>)", node.restore(1, "x")), fmt("\\left( <> \\right)", node.restore(1, "x")) })
     ),
     -- Auto subscripts
     multi_snippet({
-        common = { name = "Auto subscript", condition = utils.in_math },
+        common = ctx({ name = "Auto subscript" }),
         { trig = "(%a'*)(%d)",                     trigEngine = "pattern" },
         { trig = "\\([xyzt]'*\\)\\([ijknm]\\)\\2", trigEngine = "vim" },
     }, fmt("<>_<>", { node.capture(1), node.capture(2) })),
     snippet(
-        { trig = "(%a'*)_(%d%d)", regTrig = true, name = "Auto subscript", condition = utils.in_math },
+        ctx({ trig = "(%a'*)_(%d%d)", regTrig = true, name = "Auto subscript" }),
         fmt("<>_{<>}", { node.capture(1), node.capture(2) })
     ),
     -- Automatic fractions
     snippet(
-        { trig = "(%b())/", regTrig = true, name = "Automatic fraction", condition = utils.in_math },
+        ctx({ trig = "(%b())/", regTrig = true, name = "Automatic fraction" }),
         fmt("\\frac{<>}{<>}", { node.capture(1, { 1, 1 }), node.ins(1) })
     ),
     snippet(
-        { trig = "([%w_%^\\]+)/", regTrig = true, name = "Automatic fraction", condition = utils.in_math },
+        ctx({ trig = "([%w_%^\\]+)/", regTrig = true, name = "Automatic fraction" }),
         fmt("\\frac{<>}{<>}", { node.capture(1), node.ins(1) })
     ),
     snippet(
-        { trig = "//", name = "Fraction", condition = utils.in_math },
+        ctx({ trig = "//", name = "Fraction" }),
         fmt("\\frac{<>}{<>}", {
             node.dynamic(1, function(_, parent)
                 if parent.snippet.env.LS_SELECT_RAW[1] ~= nil then
@@ -151,7 +158,7 @@ for trig, spec in pairs(data.postfix_autosnippets) do
     table.insert(
         autosnippets,
         ls.extras.postfix(
-            { trig = trig, name = spec[2], priority = 800, condition = utils.in_math },
+            { trig = trig, name = spec[2], priority = 800, condition = utils.in_math, show_condition = disabled },
             fmt("\\" .. spec[1] .. "{<>}", { node.capture("POSTFIX_MATCH") })
         )
     )
