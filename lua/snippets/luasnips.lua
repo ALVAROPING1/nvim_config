@@ -76,6 +76,9 @@ M.conds = {
     disabled = function()
         return false
     end,
+    first_line = function()
+        return vim.api.nvim_win_get_cursor(0)[1] == 1
+    end,
 }
 -- M.key = require("luasnip.nodes.key_indexer").new_key -- Not yet in the stable version of luasnip
 

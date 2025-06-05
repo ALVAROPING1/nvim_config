@@ -16,10 +16,6 @@ local utils = require("snippets.latex.utils")
 --- Create snippets
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local function first_line()
-    return vim.api.nvim_win_get_cursor(0)[1] == 1
-end
-
 -- Create custom autosnippets
 local snippets = {
     parse_snippet(
@@ -27,38 +23,38 @@ local snippets = {
             trig = "template",
             name = "Pandoc Header Template",
             desc = "",
-            condition = first_line,
-            show_condition = first_line,
+            condition = ls.conds.first_line,
+            show_condition = ls.conds.first_line,
         },
         [[
----
-header-includes: |
-    ```{=latex}
-    ```
----
+            ---
+            header-includes: |
+                ```{=latex}
+                ```
+            ---
 
-# $1
+            # $1
 
-<!-- markdownlint-disable-next-line MD001-->
-### Temas
+            <!-- markdownlint-disable-next-line MD001-->
+            ### Temas
 
-- [Tema 1: $2](#tema-1)
-- [Tema 2: $3](#tema-2)
-- [Tema 3: $4](#tema-3)
-- [Tema 4: $5](#tema-4)
-- [Tema 5: $6](#tema-5)
-- [Tema 6: $7](#tema-6)
-- [Tema 7: $8](#tema-7)
-- [Tema 8: $9](#tema-8)
-- [Tema 9: $10](#tema-9)
+            - [Tema 1: $2](#tema-1)
+            - [Tema 2: $3](#tema-2)
+            - [Tema 3: $4](#tema-3)
+            - [Tema 4: $5](#tema-4)
+            - [Tema 5: $6](#tema-5)
+            - [Tema 6: $7](#tema-6)
+            - [Tema 7: $8](#tema-7)
+            - [Tema 8: $9](#tema-8)
+            - [Tema 9: $10](#tema-9)
 
-### Exámenes parciales
+            ### Exámenes parciales
 
-1) $11
-2) $12
-3) $13
+            1) $11
+            2) $12
+            3) $13
 
-## Tema 1
+            ## Tema 1
 
 
         ]]

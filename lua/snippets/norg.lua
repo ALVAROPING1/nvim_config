@@ -9,10 +9,6 @@ local parse_snippet = ls.parse_snippet
 --- Create snippets
 ---------------------------------------------------------------------------------------------------------------------------------
 
-local function first_line()
-    return vim.api.nvim_win_get_cursor(0)[1] == 1
-end
-
 -- Create custom autosnippets
 local snippets = {
     parse_snippet(
@@ -20,41 +16,40 @@ local snippets = {
             trig = "template",
             name = "Pandoc Header Template",
             desc = "",
-            condition = first_line,
-            show_condition = first_line,
+            condition = ls.conds.first_line,
+            show_condition = ls.conds.first_line,
         },
         [[
-@document.meta
-version: 1.1.1
-header-includes: [
-]
-@end
+            @document.meta
+            version: 1.1.1
+            header-includes: [
+            ]
+            @end
 
-* $1
+            * $1
 
-*** Temas
+            *** Temas
 
-    - {** Tema 1}[Tema 1: $2]
-    - {** Tema 2}[Tema 2: $3]
-    - {** Tema 3}[Tema 3: $4]
-    - {** Tema 4}[Tema 4: $5]
-    - {** Tema 5}[Tema 5: $6]
-    - {** Tema 6}[Tema 6: $7]
-    - {** Tema 7}[Tema 7: $8]
-    - {** Tema 8}[Tema 8: $9]
-    - {** Tema 9}[Tema 9: $10]
+                - {** Tema 1}[Tema 1: $2]
+                - {** Tema 2}[Tema 2: $3]
+                - {** Tema 3}[Tema 3: $4]
+                - {** Tema 4}[Tema 4: $5]
+                - {** Tema 5}[Tema 5: $6]
+                - {** Tema 6}[Tema 6: $7]
+                - {** Tema 7}[Tema 7: $8]
+                - {** Tema 8}[Tema 8: $9]
+                - {** Tema 9}[Tema 9: $10]
 
-*** Exámenes parciales
+            *** Exámenes parciales
 
-    ~ $11
-    ~ $12
-    ~ $13
+                ~ $11
+                ~ $12
+                ~ $13
 
-** Tema 1
+            ** Tema 1
 
-   - $0
-        ]],
-        { dedent = false }
+               - $0
+        ]]
     ),
     parse_snippet({ trig = "embed", name = "Embed", desc = "embed block" }, "@embed ${1:lang}\n$2\n@end"),
     parse_snippet({ trig = "latex", name = "Embed latex", desc = "latex block" }, "@embed latex\n$1\n@end"),
