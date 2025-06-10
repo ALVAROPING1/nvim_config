@@ -10,6 +10,21 @@ return {
 
     -- Treesitter
     ["@punctuation.bracket"] = { fg = blue },
+    ["@markup.heading.1.markdown"] = { link = "@markup.heading" },
+    ["@markup.heading.2.markdown"] = { link = "@markup.heading" },
+    ["@markup.heading.3.markdown"] = { link = "@markup.heading" },
+    ["@markup.heading.4.markdown"] = { link = "@markup.heading" },
+    ["@markup.heading.5.markdown"] = { link = "@markup.heading" },
+    ["@markup.heading.6.markdown"] = { link = "@markup.heading" },
+
+    -- Which key
+    ["WhichKeyIconAzure"] = { link = "MiniIconsAzure" },
+    ["WhichKeyIconBlue"] = { link = "MiniIconsBlue" },
+    ["WhichKeyIconGrey"] = { link = "MiniIconsGrey" },
+    ["WhichKeyIconOrange"] = { link = "MiniIconsOrange" },
+    ["WhichKeyIconYellow"] = { link = "MiniIconsYellow" },
+    ["WhichKeySeparator"] = { link = "MiniIconsGreen" },
+    ["WhichKeyValue"] = { link = "MiniIconsGreen" },
 
     -- Flash
     FlashBackdrop = { fg = "#777777" },

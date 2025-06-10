@@ -46,6 +46,7 @@ local hl = {
     NullLsInfoBorder = { link = "FloatBorder" },
     DapUIFloatBorder = { link = "FloatBorder" },
     SnacksPickerBorder = { link = "FloatBorder" },
+    WhichKeyBorder = { link = "FloatBorder" },
 
     -- Treesitter
     ["@punctuation.special"] = { link = "@markup.list" }, -- Legacy
