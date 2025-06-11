@@ -10,9 +10,9 @@ return {
 
                 --- Gets the filename of the buffer. Falls back to the filetype if it has no name
                 ---@param bufnr integer Buffer number
-                ---@param type 0 | 2 Whether to get the icon name (0) or filetype (2)
+                ---@param icon boolean Whether to get the icon name (`true`) or filetype (`false`)
                 ---@return string
-                local function get_file_text(bufnr, type)
+                local function get_file_text(bufnr, icon)
                     local bufname = vim.api.nvim_buf_get_name(bufnr)
                     local filename = vim.fn.fnamemodify(bufname, ":t")
                     local filetype = vim.bo[bufnr].filetype
@@ -22,13 +22,13 @@ return {
                     ---@format disable-next
                     return (
                         -- Toggleterm buffers
-                        (term_app and type == 2 and term_app:sub(1, 1) == "/" and vim.fn.fnamemodify(term_app, ":t"))
+                        (term_app and not icon and term_app:sub(1, 1) == "/" and vim.fn.fnamemodify(term_app, ":t"))
                         -- Cargo (Rust) buffers
-                        or (cargo_app and (type == 0 and "cargo" or cargo_app))
+                        or (cargo_app and (icon and "cargo" or cargo_app))
                         -- Diffview buffers
-                        or (filetype:match("^Diffview") and type == 0 and "git")
+                        or (filetype:match("^Diffview") and icon and "git")
                         -- Snacks.picker buffers
-                        or (filetype:match("^snacks_picker") and type == 0 and "snacks_picker")
+                        or (filetype:match("^snacks_picker") and icon and "snacks_picker")
                         -- Fallback
                         or filetype
                     )
@@ -40,7 +40,7 @@ return {
                 ---@return string? Color
                 ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add more icons
                 function status.utils.icon_provider(bufnr)
-                    local icon, hl = require("mini.icons").get("filetype", get_file_text(bufnr, 0))
+                    local icon, hl = require("mini.icons").get("filetype", get_file_text(bufnr, true))
                     local color = require("astroui").get_hlgroup(hl).fg
                     if type(color) == "number" then
                         color = string.format("#%06x", color)
@@ -51,7 +51,7 @@ return {
                 ---@diagnostic disable-next-line: duplicate-set-field # Function is intentionally overwritten to add names based on filenames in some cases
                 function status.provider.filetype(opt)
                     return function(self)
-                        return status.utils.stylize(get_file_text(self and self.bufnr or 0, 2), opt)
+                        return status.utils.stylize(get_file_text(self and self.bufnr or 0, false), opt)
                     end
                 end
             end,
