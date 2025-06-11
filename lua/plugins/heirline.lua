@@ -13,19 +13,20 @@ return {
                 ---@param type 0 | 2 Whether to get the icon name (0) or filetype (2)
                 ---@return string
                 local function get_file_text(bufnr, type)
-                    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+                    local bufname = vim.api.nvim_buf_get_name(bufnr)
+                    local filename = vim.fn.fnamemodify(bufname, ":t")
                     local filetype = vim.bo[bufnr].filetype
-                    local term_app = filename:match("^%d*:?(.-)%s*;#toggleterm#")
+                    local term_app = bufname:match("^term://.*:(.-)%s*;#toggleterm#%d*$")
                     local cargo_app = filename:match("^.+&& (cargo %w+)")
                     -- stylua: ignore
                     ---@format disable-next
                     return (
                         -- Toggleterm buffers
-                        (term_app and (type == 2 and term_app))
+                        (term_app and type == 2 and term_app:sub(1, 1) == "/" and vim.fn.fnamemodify(term_app, ":t"))
                         -- Cargo (Rust) buffers
                         or (cargo_app and (type == 0 and "cargo" or cargo_app))
                         -- Diffview buffers
-                        or (filename:match("^Diffview") and type == 0 and "git")
+                        or (filetype:match("^Diffview") and type == 0 and "git")
                         -- Snacks.picker buffers
                         or (filetype:match("^snacks_picker") and type == 0 and "snacks_picker")
                         -- Fallback
