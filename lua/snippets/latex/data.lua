@@ -427,7 +427,7 @@ return {
             "cases",
             "rcases",
         },
-        text = { "tikzpicture", "center", "tabular", "align", "itemize", "enumerate" }
+        text = { "", "tikzpicture", "center", "tabular", "align", "itemize", "enumerate" }
     },
     -- Postfix snippets that just append text
     ---@type AutoSnippetSpecs
