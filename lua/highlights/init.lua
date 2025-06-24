@@ -37,5 +37,5 @@ return {
 
     BlinkCmpLabelDeprecated = { link = "CmpItemAbbrDeprecated" },
 
-    DevIconMarkdown = { fg = "#519aba" },
+    IconMarkdown = { fg = "#519aba" },
 }

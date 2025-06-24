@@ -124,7 +124,7 @@ return {
         ---@type MiniIconsCategory?
         overrides = {
             -- Default filetypes
-            markdown           = { hl = "DevIconMarkdown" },
+            markdown           = { hl = "IconMarkdown" },
             latex              = { hl = "DevIconTex",      glyph = "" },
             -- Plugin filetypes
             cargo              = { hl = "DevIconRs",       glyph = "" },
