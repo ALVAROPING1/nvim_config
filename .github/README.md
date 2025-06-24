@@ -17,6 +17,7 @@ A template for getting started with [AstroNvim](https://github.com/AstroNvim/Ast
   - [Node](https://nodejs.org/en/) - Node is needed for a lot of the LSPs, and for the node repl toggle terminal (`<Leader>tn`)
   - `lua5.1`, `luarocks`, and lua library files (`liblua5.1-0-dev`) packages - `luarocks` support for plugin installation (`neorg` plugin currently)
   - `dvipng` executable in path and ImageMagick's MagickWand (`libmagickwand-dev`) - render latex snippets in `neorg`
+  - `xclip` - system clipboard integration
 
 ## 🛠️ Installation
 
