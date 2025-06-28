@@ -32,16 +32,6 @@ return {
         ["<Leader>so"] = { "<Cmd>tabonly<CR>", desc = "Close all workspaces except current" },
         ["<Leader>sc"] = { require("astrocore.buffer").close_tab, desc = "Close current workspace" },
         ["<Leader>sN"] = { "<Cmd>tabnew<CR>", desc = "New workspace" },
-        ["<Leader>c"] = {
-            function()
-                local bufs = vim.fn.getbufinfo({ buflisted = true })
-                require("astrocore.buffer").close(0)
-                if not bufs[2] then
-                    require("snacks").dashboard()
-                end
-            end,
-            desc = "Close buffer",
-        },
         -- Remap replaced commands
         ["<Leader>j"] = { "J", desc = "Join lines" },
         -- Move the force save key
