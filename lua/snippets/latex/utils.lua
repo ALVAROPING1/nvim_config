@@ -20,7 +20,7 @@ local M = {}
 ---@param start_leaf true? Whether the starting language should be a leaf at the cursor
 ---@return boolean
 local function traverse(lang_map, start_leaf)
-    local lang_tree = vim.treesitter.get_parser()
+    local lang_tree = assert(vim.treesitter.get_parser())
     local cursor = vim.api.nvim_win_get_cursor(0)
     local range = { cursor[1] - 1, cursor[2], cursor[1] - 1, cursor[2] }
     lang_tree = start_leaf and lang_tree:language_for_range(range) or lang_tree
