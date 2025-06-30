@@ -48,8 +48,8 @@ return {
                     ["\\traceabilityTable{}{}{}"] = "ignore",
                 },
                 environments = {
-                    grammar = "ignore"
-                }
+                    grammar = "ignore",
+                },
             },
         },
     },

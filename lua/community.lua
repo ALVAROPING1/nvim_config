@@ -160,22 +160,14 @@ return {
         },
         opts = {
             quickfix = { enabled = false },
-            summary = {
-                mappings = {
-                    next_failed = "l",
-                    prev_failed = "h",
-                },
-            },
+            summary = { mappings = { next_failed = "l", prev_failed = "h" } },
         },
     },
     { import = "astrocommunity.editing-support.treesj" },
     { import = "astrocommunity.lsp.inc-rename-nvim" },
     {
         "smjonas/inc-rename.nvim",
-        opts = {
-            hlgroup = "IncRenameText",
-            save_in_cmdline_history = false,
-        },
+        opts = { hlgroup = "IncRenameText", save_in_cmdline_history = false },
     },
     -- { import = "astrocommunity.project.nvim-spectre" },
     -- {
@@ -284,10 +276,7 @@ return {
     { import = "astrocommunity.debugging.nvim-dap-virtual-text" },
     {
         "theHamsta/nvim-dap-virtual-text",
-        opts = {
-            commented = false,
-            highlight_new_as_changed = true,
-        },
+        opts = { commented = false, highlight_new_as_changed = true },
     },
     { import = "astrocommunity.editing-support.comment-box-nvim" },
     {

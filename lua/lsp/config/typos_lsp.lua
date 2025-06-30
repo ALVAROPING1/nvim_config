@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+---@diagnostic disable: missing-fields
 ---@type lspconfig
 return {
     autostart = false,
