@@ -35,6 +35,7 @@ return {
                     default = { layout = { width = 0.87, [2] = { width = 0.575 } } },
                     vscode = { layout = { [2] = { wo = { winhighlight = "NormalFloat:Pmenu" } } } },
                 },
+                formatters = { file = { truncate = 60 } },
                 sources = {
                     projects = {
                         formatters = { file = { filename_only = true } },
