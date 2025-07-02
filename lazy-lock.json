@@ -46,7 +46,7 @@
   "nabla.nvim": { "branch": "master", "commit": "9b69b709063ccf40ac36fabb4fff7d90b3736475" },
   "neo-tree.nvim": { "branch": "v2.x", "commit": "f481de16a0eb59c985abac8985e3f2e2f75b4875" },
   "neoconf.nvim": { "branch": "main", "commit": "907a1fe4e346aab2989af6848d7d697098506c5e" },
-  "neodim": { "branch": "master", "commit": "ba5dfa830b41fabab251f7a2b97d5d14a2208c8b" },
+  "neodim": { "branch": "fix-nvim-0.11", "commit": "533057e0489e0ccdbd43b294ff2c95a48262f2ab" },
   "neogen": { "branch": "main", "commit": "d7f9461727751fb07f82011051338a9aba07581d" },
   "neorg": { "branch": "main", "commit": "e206c9642f4a115cd836e76c98ef785623d335bc" },
   "neorg-contexts": { "branch": "master", "commit": "8ae58b646700b8bc2d3bc1346c96835ceb71d884" },

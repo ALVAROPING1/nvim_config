@@ -58,18 +58,13 @@ return {
         end,
     },
     -- { import = "astrocommunity.terminal-integration.flatten-nvim" },
-    { import = "astrocommunity.utility.neodim" },
+    -- { import = "astrocommunity.utility.neodim" },
     {
-        "zbirenbaum/neodim",
-        commit = "ba5dfa8",
-        opts = {
-            alpha = 0.667,
-            hide = {
-                virtual_text = false,
-                signs = false,
-                underline = false,
-            },
-        },
+        -- TODO: switch back to "zbirenbaum/neodim" once #48 is merged
+        "ALVAROPING1/neodim",
+        branch = "fix-nvim-0.11",
+        event = "LspAttach",
+        opts = { alpha = 0.667, blend_color = "#000000" },
     },
     { import = "astrocommunity.motion.nvim-surround" },
     {
