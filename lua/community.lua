@@ -128,12 +128,11 @@ return {
         "mfussenegger/nvim-dap-python",
         opts = { pythonPath = require("python_utils").get_path(vim.uv.cwd()) },
         config = function(_, opts)
-            local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
+            local path = vim.fn.expand("$MASON/packages/debugpy") .. "/venv/bin/python"
             require("dap-python").setup(path, opts)
 
             -- Make python debugger use the current working directory instead of the file path
             for _, config in ipairs(require("dap").configurations.python) do
-                ---@diagnostic disable-next-line: inject-field This field does exist
                 config.cwd = vim.uv.cwd()
             end
         end,
