@@ -9,7 +9,6 @@ return {
             cond = "textDocument/hover",
         },
         ["K"] = false,
-        ["<leader>lr"] = false,
         -- ["gl"] = {
         --     function()
         --         vim.diagnostic.open_float()
