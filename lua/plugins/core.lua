@@ -43,6 +43,7 @@ return {
                         end,
                     },
                     projects = {
+                        confirm = { "tcd", "picker_files" }, -- `tcd` changes directory of the current tab
                         formatters = { file = { filename_only = true } },
                         config = function(opts)
                             local ok, projects = pcall(require, "projects")
