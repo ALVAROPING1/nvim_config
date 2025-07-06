@@ -37,6 +37,11 @@ return {
                 },
                 formatters = { file = { truncate = 60 } },
                 sources = {
+                    files = {
+                        config = function(opts)
+                            opts.hidden = vim.uv.fs_stat(".git") ~= nil
+                        end,
+                    },
                     projects = {
                         formatters = { file = { filename_only = true } },
                         config = function(opts)
