@@ -38,17 +38,16 @@ return {
         "ray-x/lsp_signature.nvim",
         enabled = false,
         event = "VeryLazy",
-        opts = {
-            hint_enable = false,
-            noice = true,
-        },
+        opts = { hint_enable = false, noice = true },
     },
     {
         "axkirillov/hbac.nvim",
         event = "User AstroFile",
         opts = {
             threshold = 5,
-            close_command = require("astrocore.buffer").close,
+            close_command = function(...)
+                require("astrocore.buffer").close(...)
+            end,
         },
     },
     {
