@@ -191,11 +191,7 @@ return {
     {
         "folke/noice.nvim",
         opts = {
-            cmdline = {
-                format = {
-                    filter = { title = " Bash " },
-                },
-            },
+            cmdline = { format = { filter = { title = " Shell " } } },
             messages = { view_search = false },
             routes = {
                 {
