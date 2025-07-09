@@ -67,6 +67,7 @@ return {
     },
     {
         "cappyzawa/trim.nvim",
+        cmd = "Trim",
         keys = { { "<Leader><Leader>w", "<Cmd>Trim<CR>", desc = "Trim whitespace" } },
         opts = {
             ft_blocklist = { "markdown" },
