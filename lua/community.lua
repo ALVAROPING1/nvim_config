@@ -64,7 +64,11 @@ return {
         "ALVAROPING1/neodim",
         branch = "fix-nvim-0.11",
         event = "LspAttach",
-        opts = { alpha = 0.667, blend_color = "#000000" },
+        opts = {
+            alpha = 0.667,
+            blend_color = "#000000",
+            regex = { "[uU]nused", "[nN]ever [rR]ead", "[nN]ot [rR]ead", "[uU]nreachable" },
+        },
     },
     { import = "astrocommunity.motion.nvim-surround" },
     {
@@ -123,7 +127,7 @@ return {
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.rust" },
-    { "linux-cultist/venv-selector.nvim",         enabled = false },
+    { "linux-cultist/venv-selector.nvim",        enabled = false },
     {
         "mfussenegger/nvim-dap-python",
         config = function(_, opts)
