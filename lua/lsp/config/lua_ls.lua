@@ -20,10 +20,7 @@ return {
                     auto_collapse_lines = true,
                 },
             },
-            hint = {
-                enable = true,
-                arrayIndex = "Disable",
-            },
+            hint = { setType = true },
         },
     },
 }
