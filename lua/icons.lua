@@ -20,7 +20,7 @@ return {
     -- Diagnostic = "󰒡",
     -- DiagnosticError = "",
     -- DiagnosticHint = "󰌵",
-    DiagnosticInfo = " ",
+    DiagnosticInfo = "",
     -- DiagnosticWarn = "",
     Ellipsis = "",
     -- FileModified = "",
