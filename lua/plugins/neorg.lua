@@ -123,8 +123,8 @@ return {
                                     if lang_node ~= nil and lang_node:type() == "tag_parameters" then
                                         local _, lang_col, _, end_col = lang_node:range()
                                         local lang = vim.treesitter.get_node_text(lang_node, bufid)
-                                        local icon, icon_hl = require("nvim-web-devicons").get_icon_by_filetype(lang)
-                                        if icon ~= nil then
+                                        local icon, icon_hl, default = require("mini.icons").get("filetype", lang)
+                                        if not default then
                                             vim.api.nvim_buf_set_extmark(bufid, ns, row, lang_col, {
                                                 virt_text = { { icon .. " ", { icon_hl, config.highlight } } },
                                                 virt_text_pos = "inline",
@@ -181,7 +181,7 @@ return {
                                     link_target_external_file = function(bufid, node)
                                         node = node:next_named_sibling() --[[@as TSNode]]
                                         local name = vim.treesitter.get_node_text(node, bufid)
-                                        return { require("nvim-web-devicons").get_icon(name, nil, { default = true }) }
+                                        return { require("mini.icons").get("file", name) }
                                     end,
                                     link_target_footnote = function(bufid, node)
                                         node = node:next_named_sibling()
