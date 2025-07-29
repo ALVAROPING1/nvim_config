@@ -33,7 +33,7 @@ return {
     FlashCurrent = { fg = "#487e02", bold = true },
 
     -- Colorful-winsep
-    NvimSeparator = { fg = "#3DAEE9" },
+    ColorfulWinSep = { fg = "#3DAEE9" },
 
     BlinkCmpLabelDeprecated = { link = "CmpItemAbbrDeprecated" },
 

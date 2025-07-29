@@ -300,7 +300,6 @@ return {
     { import = "astrocommunity.recipes.picker-lsp-mappings" },
     { import = "astrocommunity.motion.tabout-nvim" },
     { import = "astrocommunity.split-and-window.colorful-winsep-nvim" },
-    { "nvim-zh/colorful-winsep.nvim",                                   opts = { only_line_seq = false } },
     { import = "astrocommunity.lsp.actions-preview-nvim" },
     {
         "aznhe21/actions-preview.nvim",
