@@ -31,15 +31,6 @@ function M.restore_view(mapping)
     return "msHmt" .. mapping .. "'tzt`s"
 end
 
---- Moves a value of a table to a different key
----@param tbl table
----@param dest any
----@param src any
-function M.tbl_move(tbl, dest, src)
-    tbl[dest] = tbl[src]
-    tbl[src] = nil
-end
-
 --- Creates a buffer-local mapping that runs the current buffer with the clipboard as `STDIN` using the specified program
 ---@param program string Program to run the buffer with. The buffer file name will be appended as the last argument
 function M.run_file_mapping(program)

@@ -3,11 +3,19 @@ return {
     "AstroNvim/astrocore",
     ---@param opts AstroCoreOpts
     opts = function(_, opts)
+        --- Moves a value of a table to a different key
+        ---@param tbl table
+        ---@param dest any
+        ---@param src any
+        local function tbl_move(tbl, dest, src)
+            tbl[dest] = tbl[src]
+            tbl[src] = nil
+        end
+
         local maps = opts.mappings
         ---@cast maps -nil
         local maps_n = maps.n
         ---@cast maps_n -nil
-        local tbl_move = require("utils").tbl_move
         -- Core mappings
         -- Navigate buffer tabs with `Tab` and `Shift-Tab`
         tbl_move(maps_n, "<Tab>", "]b")
