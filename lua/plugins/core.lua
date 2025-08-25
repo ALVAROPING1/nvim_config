@@ -248,6 +248,7 @@ return {
                 -- NOTE: this operation is expensive due to having many icons, so we do it in a build step so that it's
                 -- only done once whenever the plugin updates
                 build = function()
+                    ---@module 'nvim-web-devicons'
                     ---@param src table<string, Icon>
                     ---@return table<string, MiniIconsCategory>
                     local function translate(src)
