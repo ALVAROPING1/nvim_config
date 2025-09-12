@@ -194,6 +194,7 @@ return {
             completion = {
                 menu = {
                     draw = {
+                        snippet_indicator = "",
                         columns = { { "kind_icon" }, { "label", gap = 1 } },
                         components = {
                             label = {
