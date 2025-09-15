@@ -115,7 +115,7 @@ return {
             return {
                 resize = { timing = animate.gen_timing.linear({ duration = 100, unit = "total" }) },
                 scroll = { enable = false },
-                cursor = { timing = animate.gen_timing.linear({ duration = 100, unit = "total" }) },
+                cursor = { enable = false },
             }
         end,
     },
