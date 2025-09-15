@@ -8,3 +8,6 @@
 (link_location
     type: (link_target_external_file)
     text: (_) @nospell)
+(link_location
+    type: (link_target_url)
+    text: (_) @nospell)
