@@ -153,9 +153,6 @@ return {
     { import = "astrocommunity.test.neotest" },
     {
         "nvim-neotest/neotest",
-        dependencies = {
-            "antoinemadec/FixCursorHold.nvim", -- TODO: is this needed on neovim 0.10?
-        },
         opts = {
             quickfix = { enabled = false },
             summary = { mappings = { next_failed = "l", prev_failed = "h" } },
