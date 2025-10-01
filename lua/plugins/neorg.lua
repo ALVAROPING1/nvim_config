@@ -69,6 +69,7 @@ return {
                             ["5"] = { title = "+NeorgH5", prefix = "+NeorgH5" },
                             ["6"] = { title = "+NeorgH6", prefix = "+NeorgH6" },
                         },
+                        links = { location = { timestamp = "+@markup.link" } },
                     },
                     dim = { tags = { ranged_verbatim = { code_block = { percentage = 60 } } } },
                 },
