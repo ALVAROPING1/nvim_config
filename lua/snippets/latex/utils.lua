@@ -126,7 +126,7 @@ function M.create_snippet(spec, format, nodes, text)
         } or nil,
     }
     if spec[3] ~= 1 then
-        table.insert(contexts, { trig = spec[1] })
+        table.insert(contexts, { trig = "\\" .. spec[1] })
     end
     return multi_snippet(contexts, fmt(format, nodes, { strict = false, trim_empty = false }))
 end
