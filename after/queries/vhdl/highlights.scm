@@ -13,3 +13,7 @@
 (library_type) @type
 
 (attribute "'" @keyword.operator)
+
+(_
+  architecture: (identifier) @method)
+
