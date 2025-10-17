@@ -17,7 +17,7 @@ return {
         -- enable servers that you already have installed without mason
         servers = {
             -- "pyright"
-            "ghdl_ls",
+            -- "ghdl_ls",
             -- "ltex_plus",
         },
         -- customize language server configuration options passed to `lspconfig`
