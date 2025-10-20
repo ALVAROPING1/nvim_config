@@ -64,6 +64,7 @@ local hl = {
     ["@variable.parameter.builtin"] = { link = "@variable.builtin" },
     -- LSP semantic tokens
     ["@lsp.type.operator.lua"] = { link = "@comment.documentation" },
+    ["@lsp.type.marker.typst"] = { link = "@markup.list" },
 
     -- NeoTree
     NeoTreeCursorLine = { link = "CursorLine" },

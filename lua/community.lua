@@ -127,6 +127,7 @@ return {
     { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.rust" },
+    { import = "astrocommunity.pack.typst" },
     { "linux-cultist/venv-selector.nvim",        enabled = false },
     {
         "mfussenegger/nvim-dap-python",
