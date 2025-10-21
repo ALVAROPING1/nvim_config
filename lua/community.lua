@@ -107,18 +107,6 @@ return {
     },
     { import = "astrocommunity.recipes.heirline-vscode-winbar" },
     { import = "astrocommunity.scrolling.satellite-nvim" },
-    { import = "astrocommunity.scrolling.mini-animate" },
-    {
-        "echasnovski/mini.animate",
-        opts = function()
-            local animate = require("mini.animate")
-            return {
-                resize = { timing = animate.gen_timing.linear({ duration = 100, unit = "total" }) },
-                scroll = { enable = false },
-                cursor = { enable = false },
-            }
-        end,
-    },
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.lua" },
     { import = "astrocommunity.pack.markdown" },
