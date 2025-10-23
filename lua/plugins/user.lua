@@ -58,7 +58,6 @@ return {
         enabled = false,
     },
     { "Bekaboo/deadcolumn.nvim", event = "User AstroFile",          opts = { warning = { hlgroup = { "Error", "fg" } } } },
-    { "3rd/image.nvim",          config = true },
     {
         "barreiroleo/ltex_extra.nvim",
         branch = "dev",

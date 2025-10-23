@@ -224,8 +224,6 @@ return {
                     },
                 },
             },
-            ["core.integrations.image"] = {},
-            ["core.latex.renderer"] = {},
             ["external.context"] = {},
             ["external.interim-ls"] = {},
         },
