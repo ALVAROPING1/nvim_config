@@ -2,6 +2,7 @@
 return {
     {
         "folke/snacks.nvim",
+        dependencies = { "echasnovski/mini.icons" }, -- picker doesn't auto-load mini.icons
         opts = {
             -- customize dashboard options
             dashboard = {
@@ -27,10 +28,7 @@ return {
             },
             notifier = { timeout = 5000 },
             picker = {
-                previewers = {
-                    diff = { builtin = false, cmd = { "delta" } }, -- Use delta to preview diffs
-                    git = { builtin = false },                     -- Use delta to preview git output
-                },
+                previewers = { diff = { style = "terminal", cmd = { "delta" } } }, -- Use delta to preview diffs
                 layouts = {
                     default = { layout = { width = 0.87, [2] = { width = 0.575 } } },
                     vscode = { layout = { [2] = { wo = { winhighlight = "NormalFloat:Pmenu" } } } },
@@ -208,6 +206,7 @@ return {
                                     if client and not client:is_stopped() and client.name ~= "lua_ls" then
                                         return require("colorful-menu").blink_components_highlight(ctx)
                                     end
+                                    ---@diagnostic disable-next-line: undefined-field Field is actually defined
                                     local draw = require("blink.cmp.config.completion.menu").default.draw
                                     return draw.components.label.highlight(ctx, "")
                                 end,
