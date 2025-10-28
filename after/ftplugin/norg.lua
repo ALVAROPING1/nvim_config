@@ -17,7 +17,6 @@ require("which-key").add({
     { "<LocalLeader>t", group = "󰄲 Task" },
     { "<LocalLeader>d", "<Plug>(neorg.tempus.insert-date)", desc = "[neorg] Insert Date" },
     { "<LocalLeader>q", "<Cmd>Neorg return<CR>", desc = "[neorg] Exit document" },
-    { "<LocalLeader>r", "<Cmd>Neorg render-latex toggle<CR>", desc = "[neorg] Toggle latex rendering" },
     {
         "<LocalLeader>c",
         "<Cmd>Neorg toggle-concealer<CR><Cmd>Neorg toggle-concealer<CR>",

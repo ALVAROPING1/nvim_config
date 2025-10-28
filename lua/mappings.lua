@@ -87,6 +87,7 @@ return {
         ["<Leader><Leader>cd"] = { "<Cmd>lua require('comment-box').dbox()<CR>", desc = "Delete box" },
         ["<Leader><Leader>cy"] = { "<Cmd>lua require('comment-box').yank()<CR>", desc = "Copy box content" },
         ["=a"] = { require("utils").restore_view("gg=G"), desc = "Indent file" },
+        ["<LocalLeader>r"] = {function() require("snacks.image").hover() end, desc = "Render image"},
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },

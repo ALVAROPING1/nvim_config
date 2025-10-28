@@ -54,7 +54,7 @@ return {
                     },
                 },
             },
-            image = { doc = { enabled = true, max_height = vim.api.nvim_win_get_height(0) / 2 } },
+            image = { doc = { enabled = false, max_height = vim.api.nvim_win_get_height(0) / 2 } },
         },
         -- selene: allow(global_usage)
         init = function()
