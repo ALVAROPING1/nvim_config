@@ -17,3 +17,4 @@
 (_
   architecture: (identifier) @method)
 
+(operator_symbol) @keyword.operator
