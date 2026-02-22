@@ -12,7 +12,7 @@ return {
         },
     },
     on_attach = function(client, bufnr)
-        vim.keymap.set("n", "<leader>p", function()
+        vim.keymap.set("n", "<LocalLeader>p", function()
             client:exec_cmd({
                 title = "pin",
                 command = "tinymist.pinMain",
