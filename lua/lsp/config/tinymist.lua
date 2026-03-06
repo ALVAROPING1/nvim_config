@@ -12,12 +12,21 @@ return {
         },
     },
     on_attach = function(client, bufnr)
-        vim.keymap.set("n", "<LocalLeader>p", function()
+        local function pin_root(root)
             client:exec_cmd({
                 title = "pin",
                 command = "tinymist.pinMain",
-                arguments = { vim.api.nvim_buf_get_name(0) },
+                arguments = { root },
             }, { bufnr = bufnr })
-        end, { desc = "Tinymist Pin", noremap = true })
+        end
+
+        vim.keymap.set("n", "<LocalLeader>p", function()
+            pin_root(vim.api.nvim_buf_get_name(0))
+        end, { desc = "Tinymist Pin" })
+
+        local root = "report.typ"
+        if require("plenary.path"):new(root):is_file() then
+            pin_root(vim.fs.abspath(root))
+        end
     end,
 }
