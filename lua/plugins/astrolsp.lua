@@ -18,7 +18,7 @@ return {
         servers = {
             -- "pyright"
             -- "ghdl_ls",
-            -- "ltex_plus",
+            "ltex_plus", -- Installed with mason, but mason-lspconfig doesn't support it
         },
         -- customize language server configuration options passed to `lspconfig`
         ---@diagnostic disable: missing-fields

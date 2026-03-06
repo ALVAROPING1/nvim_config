@@ -15,7 +15,7 @@ return {
             "typos-lsp",
             "vtsls",
             "eslint-lsp",
-            "ltex-ls",
+            "ltex-ls-plus",
 
             -- install formatters
             "stylua",

@@ -9,7 +9,7 @@ vim.list_extend(words, { "Dummies" })
 ---@diagnostic disable: missing-fields
 ---@type lspconfig
 return {
-    filetypes = { "tex", "latex" },
+    filetypes = { "tex", "latex", "typst" },
     ---@type lspconfig.settings.ltex
     settings = {
         ltex = {

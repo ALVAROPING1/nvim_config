@@ -8,7 +8,7 @@ for _, v in ipairs({
     "rust_analyzer",
     "typos_lsp",
     "vtsls",
-    "ltex",
+    "ltex_plus",
     "tinymist",
 }) do
     M[v] = require("lsp.config." .. v)
