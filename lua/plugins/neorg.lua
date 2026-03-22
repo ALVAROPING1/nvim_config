@@ -45,7 +45,7 @@ return {
     version = "*",
     dependencies = {
         "max397574/neorg-contexts",
-        { "jmbuhr/otter.nvim", version = "v1.15.1" },
+        -- { "jmbuhr/otter.nvim", version = "v1.15.1" },
         "benlubas/neorg-interim-ls",
     },
     opts = {
@@ -211,19 +211,19 @@ return {
                     },
                 },
             },
-            ["core.integrations.otter"] = {
-                config = {
-                    keys = {
-                        hover = "gh",
-                        definition = "gd",
-                        type_definition = "gD",
-                        references = "gr",
-                        rename = "<Leader>lr",
-                        format = "<Leader>lf",
-                        document_symbols = "<Leader>lS",
-                    },
-                },
-            },
+            -- ["core.integrations.otter"] = {
+            --     config = {
+            --         keys = {
+            --             hover = "gh",
+            --             definition = "gd",
+            --             type_definition = "gD",
+            --             references = "gr",
+            --             rename = "<Leader>lr",
+            --             format = "<Leader>lf",
+            --             document_symbols = "<Leader>lS",
+            --         },
+            --     },
+            -- },
             ["external.context"] = {},
             ["external.interim-ls"] = {},
         },
