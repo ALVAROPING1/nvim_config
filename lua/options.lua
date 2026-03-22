@@ -46,6 +46,7 @@ return {
         loaded_ruby_provider = 0,
         loaded_node_provider = 0,
         loaded_perl_provider = 0,
+        nvim_surround_no_mappings = true,
     },
 }
 -- If you need more control, you can use the function()...end notation

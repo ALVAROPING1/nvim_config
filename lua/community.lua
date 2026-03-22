@@ -73,19 +73,15 @@ return {
     { import = "astrocommunity.motion.nvim-surround" },
     {
         "kylechui/nvim-surround",
+        ---@diagnostic disable-next-line: assign-type-mismatch -- Value does work
+        event = false,
+        keys = {
+            { "gs",  "<Plug>(nvim-surround-normal)", desc = "Add surround pair around motion" },
+            { "dgs", "<Plug>(nvim-surround-delete)", desc = "Delete surround pair" },
+            { "cgs", "<Plug>(nvim-surround-change)", desc = "Change surround pair" },
+            { "gs",  "<Plug>(nvim-surround-visual)", desc = "Add surround pair around selection", mode = "x" },
+        },
         opts = {
-            keymaps = {
-                insert = "<C-s>",
-                insert_line = "<C-s>g",
-                normal = "<C-s>a",
-                normal_cur = "<C-s>aa",
-                normal_line = "<C-s>A",
-                normal_cur_line = "<C-s>AA",
-                visual = "<C-s>",
-                visual_line = "<C-s>g",
-                delete = "<C-s>d",
-                change = "<C-s>c",
-            },
             surrounds = {
                 -- ["$"] = {
                 --   add = { "$", "$" },
@@ -102,7 +98,7 @@ return {
                 ["m"] = "$",
                 ["M"] = "$$",
             },
-            move_cursor = false,
+            move_cursor = "sticky",
         },
     },
     { import = "astrocommunity.recipes.heirline-vscode-winbar" },

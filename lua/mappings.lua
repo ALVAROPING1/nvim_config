@@ -36,8 +36,6 @@ return {
         ["<Leader>j"] = { "J", desc = "Join lines" },
         -- Move the force save key
         ["<Leader>W"] = { "<Cmd>w!<CR>", desc = "Force save" },
-        -- Nvim-surround group
-        ["<C-s>"] = { group = "Surround" },
         -- Open terminals
         ["<Leader>tt"] = {
             function()
