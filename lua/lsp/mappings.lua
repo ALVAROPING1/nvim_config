@@ -9,6 +9,7 @@ return {
             cond = "textDocument/hover",
         },
         ["K"] = false,
+        ["<Leader>fL"] = { function() require("snacks.picker").lsp_config() end, desc = "Find LSP config"}
         -- ["gl"] = {
         --     function()
         --         vim.diagnostic.open_float()
