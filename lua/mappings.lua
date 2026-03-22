@@ -51,7 +51,7 @@ return {
         },
         ["<Leader>fa"] = {
             function()
-                require("snacks").picker.files({
+                require("snacks.picker").files({
                     dirs = { vim.fn.stdpath("config") },
                     cwd = vim.fn.stdpath("config"),
                     desc = "Config Files",
