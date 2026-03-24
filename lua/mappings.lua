@@ -84,6 +84,7 @@ return {
         ["<Leader><Leader>cs"] = { "<Cmd>lua require('comment-box').albox(18)<CR>", desc = "Separator box" },
         ["<Leader><Leader>cd"] = { "<Cmd>lua require('comment-box').dbox()<CR>", desc = "Delete box" },
         ["<Leader><Leader>cy"] = { "<Cmd>lua require('comment-box').yank()<CR>", desc = "Copy box content" },
+        ["<Leader>bt"] = {"<Cmd>Hbac toggle_autoclose<CR>", desc = "Toggle autoclose buffers"},
         ["=a"] = { require("utils").restore_view("gg=G"), desc = "Indent file" },
         ["<LocalLeader>r"] = {function() require("snacks.image").hover() end, desc = "Render image"},
     },
