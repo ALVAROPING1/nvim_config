@@ -90,7 +90,6 @@ return {
         end,
         config = function(plugin, opts)
             local luasnip = require("luasnip")
-            require("astronvim.plugins.configs.luasnip")(plugin, opts) -- include the default astronvim config that calls the setup call
             luasnip.filetype_extend("markdown_inline", { "markdown" })
             -- add more custom luasnip configuration such as filetype extend or custom snippets
             ---@diagnostic disable-next-line: assign-type-mismatch Luasnip accepts a single string
@@ -101,6 +100,9 @@ return {
                 local names = { "copyright", "dateMDY", "Lorem Ipsum Paragraph", "Lorem Ipsum Sentence" }
                 return vim.list_contains(names, snippet.name) and snippet:invalidate()
             end)
+
+            -- include the default astronvim config that calls the setup call
+            require("astronvim.plugins.configs.luasnip")(plugin, opts)
         end,
     },
     -- {

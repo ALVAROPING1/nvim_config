@@ -1,14 +1,30 @@
 -- Customize Treesitter
+-- --------------------
+-- Treesitter customizations are handled with AstroCore
+-- as nvim-treesitter simply provides a download utility for parsers
 
 ---@type LazySpec
 return {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-        opts.auto_install = true -- Requires tree-sitter-cli from cargo
-        -- Add more things to the ensure_installed table protecting against community packs modifying it
-        opts.ensure_installed = require("astrocore").list_insert_unique(
-            opts.ensure_installed,
-            { "gitignore", "latex", "c", "cpp", "html", "vhdl", "javascript", "jsdoc", "bibtex", "norg", "norg_meta" }
-        )
-    end,
+    "AstroNvim/astrocore",
+    ---@type AstroCoreOpts
+    opts = {
+        treesitter = {
+            highlight = true,    -- enable/disable treesitter based highlighting
+            indent = true,       -- enable/disable treesitter based indentation
+            auto_install = true, -- enable/disable automatic installation of detected languages. Requires tree-sitter-cli from cargo
+            ensure_installed = {
+                "gitignore",
+                "latex",
+                "c",
+                "cpp",
+                "html",
+                "vhdl",
+                "javascript",
+                "jsdoc",
+                "bibtex",
+                "norg",
+                "norg_meta",
+            },
+        },
+    },
 }

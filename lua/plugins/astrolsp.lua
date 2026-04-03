@@ -8,9 +8,11 @@ return {
     opts = {
         -- Configuration table of features provided by AstroLSP
         features = {
-            codelens = true,        -- enable/disable codelens refresh on start
-            inlay_hints = true,     -- enable/disable inlay hints on start
-            semantic_tokens = true, -- enable/disable semantic token highlighting
+            codelens = true,             -- enable/disable codelens refresh on start
+            inlay_hints = true,          -- enable/disable inlay hints on start
+            inline_completion = false,   -- enable/disable inline completion capabilities
+            linked_editing_range = true, -- enable/disable linked editing range capabilities
+            semantic_tokens = true,      -- enable/disable semantic token highlighting
         },
         -- customize lsp formatting options
         formatting = require("lsp.formatting"),
@@ -20,17 +22,23 @@ return {
             -- "ghdl_ls",
             "ltex_plus", -- Installed with mason, but mason-lspconfig doesn't support it
         },
-        -- customize language server configuration options passed to `lspconfig`
-        ---@diagnostic disable: missing-fields
-        config = require("lsp.config"),
+        -- customize language server configuration passed to `vim.lsp.config`
+        -- client specific configuration can also go in `lsp/` in your configuration root (see `:h lsp-config`)
+        config = {
+            -- ["*"] = { capabilities = {} }, -- modify default LSP client settings such as capabilities
+        },
         -- customize how language servers are attached
         handlers = {
-            -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
-            -- function(server, opts) require("lspconfig")[server].setup(opts) end
+            -- a function with the key `*` modifies the default handler, functions takes the server name as the parameter
+            -- ["*"] = function(server)
+            --     -- If you need the LSP options for a server use `vim.lsp.config` table
+            --     -- This is useful for cases of setting up language server specific plugins
+            --     -- local opts = vim.lsp.config[server]
+            --     vim.lsp.enable(server)
+            -- end
 
-            -- the key is the server that is being setup with `lspconfig`
+            -- the key is the server that is being setup with `vim.lsp.config`
             -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
-            -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
         },
         -- Configure buffer local auto commands to add when attaching a language server
         autocmds = {
@@ -50,7 +58,7 @@ return {
                     desc = "Refresh codelens (buffer)",
                     callback = function(args)
                         if require("astrolsp").config.features.codelens then
-                            vim.lsp.codelens.refresh({ bufnr = args.buf })
+                            vim.lsp.codelens.enable(true, { bufnr = args.buf })
                         end
                     end,
                 },
@@ -59,7 +67,11 @@ return {
         -- mappings to be set up on attaching of a language server
         mappings = require("lsp.mappings"),
         -- A custom `on_attach` function to be run after the default `on_attach` function
-        -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
-        on_attach = require("lsp.on_attach"),
+        -- takes two parameters `client` and `bufnr`  (`:h lsp-attach`)
+        ---@param client vim.lsp.Client
+        ---@param buf integer
+        on_attach = function(client, buf)
+            require("lsp-format").on_attach(client, buf)
+        end,
     },
 }
