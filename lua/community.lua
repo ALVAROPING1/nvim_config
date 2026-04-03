@@ -269,6 +269,10 @@ return {
     },
     { import = "astrocommunity.debugging.nvim-dap-repl-highlights" },
     { import = "astrocommunity.motion.nvim-spider" },
+    {
+        "chrisgrieser/nvim-spider",
+        dependencies = { "vhyrro/luarocks.nvim", enabled = false },
+    },
     { import = "astrocommunity.motion.vim-matchup" },
     {
         "andymass/vim-matchup",
