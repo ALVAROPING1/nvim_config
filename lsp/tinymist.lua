@@ -1,7 +1,8 @@
 -- Config for the tinymist (typst) language server
 ---@diagnostic disable: missing-fields
----@type lspconfig
+---@type vim.lsp.Config
 return {
+    ---@module "lspconfig"
     ---@type lspconfig.settings.tinymist
     settings = {
         tinymist = {

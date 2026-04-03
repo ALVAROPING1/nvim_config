@@ -1,11 +1,12 @@
 -- Config for the clangd (C/C++) language server
 ---@diagnostic disable: missing-fields
----@type lspconfig
+---@type vim.lsp.Config
 return {
     cmd = { "clangd", "--query-driver=/usr/bin/c++", "--clang-tidy" },
     -- capabilities = {
     --     offsetEncoding = "utf-8",
     -- },
+    ---@module "lspconfig"
     ---@type lspconfig.settings.clangd
     settings = { clangd = {} },
     on_new_config = function(new_config, _)

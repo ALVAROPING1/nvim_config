@@ -1,4 +1,9 @@
+-- Config for the vtsls (JS/TS) language server
+---@diagnostic disable: missing-fields
+---@type vim.lsp.Config
 return {
+    ---@type lspconfig.settings.vtsls
+    ---@module "lspconfig"
     settings = {
         javascript = {
             updateImportsOnFileMove = { enabled = "always" },

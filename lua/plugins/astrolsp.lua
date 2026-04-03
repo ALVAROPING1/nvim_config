@@ -20,7 +20,6 @@ return {
         servers = {
             -- "pyright"
             -- "ghdl_ls",
-            "ltex_plus", -- Installed with mason, but mason-lspconfig doesn't support it
         },
         -- customize language server configuration passed to `vim.lsp.config`
         -- client specific configuration can also go in `lsp/` in your configuration root (see `:h lsp-config`)
