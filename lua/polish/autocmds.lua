@@ -55,7 +55,6 @@ vim.api.nvim_create_autocmd("BufLeave", {
     end,
 })
 
--- Compile spell dictionaries when changing directory
 vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
     desc = "Compile spell dictionaries when changing directory",
     callback = function()
@@ -65,5 +64,15 @@ vim.api.nvim_create_autocmd({ "DirChanged", "UIEnter" }, {
                 vim.cmd("silent mkspell! " .. file)
             end
         end
+    end,
+})
+
+-- TODO: remove when Lazy.nvim is fixed
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Fix backdrop for Lazy.nvim window",
+    pattern = "lazy_backdrop",
+    callback = function(ctx)
+        local win = vim.fn.win_findbuf(ctx.buf)[1]
+        vim.api.nvim_win_set_config(win, { border = "none" })
     end,
 })

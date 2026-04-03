@@ -34,6 +34,7 @@ return {
         mousescroll = "ver:0,hor:0",
         list = true,
         listchars = { tab = "» ", trail = "·", nbsp = "␣" },
+        winborder = "rounded",
     },
     -- configure global vim variables (vim.g)
     -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`

@@ -137,6 +137,8 @@ return {
     -- By adding to the which-key config and using our helper function you can add more which-key registered bindings
     {
         "folke/which-key.nvim",
+        -- TODO: remove after next release
+        commit = "3aab214",
         -- config = function(plugin, opts)
         --   require "plugins.configs.which-key"(plugin, opts) -- include the default astronvim config that calls the setup call
         --   -- Add bindings which show up as group name
@@ -338,4 +340,5 @@ return {
         },
     },
     { "folke/lazydev.nvim", opts = { library = { "nvim-dap-ui" } } },
+    { "mason-org/mason.nvim", opts = { ui = { border = "none" } } }
 }
