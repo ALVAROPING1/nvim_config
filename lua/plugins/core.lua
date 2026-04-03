@@ -179,16 +179,6 @@ return {
         },
     },
     {
-        "folke/neoconf.nvim",
-        opts = {
-            plugins = {
-                lua_ls = {
-                    enabled = true,
-                },
-            },
-        },
-    },
-    {
         "saghen/blink.cmp",
         specs = { "xzbdmw/colorful-menu.nvim" },
         opts = {
