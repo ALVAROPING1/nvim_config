@@ -25,7 +25,10 @@ return {
         },
     },
     {
-        "lukas-reineke/lsp-format.nvim",
+        -- TODO: switch back to main repo once #97 is merged (fixes deprecated lsp client methods)
+        -- "lukas-reineke/lsp-format.nvim",
+        "jfly/lsp-format.nvim",
+        branch = "issue-95",
         event = "LspAttach",
         opts = {
             lua = { order = { "null-ls", "lua_ls" } },
