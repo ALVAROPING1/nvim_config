@@ -189,7 +189,7 @@ return {
         },
     },
     {
-        "Saghen/blink.cmp",
+        "saghen/blink.cmp",
         specs = { "xzbdmw/colorful-menu.nvim" },
         opts = {
             completion = {
@@ -240,7 +240,7 @@ return {
         },
     },
     {
-        "echasnovski/mini.icons",
+        "nvim-mini/mini.icons",
         ---@diagnostic disable-next-line: assign-type-mismatch
         init = false,
         dependencies = {
