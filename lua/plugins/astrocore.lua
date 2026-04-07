@@ -19,6 +19,7 @@ return {
         diagnostics = {
             virtual_text = true,
             underline = true,
+            float = { source = true },
         },
         -- Passed to `vim.filetype.add`
         -- filetypes = {
