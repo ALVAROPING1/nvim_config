@@ -22,8 +22,6 @@ return {
                 "javascript",
                 "jsdoc",
                 "bibtex",
-                "norg",
-                "norg_meta",
             },
         },
     },
