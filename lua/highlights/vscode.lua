@@ -49,7 +49,7 @@ local hl = {
     WhichKeyBorder = { link = "FloatBorder" },
 
     -- Treesitter
-    ["@punctuation.special"] = { link = "@markup.list" }, -- Legacy
+    ["@punctuation.special"] = { link = "@markup.list" },
     ["@markup.list"] = { fg = blue },
     ["@markup.link"] = { fg = light_blue },
     ["@markup.link.url"] = { fg = light_blue, underline = true },
