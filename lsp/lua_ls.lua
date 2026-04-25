@@ -22,6 +22,7 @@ return {
                 },
             },
             hint = { setType = true },
+            codeLens = { enable = false },
         },
     },
 }

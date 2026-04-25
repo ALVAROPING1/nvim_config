@@ -21,6 +21,7 @@ return {
             },
             diagnostics = { styleLints = { enable = true } },
             inlayHints = { closureReturnTypeHints = { enable = "with_block" } },
+            lens = { implementations = { enable = false } },
         },
     },
 }
