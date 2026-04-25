@@ -14,17 +14,6 @@ return {
     -- },
     { "Mofiqul/vscode.nvim",     opts = { terminal_colors = false } },
     {
-        "jbyuki/nabla.nvim",
-        keys = {
-            { "<leader>M", "<cmd>lua require('nabla').popup({border='rounded'})<cr>", desc = "Open math render popup" },
-            {
-                "<leader><leader>M",
-                "<cmd>lua require('nabla').toggle_virt({autogen=true})<cr>",
-                desc = "Render math with virtual lines",
-            },
-        },
-    },
-    {
         -- TODO: switch back to main repo once #97 is merged (fixes deprecated lsp client methods)
         -- "lukas-reineke/lsp-format.nvim",
         "jfly/lsp-format.nvim",
