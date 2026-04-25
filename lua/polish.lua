@@ -6,6 +6,3 @@
 vim.opt.fillchars:append({ diff = "╱" })
 
 require("polish.autocmds")
-
--- Add the bash parser for zsh
-vim.treesitter.language.register("bash", "zsh")

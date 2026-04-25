@@ -22,6 +22,8 @@ return {
                 "javascript",
                 "jsdoc",
                 "bibtex",
+                "bash",
+                "zsh",
             },
         },
     },
