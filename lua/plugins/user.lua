@@ -53,7 +53,7 @@ return {
     {
         "barreiroleo/ltex_extra.nvim",
         branch = "dev",
-        event = "VeryLazy",
+        ft = { "tex", "latex", "typst" },
         opts = { load_langs = { "es", "en-US" } },
     },
     {
