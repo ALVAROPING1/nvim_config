@@ -18,7 +18,6 @@ return {
 
             -- install formatters
             "stylua",
-            "markdownlint",
             "clang-format",
 
             -- install debuggers
