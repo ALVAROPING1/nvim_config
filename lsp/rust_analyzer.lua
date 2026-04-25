@@ -11,14 +11,7 @@ return {
                 -- stylua: ignore
                 extraArgs = { "--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-W", "clippy::unwrap_used", "--no-deps" },
             },
-            assist = {
-                importPrefix = "self",
-                emitMustUse = true, -- TODO: check what this does
-            },
-            completion = {
-                postfix = { enable = true },
-                callable = { snippets = "none" }, -- "fill_arguments" causes functions to be auto-expanded when selected on cmp
-            },
+            completion = { postfix = { enable = true } },
             diagnostics = { styleLints = { enable = true } },
             inlayHints = { closureReturnTypeHints = { enable = "with_block" } },
             lens = { implementations = { enable = false } },
