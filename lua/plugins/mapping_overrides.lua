@@ -24,7 +24,5 @@ return {
         tbl_move(maps_n, "<Leader>fT", "<Leader>ft")
         -- Astrocommunity mappings
         tbl_move(maps_n, "<Leader>J", "<Leader>m")   -- Treesj
-        tbl_move(maps_n, "<Leader>xl", "<Lader>xL")  -- Trouble location list
-        tbl_move(maps_n, "<Leader>xq", "<Leader>xQ") -- Trouble quickfix list
     end,
 }

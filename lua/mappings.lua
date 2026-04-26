@@ -49,6 +49,7 @@ return {
             end,
             desc = "ToggleTerm python",
         },
+        -- Pickers
         ["<Leader>fa"] = {
             function()
                 require("snacks.picker").files({
@@ -71,12 +72,24 @@ return {
             end,
             desc = "Find icons",
         },
-        ["<Leader>P"] = { function() require("snacks.picker").projects() end, desc = "Find projects" },
+        ["<Leader>P"] = {
+            function()
+                require("snacks.picker").projects()
+            end,
+            desc = "Find projects",
+        },
+        -- Trouble
+        ["<Leader>xX"] = { "<Cmd>Trouble diagnostics toggle<CR>", desc = "Trouble Workspace Diagnostics" },
+        ["<Leader>xx"] = { "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Trouble Document Diagnostics" },
+        ["<Leader>xt"] = { "<Cmd>Trouble todo<CR>", desc = "Trouble Todo" },
+        ["<Leader>xT"] = { "<Cmd>Trouble todo filter={tag={TODO,FIX,FIXME}}<CR>", desc = "Trouble Todo/Fix/Fixme" },
+        ["<Leader>bt"] = { "<Cmd>Hbac toggle_autoclose<CR>", desc = "Toggle autoclose buffers" },
         ["<Leader><Leader>"] = { group = "󰐕 More commands" },
         -- Text search
         ["<Leader><Leader>/"] = { "<Cmd>noh<CR>", desc = "Clear highlighted text" },
         -- Rainbow delimiters
         ["<Leader><Leader>r"] = { "<Cmd>e<CR>", desc = "Reload rainbow delimiters" },
+        -- Comment Box
         ["<Leader><Leader>c"] = { group = "󰅺 Comment Box" },
         ["<Leader><Leader>cn"] = { "<Cmd>lua require('comment-box').llbox()<CR>", desc = "Normal box" },
         ["<Leader><Leader>cH"] = { "<Cmd>lua require('comment-box').lcbox(7)<CR>", desc = "Header box" },
@@ -84,9 +97,14 @@ return {
         ["<Leader><Leader>cs"] = { "<Cmd>lua require('comment-box').albox(18)<CR>", desc = "Separator box" },
         ["<Leader><Leader>cd"] = { "<Cmd>lua require('comment-box').dbox()<CR>", desc = "Delete box" },
         ["<Leader><Leader>cy"] = { "<Cmd>lua require('comment-box').yank()<CR>", desc = "Copy box content" },
-        ["<Leader>bt"] = {"<Cmd>Hbac toggle_autoclose<CR>", desc = "Toggle autoclose buffers"},
+        -- Misc
         ["=a"] = { require("utils").restore_view("gg=G"), desc = "Indent file" },
-        ["<LocalLeader>r"] = {function() require("snacks.image").hover() end, desc = "Render image"},
+        ["<LocalLeader>r"] = {
+            function()
+                require("snacks.image").hover()
+            end,
+            desc = "Render image",
+        },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
