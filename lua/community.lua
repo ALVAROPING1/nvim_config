@@ -142,30 +142,6 @@ return {
         "smjonas/inc-rename.nvim",
         opts = { hlgroup = "IncRenameText", save_in_cmdline_history = false },
     },
-    -- { import = "astrocommunity.project.nvim-spectre" },
-    -- {
-    --     "nvim-pack/nvim-spectre",
-    --     keys = function(_, keys)
-    --         local prefix = "<leader>s"
-    --         local nprefix = "<leader>" .. prefix
-    --         local maps = { n = {}, x = {} }
-    --
-    --         local icon = vim.g.icons_enabled and "󰛔 " or ""
-    --         maps.n[nprefix] = { desc = icon .. "Search / Replace" }
-    --         maps.x[prefix] = { desc = icon .. "Search / Replace" }
-    --
-    --         require("astrocore").set_mappings(maps)
-    --         for _, mapping in pairs(keys) do
-    --             mapping[1] = mapping.mode == "x" and prefix or nprefix .. mapping[1]:sub(-1)
-    --         end
-    --     end,
-    --     opts = {
-    --         highlight = {
-    --             search = "DiffDelete",
-    --             replace = "DiffAdd",
-    --         },
-    --     },
-    -- },
     { import = "astrocommunity.utility.noice-nvim" },
     {
         "folke/noice.nvim",
