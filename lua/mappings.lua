@@ -60,24 +60,9 @@ return {
             end,
             desc = "Find AstroNvim config files",
         },
-        ["<Leader>fH"] = {
-            function()
-                require("snacks.picker").highlights()
-            end,
-            desc = "Find highlight groups",
-        },
-        ["<Leader>fi"] = {
-            function()
-                require("snacks.picker").icons()
-            end,
-            desc = "Find icons",
-        },
-        ["<Leader>P"] = {
-            function()
-                require("snacks.picker").projects()
-            end,
-            desc = "Find projects",
-        },
+        ["<Leader>fH"] = { "<Cmd>lua require('snacks.picker').highlights()<CR>", desc = "Find highlight groups" },
+        ["<Leader>fi"] = { "<Cmd>lua require('snacks.picker').icons()<CR>", desc = "Find icons" },
+        ["<Leader>P"] = { "<Cmd>lua require('snacks.picker').projects()<CR>", desc = "Find projects" },
         -- Trouble
         ["<Leader>xX"] = { "<Cmd>Trouble diagnostics toggle<CR>", desc = "Trouble Workspace Diagnostics" },
         ["<Leader>xx"] = { "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Trouble Document Diagnostics" },
@@ -99,12 +84,7 @@ return {
         ["<Leader><Leader>cy"] = { "<Cmd>lua require('comment-box').yank()<CR>", desc = "Copy box content" },
         -- Misc
         ["=a"] = { require("utils").restore_view("gg=G"), desc = "Indent file" },
-        ["<LocalLeader>r"] = {
-            function()
-                require("snacks.image").hover()
-            end,
-            desc = "Render image",
-        },
+        ["<LocalLeader>r"] = { "<Cmd>lua require('snacks.image').hover()<CR>", desc = "Render image" },
     },
     i = {
         ["<C-g>"] = { "<C-k>*", desc = "Type Greek characters" },
