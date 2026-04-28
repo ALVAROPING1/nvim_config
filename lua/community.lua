@@ -64,8 +64,7 @@ return {
     { import = "astrocommunity.motion.nvim-surround" },
     {
         "kylechui/nvim-surround",
-        ---@diagnostic disable-next-line: assign-type-mismatch -- Value does work
-        event = false,
+        event = false, ---@diagnostic disable-line: assign-type-mismatch -- Value does work
         keys = {
             { "gs",  "<Plug>(nvim-surround-normal)", desc = "Add surround pair around motion" },
             { "dgs", "<Plug>(nvim-surround-delete)", desc = "Delete surround pair" },
@@ -223,7 +222,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
         opts = { commented = false, highlight_new_as_changed = true },
     },
-    { import = "astrocommunity.editing-support.comment-box-nvim" },
+    -- { import = "astrocommunity.editing-support.comment-box-nvim" },
     {
         "LudoPinelli/comment-box.nvim",
         opts = {
