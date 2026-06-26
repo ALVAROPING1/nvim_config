@@ -82,7 +82,7 @@ local hl = {
     NeoTreeGitUntracked = { link = "NvimTreeGitRenamed" },
     NeoTreeGitStaged = { link = "NvimTreeGitStaged" },
     NeoTreeTitleBar = { fg = "fg", bg = grey },
-    NeoTreeFloatBorder = { fg = grey },
+    NeoTreeFloatTitle = { link = "NormalFloat" },
     NeoTreeTabSeparatorActive = { link = "NvimTreeVertSplit" },
     NeoTreeTabSeparatorInactive = { fg = tabline_bg, bg = tabline_bg },
 
