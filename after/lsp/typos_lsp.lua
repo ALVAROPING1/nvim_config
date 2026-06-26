@@ -10,7 +10,7 @@ return {
             and vim.bo[bufnr].buftype == ""
             and vim.api.nvim_buf_get_name(bufnr) ~= ""
         then
-            on_dir(vim.fn.getcwd())
+            on_dir(vim.uv.cwd())
         end
     end
 }
