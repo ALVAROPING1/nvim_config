@@ -5,13 +5,6 @@ return {
     -- You can also add new plugins here as well:
     -- Add plugins, the lazy syntax
     -- "andweeb/presence.nvim",
-    -- {
-    --   "ray-x/lsp_signature.nvim",
-    --   event = "BufRead",
-    --   config = function()
-    --     require("lsp_signature").setup()
-    --   end,
-    -- },
     { "Mofiqul/vscode.nvim",     opts = { terminal_colors = false } },
     {
         -- TODO: switch back to main repo once #97 is merged (fixes deprecated lsp client methods)
@@ -25,12 +18,6 @@ return {
             c = { exclude = { "clangd" } },
             cpp = { exclude = { "clangd" } },
         },
-    },
-    {
-        "ray-x/lsp_signature.nvim",
-        enabled = false,
-        event = "VeryLazy",
-        opts = { hint_enable = false, noice = true },
     },
     {
         "axkirillov/hbac.nvim",
